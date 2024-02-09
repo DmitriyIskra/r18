@@ -1,9 +1,10 @@
 export default class ControllSlHead {
     constructor(d) {
-        this.d = d;
+        this.slider = d.slider;
+        this.initSlider = d.initSlider;
     }
 
     init() {
-        this.d.initSlider()
+        this.initSlider();
     }
 }

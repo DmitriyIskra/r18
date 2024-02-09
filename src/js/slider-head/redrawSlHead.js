@@ -5,6 +5,9 @@ export default class RedrawSlHead {
         this.data = data;
 
         this.amountSlides = this.data.length;
+
+        // прибиваем контекст для controll
+        this.initSlider = this.initSlider.bind(this);
     }
 
     initSlider() {
@@ -16,6 +19,6 @@ export default class RedrawSlHead {
         if(this.amountSlides === 1) return;
 
         this.arrows.forEach(item => item.style = 'display: block;');
-        this.arrows[0].parentElement.style = 'justify-content: space-between;'
+        this.arrows[0].parentElement.style = 'justify-content: space-between;';
     }
 }
