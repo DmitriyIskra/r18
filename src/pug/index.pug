@@ -1,0 +1,73 @@
+//- -
+//-   let nav = [
+//-         {
+//-             name: 'Кофе',
+//-             link: '#'
+//-         },
+//-         {
+//-             name: 'Мерч',
+//-             link: '#'
+//-         },
+//-         {
+//-             name: 'Аксессуары',
+//-             link: '#'
+//-         },
+//-         {
+//-             name: 'Контакты',
+//-             link: '#'
+//-         }
+//-       ]
+
+include variable/navigationVar
+include mixines/navigation
+
+
+doctype html
+html(lang='ru')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Roasteria18
+  body
+    header.header
+      .header__wr-nav
+        a.logo(href="/")
+          img(src=require("../img/logo.png"), alt="Логотип R18")
+        +nav(nav)
+      
+    main.main 
+      .slider-h
+        .slider-h__slides 
+          ul.slider-h__slides-list 
+            //- li.slider__slide-item
+            //- li.slider__slide-item
+            //- li.slider__slide-item
+        .slider-h__arrows-name 
+          include components/arrow-prev
+
+          .slider-h__wr-name-site
+            .slider-h__wr-name-site-descr
+              .slider-h__name-site-lines
+                .slider-h__name-site-line.slider-h__name-site-line_top 
+                .slider-h__name-site-line.slider-h__name-site-line_bottom 
+              .slider-h__name-site-descr крафтовый кофе
+              .slider-h__name-site-lines
+                .slider-h__name-site-line.slider-h__name-site-line_top 
+                .slider-h__name-site-line.slider-h__name-site-line_bottom 
+            .slider-h__name-site Roasteria18
+
+          include components/arrow-next
+          
+        .slider-h__pagination
+          ul.slider-h__pagination-list
+            //- li.slider-h__pagination-item
+              .slider-h__pagination-icon
+              .slider-h__pagination-text
+        .slider-h__line 
+          .slider-h__nav-line
+            .slider-h__nav-line-item
+      
+      .next-block
+
+
+    

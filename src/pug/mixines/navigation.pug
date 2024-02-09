@@ -1,0 +1,6 @@
+mixin nav(obj)
+    nav.nav 
+        ul.nav__list 
+            each item in obj
+                li.nav__item 
+                    a.nav__item-link(href=item.link title="Coffe") #{item.name}
