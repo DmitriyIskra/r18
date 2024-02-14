@@ -61,7 +61,7 @@ ul.nav__list {
     height: 100%;
     width: 100%;
 
-    font-family: Inria-Sans;
+    font-family: 'InriaSans', Arial;
     font-size: 1.25vw;
     font-weight: 400;
 
@@ -81,6 +81,9 @@ ul.nav__list {
     position: relative;
 
     width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
 }
 
 .slider-h__slides {
@@ -88,10 +91,20 @@ ul.nav__list {
 }
 
 .slider-h__slides-list {
+    display: flex;
     height: 100%;
-    background: no-repeat url(../img/content/fon-head-slider_content.png);
+
+    background: gray;
 }
 
+.slider__slide-item {
+    width: 100%;
+}
+
+.slider__slide-item img {
+    object-fit: cover;
+    object-position: center;
+}
 
 .slider-h__arrows-name {
     position: absolute;
@@ -145,7 +158,7 @@ ul.nav__list {
 }
 
 .slider-h__name-site-descr {
-    font-family: Inria-Sans;
+    font-family: 'InriaSans', Arial;
     font-size: 40px;
     font-style: normal;
     font-weight: 300;
@@ -182,8 +195,12 @@ ul.nav__list {
     justify-content: center;
 }
 
+.slider-h__pagination-list {
+    display: flex;
+    gap: 4.32vw;
+}
 
-.slider-h__pagination_item {
+.slider-h__pagination-item {
     display: flex;
     gap: 0.73vw;
 
@@ -194,10 +211,22 @@ ul.nav__list {
 .slider-h__pagination-icon {
     height: 3.13vw;
     width: 3.13vw;
+    
+    background: no-repeat url(../img/icons/arrowPag_icon.png);
+    background-position: center;
+    background-size: contain;
 }
 
 .slider-h__pagination-text {
     width: 12.40vw;
+
+    color: #FFF;
+
+    font-family: 'InriaSans', Arial;
+    font-size: 0.83vw;
+    font-weight: 300;
+
+    color: #fff;
 }
 
 
@@ -214,10 +243,15 @@ ul.nav__list {
 }
 
 .slider-h__nav-line {
+    position: relative;
+
+    display: flex;
     width: 85%;
 
     border-radius: 0.16vw;
     background-color: rgba(255, 255, 255, 0.6);
+
+    overflow: hidden;
 }
 
 .slider-h__nav-line-item {
