@@ -70,6 +70,27 @@ export default class RedrawSlHead {
         this.moveLinePrev();
     }
 
+    clickPag(el) {
+        const num = +el.dataset.num;
+        if(num === this.lineCounter) return;
+
+        // двигаем слайды и ползунок в право
+        if(num > this.lineCounter) {
+            const amount = num - this.lineCounter;
+            for(let i = 0; i < amount; i += 1) {
+                this.moveNext();
+            }
+        }
+        
+        // двигаем слайды и ползунок в лево
+        if(num < this.lineCounter) {
+            const amount = this.lineCounter - num;
+            for(let i = 0; i < amount; i += 1) {
+                this.movePrev();
+            }
+        }
+    }
+
     moveLineNext() {
         this.lineCounter += 1;
         

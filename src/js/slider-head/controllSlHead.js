@@ -22,5 +22,9 @@ export default class ControllSlHead {
         if(e.target.closest('.slider__arrow-prev')) {
             this.d.movePrev();
         }
+
+        if(e.target.closest('.slider-h__pagination-item')) {
+            this.d.clickPag(e.target.closest('.slider-h__pagination-item'));
+        }
     }
 }
