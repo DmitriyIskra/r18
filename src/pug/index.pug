@@ -36,6 +36,8 @@ html(lang='ru')
         +nav(nav)
       
     main.main 
+      //- ------------------ Слайдер с видео
+
       .slider-h
         .slider-h__slides 
           ul.slider-h__slides-list 
@@ -76,7 +78,16 @@ html(lang='ru')
           .slider-h__nav-line
             .slider-h__nav-line-item
       
-      .next-block
+            //- ------------------ блок со слайдерами с кофе
+
+      .products 
+
+        article.products__wr-slider-top
+          include components/slider-prod
+
+        article.products__wr-slider-bottom
+
+        .products__side-deco
 
 
     

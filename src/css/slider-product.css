@@ -1,0 +1,122 @@
+.sl-prod {
+    display: flex;
+}
+
+.sl-prod__big-img {
+    width: 21.46vw;
+}
+
+.sl-prod__wr-descr-preview {
+    display: flex;
+
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.sl-prod__text-about {
+    width: 45%;
+    margin-right: 11.6%;
+
+    align-self: flex-end;
+}
+
+.sl-prod__title {
+    font-family: 'SofiaSans';
+    font-size: 2.08vw;
+    font-weight: 700;
+
+    color: #F1551C;
+}
+
+.sl-prod__description {
+    margin-top: 2.29vw;
+}
+
+.sl-prod__taste-title {
+    font-family: 'SofiaSans';
+    font-size: 1.25vw;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    color: #FFF;
+}
+
+.sl-prod__taste-text {
+    font-family: 'SofiaSans';
+    font-size: 1.25vw;
+    font-weight: 400;
+
+    color: #FFF;
+}
+
+.sl-prod__aroma {
+    margin-top: 2.08vw;
+}
+
+.sl-prod__aroma-title {
+    font-family: 'SofiaSans';
+    font-size: 1.25vw;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    color: #FFF;
+}
+
+.sl-prod__aroma-text {
+    font-family: 'SofiaSans';
+    font-size: 1.25vw;
+    font-weight: 400;
+
+    color: #FFF;
+}
+
+.sl-prod__line {
+    width: 100%;
+    height: 1.5px;
+    margin-top: 1.41vw;
+
+    background-color: #A59F9E;;
+}
+
+.sl-prod__character-list {
+    margin-top: 1.20vw;
+}
+
+.sl-prod__character-item {
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.sl-prod__prop {
+    font-family: 'SofiaSans';
+    font-size: 1.25vw;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    color: #FFF;
+}
+
+.sl-prod__val {
+    font-family: 'SofiaSans';
+    font-size: 1.25vw;
+    font-weight: 400;
+
+    color: #FFF;
+}
+
+
+
+
+.sl-prod__wr-prev {
+    position: relative;
+}
+
+.sl-prod__wr-slides {
+    overflow: hidden;
+}
+
+.sl-prod__slides {
+    display: flex;
+    gap: 3.49vw;
+}

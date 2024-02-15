@@ -1,16 +1,13 @@
 @font-face { 
-    font-family: 'InriaSans';
-    src: url('../fonts/inria-sans-light.ttf');
+    font-family: 'SofiaSans';
+    src: url('../fonts/SofiaSansSemiCondensed-Light.ttf');
     font-weight: 300;
     font-display: swap;
 } 
 
 @font-face { 
-    font-family: 'InriaSans';
-    src: url('../fonts/InriaSans-Regular.woff2') format('woff2'),
-    url('../fonts/InriaSans-Regular.eot'),
-    url('../fonts/InriaSans-Regular.svg'),
-    url('../fonts/InriaSans-Regular.woff');
+    font-family: 'SofiaSans';
+    src: url('../fonts/SofiaSansSemiCondensed-Regular.ttf');
     font-weight: 400;
     font-display: swap;
 } 
@@ -25,8 +22,8 @@
 }  */
 
 @font-face { 
-    font-family: 'InriaSans';
-    src: url('../fonts/inria-sans-bold.ttf') format('truetype');
+    font-family: 'SofiaSans';
+    src: url('../fonts/SofiaSansSemiCondensed-Bold.ttf') format('truetype');
     font-weight: 700;
     font-display: swap;
 } 

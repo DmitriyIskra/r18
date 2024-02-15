@@ -1,0 +1,62 @@
+[
+    {
+        "id": "columbia1",
+        "title": "colombia andino",
+        "taste": "спелый гранат, грейпфрут, виноград, настой шиповника",
+        "aroma": "сладкие фрукты, цветы",
+        "processing": "мытая",
+        "height": "1500-1900м",
+        "sort": "катурра, колумбия, кастильо",
+        "q": "84.75",
+        "weight": "1 кг",
+        "img": "./img/content/pack_content.png"
+    },
+    {
+        "id": "columbia2",
+        "title": "colombia andino2",
+        "taste": "спелый гранат, грейпфрут, виноград, настой шиповника",
+        "aroma": "сладкие фрукты, цветы",
+        "processing": "мытая",
+        "height": "1500-1900м",
+        "sort": "катурра, колумбия, кастильо",
+        "q": "84.75",
+        "weight": "1 кг",
+        "img": "./img/content/pack_content.png"
+    },
+    {
+        "id": "columbia3",
+        "title": "colombia andino3",
+        "taste": "спелый гранат, грейпфрут, виноград, настой шиповника",
+        "aroma": "сладкие фрукты, цветы",
+        "processing": "мытая",
+        "height": "1500-1900м",
+        "sort": "катурра, колумбия, кастильо",
+        "q": "84.75",
+        "weight": "1 кг",
+        "img": "./img/content/pack_content.png"
+    },
+    {
+        "id": "columbia4",
+        "title": "colombia andino4",
+        "taste": "спелый гранат, грейпфрут, виноград, настой шиповника",
+        "aroma": "сладкие фрукты, цветы",
+        "processing": "мытая",
+        "height": "1500-1900м",
+        "sort": "катурра, колумбия, кастильо",
+        "q": "84.75",
+        "weight": "1 кг",
+        "img": "./img/content/pack_content.png"
+    },
+    {
+        "id": "columbia5",
+        "title": "colombia andino5",
+        "taste": "спелый гранат, грейпфрут, виноград, настой шиповника",
+        "aroma": "сладкие фрукты, цветы",
+        "processing": "мытая",
+        "height": "1500-1900м",
+        "sort": "катурра, колумбия, кастильо",
+        "q": "84.75",
+        "weight": "1 кг",
+        "img": "./img/content/pack_content.png"
+    }
+]

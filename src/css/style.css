@@ -26,8 +26,8 @@
 
 .logo {
     display: inline-block;
-    width: 3.13vw;
-    height: 7.19vw;
+    width: 5.36vw;
+    height: 5.36vw;
 }
 
 .logo img {
@@ -61,7 +61,7 @@ ul.nav__list {
     height: 100%;
     width: 100%;
 
-    font-family: 'InriaSans';
+    font-family: 'SofiaSans';
     font-size: 1.25vw;
     font-weight: 400;
 
@@ -73,7 +73,7 @@ ul.nav__list {
 
 /* HEADER END */
 
-
+/* ////////////////  MAIN   ///////////////// */
 
 /* SLIDER HEAD START */
 
@@ -147,7 +147,7 @@ ul.nav__list {
 .slider-h__name-site-line {
     height: 1.5px;
     width: 3.18vw;
-}
+} 
 
 .slider-h__name-site-line_top {
     background-color: #fff;
@@ -158,8 +158,8 @@ ul.nav__list {
 }
 
 .slider-h__name-site-descr {
-    font-family: 'InriaSans', Arial;
-    font-size: 40px;
+    font-family: 'SofiaSans';
+    font-size: 2.08vw;
     font-style: normal;
     font-weight: 300;
 
@@ -212,7 +212,7 @@ ul.nav__list {
     height: 3.13vw;
     width: 3.13vw;
     
-    background: no-repeat url(../img/icons/arrowPag_icon.png);
+    background: no-repeat url(../img/icons/arrow-pag_icon.png);
     background-position: center;
     background-size: contain;
 }
@@ -222,7 +222,7 @@ ul.nav__list {
 
     color: #FFF;
 
-    font-family: 'InriaSans', Arial;
+    font-family: 'SofiaSans';
     font-size: 0.83vw;
     font-weight: 300;
 
@@ -265,6 +265,39 @@ ul.nav__list {
 
 /* SLIDER HEAD END */
 
-.next-block {
-    height: 500px;
+
+
+.products {
+    position: relative;
+
+    display: flex;
+    padding-top: 0.78vw;
+    padding-bottom: 2.97vw;
+
+    background:no-repeat url(../img/roasteria-side.png), #483D41;
+    background-position: right 2.08vw top 0.5vw;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.products__wr-slider-top {
+    position: relative;
+
+    width: 85%;
+
+    z-index: 5;
+}
+
+.products__side-deco {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 41.5%;
+
+    background-color: #6B6462;
+
+    z-index: 0;
 }

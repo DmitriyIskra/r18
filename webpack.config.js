@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack');
 const miniCss = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     devServer: {
@@ -15,9 +16,14 @@ module.exports = {
             console.log(data.filename)
             return `${/^.*content\.(png|jpg|jpeg|gif)$/i.test(data.filename) ? (
               `img/content/[name][ext]`
-            ) : /\.(svg)$/i.test(data.filename) ? (
+            ) : 
+            /^.*icon\.(png|jpg|jpeg|gif)$/i.test(data.filename) ? (
+              `img/icon/[name][ext]`
+            ) : 
+            /\.(svg)$/i.test(data.filename) ? (
               `svg/[name][ext]`
-            ) : (
+            ) : 
+            (
               `img/[name][ext]`
             ) }`
         }, // [name] или [hash], путь куда сохранять изображения
@@ -78,6 +84,11 @@ module.exports = {
         }),
         new miniCss({
             filename: 'css/style.css',
-        })
+        }),
+        new CopyWebpackPlugin({
+          patterns: [ 
+            { from: 'src/img/content/pack_content.png', to: 'img/content' },
+          ],
+        }),
     ]
 }
