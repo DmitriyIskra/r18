@@ -3,33 +3,65 @@ export default class RedrawSlProd {
         this.slider = slider;
         this.data = data;
 
+        this.wrSlides = this.slider.querySelector('.sl-prod__wr-slides')
         this.slides = this.slider.querySelector('.sl-prod__slides');
         this.arrow = this.slider.querySelector('.slider__arrow');
+        this.bigImg = this.slider.querySelector('.sl-prod__big-img img')
 
         this.amountSlides = this.slides.children.length;
+        this.amountShow = 3;
+        this.gap = parseFloat(getComputedStyle(this.slides).gap);
     }
 
     initSlider() {
-
-        this.data.forEach(item => {
-            const el = this.createSlide(
-                item.img,
-                item.title,
-                '#',
-                item.title
-                );
-            this.slides.append(el);
+        // формируем слайды
+        this.data.forEach((item, index) => {
+            // if ( index < this.amountShow) {
+                const el = this.createSlide(
+                    item.img,
+                    item.title,
+                    '#',
+                    item.title
+                    );
+    
+    
+                if(index === 0) {
+                    el.dataset.status = 'active';
+                    el.classList.add('sl-prod__slide_active')
+    
+    
+                    this.bigImg.src = item.img;
+                    this.bigImg.alt = item.title;
+                }
+    
+                this.slides.append(el);
+            // }
         });
 
+        // ставим стрелку на место
         this.arrow.style = `
         position: absolute;
-        right: 0;
+        right: 2%;
         top: 50%;
 
         display: block;
 
-        transform: translate(100%, -50%);
-        `
+        transform: translate(0, -50%);
+        `;
+
+        // задаем ширину контейнеру со слайдами во vw
+        let width = [...this.slides.children].reduce( (acc, item, index) => {
+            return index < this.amountShow ? 
+            (
+                acc += item.offsetWidth / innerWidth * 100
+            ) : 
+            (
+                acc
+            );
+        }, 0);
+        width += (this.gap * this.amountShow) / innerWidth * 100;
+        this.wrSlides.style = `width: ${width.toFixed(3)}vw;`;
+        console.log(width)
     }
 
     createSlide(pathImg, title, href, linkTitle) {

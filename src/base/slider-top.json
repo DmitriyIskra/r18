@@ -9,7 +9,7 @@
         "sort": "катурра, колумбия, кастильо",
         "q": "84.75",
         "weight": "1 кг",
-        "img": "./img/content/pack_content.png"
+        "img": "./img/content/pack_content2.png"
     },
     {
         "id": "columbia2",
@@ -21,7 +21,7 @@
         "sort": "катурра, колумбия, кастильо",
         "q": "84.75",
         "weight": "1 кг",
-        "img": "./img/content/pack_content.png"
+        "img": "./img/content/pack_content2.png"
     },
     {
         "id": "columbia3",
@@ -33,7 +33,7 @@
         "sort": "катурра, колумбия, кастильо",
         "q": "84.75",
         "weight": "1 кг",
-        "img": "./img/content/pack_content.png"
+        "img": "./img/content/pack_content2.png"
     },
     {
         "id": "columbia4",
@@ -45,7 +45,7 @@
         "sort": "катурра, колумбия, кастильо",
         "q": "84.75",
         "weight": "1 кг",
-        "img": "./img/content/pack_content.png"
+        "img": "./img/content/pack_content2.png"
     },
     {
         "id": "columbia5",
@@ -57,6 +57,6 @@
         "sort": "катурра, колумбия, кастильо",
         "q": "84.75",
         "weight": "1 кг",
-        "img": "./img/content/pack_content.png"
+        "img": "./img/content/pack_content2.png"
     }
 ]
