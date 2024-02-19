@@ -22,7 +22,7 @@
     top: 53%;
     left: 50%;
 
-    height: 87%;
+    height: 84%;
     width: 80%;
 
     box-shadow: 0.78vw 1.04vw 3.02vw 0.63vw rgba(0, 0, 0, 1);
@@ -137,6 +137,7 @@
     position: relative;
 
     height: 25.2vw;
+    margin-top: 2.97vw;
 }
 
 .sl-prod__wr-slides {
@@ -209,7 +210,31 @@
 }
 
 .sl-prod__wr-button-slide {
+    position: relative;
+
     margin-top: 1.04vw;
+}
+
+.sl-prod__wr-button-slide-deco {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    
+    width: 120%;
+    height: 100%;
+
+    display: none;
+
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(114, 107, 104, 0.04) 15.09%, rgba(114, 107, 104, 0.8));
+
+    transform: translate(-50%, 12%);
+
+    pointer-events: none;
+}
+
+.sl-prod__slide_active .sl-prod__wr-button-slide-deco {
+    display: block;
 }
 
 .sl-prod__button-slide {
@@ -233,3 +258,5 @@
     justify-content: center;
     align-items: center;
 }
+
+/* добавить тень на кнопку активной карточки */
