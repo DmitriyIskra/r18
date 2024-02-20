@@ -89,6 +89,16 @@ ul.nav__list {
     overflow: hidden;
 }
 
+.slider-h__mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
+}
+
 .slider-h__slides {
     height: 100%;
 }
@@ -106,9 +116,6 @@ ul.nav__list {
 
 .slider__slide-item video::-moz-media-controls {
     display: none;
-    /* height: 0;
-
-    opacity: 0; */
 }
 
 .slider__slide-item img {
