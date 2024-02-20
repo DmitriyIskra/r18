@@ -134,7 +134,6 @@ export default class RedrawSlProd {
 
     fillTextInfo() {
         const id = this.activeSlide.id;
-        console.log('id', this.activeSlide)
         const info = this.data.find( item => item.id === id);
         const keys = Object.keys(info);
         keys.forEach( item => {

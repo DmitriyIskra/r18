@@ -7,7 +7,7 @@ export default class ControllSlHead {
         this.click = this.click.bind(this);
     }
 
-    init() {
+    init() { 
         this.d.initSlider();
         this.d.slider.addEventListener('click', this.click);
     }

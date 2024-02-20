@@ -5,6 +5,7 @@ export default class RedrawSlHead {
         this.arrows = [...this.slider.querySelectorAll('.slider__arrow')];
         this.paginations = this.slider.querySelector('.slider-h__pagination-list');
         this.wrLine = this.slider.querySelector('.slider-h__nav-line');
+        this.videos = [...this.slider.querySelectorAll('video')];
         this.line = this.wrLine.children[0];
 
         this.amountSlides = this.slides.children.length;
@@ -16,6 +17,7 @@ export default class RedrawSlHead {
 
         // Счетчик для полосы индикации
         this.lineCounter = 0;
+        this.videoCounter = 0;
 
         // прибиваем контекст для controll
         this.initSlider = this.initSlider.bind(this);
@@ -36,6 +38,37 @@ export default class RedrawSlHead {
         this.widthLine = (widthLine / this.amountSlides) / innerWidth * 100;
         this.line.style = `width: ${this.widthLine}vw;`;
         this.line.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
+
+        // останавливаем воспроизведение на всех слайдах кроме первого
+        this.videos.forEach((v, i) => v.play && i ? v.pause() : '');
+    }
+
+    controlMovie(type) {
+        // ставим предидущий слайд на паузу и в начало
+        if(this.videos[this.videoCounter].play) {
+            this.videos[this.videoCounter].pause();
+            this.videos[this.videoCounter].currentTime = 0;
+        }
+
+        if(type === 'next') {
+            // прибавляем проверяем чтоб не получить не существующий индекс
+            this.videoCounter += 1;
+            this.videoCounter === this.videos.length ? this.videoCounter = 0 : '';
+            // запускаем видео на следующем слайде
+            if(this.videos[this.videoCounter].paused) {
+                this.videos[this.videoCounter].play();
+            }
+
+            return;
+        }
+
+        // прибавляем проверяем чтоб не получить не существующий индекс
+        this.videoCounter -= 1;
+        this.videoCounter < 0 ? this.videoCounter = this.videos.length - 1 : '';
+
+        if(this.videos[this.videoCounter].paused) {
+            this.videos[this.videoCounter].play();
+        }
     }
 
     moveNext() {
@@ -50,6 +83,7 @@ export default class RedrawSlHead {
         },{once: true})
 
         this.moveLineNext();
+        this.controlMovie('next');
     }
 
     movePrev() {
@@ -68,6 +102,7 @@ export default class RedrawSlHead {
         },{once: true})
 
         this.moveLinePrev();
+        this.controlMovie(null);
     }
 
     clickPag(el) {
@@ -88,7 +123,7 @@ export default class RedrawSlHead {
             for(let i = 0; i < amount; i += 1) {
                 this.movePrev();
             }
-        }
+        } 
     }
 
     moveLineNext() {

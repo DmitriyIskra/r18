@@ -42,11 +42,17 @@ html(lang='ru')
         .slider-h__slides 
           ul.slider-h__slides-list 
             li.slider__slide-item
-              img(src=require('../img/content/fon-head-slider_content.png'), alt="Слайд")
+              video(controls="false" loop muted autoplay data-count="0")
+                source(src=require('../video/IMG_0981.MOV') type='video/mp4')
+              //- img(src=require('../img/content/fon-head-slider_content.png'), alt="Слайд")
             li.slider__slide-item
-              img(src=require('../img/content/fon-head-slider_content.png'), alt="Слайд")
+              video(controls="false" loop muted autoplay data-count="1")
+                source(src=require('../video/IMG_0981.MOV') type='video/mp4')
+              //- img(src=require('../img/content/fon-head-slider_content.png'), alt="Слайд")
             li.slider__slide-item
-              img(src=require('../img/content/fon-head-slider_content.png'), alt="Слайд")
+              video(controls="false" loop muted autoplay data-count="2")
+                source(src=require('../video/IMG_0981.MOV') type='video/mp4')
+              //- img(src=require('../img/content/fon-head-slider_content.png'), alt="Слайд")
         .slider-h__arrows-name 
           include components/arrow-prev
 

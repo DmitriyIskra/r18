@@ -13,9 +13,11 @@ module.exports = {
         path: __dirname + '/dist',
         filename: 'js/main.js',
         assetModuleFilename: (data) => {
-            console.log(data.filename)
             return `${/^.*content\.(png|jpg|jpeg|gif)$/i.test(data.filename) ? (
               `img/content/[name][ext]`
+            ) : 
+            /\.(mov)$/i.test(data.filename) ? (
+              `video/[name][ext]`
             ) : 
             /^.*icon\.(png|jpg|jpeg|gif)$/i.test(data.filename) ? (
               `img/icon/[name][ext]`
@@ -32,7 +34,7 @@ module.exports = {
     module: {
         rules: [
             {
-              test: /\.(png|jpg|jpeg|gif|svg)$/i,
+              test: /\.(png|jpg|jpeg|gif|svg|mov|mpeg4)$/i,
               type: 'asset/resource',
             }, {
                 test: /\.css$/, // /\.(s*)css$/

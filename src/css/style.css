@@ -104,6 +104,13 @@ ul.nav__list {
     width: 100%;
 }
 
+.slider__slide-item video::-moz-media-controls {
+    display: none;
+    /* height: 0;
+
+    opacity: 0; */
+}
+
 .slider__slide-item img {
     object-fit: cover;
     object-position: center;
@@ -292,6 +299,15 @@ ul.nav__list {
     z-index: 5;
 }
 
+.products__wr-slider-bottom {
+    position: relative;
+
+    margin-top: 10.5vw;
+    width: 85%;
+
+    z-index: 5;
+}
+
 .products__side-deco {
     position: absolute;
     left: 0;
@@ -304,3 +320,4 @@ ul.nav__list {
 
     z-index: 0;
 }
+
