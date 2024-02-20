@@ -3,21 +3,24 @@ export default class RedrawSlProd {
         this.slider = slider;
         this.data = data;
 
-        this.description = this.slider.querySelector('.sl-prod__text-about')
-
-        this.wrSlides = this.slider.querySelector('.sl-prod__wr-slides')
+        this.description = this.slider.querySelector('.sl-prod__text-about');
+        this.wrSlides = this.slider.querySelector('.sl-prod__wr-slides');
         this.slides = this.slider.querySelector('.sl-prod__slides');
         this.arrow = this.slider.querySelector('.slider__arrow');
+        this.wrBigImg = this.slider.querySelector('.sl-prod__big-img');
         this.bigImg = this.slider.querySelector('.sl-prod__big-img img');
 
         this.amountSlides = this.slides.children.length;
         this.amountShow = 3;
 
         this.timeFunc = 'linear';
-        this.duration = '0.3s';
+        this.duration = 0.5;
+        this.durationHalf = this.duration / 2;
 
         this.oldActiveSlide = null;
         this.activeSlide = null;
+
+        this.block = false;
     }
 
     initSlider() { 
@@ -31,16 +34,16 @@ export default class RedrawSlProd {
                     item.title
                     );
     
+                el.style.transition = `height ${this.duration}s ${this.timeFunc}, width ${this.duration}s ${this.timeFunc}`;
     
                 if(index === 0) {
                     // el.dataset.status = 'active';
                     el.classList.add('sl-prod__slide_active');
-                    el.id = item.id
-    
     
                     this.bigImg.src = item.img;
                     this.bigImg.alt = item.title;
                 }
+                el.id = item.id;
     
                 this.slides.append(el);
 
@@ -64,17 +67,27 @@ export default class RedrawSlProd {
         this.setWidthSliderContainer();
 
         // Заполняем информацию о продукте
-        this.fillContent();
+        this.fillTextInfo();
+
+        // Определяем анимацию для большой картинки
+        this.wrBigImg.style.transition = `opacity ${this.durationHalf}s ${this.timeFunc}`;
+
+        // Определяем анимацию для блока с текстом, описанием товара
+        this.description.style.transition = `opacity ${this.durationHalf}s ${this.timeFunc}`;
     }
 
     move() {
+        // блокируем накликивание
+        if(this.block) return;
+        this.block = true;
+
         // подставляем первый слайд назад
         const clone = this.activeSlide.cloneNode(true);
         clone.classList.remove('sl-prod__slide_active');
         this.slides.append(clone);
         this.setWidthSliderContainer();
 
-        this.slides.style.transition = `transform ${this.duration} ${this.timeFunc}`;
+        this.slides.style.transition = `transform ${this.duration}s ${this.timeFunc}`;
         setTimeout(() => {
             // получаем ширину активного слайда vw
             const width = this.activeSlide.offsetWidth;
@@ -89,7 +102,45 @@ export default class RedrawSlProd {
             this.slides.style.transition = ``;
             this.oldActiveSlide.remove();
             this.slides.style.transform = ``;
+
+            this.block = false;
         }, {once: true});
+
+        // меняем большую картинку и описание товара
+        this.changeBigImg();
+        this.changeTextInfo();
+    }
+
+    changeBigImg() {
+        this.wrBigImg.classList.remove('sl-prod__big-img_visible');
+
+        this.wrBigImg.addEventListener('transitionend', () => {
+            const activeImg = this.activeSlide.querySelector('img');
+            this.bigImg.src = activeImg.src;
+
+            this.wrBigImg.classList.add('sl-prod__big-img_visible');
+        }, {once: true})
+    }
+
+    changeTextInfo() {
+        this.description.classList.remove('sl-prod__text-about_visible');
+
+        this.description.addEventListener('transitionend', () => {
+            this.fillTextInfo();
+
+            this.description.classList.add('sl-prod__text-about_visible');
+        }, {once: true})
+    }
+
+    fillTextInfo() {
+        const id = this.activeSlide.id;
+        console.log('id', this.activeSlide)
+        const info = this.data.find( item => item.id === id);
+        const keys = Object.keys(info);
+        keys.forEach( item => {
+            const el = this.description.querySelector(`[data-type="${item}"]`);
+            if(el) el.textContent = info[item]
+        })
     }
 
     createSlide(pathImg, title, href, linkTitle) {
@@ -111,6 +162,7 @@ export default class RedrawSlProd {
         link.title = linkTitle;
         link.textContent = 'Подробнее';
         const linkDeco = this.createEl('div', 'sl-prod__wr-button-slide-deco');
+        linkDeco.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
         divButton.append(link);
         divButton.append(linkDeco);
 
@@ -125,16 +177,6 @@ export default class RedrawSlProd {
         const element = document.createElement(el);
         element.classList.add(className);
         return element;
-    }
-
-    fillContent() {
-        const id = this.activeSlide.id;
-        const info = this.data.find( item => item.id === id);
-        const keys = Object.keys(info);
-        keys.forEach( item => {
-            const el = this.description.querySelector(`[data-type="${item}"]`);
-            if(el) el.textContent = info[item]
-        })
     }
 
     setWidthSliderContainer() {

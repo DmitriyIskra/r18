@@ -9,6 +9,12 @@
     width: 21.46vw;
     min-width: 21.46vw;
     padding-top: 1.98vw;
+
+    opacity: 0;
+}
+
+.sl-prod__big-img_visible {
+    opacity: 1;
 }
 
 .sl-prod__big-img img {
@@ -42,6 +48,12 @@
     padding-right: 14.6%;
 
     align-self: flex-end;
+
+    opacity: 0;
+}
+
+.sl-prod__text-about_visible {
+    opacity: 1;
 }
 
 .sl-prod__title {
@@ -164,28 +176,20 @@
     background: #726B68;
     box-shadow: 0.78vw 0.78vw 0.94vw 0.36vw rgba(0, 0, 0, 0.3);
 
-    transition: height 0.3s linear,
-    width 0.3s linear;
-
     flex-direction: column;
     align-items: center;
     flex-shrink: 0;
 }
 
 .sl-prod__slide_active {
-    min-width: 16.15vw;
+    width: 16.15vw;
     height: 22.92vw;
 }
 
 .sl-prod__wr-img-slide {
-    width: 6.20vw;
-    height: 13.18vw;
+    width: 42.528%; /*6.20vw*/
+    height: 61.845%; /*13.18vw*/
     margin-top: 1.25vw;
-}
-
-.sl-prod__slide_active .sl-prod__wr-img-slide {
-    width: 42%;
-    height: 63.4%;
 }
 
 .sl-prod__img-slide {
@@ -223,7 +227,7 @@
     width: 120%;
     height: 100%;
 
-    display: none;
+    opacity: 0;
 
     border-radius: 50%;
     background: linear-gradient(180deg, rgba(114, 107, 104, 0.04) 15.09%, rgba(114, 107, 104, 0.8));
@@ -234,7 +238,7 @@
 }
 
 .sl-prod__slide_active .sl-prod__wr-button-slide-deco {
-    display: block;
+    opacity: 1;
 }
 
 .sl-prod__button-slide {
