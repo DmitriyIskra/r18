@@ -1,4 +1,4 @@
-export default class RedrawSlProd {
+export default class RedrawSlСoffee {
     constructor(slider, data) {
         this.slider = slider;
         this.data = data;

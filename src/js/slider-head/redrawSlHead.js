@@ -33,6 +33,7 @@ export default class RedrawSlHead {
         this.arrows.forEach(item => item.style = 'display: block;');
         this.arrows[0].parentElement.style = 'justify-content: space-between;';
 
+
         // активируем линию прокрутки
         const widthLine = this.wrLine.offsetWidth;
         this.widthLine = (widthLine / this.amountSlides) / innerWidth * 100;

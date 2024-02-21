@@ -69,15 +69,20 @@ html(lang='ru')
       
             //- ------------------ блок со слайдерами с кофе
 
-      .products 
+      .coffee 
 
-        article.products__wr-slider-top
-          include components/slider-prod
+        article.coffee__wr-slider-top
+          include components/slider-coffee
 
-        article.products__wr-slider-bottom
-          include components/slider-prod
+        article.coffee__wr-slider-bottom
+          include components/slider-coffee
 
-        .products__side-deco
+        .coffee__side-deco
 
+      section.merch 
+        .merch__wr-title 
+          h2.merch__title Мерч
+        .merch__wr-slider
+          include components/slider-perspective
 
     

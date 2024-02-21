@@ -1,0 +1,156 @@
+.sl-p {
+    display: flex;
+    width: 85%;
+    max-width: 85%;
+    margin-top: 1.67vw;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.sl-p__slides-list {
+    position: relative;
+
+    display: flex;
+    height: 29.84vw;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.sl-p__slide-item {
+    perspective: 46.88vw;
+}
+
+.sl-p__card {
+    position: relative;
+
+    border-radius: 0.42vw;
+    border: 0.16vw solid #F1551C;
+    background: rgba(255, 255, 255, 1);
+}
+
+.sl-p__card-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.sl-p__slide-item_prev {
+    position: absolute;
+    left: 11%;
+
+    z-index: 2;
+}
+
+
+.sl-p__slide-item_prev .sl-p__card {
+    width: 21.15vw;
+    height: 27.3vw;
+
+    box-shadow: -1.46vw 1.46vw 2.34vw rgba(0, 0, 0, 0.4);
+
+    transform: rotateY(21deg);
+}
+
+.sl-p__slide-item_prev .sl-p__card-mask {
+    background-color: rgba(49, 49, 49, 0.25);
+}
+
+.sl-p__slide-item_active {
+    position: relative;
+}
+
+.sl-p__slide-item_active .sl-p__card {
+    width: 21.15vw;
+    height: 29.84vw;
+
+    box-shadow: 0vw 0vw 2.34vw rgba(0, 0, 0, 0.8);
+}
+
+.sl-p__slide-item_active .sl-p__card-mask {
+    background-color: rgba(49, 49, 49, 0.2);
+}
+
+.sl-p__slide-item_next {
+    position: absolute;
+    left: 63.8%;
+
+    z-index: 2;
+}
+
+.sl-p__slide-item_next .sl-p__card {
+    width: 21.15vw;
+    height: 27.3vw;
+
+    box-shadow: 1.46vw 1.46vw 2.34vw rgba(0, 0, 0, 0.4);
+
+    transform: rotateY(-21deg);
+}
+
+.sl-p__slide-item_next .sl-p__card-mask {
+    background-color: rgba(49, 49, 49, 0.25);
+}
+
+
+
+.sl-p__slide-item_deco {
+    position: relative;
+
+    perspective: 46.88vw;
+    z-index: 0;
+}
+
+.sl-p__slide-item_l {
+    transform: translateX(-9vw);
+}
+
+.sl-p__slide-item_r {
+    transform: translateX(9vw);
+}
+
+.sl-p__slide-card_deco {
+    position: relative;
+
+    width: 21.15vw;
+    height: 27.3vw;
+
+    border-radius: 0.42vw;
+    border: 0.16vw solid #F1551C;
+    background: rgba(255, 255, 255, 0.80);
+}
+
+.sl-p__slide-item_l .sl-p__slide-card_deco {
+    box-shadow: -1.46vw 1.46vw 2.34vw rgba(0, 0, 0, 0.4);
+
+    transform: rotateY(21deg);
+}
+
+.sl-p__slide-item_r .sl-p__slide-card_deco {
+    box-shadow: 1.46vw 1.46vw 2.34vw rgba(0, 0, 0, 0.4);
+
+    transform: rotateY(-21deg);
+}
+
+.sl-p__slide-card_deco-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(0, 0, 0, 0.28);
+}
+
+.sl-p__control {
+    display: flex;
+    margin-top: 1.82vw;
+}
+
+.sl-p__arrow {
+    width: 4.17vw;
+    height: 4.17vw;
+}

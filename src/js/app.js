@@ -3,11 +3,16 @@
 import RedrawSlHead from "./slider-head/redrawSlHead";
 import ControllSlHead from "./slider-head/controllSlHead";
 
-// продуктовый слайдер
-import ControllSlProd from "./slider-prod/controllSlProd";
-import RedrawSlProd from "./slider-prod/redrawSlProd";
-import sliderProdData from "../base/slider-product-top.json";
-import sliderProdData2 from "../base/slider-product-bottom.json";
+// кофейный слайдер
+import ControllSlСoffee from "./slider-coffee/controllSlСoffee";
+import RedrawSlСoffee from "./slider-coffee/redrawSlСoffee";
+import sliderCoffeeData from "../base/slider-coffee-top.json";
+import sliderCoffeeData2 from "../base/slider-coffee-bottom.json";
+
+// слайдер с карточками в перспективе
+import ControllSLP from "./slider-perspective/controllSlP";
+import RedrawSLP from "./slider-perspective/redrawSlP";
+
 
 
 document.addEventListener('DOMContentLoaded', (e) => {
@@ -21,21 +26,30 @@ document.addEventListener('DOMContentLoaded', (e) => {
         controllSlHead.init();
     }
 
-    // Верхний продуктовый слайдер
-    const sliderProd1 = document.querySelector('.products__wr-slider-top');
+    // Верхний кофейный слайдер
+    const sliderCoffe1 = document.querySelector('.coffee__wr-slider-top');
 
-    if(sliderProd1) {
-        const redrawSlProd = new RedrawSlProd(sliderProd1, sliderProdData);
-        const controllSlProd = new ControllSlProd(redrawSlProd);
-        controllSlProd.init();
+    if(sliderCoffe1) {
+        const redrawSlCoffe = new RedrawSlСoffee(sliderCoffe1, sliderCoffeeData);
+        const controllSlCoffe = new ControllSlСoffee(redrawSlCoffe);
+        controllSlCoffe.init();
     }
 
-    // Нижний продуктовый слайдер
-    const sliderProd2 = document.querySelector('.products__wr-slider-bottom');
+    // Нижний кофейный слайдер
+    const sliderCoffe2 = document.querySelector('.coffee__wr-slider-bottom');
 
-    if(sliderProd2) {
-        const redrawSlProd = new RedrawSlProd(sliderProd2, sliderProdData2);
-        const controllSlProd = new ControllSlProd(redrawSlProd);
-        controllSlProd.init();
+    if(sliderCoffe2) {
+        const redrawSlCoffe = new RedrawSlСoffee(sliderCoffe2, sliderCoffeeData2);
+        const controllSlCoffe = new ControllSlСoffee(redrawSlCoffe);
+        controllSlCoffe.init();
+    }
+
+
+    // слайдер с карточками в перспективе
+    const merchSL = document.querySelector('.merch__wr-slider .sl-p');
+    if(merchSL) {
+        const redrawSLP = new RedrawSLP(merchSL);
+        const controllSLP = new ControllSLP(redrawSLP);
+        controllSLP.init();
     }
 })

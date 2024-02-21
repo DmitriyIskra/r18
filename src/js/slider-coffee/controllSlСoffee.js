@@ -1,4 +1,4 @@
-export default class ControllSlProd {
+export default class ControllSlСoffee {
     constructor(d) {
         this.d = d;
 
