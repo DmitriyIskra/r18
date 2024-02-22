@@ -12,7 +12,7 @@ export default class RedrawSLP {
         this.activeCard = null;
         this.nextCard = null;
 
-        this.duration = 0.35;
+        this.duration = 1;
         this.timeF = 'linear';
     }
  
@@ -36,7 +36,7 @@ export default class RedrawSLP {
             opacity  ${this.duration}s ${this.timeF}`;
 
             // скрываем лишние карточки
-            if(index > 2) item.style.opacity = '0';
+            // if(index > 2) item.style.opacity = '0';
 
             // определяем слайды и их классы
             switch (index) {

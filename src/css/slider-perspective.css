@@ -23,6 +23,8 @@
     position: absolute;
 
     perspective: 46.88vw;
+
+    opacity: 0;
 }
 
 .sl-p__card {
