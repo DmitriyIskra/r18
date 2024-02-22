@@ -1,11 +1,12 @@
 export default class RedrawSLP {
-    constructor(el) {
+    constructor(el, data) {
         this.el = el;
+        this.data = data;
         this.arrows = this.el.querySelectorAll('.slider__arrow');
         this.cardDecoL = this.el.querySelector('.sl-p__slide-item_l');
         this.cardDecoR = this.el.querySelector('.sl-p__slide-item_r');
-        this.itemsList = this.el.querySelector('.sl-p__slides-list')
-        this.items = this.el.querySelectorAll('.sl-p__slide-item');
+        this.itemsList = null;
+        this.items = null;
         this.cards = this.el.querySelectorAll('.sl-p__card');
 
         this.prevCard = null;
@@ -17,10 +18,38 @@ export default class RedrawSLP {
     }
  
     initSlider() {
-        // показываем стрелки
-        this.arrows.forEach(item => {
-            item.style.display = 'block';
-        });
+        // перебираем json и элементы вставляем this.cardDecoR.before(...)
+        // и там уже для элемента определяем все что в this.items.forEach(
+        // в конце initSlider определяем this.list и this.items
+
+        // Формируем карточки
+        this.data.forEach((item, index) => {
+            const el = this.createCard(item);
+            el.style.transition = `
+            left ${this.duration}s ${this.timeF},
+            transform ${this.duration}s ${this.timeF},
+            opacity  ${this.duration}s ${this.timeF}`;
+
+            switch (index) {
+                case 0:
+                    this.prevCard = el;
+                    this.prevCard.classList.add('sl-p__slide-item_prev');
+                break;
+                case 1:
+                    this.activeCard = el;
+                    this.activeCard.classList.add('sl-p__slide-item_active');
+                break;
+                case 2:
+                    this.nextCard = el;
+                    this.nextCard.classList.add('sl-p__slide-item_next');
+            }
+
+            this.cardDecoR.before(el);
+        })
+
+        // заполняем переменные актуальной информацией
+        this.itemsList = this.el.querySelector('.sl-p__slides-list');
+        this.items = this.el.querySelectorAll('.sl-p__slide-item');
 
         this.cards.forEach((item, index) => {
             // Добавляем анимацию активным карточкам внутри item
@@ -29,30 +58,26 @@ export default class RedrawSLP {
             }
         })
 
-        this.items.forEach((item, index) => {
-            item.style.transition = `
-            left ${this.duration}s ${this.timeF},
-            transform ${this.duration}s ${this.timeF},
-            opacity  ${this.duration}s ${this.timeF}`;
+        // показываем стрелки
+        this.arrows.forEach(item => {
+            item.style.display = 'block';
+        });
+    }
 
-            // скрываем лишние карточки
-            // if(index > 2) item.style.opacity = '0';
+    createCard(data) {
+        const item = document.createElement('li');
+        item.classList.add('sl-p__slide-item');
 
-            // определяем слайды и их классы
-            switch (index) {
-                case 0:
-                    this.prevCard = item;
-                    this.prevCard.classList.add('sl-p__slide-item_prev');
-                break;
-                case 1:
-                    this.activeCard = item;
-                    this.activeCard.classList.add('sl-p__slide-item_active');
-                break;
-                case 2:
-                    this.nextCard = item;
-                    this.nextCard.classList.add('sl-p__slide-item_next');
-            }
-        })
+        const card = document.createElement('div');
+        card.classList.add('sl-p__card');
+
+        const mask = document.createElement('div');
+        mask.classList.add('sl-p__card-mask');
+
+        card.append(mask);
+        item.append(card)
+
+        return item;
     }
 
     next() {
@@ -86,14 +111,11 @@ export default class RedrawSLP {
             this.prevCard = this.activeCard;
             this.activeCard = this.nextCard;
             this.nextCard = nextEl;
-
-            // Обновляем массив items
-            this.items = this.el.querySelectorAll('.sl-p__slide-item');
         }, {once: true})
     }
 
     prev() {
-        const prevEl = this.items[this.items.length - 1];
+        const prevEl = this.cardDecoR.previousElementSibling;
         this.cardDecoL.after(prevEl);
         prevEl.classList.add('sl-p__slide-item_prev-l');
         setTimeout(() => {
@@ -121,9 +143,6 @@ export default class RedrawSLP {
             this.nextCard = this.activeCard;
             this.activeCard = this.prevCard;
             this.prevCard = prevEl;
-
-            // Обновляем массив items
-            this.items = this.el.querySelectorAll('.sl-p__slide-item');
         }, {once: true})
     }
 
