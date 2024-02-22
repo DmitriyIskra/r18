@@ -20,7 +20,7 @@ export default class ControllSLP {
         }
 
         if(e.target.closest('.slider__arrow-prev')) {
-            console.log('click')
+            this.d.prev();
         }
     }
 }
