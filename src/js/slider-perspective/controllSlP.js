@@ -22,5 +22,11 @@ export default class ControllSLP {
         if(e.target.closest('.slider__arrow-prev')) {
             this.d.prev();
         }
+
+        if(e.target.closest('.sl-p__size-item')) {
+            this.d.choosingSize(e.target.closest('.sl-p__size-item'));
+        }
+
+        console.log(e.target);
     }
 }

@@ -13,6 +13,8 @@ export default class RedrawSLP {
         this.activeCard = null;
         this.nextCard = null;
 
+        this.activeSize = null;
+
         this.duration = 1;
         this.timeF = 'linear';
     }
@@ -24,7 +26,7 @@ export default class RedrawSLP {
 
         // Формируем карточки
         this.data.forEach((item, index) => {
-            const el = this.createCard(item);
+            const el = this.patternCard(item);
             el.style.transition = `
             left ${this.duration}s ${this.timeF},
             transform ${this.duration}s ${this.timeF},
@@ -62,19 +64,112 @@ export default class RedrawSLP {
         this.arrows.forEach(item => {
             item.style.display = 'block';
         });
+
+        // оберткам контента в карточках определяем анимацию
+        const wrCont = this.el.querySelectorAll('.sl-p__card-content');
+        wrCont.forEach(
+            item => item.style.transition = `opacity ${this.duration / 2}s ${this.timeF}, height ${this.duration / 2}s ${this.timeF} ${this.duration / 2}s
+            `
+        );
+        // находим список размеров и определяем активный
+        this.findActiveSize();
     }
 
-    createCard(data) {
+    patternCard(data) {
         const item = document.createElement('li');
         item.classList.add('sl-p__slide-item');
 
         const card = document.createElement('div');
         card.classList.add('sl-p__card');
 
+        // слайдер внутри карточки
+        const wrInSlider = document.createElement('div');
+        wrInSlider.classList.add('sl-p__card-wr-slider');
+
+        const wrInSliderList = document.createElement('div');
+        wrInSliderList.classList.add('sl-p__card-wr-slides');
+        const inSliderList = document.createElement('ul');
+        inSliderList.classList.add('sl-p__card-slides-list');
+        inSliderList.style.width = `${data.black.img.length * 100}%`;
+        data.black.img.forEach(item => {
+            const inSliderItem = document.createElement('li');
+            inSliderItem.classList.add('sl-p__card-slides-item');
+            const inSliderImg = document.createElement('img');
+            inSliderImg.classList.add('sl-p__card-slides-img');
+            inSliderImg.src = item;
+
+            inSliderItem.append(inSliderImg);
+            inSliderList.append(inSliderItem);
+        });
+
+        const inSliderPaginationList = document.createElement('ul');
+        inSliderPaginationList.classList.add('sl-p__card-slider-pag-list');
+        for(let i = 0; i < data.black.img.length; i += 1) {
+            const inSliderPaginationItem = document.createElement('li');
+            inSliderPaginationItem.classList.add('sl-p__card-slider-pag-item');
+            if(i === 0) 
+                inSliderPaginationItem.classList.add('sl-p__card-slider-pag-item_active');
+            inSliderPaginationList.append(inSliderPaginationItem);
+        }
+        const inSliderPaginationItem = document.createElement('li');
+        inSliderPaginationItem.classList.add('sl-p__card-slider-pag-item');
+        
+        wrInSliderList.append(inSliderList);
+        wrInSlider.append(wrInSliderList);
+        wrInSlider.append(inSliderPaginationList);
+        // -- слайдер внутри карточки
+
+        const cardTitle = document.createElement('div');
+        cardTitle.classList.add('sl-p__card-title');
+        cardTitle.textContent = data.title;
+
+        // все что находится под слайдером внутри карточки и исчезает
+        const wrCardContent = document.createElement('div');
+        wrCardContent.classList.add('sl-p__card-wr-content')
+        const cardContent = document.createElement('div');
+        cardContent.classList.add('sl-p__card-content');
+        const sizeList = document.createElement('ul');
+        sizeList.classList.add('sl-p__size-list');
+        data.black.sizes.forEach((item, index) => {
+            const sizeItem = document.createElement('li');
+            sizeItem.classList.add('sl-p__size-item');
+            if(index === 0) sizeItem.classList.add('sl-p__size-item_active');
+
+            const sizeItemNum = document.createElement('div');
+            sizeItemNum.classList.add('sl-p__size-item-num');
+            sizeItemNum.textContent = item;
+
+            sizeItem.append(sizeItemNum);
+            sizeList.append(sizeItem);
+        })
+
+        const composition = document.createElement('p');
+        composition.textContent = data.composition;
+
+        const wrLink = document.createElement('div');
+        wrLink.classList.add('sl-p__card-wr-link');
+        const link = document.createElement('a');
+        link.classList.add('sl-p__card-link');
+        link.textContent = 'Подробнее'
+        link.href = data.link;
+        link.alt = data.title;
+        link.target = '_blank';
+        wrLink.append(link);
+
+        cardContent.append(sizeList);
+        cardContent.append(composition);
+        cardContent.append(wrLink);
+        wrCardContent.append(cardContent);
+        // -- все что находится под слайдером внутри карточки и исчезает
+
         const mask = document.createElement('div');
         mask.classList.add('sl-p__card-mask');
 
+        
+        card.append(wrInSlider)
         card.append(mask);
+        card.append(cardTitle);
+        card.append(wrCardContent);
         item.append(card)
 
         return item;
@@ -111,6 +206,8 @@ export default class RedrawSLP {
             this.prevCard = this.activeCard;
             this.activeCard = this.nextCard;
             this.nextCard = nextEl;
+
+            this.findActiveSize();
         }, {once: true})
     }
 
@@ -143,7 +240,15 @@ export default class RedrawSLP {
             this.nextCard = this.activeCard;
             this.activeCard = this.prevCard;
             this.prevCard = prevEl;
+
+            this.findActiveSize();
         }, {once: true})
+    }
+
+    choosingSize(el) {
+        this.activeSize.classList.remove('sl-p__size-item_active');
+        this.activeSize = el;
+        this.activeSize.classList.add('sl-p__size-item_active');
     }
 
     setTransitionCard(el) {
@@ -152,5 +257,10 @@ export default class RedrawSLP {
         height ${this.duration}s ${this.timeF},
         width ${this.duration}s ${this.timeF},
         box-shadow ${this.duration}s ${this.timeF}`;
+    }
+
+    findActiveSize() {
+        this.activeSize = this.el
+        .querySelector('.sl-p__slide-item_active .sl-p__size-item_active');
     }
 }
