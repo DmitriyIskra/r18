@@ -214,8 +214,6 @@
     width: 16.72vw;
     height: 19.32vw;
 
-    transition: width 0.5s linear 0.5s, height 0.5s linear 0.5s;
-
     flex-direction: column;
 }
 
@@ -261,23 +259,20 @@
 
 .sl-p__card-wr-content {
     display: flex;
-    height: 0;
     width: 100%;
     margin-top: 1.09vw;
-
-    
 
     flex-direction: column;
     align-items: center;
 
-    overflow: hidden;
     opacity: 0;
+    overflow: hidden;
 }
 
 .sl-p__slide-item_prev .sl-p__card-wr-content {
     height: 0;
 
-    transition: opacity 0.7s linear, height 1.5s linear 0.7s;
+    transition: opacity 0.5s linear, height 1s linear 0.5s;
 
     opacity: 0;
 }
@@ -285,7 +280,7 @@
 .sl-p__slide-item_active .sl-p__card-wr-content {
     height: 100%;
     
-    transition: height 1.5s linear, opacity 0.7s linear 0.7s;
+    transition: height 0.5s linear, opacity 0.5s linear 0.5s;
 
     opacity: 1;
 }
@@ -293,14 +288,13 @@
 .sl-p__slide-item_next .sl-p__card-wr-content {
     height: 0;
 
-    transition: opacity 0.7s linear, height 1.5s linear 0.7s;
+    transition: opacity 0.5s linear, height 1s linear 0.5s;
 
     opacity: 0;
 }
 
 .sl-p__size-list {
     display: flex;
-    /* height: 100%; */
     gap: 0.52vw;
 
     justify-content: center;
@@ -346,16 +340,32 @@
 
     align-self: center;
 
-    transition: height 0.5s linear, opacity 0.5s linear 0.5s;
-
     opacity: 0;
     overflow: hidden;
+}
+
+.sl-p__slide-item_prev .sl-p__card-slider-pag-list {
+    height: 0;
+
+    transition: opacity 0.25s linear, height 0.25s linear 0.25s;
+
+    opacity: 0;
 }
 
 .sl-p__slide-item_active .sl-p__card-slider-pag-list {
     height: 0.52vw;
 
+    transition: height 0.25s linear, opacity 0.25s linear 0.25s;
+
     opacity: 1;
+}
+
+.sl-p__slide-item_next .sl-p__card-slider-pag-list {
+    height: 0;
+
+    transition: opacity 0.25s linear, height 0.25s linear 0.25s;
+
+    opacity: 0;
 }
 
 .sl-p__card-slider-pag-item {
@@ -363,10 +373,52 @@
 
     border-radius: 50%;
     background: #A59F9E;
+
+    cursor: pointer;
 }
 
 .sl-p__card-slider-pag-item_active {
     background: #3F3937;
+
+    cursor: default;
+    pointer-events: none;
+}
+
+.sl-p__card-slider-color-list {
+    position: absolute;
+    top: 6.5%;
+    right: 5%;
+
+    display: flex;
+    gap: 1.20vw;
+
+    flex-direction: column;
+
+    z-index: 2;
+}
+
+.sl-p__card-slider-color-item {
+    width: 1.35vw;
+    height: 1.35vw;
+    padding: 0.16vw;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.sl-p__card-slider-color-item_active {
+    border-width: 1px;
+    border-style: solid;
+
+    pointer-events: none;
+}
+
+.sl-p__card-slider-color-circle {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
 }
 
 .sl-p__card-content p {
@@ -375,6 +427,7 @@
     font-family: 'SofiaSans';
     font-size: 0.83vw;
     font-weight: 400;
+    text-align: center;
 
     color: #3F3937;
 }

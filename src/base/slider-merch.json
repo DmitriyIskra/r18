@@ -1,104 +1,160 @@
 [
     {
+        "article": "0",
         "title": "футболка R18",
-        "colors": ["white", "black"],
+        "colors": [
+            {
+                "name": "black",
+                "value": "#3F3937"
+            }, 
+            {
+                "name": "white",
+                "value": "#ffffff"
+            }
+        ],
         "white": {
             "img": [
-                "./img/content/t-shirt_content.png", "", ""
+                "./img/content/t-shirt-white-1-front_content.png",
+                "./img/content/t-shirt-white-1-rear_content.png"
             ],
             "sizes": ["42", "44", "46", "48"]
         },
         "black": {
             "img": [
-                "./img/content/t-shirt_content.png", 
-                "./img/content/t-shirt_content.png", 
-                "./img/content/t-shirt_content.png"
+                "./img/content/t-shirt-black-1-front_content.png", 
+                "./img/content/t-shirt-black-1-rear_content.png"
             ],
             "sizes": ["42", "44", "46", "48"]
         },
-        "composition": "Хлопок 90%, эластан 10%",
+        "composition": "Хлопок 92%, лайкра 8%",
         "link": "#"
     },
     {
+        "article": "1",
         "title": "футболка R18",
-        "colors": ["white", "black"],
+        "colors": [
+            {
+                "name": "black",
+                "value": "#3F3937"
+            }, 
+            {
+                "name": "white",
+                "value": "#ffffff"
+            }
+        ],
         "white": {
             "img": [
-                "", ""
+                "./img/content/t-shirt-white-2-front_content.png", 
+                "./img/content/t-shirt-white-2-rear_content.png"
             ],
             "sizes": ["42", "44", "46", "48", "50", "52", "54"]
         },
         "black": {
             "img": [
-                "./img/content/t-shirt_content.png", 
-                "./img/content/t-shirt_content.png"
+                "./img/content/t-shirt-black-2-front_content.png", 
+                "./img/content/t-shirt-black-2-rear_content.png"
             ],
             "sizes": ["42", "44", "46", "48", "50", "52", "54"]
         },
-        "composition": "Хлопок 90%, эластан 10%",
+        "composition": "Хлопок 92%, лайкра 8%",
         "link": "#"
     },
     {
+        "article": "2",
         "title": "футболка R18",
-        "colors": ["white", "black"],
+        "colors": [
+            {
+                "name": "black",
+                "value": "#3F3937"
+            }, 
+            {
+                "name": "white",
+                "value": "#ffffff"
+            }
+        ],
         "white": {
             "img": [
-                "", "", ""
+                "./img/content/t-shirt-white-3-front_content.png", 
+                "./img/content/t-shirt-white-3-rear_content.png"
             ],
             "sizes": ["42", "44", "46", "48", "50", "52", "54"]
         },
         "black": {
             "img": [
-                "./img/content/t-shirt_content.png",
-                "./img/content/t-shirt_content.png", 
-                "./img/content/t-shirt_content.png", 
-                "./img/content/t-shirt_content.png"
+                "./img/content/t-shirt-black-3-front_content.png",
+                "./img/content/t-shirt-black-3-rear_content.png"
             ],
             "sizes": ["42", "44", "46", "48", "50", "52", "54"]
         },
-        "composition": "Хлопок 90%, эластан 10%",
+        "composition": "Хлопок 92%, лайкра 8%",
         "link": "#"
     },
     {
+        "article": "3",
         "title": "футболка R18",
-        "colors": ["white", "black"],
+        "colors": [
+            {
+                "name": "black",
+                "value": "#3F3937"
+            }, 
+            {
+                "name": "white",
+                "value": "#ffffff"
+            }
+        ],
         "white": {
             "img": [
-                "", "", ""
+                "./img/content/t-shirt-white-4-front_content.png", 
+                "./img/content/t-shirt-white-4-rear_content.png"
             ],
             "sizes": ["42", "44", "46", "48"]
         },
         "black": {
             "img": [
-                "./img/content/t-shirt_content.png",
-                "./img/content/t-shirt_content.png", 
-                "./img/content/t-shirt_content.png", 
-                "./img/content/t-shirt_content.png",
-                "./img/content/t-shirt_content.png"
+                "./img/content/t-shirt-black-4-front_content.png",
+                "./img/content/t-shirt-black-4-rear_content.png"
             ],
             "sizes": ["42", "44", "46", "48"]
         },
-        "composition": "Хлопок 90%, эластан 10%",
+        "composition": "Хлопок 92%, лайкра 8%",
         "link": "#"
     },
     {
-        "title": "футболка R18",
-        "colors": ["white", "black"],
-        "white": {
-            "img": [
-                "", "", ""
-            ],
-            "sizes": ["42", "44", "46", "48", "50", "52", "54"]
-        },
+        "article": "4",
+        "title": "Худи R18",
+        "colors": [
+            {
+                "name": "black",
+                "value": "#3F3937"
+            }
+        ],
         "black": {
             "img": [
-                "./img/content/t-shirt_content.png",
-                "./img/content/t-shirt_content.png", 
-                "./img/content/t-shirt_content.png"
+                "./img/content/hoodies-black-1-front_content.png",
+                "./img/content/hoodies-black-1-rear_content.png"
             ],
-            "sizes": ["42", "44", "46", "48", "50", "52", "54"]
+            "sizes": ["42", "44", "46", "48"]
         },
-        "composition": "Хлопок 90%, эластан 10%",
+        "composition": "Хлопок 90%, лайкра 10%.",
+        "link": "#"
+    },
+    {
+        "article": "5",
+        "title": "Худи R18",
+        "colors": [
+            {
+                "name": "black",
+                "value": "#3F3937"
+            }
+        ],
+        "black": {
+            "img": [
+                "./img/content/hoodies-black-2-front_content.png",
+                "./img/content/hoodies-black-2-rear_content.png"
+            ],
+            "sizes": ["42", "44", "46", "48"]
+        },
+        "composition": "Хлопок 90%, лайкра 10%.",
         "link": "#"
     }
 ]

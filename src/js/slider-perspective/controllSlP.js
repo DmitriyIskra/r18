@@ -27,6 +27,19 @@ export default class ControllSLP {
             this.d.choosingSize(e.target.closest('.sl-p__size-item'));
         }
 
-        console.log(e.target);
+        if(e.target.closest('.sl-p__card-slider-pag-item')) {
+            const el = e.target.closest('.sl-p__card-slider-pag-item');
+            const index = +el.dataset.num;
+            this.d.mooveCardSlider(index);
+        }
+
+        if(e.target.closest('.sl-p__card-slider-color-item')) {
+            const list = e.target.closest('.sl-p__card-slider-color-list');
+            const article = list.dataset.article
+            const el = e.target.closest('.sl-p__card-slider-color-item');
+            const id = el.id;
+            const color = el.dataset.color;
+            this.d.changeColor(id, color, article);
+        }
     }
 }
