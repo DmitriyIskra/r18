@@ -92,6 +92,7 @@ module.exports = {
             { from: 'src/img/content/pack_content2.png', to: 'img/content' },
             { from: 'src/img/content/pack_content7.png', to: 'img/content' },
             
+
             { from: 'src/img/content/t-shirt-white-1-front_content.png', to: 'img/content' },
             { from: 'src/img/content/t-shirt-white-1-rear_content.png', to: 'img/content' },
             { from: 'src/img/content/t-shirt-black-1-front_content.png', to: 'img/content' },
@@ -117,6 +118,32 @@ module.exports = {
 
             { from: 'src/img/content/hoodies-black-2-front_content.png', to: 'img/content' },
             { from: 'src/img/content/hoodies-black-2-rear_content.png', to: 'img/content' },
+
+
+            { from: 'src/img/content/serviette-white-1-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-white-1-rear_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-1-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-1-rear_content.png', to: 'img/content' },
+
+            { from: 'src/img/content/serviette-white-2-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-white-2-rear_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-2-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-2-rear_content.png', to: 'img/content' },
+
+            { from: 'src/img/content/serviette-white-3-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-white-3-rear_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-3-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-3-rear_content.png', to: 'img/content' },
+
+            { from: 'src/img/content/serviette-white-4-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-white-4-rear_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-4-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-4-rear_content.png', to: 'img/content' },
+
+            { from: 'src/img/content/serviette-white-5-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-white-5-rear_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-5-front_content.png', to: 'img/content' },
+            { from: 'src/img/content/serviette-black-5-rear_content.png', to: 'img/content' },
           ],
         }),
     ]

@@ -166,9 +166,10 @@ export default class RedrawSLP {
         cardContent.classList.add('sl-p__card-content');
         const sizeList = document.createElement('ul');
         sizeList.classList.add('sl-p__size-list');
-        data.black.sizes.forEach((item, index) => {
+        data.black.sizes.forEach((item, index, arr) => {
             const sizeItem = document.createElement('li');
             sizeItem.classList.add('sl-p__size-item');
+            
             if(index === 0) sizeItem.classList.add('sl-p__size-item_active');
 
             const sizeItemNum = document.createElement('div');
@@ -180,10 +181,17 @@ export default class RedrawSLP {
         })
 
         const composition = document.createElement('p');
-        composition.textContent = data.composition;
 
+        data.composition.forEach( item => {
+            const compositionItem = document.createElement('span');
+            compositionItem.textContent = item;
+            composition.append(compositionItem);
+        } )
+        
         const wrLink = document.createElement('div');
         wrLink.classList.add('sl-p__card-wr-link');
+        if(data.composition.length > 1) 
+            wrLink.style.marginTop = '0.5vw'
         const link = document.createElement('a');
         link.classList.add('sl-p__card-link');
         link.textContent = 'Подробнее'
