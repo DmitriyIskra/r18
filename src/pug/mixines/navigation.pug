@@ -2,5 +2,5 @@ mixin nav(obj)
     nav.nav 
         ul.nav__list 
             each item in obj
-                li.nav__item 
-                    a.nav__item-link(href=item.link title="Coffe") #{item.name}
+                li.nav__item(data-item=item.title)
+                    a.nav__item-link(href=item.link title=item.title) #{item.name}

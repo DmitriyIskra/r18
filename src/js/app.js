@@ -1,4 +1,8 @@
 
+// Навигация
+import ControllNav from "./navigation/controllNavigation";
+import RedrawNav from "./navigation/redrawNavigation";
+
 // самый верхний слайдер с видео
 import RedrawSlHead from "./slider-head/redrawSlHead";
 import ControllSlHead from "./slider-head/controllSlHead";
@@ -15,13 +19,13 @@ import RedrawSLP from "./slider-perspective/redrawSlP";
 import sliderMerchData from '../base/slider-merch.json';
 import sliderAccessData from '../base/slider-accessories.json';
 
+// Кнопка прокрутки вверх
+import buttonToTop from "./button-to-top/button-to-top";
 
-
-document.addEventListener('DOMContentLoaded', (e) => {
+window.addEventListener('load', () => {
     
     // SLIDER HEAD
     const sliderHead = document.querySelector('.slider-h');
-
     if(sliderHead) {
         const redrawSlHead = new RedrawSlHead(sliderHead);
         const controllSlHead = new ControllSlHead(redrawSlHead);
@@ -61,5 +65,25 @@ document.addEventListener('DOMContentLoaded', (e) => {
         const redrawSLP = new RedrawSLP(accessSL, sliderAccessData);
         const controllSLP = new ControllSLP(redrawSLP);
         controllSLP.init();
+    }
+
+    // кнопка прокрутки вверх
+    const button = document.querySelector('.button-to-top');
+    if(button) buttonToTop(button);
+
+    // Навигация в хедере
+    const naviHeader = document.querySelector('.nav');
+    if(naviHeader) {
+        const redrawNav = new RedrawNav(naviHeader);
+        const controllNav = new ControllNav(redrawNav);
+        controllNav.init();
+    }
+
+    // Навигация в футуре
+    const naviFooter = document.querySelector('.footer nav');
+    if(naviFooter) {
+        const redrawNav = new RedrawNav(naviFooter);
+        const controllNav = new ControllNav(redrawNav);
+        controllNav.init();
     }
 })

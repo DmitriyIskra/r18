@@ -16,29 +16,13 @@
     z-index: 10;
 }
 
-.header__wr-nav {
+.header__wr-content {
     display: flex;
     width: 85%;
 
     justify-content: space-between;
     align-items: center;
 }
-
-.logo {
-    display: inline-block;
-    width: 6.51vw;
-    height: 6.51vw;
-}
-
-.logo img {
-    height: 100%;
-    width: 100%;
-
-    object-fit: contain;
-    object-position: center;
-}
-
-
 
 /* HEADER END */
 
@@ -119,7 +103,6 @@
 .accessories {
     display: flex;
     padding-top: 4.5vw;
-    padding-bottom: 15vw;
 
     background: #483D41;
 
@@ -135,3 +118,133 @@
 }
 
 /* accessories end */
+
+/* КОНТАКТЫ START */
+
+.contacts {
+    display: flex;
+    padding-top: 5.2vw;
+
+    background: #483D41;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.contacts__wr-data {
+    display: flex;
+    width: 85%;
+    margin-top: 2.76vw;
+
+    justify-content: space-between;
+}
+
+.contacts__map {
+    width: 51.67vw;
+    height: 28.59vw;
+}
+
+.contacts__map img {
+    height: 100%;
+    width: 100%;
+
+    box-shadow: 20px 20px 65px rgba(0, 0, 0, 0.3);
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.contacts__wr-address {
+    margin-top: .2vw;
+}
+
+.contacts__wr-address h3 {
+    font-family: 'SofiaSans';
+    font-size: 1.46vw;
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.contacts__wr-address p {
+    font-family: 'SofiaSans';
+    font-size: 1.25vw;
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.contacts__wr-address a {
+    font-family: 'SofiaSans';
+    font-size: 1.46vw;
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.contacts__address p {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.contacts__working-time {
+    margin-top: 1.93vw;
+}
+
+.contacts__phone-number {
+    display: flex;
+    margin-top: 3.49vw;
+    gap: 2.34vw;
+}
+
+.button-to-top {
+    width: 4.11vw;
+    height: 4.11vw;
+    margin-top: 0.52vw;
+
+    cursor: pointer;
+}
+
+/* КОНТАКТЫ END */
+
+
+/* FOOTER START */
+
+.footer {
+    display: flex;
+    background: #483D41;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__wr-content {
+    display: flex;
+    width: 85%;
+    padding-top: 11.28vw;
+    padding-bottom: 0.94vw;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__copyright {
+    width: 100%;
+
+    border-top: 1px solid #fff;
+}
+
+.footer__copyright p {
+    margin-top: 1.04vw;
+    margin-bottom: 1.30vw;
+
+    font-family: 'SofiaSans';
+    font-size: 0.83vw;
+    font-weight: 400;
+    text-align: center;
+
+    color: #FFF;
+}
+
+/* FOOTER END */

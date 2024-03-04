@@ -8,3 +8,4 @@ import './css/slider-head.css';
 import './css/mixin-title-for-section.css';
 import './css/mixin-navigation.css';
 import './css/slider-perspective.css';
+import './css/logo.css';

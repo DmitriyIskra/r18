@@ -1,0 +1,12 @@
+.logo {
+    display: inline-block;
+    width: 6.51vw;
+    height: 6.51vw;
+}
+
+.logo img {
+    height: 100%;
+    width: 100%;
+
+    object-fit: contain;
+}
