@@ -21,6 +21,9 @@ export default class RedrawSlHead {
 
         // прибиваем контекст для controll
         this.initSlider = this.initSlider.bind(this);
+
+        // блокировщик
+        this.stoped = false;
     }
 
     initSlider() {
@@ -73,6 +76,9 @@ export default class RedrawSlHead {
     }
 
     moveNext() {
+        if(this.stoped) return;
+        this.stoped = true;
+
         const width = this.slider.offsetWidth;
         this.slides.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
         this.slides.style.transform = `translateX(-${width}px)`;
@@ -81,6 +87,8 @@ export default class RedrawSlHead {
             this.slides.style.transition = ``;
             this.slides.append(this.slides.children[0]);
             this.slides.style.transform = ``;
+
+            this.stoped = false;
         },{once: true})
 
         this.moveLineNext();
@@ -88,6 +96,9 @@ export default class RedrawSlHead {
     }
 
     movePrev() {
+        if(this.stoped) return;
+        this.stoped = true;
+
         const width = this.slider.offsetWidth;
         const lastSlideIndex = this.slides.children.length - 1;
         this.slides.prepend(this.slides.children[lastSlideIndex]);
@@ -100,6 +111,8 @@ export default class RedrawSlHead {
 
         this.slides.addEventListener('transitionend', () => {
             this.slides.style.transition = ``;
+
+            this.stoped = false;
         },{once: true})
 
         this.moveLinePrev();
@@ -107,6 +120,8 @@ export default class RedrawSlHead {
     }
 
     clickPag(el) {
+        if(this.stoped) return;
+
         const num = +el.dataset.num;
         if(num === this.lineCounter) return;
 
@@ -130,7 +145,6 @@ export default class RedrawSlHead {
     moveLineNext() {
         this.lineCounter += 1;
         
-
         // пока слайды не зациклились
         if(this.lineCounter !== this.amountSlides) {
             const offset = this.widthLine * this.lineCounter;
