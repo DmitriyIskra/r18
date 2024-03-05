@@ -204,12 +204,13 @@ export default class RedrawSLP {
 
         // картинка исчезает
         this.activeCardSlidesList.style.opacity = '0';
-        // оставляем только прозрачность чтоб незаметно после смены
-        // картинки поставить его в начало
+        // оставляем в анимации только прозрачность и убираем transform
+        //  чтоб незаметно после смены картинки передвинуть внутренний 
+        // слайдер в начало чтоб другой цвет появился с первого слайда
         this.activeCardSlidesList.style.transition = `
-            opacity ${this.duration / 1.2}s ${this.timeF}
+            opacity 0.001s ${this.timeF}
         `;
-        
+        // ${this.duration / 1.2} changed
         this.activeCardSlidesList.addEventListener('transitionend', () => {
             // когда картинка исчезла сдвигаем слайдер в начало
             this.mooveCardSlider(0);
@@ -222,9 +223,10 @@ export default class RedrawSLP {
             // возвращаем всю анимацию
             setTimeout(() => {
                 this.activeCardSlidesList.style.transition = `
-                transform ${this.duration}s ${this.timeF},
-                opacity ${this.duration / 1.2}s ${this.timeF}
+                transform ${this.duration}s ${this.timeF}
+                
             `;
+            // opacity ${this.duration / 1.2}s ${this.timeF} changed
             })
         }, {once: true})
     }
@@ -278,9 +280,10 @@ export default class RedrawSLP {
         const inSliderList = document.createElement('ul');
         inSliderList.classList.add('sl-p__card-slides-list');
         inSliderList.style.transition = `
-            transform ${this.duration}s ${this.timeF},
-            opacity ${this.duration / 1.2}s ${this.timeF}
+            transform ${this.duration}s ${this.timeF}
+            
         `;
+        // opacity ${this.duration / 1.2}s ${this.timeF} changed
         inSliderList.style.width = `${data.black.img.length * 100}%`;
         data.black.img.forEach(item => {
             const inSliderItem = document.createElement('li');

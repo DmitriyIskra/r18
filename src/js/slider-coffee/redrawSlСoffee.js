@@ -37,7 +37,6 @@ export default class RedrawSlСoffee {
                 el.style.transition = `height ${this.duration}s ${this.timeFunc}, width ${this.duration}s ${this.timeFunc}`;
     
                 if(index === 0) {
-                    // el.dataset.status = 'active';
                     el.classList.add('sl-prod__slide_active');
     
                     this.bigImg.src = item.img;
@@ -189,7 +188,7 @@ export default class RedrawSlСoffee {
                 acc
             );
         }, 0);
-        width += (this.getGap() * this.amountShow) / innerWidth * 100;
+        width += ((this.getGap() * this.amountShow) / innerWidth * 100);
         this.wrSlides.style = `width: ${width.toFixed(3)}vw;`;
     }
 

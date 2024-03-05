@@ -38,6 +38,7 @@
 
     background:no-repeat url(../img/roasteria-side.png), #483D41;
     background-position: right 2.08vw top 0.5vw;
+    background-size: auto 70.8%;
 
     flex-direction: column;
     align-items: center;
@@ -212,11 +213,28 @@
 /* FOOTER START */
 
 .footer {
+    position: relative;
+
     display: flex;
     background: #483D41;
 
     flex-direction: column;
     align-items: center;
+}
+
+.footer__roasteria-side {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 79.90vw;
+    width: 12.14vw;
+
+    background: no-repeat url('../img/roasteria-side.png');
+    background-position: center;
+    background-size: 100% auto;
+
+    transform: translate(4%, -87.3%);
 }
 
 .footer__wr-content {
