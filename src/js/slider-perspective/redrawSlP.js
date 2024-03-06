@@ -278,6 +278,9 @@ export default class RedrawSLP {
         price.classList.add('sl-p__card-price');
         price.style.transition = `opacity ${this.duration}s ${this.timeF}`;
         price.textContent = data.price;
+        const currency = document.createElement('span');
+        currency.textContent = 'p.';
+        price.append(currency);
 
         // слайдер внутри карточки
         const wrInSlider = document.createElement('div');

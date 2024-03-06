@@ -15,13 +15,13 @@ export default class RedrawSlHead {
         this.timingFunc = 'ease-out';
         this.duration = '0.5';
 
-        this.timeout = 7 * 1000;
-        this.timeoutId = null;
-
         // Счетчик для полосы индикации
         this.lineCounter = 0;
         this.videoCounter = 0;
         this.activeVideo = this.videos[0];
+
+        // Блокируем накликивание, работает по события сдвига линии
+        this.stoped = null;
 
         // прибиваем контекст для controll
         this.initSlider = this.initSlider.bind(this);
@@ -46,10 +46,7 @@ export default class RedrawSlHead {
 
         // останавливаем воспроизведение на всех слайдах кроме первого
         this.videos.forEach((v, i) => v.play && i ? v.pause() : '');
-        console.log(this.activeVideo)
-        this.activeVideo.onended = () => {
-            console.log('this.activeVideo', this.activeVideo)
-        }
+
         this.addListenerMovie();
     }
 
@@ -57,13 +54,12 @@ export default class RedrawSlHead {
     addListenerMovie() {
         this.videos.forEach(item => {
             item.addEventListener('ended', () => {
-                console.log('this.activeVideo', this.activeVideo)
                 this.moveNext();
             }, false)
         })
     }
 
-    controlMovie(type) {
+    controllMovie(type) {
         // ставим предидущий слайд на паузу и в начало
         if(this.videos[this.videoCounter].play) {
             this.videos[this.videoCounter].pause();
@@ -71,7 +67,7 @@ export default class RedrawSlHead {
         }
 
         if(type === 'next') {
-            // прибавляем проверяем чтоб не получить не существующий индекс
+            // прибавляем и проверяем чтоб не получить не существующий индекс
             this.videoCounter += 1;
             this.videoCounter === this.videos.length ? this.videoCounter = 0 : '';
             // запускаем видео на следующем слайде
@@ -82,7 +78,7 @@ export default class RedrawSlHead {
             return;
         }
 
-        // прибавляем проверяем чтоб не получить не существующий индекс
+        // прибавляем и проверяем чтоб не получить не существующий индекс
         this.videoCounter -= 1;
         this.videoCounter < 0 ? this.videoCounter = this.videos.length - 1 : '';
 
@@ -90,25 +86,24 @@ export default class RedrawSlHead {
             this.videos[this.videoCounter].play();
         }
     }
-
+    // !!!!!!  Если раскоментировать анимацию и слушатели, будет 
+    // работать сдвиг слайдов
     moveNext() {
         if(this.stoped) return;
         this.stoped = true;
 
         const width = this.slider.offsetWidth;
-        this.slides.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
+        // this.slides.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
         this.slides.style.transform = `translateX(-${width}px)`;
 
-        this.slides.addEventListener('transitionend', () => {
-            this.slides.style.transition = ``;
+        // this.slides.addEventListener('transitionend', () => {
+            // this.slides.style.transition = ``;
             this.slides.append(this.slides.children[0]);
             this.slides.style.transform = ``;
-
-            this.stoped = false;
-        },{once: true})
+        // },{once: true})
 
         this.moveLineNext();
-        this.controlMovie('next');
+        this.controllMovie('next');
     }
 
     movePrev() {
@@ -121,18 +116,16 @@ export default class RedrawSlHead {
         this.slides.style.transform = `translateX(-${width}px)`;
 
         setTimeout(() => { 
-            this.slides.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
+            // this.slides.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
             this.slides.style.transform = ``;
         })
 
-        this.slides.addEventListener('transitionend', () => {
-            this.slides.style.transition = ``;
-
-            this.stoped = false;
-        },{once: true})
+        // this.slides.addEventListener('transitionend', () => {
+            // this.slides.style.transition = ``;
+        // },{once: true})
 
         this.moveLinePrev();
-        this.controlMovie(null);
+        this.controllMovie(null);
     }
 
     clickPag(el) {
@@ -145,6 +138,8 @@ export default class RedrawSlHead {
         if(num > this.lineCounter) {
             const amount = num - this.lineCounter;
             for(let i = 0; i < amount; i += 1) {
+                // разблокируем для двух кликов подряд
+                this.stoped = false;
                 this.moveNext();
             }
         }
@@ -153,13 +148,19 @@ export default class RedrawSlHead {
         if(num < this.lineCounter) {
             const amount = this.lineCounter - num;
             for(let i = 0; i < amount; i += 1) {
+                // разблокируем для двух кликов подряд
+                this.stoped = false;
                 this.movePrev();
             }
         } 
     }
 
     moveLineNext() {
+        
         this.lineCounter += 1;
+
+        // открываем возможность следующего клика по окончании анимации
+        this.unBlockClick();
         
         // пока слайды не зациклились
         if(this.lineCounter !== this.amountSlides) {
@@ -173,27 +174,33 @@ export default class RedrawSlHead {
             const offset = this.widthLine * this.lineCounter;
             this.line.style.transform = `translateX(${offset}vw)`;
 
+            
             // Создаем новый ползунок, ставим в начало и сдвигаем
             const div = this.createLine();
             this.wrLine.prepend(div);
-            div.style.transform = `translateX(-${this.widthLine}vw)`;
+            const newLine = this.wrLine.children[0];
+            newLine.style.transform = `translateX(-${this.widthLine}vw)`;
             setTimeout(() => {
-                div.style.transform = ``;
-            })
+                newLine.style.transform = ``;            
+            }, 3) // таймаут отраблатывал слишком быстро поэтому анимация не срабатывала
+                 // и событие не происходило, был bag
 
             // убираем позиционирование и переопределяем переменную с ползунком
-            div.addEventListener('transitionend', () => {
+            newLine.addEventListener('transitionend', () => {
                 this.wrLine.children[1].remove();
-                div.style.position = '';
-                this.line = this.wrLine.children[0];
-
-                this.lineCounter = 0;
+                this.line = newLine;
             }, {once: true})
+            this.lineCounter = 0;
         }
+
+        
     }
 
     moveLinePrev() {
         this.lineCounter -= 1;
+
+        // открываем возможность следующего клика по окончании анимации
+        this.unBlockClick();
 
         // если стартовая позиция крайнее левое положение
         if(this.lineCounter < 0) {
@@ -209,12 +216,11 @@ export default class RedrawSlHead {
             setTimeout(() => {
                 const offset = offsetDiv - this.widthLine;
                 div.style.transform = `translateX(${offset}vw)`;
-            })
+            }, 3)
 
             // убираем позиционирование и переопределяем переменную с ползунком
             div.addEventListener('transitionend', () => {
                 this.wrLine.children[0].remove();
-                div.style.position = '';
                 this.line = this.wrLine.children[0];
             }, {once: true})
 
@@ -231,11 +237,17 @@ export default class RedrawSlHead {
     // Метод для создания ползунка
     createLine() {
         const div = document.createElement('div');
-        div.style.position = 'absolute'; // чтоб вышел из потока и не сдвигал старый
+
         div.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
         div.style.width = `${this.widthLine}vw`;
         div.classList.add('slider-h__nav-line-item');
 
         return div;
+    }
+
+    unBlockClick() {
+        this.line.addEventListener('transitionend', () => {
+            this.stoped = false;
+        }, {once: true})
     }
 }

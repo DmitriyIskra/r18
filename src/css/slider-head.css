@@ -95,7 +95,7 @@
 }
 
 .slider-h__name-site-descr {
-    font-family: 'SofiaSans';
+    font-family: 'SofiaSans'; 
     font-size: 2.08vw;
     font-style: normal;
     font-weight: 300;
@@ -192,6 +192,9 @@
 }
 
 .slider-h__nav-line-item {
+    position: absolute;
+    left: 0;
+
     height: 100%;
     width: 0;
 

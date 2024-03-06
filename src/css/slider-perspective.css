@@ -71,13 +71,19 @@
     left: 10%;
 
     font-family: "SofiaSans";
-    font-size: 0.83vw;
+    font-size: 1.04vw;
     font-weight: 700;
     text-transform: uppercase;
 
     color: #3F3937;
 
     opacity: 0;
+}
+
+.sl-p__card-price span {
+    margin-left: 0.2vw;
+
+    font-size: 0.73vw;
 }
 
 .sl-p__slide-item_active .sl-p__card-price {

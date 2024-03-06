@@ -207,6 +207,27 @@
     cursor: pointer;
 }
 
+.contacts__social-list {
+    display: flex;
+    gap: 1.61vw;
+}
+
+.contacts__social-item {
+    position: relative;
+
+    width: 2.08vw;
+    height: 2.08vw;
+}
+
+.contacts__social-item-link {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    height: 100%;
+    width: 100%;
+}
+
 /* КОНТАКТЫ END */
 
 
