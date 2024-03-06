@@ -7,7 +7,7 @@ export default class RedrawSLP {
         this.cardDecoR = this.el.querySelector('.sl-p__slide-item_r');
         this.itemsList = null;
         this.items = null;
-        this.cards = null;this.el.querySelectorAll('.sl-p__card');
+        this.cards = null;
 
         this.inSideSliders = this.el.querySelectorAll('.sl-p__card-wr-slider');
 
@@ -28,6 +28,10 @@ export default class RedrawSLP {
         this.stoped = false;
     }
  
+    // block changed color animation - убрана анимация, для смены цвета товара 
+    // в карточке во внутреннем слайдере смена поисходит без плавного
+    // исчезновения и появления
+
     // работает на основе абсолютного позиционирования
     initSlider() {
         // перебираем json и элементы вставляем this.cardDecoR.before(...)
@@ -204,14 +208,16 @@ export default class RedrawSLP {
 
         // картинка исчезает
         this.activeCardSlidesList.style.opacity = '0';
+
         // оставляем в анимации только прозрачность и убираем transform
         //  чтоб незаметно после смены картинки передвинуть внутренний 
         // слайдер в начало чтоб другой цвет появился с первого слайда
-        this.activeCardSlidesList.style.transition = `
-            opacity 0.001s ${this.timeF}
-        `;
-        // ${this.duration / 1.2} changed
-        this.activeCardSlidesList.addEventListener('transitionend', () => {
+        // this.activeCardSlidesList.style.transition = `     block changed color animation
+        //     opacity ${this.duration / 1.2} ${this.timeF}    block changed color animation
+        // `;
+
+        // this.activeCardSlidesList.addEventListener('transitionend', () => {  block changed color animation
+   
             // когда картинка исчезла сдвигаем слайдер в начало
             this.mooveCardSlider(0);
             // показываем картинку
@@ -226,9 +232,10 @@ export default class RedrawSLP {
                 transform ${this.duration}s ${this.timeF}
                 
             `;
-            // opacity ${this.duration / 1.2}s ${this.timeF} changed
+            // opacity ${this.duration / 1.2}s ${this.timeF} block changed color animation
             })
-        }, {once: true})
+            
+        // }, {once: true})  block changed color animation
     }
 
 
@@ -267,6 +274,11 @@ export default class RedrawSLP {
         const card = document.createElement('div');
         card.classList.add('sl-p__card');
 
+        const price = document.createElement('div');
+        price.classList.add('sl-p__card-price');
+        price.style.transition = `opacity ${this.duration}s ${this.timeF}`;
+        price.textContent = data.price;
+
         // слайдер внутри карточки
         const wrInSlider = document.createElement('div');
         wrInSlider.classList.add('sl-p__card-wr-slider');
@@ -283,7 +295,7 @@ export default class RedrawSLP {
             transform ${this.duration}s ${this.timeF}
             
         `;
-        // opacity ${this.duration / 1.2}s ${this.timeF} changed
+        // opacity ${this.duration / 1.2}s ${this.timeF} block changed color animation
         inSliderList.style.width = `${data.black.img.length * 100}%`;
         data.black.img.forEach(item => {
             const inSliderItem = document.createElement('li');
@@ -373,7 +385,7 @@ export default class RedrawSLP {
             wrLink.style.marginTop = '0.5vw'
         const link = document.createElement('a');
         link.classList.add('sl-p__card-link');
-        link.textContent = 'Подробнее'
+        link.textContent = 'Купить'
         link.href = data.link;
         link.alt = data.title;
         link.target = '_blank';
@@ -391,6 +403,7 @@ export default class RedrawSLP {
         
         card.append(wrInSlider);
         card.append(mask);
+        card.append(price);
         card.append(cardTitle);
         card.append(wrCardContent);
         item.append(card)

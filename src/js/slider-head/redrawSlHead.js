@@ -12,18 +12,19 @@ export default class RedrawSlHead {
         this.widthLine = null; // расчитано во vw
 
         // Параметры анимации
-        this.timingFunc = 'linear';
-        this.duration = '0.3'
+        this.timingFunc = 'ease-out';
+        this.duration = '0.5';
+
+        this.timeout = 7 * 1000;
+        this.timeoutId = null;
 
         // Счетчик для полосы индикации
         this.lineCounter = 0;
         this.videoCounter = 0;
+        this.activeVideo = this.videos[0];
 
         // прибиваем контекст для controll
         this.initSlider = this.initSlider.bind(this);
-
-        // блокировщик
-        this.stoped = false;
     }
 
     initSlider() {
@@ -45,6 +46,21 @@ export default class RedrawSlHead {
 
         // останавливаем воспроизведение на всех слайдах кроме первого
         this.videos.forEach((v, i) => v.play && i ? v.pause() : '');
+        console.log(this.activeVideo)
+        this.activeVideo.onended = () => {
+            console.log('this.activeVideo', this.activeVideo)
+        }
+        this.addListenerMovie();
+    }
+
+    
+    addListenerMovie() {
+        this.videos.forEach(item => {
+            item.addEventListener('ended', () => {
+                console.log('this.activeVideo', this.activeVideo)
+                this.moveNext();
+            }, false)
+        })
     }
 
     controlMovie(type) {
@@ -104,7 +120,7 @@ export default class RedrawSlHead {
         this.slides.prepend(this.slides.children[lastSlideIndex]);
         this.slides.style.transform = `translateX(-${width}px)`;
 
-        setTimeout(() => {
+        setTimeout(() => { 
             this.slides.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
             this.slides.style.transform = ``;
         })

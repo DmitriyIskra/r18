@@ -1,27 +1,27 @@
-.sl-prod {
+.sl-prod { 
     display: flex;
     gap: 2.5vw;
 }
 
-.sl-prod__big-img {
+.sl-prod__wr-big-img {
     position: relative;
 
     width: 21.46vw;
     min-width: 21.46vw;
     height: 100%;
     padding-top: 1.98vw;
+}
+
+.sl-prod__big-img {
+    position: relative;
+
+    width: 100%;
 
     opacity: 0;
 }
 
 .sl-prod__big-img_visible {
     opacity: 1;
-}
-
-.sl-prod__big-img img {
-    position: relative;
-
-    width: 100%;
 }
 
 .sl-prod__big-img_deco {

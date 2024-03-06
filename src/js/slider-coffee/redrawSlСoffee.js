@@ -7,14 +7,14 @@ export default class RedrawSlСoffee {
         this.wrSlides = this.slider.querySelector('.sl-prod__wr-slides');
         this.slides = this.slider.querySelector('.sl-prod__slides');
         this.arrow = this.slider.querySelector('.slider__arrow');
-        this.wrBigImg = this.slider.querySelector('.sl-prod__big-img');
-        this.bigImg = this.slider.querySelector('.sl-prod__big-img img');
+        this.wrBigImg = this.slider.querySelector('.sl-prod__wr-big-img');
+        this.bigImg = this.wrBigImg.querySelector('img');
 
         this.amountSlides = this.slides.children.length;
         this.amountShow = 3;
 
-        this.timeFunc = 'linear';
-        this.duration = 0.5;
+        this.timeFunc = 'ease-out';
+        this.duration = 0.7;
         this.durationHalf = this.duration / 2;
 
         this.oldActiveSlide = null;
@@ -69,7 +69,7 @@ export default class RedrawSlСoffee {
         this.fillTextInfo();
 
         // Определяем анимацию для большой картинки
-        this.wrBigImg.style.transition = `opacity ${this.durationHalf}s ${this.timeFunc}`;
+        this.bigImg.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
 
         // Определяем анимацию для блока с текстом, описанием товара
         this.description.style.transition = `opacity ${this.durationHalf}s ${this.timeFunc}`;
@@ -111,13 +111,28 @@ export default class RedrawSlСoffee {
     }
 
     changeBigImg() {
-        this.wrBigImg.classList.remove('sl-prod__big-img_visible');
+        // создаем новый элемент и создаем для него все необходимые параметры
+        const img = this.createEl('img', 'sl-prod__big-img');
+        img.style = `
+            position: absolute;
+            left: 0;
+            transition: opacity ${this.duration}s ${this.timeFunc};
+        `;
 
-        this.wrBigImg.addEventListener('transitionend', () => {
-            const activeImg = this.activeSlide.querySelector('img');
-            this.bigImg.src = activeImg.src;
+        // получаем следующий эелемент который станет активным
+        const activeImg = this.activeSlide.nextSibling.children[0].children[0];
+        img.src = activeImg.src; // указываем src для нового элемента
+        this.wrBigImg.append(img);
 
-            this.wrBigImg.classList.add('sl-prod__big-img_visible');
+        setTimeout(() => {  
+            this.wrBigImg.lastElementChild.classList.add('sl-prod__big-img_visible');
+            this.bigImg.classList.remove('sl-prod__big-img_visible');
+        });
+        
+        this.bigImg.addEventListener('transitionend', () => {
+            this.bigImg.remove();
+            this.bigImg = this.wrBigImg.lastElementChild;
+            this.bigImg.style.position = 'relative';
         }, {once: true})
     }
 
@@ -158,7 +173,7 @@ export default class RedrawSlСoffee {
         const link = this.createEl('a', 'sl-prod__button-slide');
         link.href = href;
         link.title = linkTitle;
-        link.textContent = 'Подробнее';
+        link.textContent = 'Заказать';
         const linkDeco = this.createEl('div', 'sl-prod__wr-button-slide-deco');
         linkDeco.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
         divButton.append(link);

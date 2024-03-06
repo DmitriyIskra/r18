@@ -12,7 +12,7 @@ export default class ControllSlHead {
         this.d.slider.addEventListener('click', this.click);
     }
 
-    click(e) {
+    click(e) { 
         // NEXT клик по стрелке
         if(e.target.closest('.slider__arrow-next')) {
            this.d.moveNext();
