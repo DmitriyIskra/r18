@@ -208,7 +208,7 @@ export default class RedrawSLP {
 
         // картинка исчезает
         this.activeCardSlidesList.style.opacity = '0';
-
+        console.log(this.activeCardSlidesList)
         // оставляем в анимации только прозрачность и убираем transform
         //  чтоб незаметно после смены картинки передвинуть внутренний 
         // слайдер в начало чтоб другой цвет появился с первого слайда
@@ -218,6 +218,11 @@ export default class RedrawSLP {
 
         // this.activeCardSlidesList.addEventListener('transitionend', () => {  block changed color animation
    
+        // new если изображение меняется быстро без исчезновения
+        //  убираем transform чтоб возврат к первому слайду
+        // произошел без анимации
+        this.activeCardSlidesList.style.transition = '';
+
             // когда картинка исчезла сдвигаем слайдер в начало
             this.mooveCardSlider(0);
             // показываем картинку
@@ -230,7 +235,6 @@ export default class RedrawSLP {
             setTimeout(() => {
                 this.activeCardSlidesList.style.transition = `
                 transform ${this.duration}s ${this.timeF}
-                
             `;
             // opacity ${this.duration / 1.2}s ${this.timeF} block changed color animation
             })
@@ -268,75 +272,61 @@ export default class RedrawSLP {
     }
 
     patternCard(data) {
-        const item = document.createElement('li');
-        item.classList.add('sl-p__slide-item');
+        const item = this.createEl('li', 'sl-p__slide-item');
 
-        const card = document.createElement('div');
-        card.classList.add('sl-p__card');
+        const card  = this.createEl('div', 'sl-p__card');
 
-        const price = document.createElement('div');
-        price.classList.add('sl-p__card-price');
+        const price  = this.createEl('div', 'sl-p__card-price');
         price.style.transition = `opacity ${this.duration}s ${this.timeF}`;
         price.textContent = data.price;
-        const currency = document.createElement('span');
+
+        const currency  = this.createEl('span', '');
         currency.textContent = 'p.';
         price.append(currency);
 
         // слайдер внутри карточки
-        const wrInSlider = document.createElement('div');
-        wrInSlider.classList.add('sl-p__card-wr-slider');
+        const wrInSlider  = this.createEl('div', 'sl-p__card-wr-slider');
         wrInSlider.style = `
         transition: width ${this.duration}s ${this.timeF},
             height ${this.duration}s ${this.timeF}
         `;
 
-        const wrInSliderList = document.createElement('div');
-        wrInSliderList.classList.add('sl-p__card-wr-slides');
-        const inSliderList = document.createElement('ul');
-        inSliderList.classList.add('sl-p__card-slides-list');
+        const wrInSliderList  = this.createEl('div', 'sl-p__card-wr-slides');
+
+        const inSliderList  = this.createEl('ul', 'sl-p__card-slides-list');
         inSliderList.style.transition = `
             transform ${this.duration}s ${this.timeF}
-            
         `;
         // opacity ${this.duration / 1.2}s ${this.timeF} block changed color animation
         inSliderList.style.width = `${data.black.img.length * 100}%`;
         data.black.img.forEach(item => {
-            const inSliderItem = document.createElement('li');
-            inSliderItem.classList.add('sl-p__card-slides-item');
-            const inSliderImg = document.createElement('img');
-            inSliderImg.classList.add('sl-p__card-slides-img');
+            const inSliderItem  = this.createEl('li', 'sl-p__card-slides-item');
+            const inSliderImg  = this.createEl('img', 'sl-p__card-slides-img');
             inSliderImg.src = item;
 
             inSliderItem.append(inSliderImg);
             inSliderList.append(inSliderItem);
         });
 
-        const inSliderPaginationList = document.createElement('ul');
-        inSliderPaginationList.classList.add('sl-p__card-slider-pag-list');
+        const inSliderPaginationList  = this.createEl('ul', 'sl-p__card-slider-pag-list');
         for(let i = 0; i < data.black.img.length; i += 1) {
-            const inSliderPaginationItem = document.createElement('li');
-            inSliderPaginationItem.classList.add('sl-p__card-slider-pag-item');
+            const inSliderPaginationItem  = this.createEl('li', 'sl-p__card-slider-pag-item');
             inSliderPaginationItem.dataset.num = i;
             if(i === 0) 
                 inSliderPaginationItem.classList.add('sl-p__card-slider-pag-item_active');
             inSliderPaginationList.append(inSliderPaginationItem);
         }
-        const inSliderPaginationItem = document.createElement('li');
-        inSliderPaginationItem.classList.add('sl-p__card-slider-pag-item');
         
-        const colorList = document.createElement('ul');
+        const colorList  = this.createEl('ul', 'sl-p__card-slider-color-list');
         colorList.dataset.article = data.article;
-        colorList.classList.add('sl-p__card-slider-color-list');
         data.colors.forEach((item, index) => {
-            const colorItem = document.createElement('li');
-            colorItem.classList.add('sl-p__card-slider-color-item');
+            const colorItem  = this.createEl('li', 'sl-p__card-slider-color-item');
             colorItem.id = `color${index}`; // для поиска и смены цвета кружочка
             colorItem.dataset.color = item.name;
             if(index === 0) 
                 colorItem.classList.add('sl-p__card-slider-color-item_active');
             colorItem.style.borderColor = `${item.value}`;
-            const colorItemInSideCircle = document.createElement('div');
-            colorItemInSideCircle.classList.add('sl-p__card-slider-color-circle');
+            const colorItemInSideCircle  = this.createEl('div', 'sl-p__card-slider-color-circle');
             colorItemInSideCircle.style = `background: ${item.value};`;
 
             colorItem.append(colorItemInSideCircle);
@@ -349,45 +339,38 @@ export default class RedrawSLP {
         wrInSlider.append(colorList);
         // -- слайдер внутри карточки
 
-        const cardTitle = document.createElement('div');
-        cardTitle.classList.add('sl-p__card-title');
+        const cardTitle  = this.createEl('div', 'sl-p__card-title');
         cardTitle.textContent = data.title;
 
         // все что находится под слайдером внутри карточки и исчезает
-        const wrCardContent = document.createElement('div');
-        wrCardContent.classList.add('sl-p__card-wr-content')
-        const cardContent = document.createElement('div');
-        cardContent.classList.add('sl-p__card-content');
-        const sizeList = document.createElement('ul');
-        sizeList.classList.add('sl-p__size-list');
+        const wrCardContent  = this.createEl('div', 'sl-p__card-wr-content');
+        const cardContent  = this.createEl('div', 'sl-p__card-content');
+        const sizeList  = this.createEl('ul', 'sl-p__size-list');
         data.black.sizes.forEach((item, index, arr) => {
-            const sizeItem = document.createElement('li');
-            sizeItem.classList.add('sl-p__size-item');
+            const sizeItem  = this.createEl('li', 'sl-p__size-item');
             
             if(index === 0) sizeItem.classList.add('sl-p__size-item_active');
 
-            const sizeItemNum = document.createElement('div');
-            sizeItemNum.classList.add('sl-p__size-item-num');
+            const sizeItemNum  = this.createEl('div', 'sl-p__size-item-num');
             sizeItemNum.textContent = item;
 
             sizeItem.append(sizeItemNum);
             sizeList.append(sizeItem);
         })
 
-        const composition = document.createElement('p');
+        const composition  = this.createEl('p', '');
 
         data.composition.forEach( item => {
-            const compositionItem = document.createElement('span');
+            const compositionItem  = this.createEl('span', '');
             compositionItem.textContent = item;
             composition.append(compositionItem);
         } )
         
-        const wrLink = document.createElement('div');
-        wrLink.classList.add('sl-p__card-wr-link');
+        const wrLink  = this.createEl('div', 'sl-p__card-wr-link');
         if(data.composition.length > 1) 
-            wrLink.style.marginTop = '0.5vw'
-        const link = document.createElement('a');
-        link.classList.add('sl-p__card-link');
+            wrLink.style.marginTop = '0.5vw';
+
+        const link  = this.createEl('a', 'sl-p__card-link');
         link.textContent = 'Купить'
         link.href = data.link;
         link.alt = data.title;
@@ -400,8 +383,7 @@ export default class RedrawSLP {
         wrCardContent.append(cardContent);
         // -- все что находится под слайдером внутри карточки и исчезает
 
-        const mask = document.createElement('div');
-        mask.classList.add('sl-p__card-mask');
+        const mask  = this.createEl('div', 'sl-p__card-mask');
 
         
         card.append(wrInSlider);
@@ -412,5 +394,11 @@ export default class RedrawSLP {
         item.append(card)
 
         return item;
+    }
+
+    createEl(el, className) {
+        const element = document.createElement(el);
+        className ? element.classList.add(className) : '';
+        return element;
     }
 }
