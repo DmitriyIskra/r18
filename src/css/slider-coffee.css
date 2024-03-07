@@ -57,7 +57,13 @@
     opacity: 1;
 }
 
+.sl-prod__header {
+    position: relative;
+}
+
 .sl-prod__title {
+    width: fit-content;
+
     font-family: 'SofiaSans';
     font-size: 2.08vw;
     font-weight: 700;
@@ -70,6 +76,10 @@
     margin-top: 2.29vw;
 }
 
+.sl-prod__taste {
+    display: flex;
+}
+
 .sl-prod__taste-title {
     font-family: 'SofiaSans';
     font-size: 1.25vw;
@@ -77,6 +87,12 @@
     text-transform: uppercase;
 
     color: #FFF;
+}
+
+.sl-prod__wr-taste-text {
+    position: relative;
+
+    flex-grow: 1;
 }
 
 .sl-prod__taste-text {
@@ -88,6 +104,9 @@
 }
 
 .sl-prod__aroma {
+    position: relative;
+
+    display: flex;
     margin-top: 2.08vw;
 }
 
@@ -98,6 +117,12 @@
     text-transform: uppercase;
 
     color: #FFF;
+}
+
+.sl-prod__wr-aroma-text {
+    position: relative;
+
+    flex-grow: 1;
 }
 
 .sl-prod__aroma-text {
@@ -121,6 +146,8 @@
 }
 
 .sl-prod__character-item {
+    position: relative;
+
     display: flex;
 
     justify-content: space-between;

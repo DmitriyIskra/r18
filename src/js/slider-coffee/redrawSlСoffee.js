@@ -80,21 +80,24 @@ export default class RedrawSlСoffee {
         if(this.block) return;
         this.block = true;
 
-        // подставляем первый слайд назад
+        // клонируем и подставляем первый слайд назад
         const clone = this.activeSlide.cloneNode(true);
         clone.classList.remove('sl-prod__slide_active');
         this.slides.append(clone);
         this.setWidthSliderContainer();
 
+        // устанавливаем анимацию
         this.slides.style.transition = `transform ${this.duration}s ${this.timeFunc}`;
+
+        this.oldActiveSlide = this.activeSlide;
+        this.activeSlide = this.slides.children[1];
+        this.activeSlide.classList.add('sl-prod__slide_active');
+
         setTimeout(() => {
-            // получаем ширину активного слайда vw
-            const width = this.activeSlide.offsetWidth;
+            // получаем ширину активного слайда vw и двигаем
+            const width = this.oldActiveSlide.offsetWidth;
             const offset = (width + this.getGap()) / innerWidth * 100;
             this.slides.style.transform = `translateX(-${offset}vw)`;
-            this.oldActiveSlide = this.activeSlide;
-            this.activeSlide = this.slides.children[1];
-            this.activeSlide.classList.add('sl-prod__slide_active');
         })
 
         this.slides.addEventListener('transitionend', () => {
@@ -120,7 +123,7 @@ export default class RedrawSlСoffee {
         `;
 
         // получаем следующий эелемент который станет активным
-        const activeImg = this.activeSlide.nextSibling.children[0].children[0];
+        const activeImg = this.oldActiveSlide.nextSibling.children[0].children[0];
         img.src = activeImg.src; // указываем src для нового элемента
         this.wrBigImg.append(img);
 
@@ -137,13 +140,51 @@ export default class RedrawSlСoffee {
     }
 
     changeTextInfo() {
-        this.description.classList.remove('sl-prod__text-about_visible');
+        const id = this.activeSlide.id;
+        const info = this.data.find( item => item.id === id);
+        const keys = Object.keys(info);
+        keys.forEach( item => {
+            const el = this.description.querySelector(`[data-type="${item}"]`);
+            if(el) {
+                const newEl = this.createEl(el.localName, el.className);
+                newEl.dataset.type = el.dataset.type;
+                newEl.textContent = info[item];
+                newEl.style = `
+                    position: absolute;
+                    top: 0;
+                    ${el.dataset.type === 'title' ||
+                    el.dataset.type === 'taste' ||
+                    el.dataset.type === 'aroma' ? (
+                        'left: 0;'
+                    ) : (
+                        'right: 0;'
+                    )}
+                    opacity: 0;
+                    transition: opacity ${this.duration}s ${this.timeFunc};
+                `;
 
-        this.description.addEventListener('transitionend', () => {
-            this.fillTextInfo();
+                el.style = `transition: opacity ${this.duration}s ${this.timeFunc};`;
 
-            this.description.classList.add('sl-prod__text-about_visible');
-        }, {once: true})
+                el.after(newEl);
+
+                setTimeout(() => {
+                    el.style.opacity = '0';
+                    newEl.style.opacity = '1';
+                }, 20)
+
+                el.addEventListener('transitionend', () => {
+                    el.remove();
+                    newEl.style = 'opacity: 1;'
+                }, {once: true})
+            }
+        })
+        // this.description.classList.remove('sl-prod__text-about_visible');
+
+        // this.description.addEventListener('transitionend', () => {
+            // this.fillTextInfo();
+
+        //     this.description.classList.add('sl-prod__text-about_visible');
+        // }, {once: true})
     }
 
     fillTextInfo() {
