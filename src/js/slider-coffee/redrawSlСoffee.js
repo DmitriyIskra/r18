@@ -223,6 +223,10 @@ export default class RedrawSlСoffee {
                 this.slides.style.transform = `translateX(-${Math.abs(this.currentOffset) + r}px)`;
             },10)
 
+            // принцип работы слайдера такой что при next следующий активный 
+            // слайд, пока не произошла перестановка всегда под индексом 1
+            this.activeSlide = this.slides.children[1];
+
             this.slides.addEventListener('transitionend', () => {
                 this.slides.style.transition = ``;
                 this.slides.append(this.slides.children[0]);
@@ -242,6 +246,8 @@ export default class RedrawSlСoffee {
                 this.slides.style.transform = ``;
             },10)
 
+            this.activeSlide = this.slides.children[0];
+
             this.slides.addEventListener('transitionend', () => {
                 this.slides.style.transition = ``;
                 // если в процессе свайпа, сначала был свайп в prev и был добавлен элемент в начало
@@ -250,6 +256,9 @@ export default class RedrawSlСoffee {
                 }
             }, {once: true})
         }
+
+        // Меняем описание
+        this.changeTextInfo();
     }
 
     // SWIPE END
