@@ -183,7 +183,8 @@ export default class RedrawSlСoffee {
     }
 
     swipe(p) {
-        console.log('swipe')
+        if(this.block) return;
+
         this.touchMoved = (this.swipeStart - p);
 
         if(!this.relocated && this.touchMoved < 0) {
@@ -197,7 +198,10 @@ export default class RedrawSlСoffee {
     }
 
     touchEnd(data) {
-        console.log('end')
+        // блокируем накликивание
+        if(this.block) return;
+        this.block = true;
+
         // сколько времени прошло между start и end
         const timeDifference = new Date().getTime() - this.startTimeStamp;
 
