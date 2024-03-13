@@ -468,11 +468,11 @@
 
 @media( max-width: 961px ) {
     .sl-prod__img-slide-deco {
-        top: 43.5%;
+        top: 48.5%;
         left: 50%;
         
         width: 71.528%;
-        height: 94.845%;
+        height: 85.845%;
 
         box-shadow: 2.4vw 6.04vw 9.02vw 0.63vw rgba(0, 0, 0, 0.8);
     }

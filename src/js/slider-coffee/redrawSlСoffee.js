@@ -16,6 +16,7 @@ export default class RedrawSlСoffee {
 
         this.timeFunc = 'ease-out';
         this.duration = 0.7;
+        this.durationChangeTextInfo = this.duration;
         this.durationHalf = this.duration / 2;
 
         this.oldActiveSlide = null;
@@ -24,7 +25,7 @@ export default class RedrawSlСoffee {
         this.swipeStart = null;
         this.touchMoved = null;
         this.relocated = false; // для смещения в prev, чтоб перетавить слайд один раз
-        this.currentOffset = null;
+        this.currentOffset = null; // текущее смещение всего слайдера
         this.startTimeStamp = null;
         this.endTimeStamp = null;
         
@@ -172,7 +173,6 @@ export default class RedrawSlСoffee {
 
     // SWIPE START
     touchStart(data) {
-        console.log('start')
         this.swipeStart = data;
         // Размер слайда или максимальная ширина сдвига 
         this.getWidthOffset();
@@ -214,11 +214,40 @@ export default class RedrawSlСoffee {
         let durationRemained = (durationOnePx * r) / 1000;
         durationRemained = durationRemained > 0.3 ? 0.3 : durationRemained;
 
+        // Установка анимаций
         this.slides.style.transition = `
             transform ${(durationRemained)}s ${this.timeFunc}
         `;
+        // Корректируем время анимации смены текста описания под время свайпа слайда
+        this.durationChangeTextInfo = durationRemained;
 
-        // to next
+
+        //  ====== ----  если слайд был смещен не на много
+        if(Math.abs(this.touchMoved) <= this.sizeOffset / 3.5) {
+
+            // смещение устанавливаем в зависимости подставлен слайд в начало или нет
+            const offset = this.relocated ? this.sizeOffset * -1 : 0;
+                this.slides.style.transform = `
+                    translateX(${offset}px)
+                `;
+            
+            this.slides.addEventListener('transitionend', () => {
+                this.slides.style.transition = '';
+
+                // если уже был подставлен элемент в начало
+                if(this.relocated) {
+                    this.slides.append(this.slides.children[0]);
+                    this.slides.style.transform = ``;
+                    this.relocated = false;
+                }
+
+                this.block = false
+            }, {once: true})
+
+            return;
+        }
+
+        //  ====== ----   to next
         if(this.swipeStart > data) {  
             // Обновляем насколько сдвинут блок со слайдами
             this.currentOffset = this.slides.getBoundingClientRect().x;
@@ -244,7 +273,7 @@ export default class RedrawSlСoffee {
             }, {once: true})
         }
 
-        // to prev
+        //  ====== ----   to prev
         if(this.swipeStart < data) {          
             setTimeout(() => {
                 this.slides.style.transform = ``;
@@ -314,7 +343,11 @@ export default class RedrawSlСoffee {
                         'right: 0;'
                     )}
                     opacity: 0;
-                    transition: opacity ${this.duration}s ${this.timeFunc};
+                    transition:
+                     opacity
+                     ${this.durationChangeTextInfo}s
+                     ${this.timeFunc}
+                    ;
                 `;
 
                 el.style = `transition: opacity ${this.duration}s ${this.timeFunc};`;
@@ -329,6 +362,9 @@ export default class RedrawSlСoffee {
                 el.addEventListener('transitionend', () => {
                     el.remove();
                     newEl.style = 'opacity: 1;';
+
+                    // Возвращаем сдантартное время смены текста (для клика)
+                    this.durationChangeTextInfo = this.duration;
 
                     this.block = false;
                 }, {once: true})

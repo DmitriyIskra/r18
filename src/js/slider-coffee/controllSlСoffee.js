@@ -15,9 +15,9 @@ export default class ControllSlСoffee {
 
     registerEvents() {
         this.d.slider.addEventListener('click', this.click);
-        this.d.slider.addEventListener('touchstart', this.touchStart, {passive: true});
-        this.d.slider.addEventListener('touchmove', this.touchMoove, {passive: true});
-        this.d.slider.addEventListener('touchend', this.touchEnd, {passive: true});
+        this.d.wrSlides.addEventListener('touchstart', this.touchStart, {passive: true});
+        this.d.wrSlides.addEventListener('touchmove', this.touchMoove, {passive: true});
+        this.d.wrSlides.addEventListener('touchend', this.touchEnd, {passive: true});
     }
 
     click(e) {
@@ -31,17 +31,14 @@ export default class ControllSlСoffee {
     }
 
     touchStart(e) {
-        if(!e.target.closest('.slider__arrow'))
-            this.d.touchStart(e.changedTouches[0].clientX);
+        this.d.touchStart(e.changedTouches[0].clientX);
     }
 
     touchMoove(e) {
-        if(!e.target.closest('.slider__arrow'))
-            this.d.swipe(e.changedTouches[0].clientX);
+        this.d.swipe(e.changedTouches[0].clientX);
     }
 
     touchEnd(e) {
-        if(!e.target.closest('.slider__arrow'))
-            this.d.touchEnd(e.changedTouches[0].clientX);
+        this.d.touchEnd(e.changedTouches[0].clientX);
     }
 } 
