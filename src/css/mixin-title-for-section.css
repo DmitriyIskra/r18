@@ -5,3 +5,9 @@
 
     color: #fff;
 }
+
+@media( max-width: 961px ) {
+    .section-title__title {
+        font-size: 10.67vw;
+    }
+}

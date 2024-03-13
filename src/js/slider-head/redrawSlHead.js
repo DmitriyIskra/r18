@@ -20,6 +20,10 @@ export default class RedrawSlHead {
         this.videoCounter = 0;
         this.activeVideo = this.videos[0];
 
+        // переключение видео по свайпу
+        this.touchStart = null;
+        this.touchEnd = null;
+
         // Блокируем накликивание, работает по события сдвига линии
         this.stoped = null;
 
@@ -33,11 +37,20 @@ export default class RedrawSlHead {
 
         this.slides.style.width = `${100 * this.amountSlides}%`
 
-        // активируем стрелки
-        this.arrows.forEach(item => item.style = 'display: block;');
-        this.arrows[0].parentElement.style = 'justify-content: space-between;';
+        // активируем стрелки для десктопа
+        if(innerWidth > 961) {
+            this.arrows.forEach(item => item.style = 'display: block;');
+            this.arrows[0].parentElement.style = 'justify-content: space-between;';
+        }
 
-
+        // активируем стрелки для десктопа
+        if(innerWidth <= 961) {
+            this.arrows.forEach(item => item.style = `
+                display: block;
+                visibility: hidden;
+            `);
+        }
+            
         // активируем линию прокрутки
         const widthLine = this.wrLine.offsetWidth;
         this.widthLine = (widthLine / this.amountSlides) / innerWidth * 100;
@@ -86,21 +99,30 @@ export default class RedrawSlHead {
             this.videos[this.videoCounter].play();
         }
     }
-    // !!!!!!  Если раскоментировать анимацию и слушатели, будет 
-    // работать сдвиг слайдов
+
+    changeVideoWithSwipe() {
+        // оба условия так как touchStart и touchEnd могут быть равны
+        if(this.touchStart > this.touchEnd) {
+            this.arrows[1].click();
+            return;
+        }
+
+        if(this.touchStart < this.touchEnd) {
+            this.arrows[0].click();
+            return;
+        }
+    }
+
     moveNext() {
         if(this.stoped) return;
         this.stoped = true;
 
         const width = this.slider.offsetWidth;
-        // this.slides.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
+
         this.slides.style.transform = `translateX(-${width}px)`;
 
-        // this.slides.addEventListener('transitionend', () => {
-            // this.slides.style.transition = ``;
-            this.slides.append(this.slides.children[0]);
-            this.slides.style.transform = ``;
-        // },{once: true})
+        this.slides.append(this.slides.children[0]);
+        this.slides.style.transform = ``;
 
         this.moveLineNext();
         this.controllMovie('next');
@@ -116,13 +138,8 @@ export default class RedrawSlHead {
         this.slides.style.transform = `translateX(-${width}px)`;
 
         setTimeout(() => { 
-            // this.slides.style.transition = `transform ${this.duration}s ${this.timingFunc}`;
             this.slides.style.transform = ``;
         })
-
-        // this.slides.addEventListener('transitionend', () => {
-            // this.slides.style.transition = ``;
-        // },{once: true})
 
         this.moveLinePrev();
         this.controllMovie(null);
@@ -210,7 +227,7 @@ export default class RedrawSlHead {
             // Создаем новый ползунок, ставим в конец и сдвигаем
             const div = this.createLine();
             this.wrLine.append(div);
-            const offsetDiv = this.widthLine * this.amountSlides
+            const offsetDiv = this.widthLine * this.amountSlides;
             div.style.transform = `translateX(${offsetDiv}vw)`;
             this.lineCounter = this.amountSlides - 1;
             setTimeout(() => {

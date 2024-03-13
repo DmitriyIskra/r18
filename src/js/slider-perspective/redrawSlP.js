@@ -27,10 +27,6 @@ export default class RedrawSLP {
 
         this.stoped = false;
     }
- 
-    // block changed color animation - убрана анимация, для смены цвета товара 
-    // в карточке во внутреннем слайдере смена поисходит без плавного
-    // исчезновения и появления
 
     // работает на основе абсолютного позиционирования
     initSlider() {
@@ -208,38 +204,25 @@ export default class RedrawSLP {
 
         // картинка исчезает
         this.activeCardSlidesList.style.opacity = '0';
-        console.log(this.activeCardSlidesList)
-        // оставляем в анимации только прозрачность и убираем transform
-        //  чтоб незаметно после смены картинки передвинуть внутренний 
-        // слайдер в начало чтоб другой цвет появился с первого слайда
-        // this.activeCardSlidesList.style.transition = `     block changed color animation
-        //     opacity ${this.duration / 1.2} ${this.timeF}    block changed color animation
-        // `;
 
-        // this.activeCardSlidesList.addEventListener('transitionend', () => {  block changed color animation
-   
-        // new если изображение меняется быстро без исчезновения
-        //  убираем transform чтоб возврат к первому слайду
+        // убираем transform чтоб возврат к первому слайду
         // произошел без анимации
         this.activeCardSlidesList.style.transition = '';
 
-            // когда картинка исчезла сдвигаем слайдер в начало
-            this.mooveCardSlider(0);
-            // показываем картинку
-            this.activeCardSlidesList.style.opacity = '1';
-            // переставляем цвет картинок мерча
-            [...images].forEach( (item, i) => {
-                item.src = `${data[color].img[i]}`;
-            })
-            // возвращаем всю анимацию
-            setTimeout(() => {
-                this.activeCardSlidesList.style.transition = `
+        // когда картинка исчезла сдвигаем слайдер в начало
+        this.mooveCardSlider(0);
+        // показываем картинку
+        this.activeCardSlidesList.style.opacity = '1';
+        // переставляем цвет картинок мерча
+        [...images].forEach( (item, i) => {
+            item.src = `${data[color].img[i]}`;
+        })
+        // возвращаем всю анимацию
+        setTimeout(() => {
+            this.activeCardSlidesList.style.transition = `
                 transform ${this.duration}s ${this.timeF}
             `;
-            // opacity ${this.duration / 1.2}s ${this.timeF} block changed color animation
-            })
-            
-        // }, {once: true})  block changed color animation
+        })
     }
 
 
@@ -297,7 +280,6 @@ export default class RedrawSLP {
         inSliderList.style.transition = `
             transform ${this.duration}s ${this.timeF}
         `;
-        // opacity ${this.duration / 1.2}s ${this.timeF} block changed color animation
         inSliderList.style.width = `${data.black.img.length * 100}%`;
         data.black.img.forEach(item => {
             const inSliderItem  = this.createEl('li', 'sl-p__card-slides-item');

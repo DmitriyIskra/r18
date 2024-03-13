@@ -10,3 +10,10 @@
 
     object-fit: contain;
 }
+
+@media( max-width: 961px ) {
+    .logo {
+        width: 16.80vw;
+        height: 17.07vw;
+    }
+}

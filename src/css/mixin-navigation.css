@@ -33,3 +33,31 @@ ul.nav__list {
     align-items: center;
     justify-content: center;
 }
+
+@media( max-width: 961px ) {
+    .nav {
+        width: fit-content;
+    }
+}
+
+@media( max-width: 961px ) {
+    ul.nav__list {
+        gap: 2.67vw;
+    }
+}
+
+@media( max-width: 961px ) {
+    .nav__item {
+        height: 8.80vw;
+        width: 20.27vw;
+
+        border-radius: 8vw;
+        border-width: 1px;
+    }
+}
+
+@media( max-width: 961px ) {
+    .nav__item-link {
+        font-size: 2.67vw;
+    }
+}
