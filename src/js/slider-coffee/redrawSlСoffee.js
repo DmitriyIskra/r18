@@ -350,7 +350,7 @@ export default class RedrawSlСoffee {
                     ;
                 `;
 
-                el.style = `transition: opacity ${this.duration}s ${this.timeFunc};`;
+                el.style = `transition: opacity ${this.durationChangeTextInfo}s ${this.timeFunc};`;
 
                 el.after(newEl);
 
