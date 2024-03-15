@@ -187,6 +187,10 @@ export default class RedrawSlСoffee {
 
         this.touchMoved = (this.swipeStart - p);
 
+        if(Math.abs(this.touchMoved) < 3) return;
+
+        // свайп в prev с необходимость перестановки слайда в начало
+        // для того чтоб слайд подставился только один раз при движении prev
         if(!this.relocated && this.touchMoved < 0) {
             this.slides.prepend(this.slides.children[this.slides.children.length - 1]);
             this.slides.style.transform = `translateX(-${this.sizeOffset}px)`;
@@ -420,7 +424,7 @@ export default class RedrawSlСoffee {
         return element;
     }
 
-    setWidthSliderContainer() {
+    setWidthSliderContainer() { 
         // для десктопа
         if(innerWidth > 961) {
             // задаем ширину контейнеру со слайдами во vw

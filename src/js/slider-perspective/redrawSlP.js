@@ -24,17 +24,22 @@ export default class RedrawSLP {
         this.activeSize = null;
 
         this.duration = 0.5;
+        this.durationMobile = 0.3;
         this.timeF = 'linear';
         
-        // Для мобилной версии // внешний слайдер
+        // ==== ---Для мобилной версии // внешний слайдер
         this.widthSlide = null; // ширина слайда
         this.initOffsetVW = null; // стартовый сдвиг слайдов vw
         this.gap = null;
-        //this.currentSwipe = null; // насколько уже сдвинут слайд когда touchend
+        this.sizeMobileOffset = null; // расчитанная велечина смещения при клике на стрелку
+        // => Для swipe основного блока карточек 
+        this.swipeStart = null;
+        this.currentSwipe = null; // насколько уже сдвинут слайд когда touchend
+        this.currentOffset = null; // текущий сдвиг слайдов в моменте до touchend
+        this.startTimeStamp
         this.durationSwipe = null; // расчитанное время свайпа когда косание окончено для завершения сдвига
-        this.startSwipeTime = null; // тайм штамп для touchstart
-        this.clickMobileOffset = null;
-
+        this.touchMoved = null; // сдвиг блока со слайдами до touchend
+        this.relocated = false; // если true значит в начало блока подставлен слайд
 
         this.stoped = false;
     }
@@ -80,12 +85,14 @@ export default class RedrawSLP {
 
         this.cards = this.el.querySelectorAll('.sl-p__card');
 
-        this.cards.forEach((item, index) => {
-            // Добавляем анимацию активным карточкам внутри item
-            if(index < 3) {
-                this.setTransitionCard(item);
-            }
-        })
+        if(innerWidth > 961) {
+            this.cards.forEach((item, index) => {
+                // Добавляем анимацию активным карточкам внутри item
+                if(index < 3) {
+                    this.setTransitionCard(item);
+                }
+            })
+        }
 
         /**
          * Сдвигаем слайды на стартовое значение
@@ -105,12 +112,12 @@ export default class RedrawSLP {
             this.itemsList.style.transform = `translateX(${this.initOffsetVW}vw)`;
 
             // Переводим значения во vw
-            this.gap = this.gap / innerWidth * 100;
-            this.widthSlide = this.widthSlide / innerWidth * 100;
+            // this.gap = this.gap / innerWidth * 100;
+            // this.widthSlide = this.widthSlide / innerWidth * 100;
             
             // Расчитываем размер смещения (при инициализации)
             // в мобильной версии браузер не масштабируется  
-            this.clickMobileOffset = this.widthSlide + this.gap + Math.abs(this.initOffsetVW);
+            this.sizeMobileOffset = this.widthSlide + this.gap + Math.abs(this.initOffset);
 
             // Удаляем ненужные (декоративные) элементы из DOM
             this.itemsList.children[0].remove();
@@ -129,15 +136,19 @@ export default class RedrawSLP {
         this.findActiveCardSlider();
     }
 
+    // !!!!! ****  ДЕРГАЕТСЯ В МОБИЛКЕ ЕСЛИ КЛИК ПРОИЗОШЕЛ ДО ОКОНЧАНИЯ АНИМАЦИИ
+
     next() {
         if(this.stoped) return;
         this.stoped = true;
 
         // МОБИЛЬНАЯ ВЕРСИЯ
         if(innerWidth <= 961) {
-            this.itemsList.style.transition = `transform ${this.duration}s ${this.timeF}`;
-            this.itemsList.style.transform = `translateX(${this.clickMobileOffset * -1}vw)`;
-
+            this.itemsList.style.transition = `transform ${this.durationMobile}s ${this.timeF}`;
+            setTimeout(() => {
+                this.itemsList.style.transform = `translateX(${this.sizeMobileOffset * -1}px)`;
+            }, 15)
+            
             this.itemsList.addEventListener('transitionend', () => {
                 this.itemsList.style.transition = ``;
 
@@ -159,6 +170,8 @@ export default class RedrawSLP {
                 
                 this.stoped = false;
             }, {once: true})
+
+            return
         }
 
         // ДЕСКТОПНАЯ ВЕРСИЯ
@@ -225,10 +238,10 @@ export default class RedrawSLP {
             const lastEl = this.itemsList.children[this.itemsList.children.length - 1];
             this.itemsList.prepend(lastEl);
 
-            this.itemsList.style.transform = `translateX(${this.clickMobileOffset * -1}vw)`;
+            this.itemsList.style.transform = `translateX(${this.sizeMobileOffset * -1}px)`;
 
             setTimeout(() => {
-                this.itemsList.style.transition = `transform ${this.duration}s ${this.timeF}`;
+                this.itemsList.style.transition = `transform ${this.durationMobile}s ${this.timeF}`;
                 this.itemsList.style.transform = `translateX(${this.initOffsetVW}vw)`;
             }, 15)
 
@@ -294,6 +307,52 @@ export default class RedrawSLP {
         }
     }
 
+    touchStart(data) {
+        this.swipeStart = data;
+
+        /**
+         * текущее значение на старте (будет нужно если движение)
+         * будет только next (если prev то значение будет переопределено) 
+         * **/ 
+        this.currentOffset = this.itemsList.getBoundingClientRect().x;
+
+        this.startTimeStamp = new Date().getTime();
+    }
+
+    swipe(p) {
+        this.touchMoved = (this.swipeStart - p);
+
+        if(Math.abs(this.touchMoved) < 3) return;
+
+        // свайп в prev с необходимость перестановки слайда в начало
+        // для того чтоб слайд подставился только один раз при движении prev
+        if(!this.relocated && this.touchMoved < 0) {
+
+            const el = this.itemsList.children[this.itemsList.children.length - 1];
+            this.itemsList.prepend(el);
+
+            this.itemsList.style.transform = `translateX(${this.sizeMobileOffset * -1}px)`;
+
+            // так как был переставлен элемент обновляем значение
+            this.currentOffset = this.itemsList.getBoundingClientRect().x;
+
+            this.relocated = true;
+
+        }
+
+        // расчет от первоначального положения минус насколько сдвинули
+        this.itemsList.style.transform = `
+            translateX(${this.currentOffset - this.touchMoved}px)
+        `;
+    }
+
+    touchEnd(data) {
+
+    }
+
+    /**
+     * Двигает слайды во внутреннем слайдере
+     * **/ 
     mooveCardSlider(index) {
         const widthSlide = this.activeCardSlidesList.children[0].offsetWidth;
         this.activeCardSlidesList.style.transform = `
@@ -306,7 +365,9 @@ export default class RedrawSLP {
         newActivePag.classList.add('sl-p__card-slider-pag-item_active');
     }
 
-    // выбор цвета
+    /**
+     * выбор цвета мерсча или акса
+     * **/ 
     changeColor(id, color, article) {
         // меняем активный кружок
         const lastActivePag = this.activeColorPag.querySelector('.sl-p__card-slider-color-item_active');
@@ -343,13 +404,18 @@ export default class RedrawSLP {
     }
 
 
-    // выбор размера
+    /**
+     * выбор размера
+     * **/ 
     choosingSize(el) {
         this.activeSize.classList.remove('sl-p__size-item_active');
         this.activeSize = el;
         this.activeSize.classList.add('sl-p__size-item_active');
     }
 
+    /**
+     * Создает карточки
+     * **/ 
     patternCard(data) {
         const item = this.createEl('li', 'sl-p__slide-item');
 
@@ -365,10 +431,12 @@ export default class RedrawSLP {
 
         // слайдер внутри карточки
         const wrInSlider  = this.createEl('div', 'sl-p__card-wr-slider');
-        wrInSlider.style = `
-        transition: width ${this.duration}s ${this.timeF},
-            height ${this.duration}s ${this.timeF}
-        `;
+        if(innerWidth > 961) {
+            wrInSlider.style = `
+            transition: width ${this.duration}s ${this.timeF},
+                height ${this.duration}s ${this.timeF}
+            `;
+        }
 
         const wrInSliderList  = this.createEl('div', 'sl-p__card-wr-slides');
 
@@ -476,12 +544,19 @@ export default class RedrawSLP {
         return item;
     }
 
+    /**
+     * Создание одного элемента
+     * **/ 
     createEl(el, className) {
         const element = document.createElement(el);
         className ? element.classList.add(className) : '';
         return element;
     }
 
+    /**
+     * Присвоение transition переданному элементу
+     * transform, height, width, box-shadow
+     * **/
     setTransitionCard(el) {
         el.style.transition = `
         transform ${this.duration}s ${this.timeF},
@@ -490,12 +565,17 @@ export default class RedrawSLP {
         box-shadow ${this.duration}s ${this.timeF}`;
     }
 
+    /**
+     * Определяет блок выбора размера, который сейчас активен
+     * **/ 
     findActiveSize() {
         this.activeSize = this.el
         .querySelector('.sl-p__slide-item_active .sl-p__size-item_active');
     }
 
-    // определяем активный внутренний слайдер и его элементы
+    /**
+     * определяем активный ВНУТРЕННИЙ слайдер и его элементы
+     * **/ 
     findActiveCardSlider() {
         this.activeCardSlider = this.activeCard.querySelector('.sl-p__card-wr-slider');
         this.activeCardSlidesList = this.activeCardSlider.querySelector('.sl-p__card-slides-list');;
@@ -503,6 +583,9 @@ export default class RedrawSLP {
         this.activeColorPag = this.activeCardSlider.querySelector('.sl-p__card-slider-color-list');
     }
 
+    /**
+     * Переопределяет классы prev active next для элементов в мобильной версии
+     * **/ 
     changeActiveClassMob() {
         /** DOM меняется в мобильной версии **/ 
         // смещаем (меняем) prev в prev-l

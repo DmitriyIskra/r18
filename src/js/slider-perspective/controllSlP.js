@@ -3,15 +3,21 @@ export default class ControllSLP {
         this.d = d;
 
         this.click = this.click.bind(this);
+        this.touchMoove = this.touchMoove.bind(this);
+        this.touchStart = this.touchStart.bind(this);
+        this.touchEnd = this.touchEnd.bind(this);
     }
 
     init() {
         this.d.initSlider();
         this.registerEvents();
     }
-
+ 
     registerEvents() {
         this.d.el.addEventListener('click', this.click);
+        this.d.itemsList.addEventListener('touchstart', this.touchStart, {passive: true});
+        this.d.itemsList.addEventListener('touchmove', this.touchMoove, {passive: true});
+        this.d.itemsList.addEventListener('touchend', this.touchEnd, {passive: true});
     }
 
     click(e) {
@@ -41,5 +47,17 @@ export default class ControllSLP {
             const color = el.dataset.color;
             this.d.changeColor(id, color, article);
         }
+    }
+
+    touchStart(e) {
+        this.d.touchStart(e.changedTouches[0].clientX);
+    }
+
+    touchMoove(e) {
+        this.d.swipe(e.changedTouches[0].clientX);
+    }
+
+    touchEnd(e) {
+        this.d.touchEnd(e.changedTouches[0].clientX);
     }
 }
