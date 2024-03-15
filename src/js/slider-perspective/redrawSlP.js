@@ -6,6 +6,7 @@ export default class RedrawSLP {
         this.cardDecoL = this.el.querySelector('.sl-p__slide-item_l');
         this.cardDecoR = this.el.querySelector('.sl-p__slide-item_r');
         this.itemsList = null;
+     
         this.items = null;
         this.cards = null;
 
@@ -24,6 +25,16 @@ export default class RedrawSLP {
 
         this.duration = 0.5;
         this.timeF = 'linear';
+        
+        // Для мобилной версии // внешний слайдер
+        this.widthSlide = null; // ширина слайда
+        this.initOffsetVW = null; // стартовый сдвиг слайдов vw
+        this.gap = null;
+        //this.currentSwipe = null; // насколько уже сдвинут слайд когда touchend
+        this.durationSwipe = null; // расчитанное время свайпа когда косание окончено для завершения сдвига
+        this.startSwipeTime = null; // тайм штамп для touchstart
+        this.clickMobileOffset = null;
+
 
         this.stoped = false;
     }
@@ -37,11 +48,14 @@ export default class RedrawSLP {
         // Формируем карточки
         this.data.forEach((item, index) => {
             const el = this.patternCard(item);
-            el.style.transition = `
-            left ${this.duration}s ${this.timeF},
-            transform ${this.duration}s ${this.timeF},
-            opacity  ${this.duration}s ${this.timeF}`;
 
+            if(innerWidth > 961) {
+                el.style.transition = `
+                left ${this.duration}s ${this.timeF},
+                transform ${this.duration}s ${this.timeF},
+                opacity  ${this.duration}s ${this.timeF}`;
+            }
+            
             switch (index) {
                 case 0:
                     this.prevCard = el;
@@ -73,6 +87,36 @@ export default class RedrawSLP {
             }
         })
 
+        /**
+         * Сдвигаем слайды на стартовое значение
+         * чтобы боковые были видны только частично
+        **/ 
+        if(innerWidth <= 961) {
+            
+            this.gap = parseFloat(getComputedStyle(this.itemsList).gap);
+
+            const sumGap = this.gap * 2;
+            
+            this.widthSlide = this.items[0].offsetWidth;
+    
+            this.initOffset = this.widthSlide - ((innerWidth - sumGap - this.widthSlide) / 2);
+            this.initOffsetVW = this.initOffset / innerWidth * 100 * -1;
+
+            this.itemsList.style.transform = `translateX(${this.initOffsetVW}vw)`;
+
+            // Переводим значения во vw
+            this.gap = this.gap / innerWidth * 100;
+            this.widthSlide = this.widthSlide / innerWidth * 100;
+            
+            // Расчитываем размер смещения (при инициализации)
+            // в мобильной версии браузер не масштабируется  
+            this.clickMobileOffset = this.widthSlide + this.gap + Math.abs(this.initOffsetVW);
+
+            // Удаляем ненужные (декоративные) элементы из DOM
+            this.itemsList.children[0].remove();
+            this.itemsList.children[this.itemsList.children.length - 1].remove();
+        }
+        
         // показываем стрелки
         this.arrows.forEach(item => {
             item.style.display = 'block';
@@ -89,92 +133,165 @@ export default class RedrawSLP {
         if(this.stoped) return;
         this.stoped = true;
 
-        // находим следующий элемент определяем его положение
-        // добавляем анимацию и перемещаем
-        const nextEl = this.nextCard.nextElementSibling;
-        nextEl.classList.add('sl-p__slide-item_next-r');
-        setTimeout(() => {
-            this.setTransitionCard(nextEl.firstElementChild);
-            nextEl.classList.remove('sl-p__slide-item_next-r');
-            nextEl.classList.add('sl-p__slide-item_next');
-        })
-        
-        // смещаем next в активе
-        this.nextCard.classList.remove('sl-p__slide-item_next');
-        this.nextCard.classList.add('sl-p__slide-item_active');
+        // МОБИЛЬНАЯ ВЕРСИЯ
+        if(innerWidth <= 961) {
+            this.itemsList.style.transition = `transform ${this.duration}s ${this.timeF}`;
+            this.itemsList.style.transform = `translateX(${this.clickMobileOffset * -1}vw)`;
 
-        // смещаем active в prev
-        this.activeCard.classList.remove('sl-p__slide-item_active');
-        this.activeCard.classList.add('sl-p__slide-item_prev');
+            this.itemsList.addEventListener('transitionend', () => {
+                this.itemsList.style.transition = ``;
 
-        // смещаем prev в prev-l
-        this.prevCard.classList.remove('sl-p__slide-item_prev');
-        this.prevCard.classList.add('sl-p__slide-item_prev-l');
+                const firstEl = this.itemsList.children[0];
+                this.itemsList.append(firstEl);
 
-        // сбрасываем слайдер в карточке на ноль
-        this.mooveCardSlider(0);
+                this.itemsList.style.transform = `translateX(${this.initOffsetVW}vw)`;
 
-        nextEl.addEventListener('transitionend', () => {
-            this.prevCard.classList.remove('sl-p__slide-item_prev-l');
-            this.prevCard.firstElementChild.style.transition = '';
-            this.cardDecoR.before(this.prevCard);
-     
-            this.prevCard = this.activeCard;
-            this.activeCard = this.nextCard;
-            this.nextCard = nextEl;
+                /** DOM меняется в мобильной версии **/ 
+                this.changeActiveClassMob();
 
-            // переопределяем активный блок с размерами
-            this.findActiveSize();
-            // переопределяем активный внутренний слайдер
-            this.findActiveCardSlider();
+                // сбрасываем слайдер в карточке на ноль
+                this.mooveCardSlider(0);
 
-            this.stoped = false;
-        }, {once: true})
+                // переопределяем активный блок с размерами
+                this.findActiveSize();
+                // переопределяем активный внутренний слайдер
+                this.findActiveCardSlider();
+                
+                this.stoped = false;
+            }, {once: true})
+        }
+
+        // ДЕСКТОПНАЯ ВЕРСИЯ
+        if(innerWidth > 961) {
+            // находим следующий элемент определяем его положение
+            // добавляем анимацию и перемещаем
+            const nextEl = this.nextCard.nextElementSibling;
+            nextEl.classList.add('sl-p__slide-item_next-r');
+            setTimeout(() => {
+                this.setTransitionCard(nextEl.firstElementChild);
+                nextEl.classList.remove('sl-p__slide-item_next-r');
+                nextEl.classList.add('sl-p__slide-item_next');
+            })
+
+            /**
+             *  Вместе со сменой классов, меняется положение карточек, так как
+             * карточки абсолбтно спозиционированы
+             * DOM при этом не меняется
+             *  **/ 
+            // смещаем (меняем) next в актив
+            this.nextCard.classList.remove('sl-p__slide-item_next');
+            this.nextCard.classList.add('sl-p__slide-item_active');
+
+            // смещаем (меняем) active в prev
+            this.activeCard.classList.remove('sl-p__slide-item_active');
+            this.activeCard.classList.add('sl-p__slide-item_prev');
+
+            // смещаем (меняем) prev в prev-l
+            this.prevCard.classList.remove('sl-p__slide-item_prev');
+            this.prevCard.classList.add('sl-p__slide-item_prev-l');
+
+            // сбрасываем слайдер в карточке на ноль
+            this.mooveCardSlider(0);
+
+            nextEl.addEventListener('transitionend', () => {
+                this.prevCard.classList.remove('sl-p__slide-item_prev-l');
+                this.prevCard.firstElementChild.style.transition = '';
+                this.cardDecoR.before(this.prevCard);
+
+                this.prevCard = this.activeCard;
+                this.activeCard = this.nextCard;
+                this.nextCard = nextEl;
+
+                // переопределяем активный блок с размерами
+                this.findActiveSize();
+                // переопределяем активный внутренний слайдер
+                this.findActiveCardSlider();
+
+                this.stoped = false;
+            }, {once: true})
+        }
     }
 
     prev() {
         if(this.stoped) return;
         this.stoped = true;
 
-        const prevEl = this.cardDecoR.previousElementSibling;
-        this.cardDecoL.after(prevEl);
-        prevEl.classList.add('sl-p__slide-item_prev-l');
-        setTimeout(() => {
-            this.setTransitionCard(prevEl.firstElementChild);
-            prevEl.classList.remove('sl-p__slide-item_prev-l');
-            prevEl.classList.add('sl-p__slide-item_prev');
-        })
+        // МОБИЛЬНАЯ ВЕРСИЯ
+        if(innerWidth <= 961) {
+            /**
+             * так как небольшая часть карточки видна, сначала переставляем
+             * крайнюю с конца карточку в начало
+             * **/ 
+            const lastEl = this.itemsList.children[this.itemsList.children.length - 1];
+            this.itemsList.prepend(lastEl);
 
-        // смещаем prev на active
-        this.prevCard.classList.remove('sl-p__slide-item_prev');
-        this.prevCard.classList.add('sl-p__slide-item_active');
+            this.itemsList.style.transform = `translateX(${this.clickMobileOffset * -1}vw)`;
 
-        // смещаем active в prev
-        this.activeCard.classList.remove('sl-p__slide-item_active');
-        this.activeCard.classList.add('sl-p__slide-item_next');
+            setTimeout(() => {
+                this.itemsList.style.transition = `transform ${this.duration}s ${this.timeF}`;
+                this.itemsList.style.transform = `translateX(${this.initOffsetVW}vw)`;
+            }, 15)
 
-        // смещаем next в активе
-        this.nextCard.classList.remove('sl-p__slide-item_next');
-        this.nextCard.classList.add('sl-p__slide-item_next-r');
+            this.itemsList.addEventListener('transitionend', () => {
+                this.itemsList.style.transition = ``;
 
-        // сбрасываем слайдер в карточке на ноль
-        this.mooveCardSlider(0);
+                /** DOM меняется в мобильной версии **/ 
+                this.changeActiveClassMob();
 
-        prevEl.addEventListener('transitionend', () => {
-            this.nextCard.classList.remove('sl-p__slide-item_next-r');
-            this.nextCard.firstElementChild.style.transition = '';
-     
-            this.nextCard = this.activeCard;
-            this.activeCard = this.prevCard;
-            this.prevCard = prevEl;
+                // сбрасываем слайдер в карточке на ноль
+                this.mooveCardSlider(0);
 
-            // переопределяем активный блок с размерами
-            this.findActiveSize();
-            // переопределяем активный внутренний слайдер
-            this.findActiveCardSlider();
-            
-            this.stoped = false;
-        }, {once: true})
+                // переопределяем активный блок с размерами
+                this.findActiveSize();
+                // переопределяем активный внутренний слайдер
+                this.findActiveCardSlider();
+                
+                this.stoped = false;
+            }, {once: true})
+        }
+
+        // ДЕСКТОПНАЯ ВЕРСИЯ
+        if(innerWidth > 961) {
+            const prevEl = this.cardDecoR.previousElementSibling;
+            this.cardDecoL.after(prevEl);
+            prevEl.classList.add('sl-p__slide-item_prev-l');
+            setTimeout(() => {
+                this.setTransitionCard(prevEl.firstElementChild);
+                prevEl.classList.remove('sl-p__slide-item_prev-l');
+                prevEl.classList.add('sl-p__slide-item_prev');
+            })
+
+            // смещаем prev на active
+            this.prevCard.classList.remove('sl-p__slide-item_prev');
+            this.prevCard.classList.add('sl-p__slide-item_active');
+
+            // смещаем active в prev
+            this.activeCard.classList.remove('sl-p__slide-item_active');
+            this.activeCard.classList.add('sl-p__slide-item_next');
+
+            // смещаем next в активе
+            this.nextCard.classList.remove('sl-p__slide-item_next');
+            this.nextCard.classList.add('sl-p__slide-item_next-r');
+
+            // сбрасываем слайдер в карточке на ноль
+            this.mooveCardSlider(0);
+
+            prevEl.addEventListener('transitionend', () => {
+                this.nextCard.classList.remove('sl-p__slide-item_next-r');
+                this.nextCard.firstElementChild.style.transition = '';
+        
+                this.nextCard = this.activeCard;
+                this.activeCard = this.prevCard;
+                this.prevCard = prevEl;
+
+                // переопределяем активный блок с размерами
+                this.findActiveSize();
+                // переопределяем активный внутренний слайдер
+                this.findActiveCardSlider();
+                
+                this.stoped = false;
+            }, {once: true})
+        }
     }
 
     mooveCardSlider(index) {
@@ -231,27 +348,6 @@ export default class RedrawSLP {
         this.activeSize.classList.remove('sl-p__size-item_active');
         this.activeSize = el;
         this.activeSize.classList.add('sl-p__size-item_active');
-    }
-
-    setTransitionCard(el) {
-        el.style.transition = `
-        transform ${this.duration}s ${this.timeF},
-        height ${this.duration}s ${this.timeF},
-        width ${this.duration}s ${this.timeF},
-        box-shadow ${this.duration}s ${this.timeF}`;
-    }
-
-    findActiveSize() {
-        this.activeSize = this.el
-        .querySelector('.sl-p__slide-item_active .sl-p__size-item_active');
-    }
-
-    // определяем активный внутренний слайдер и его элементы
-    findActiveCardSlider() {
-        this.activeCardSlider = this.activeCard.querySelector('.sl-p__card-wr-slider');
-        this.activeCardSlidesList = this.activeCardSlider.querySelector('.sl-p__card-slides-list');;
-        this.activePaginationList = this.activeCardSlider.querySelector('.sl-p__card-slider-pag-list');
-        this.activeColorPag = this.activeCardSlider.querySelector('.sl-p__card-slider-color-list');
     }
 
     patternCard(data) {
@@ -349,8 +445,10 @@ export default class RedrawSLP {
         } )
         
         const wrLink  = this.createEl('div', 'sl-p__card-wr-link');
-        if(data.composition.length > 1) 
+        if(data.composition.length > 1 && innerWidth > 961) 
             wrLink.style.marginTop = '0.5vw';
+        else if(data.composition.length > 1 && innerWidth <= 961)
+            wrLink.style.marginTop = '2.94vw';
 
         const link  = this.createEl('a', 'sl-p__card-link');
         link.textContent = 'Купить'
@@ -370,7 +468,7 @@ export default class RedrawSLP {
         
         card.append(wrInSlider);
         card.append(mask);
-        card.append(price);
+        card.append(price); 
         card.append(cardTitle);
         card.append(wrCardContent);
         item.append(card)
@@ -382,5 +480,44 @@ export default class RedrawSLP {
         const element = document.createElement(el);
         className ? element.classList.add(className) : '';
         return element;
+    }
+
+    setTransitionCard(el) {
+        el.style.transition = `
+        transform ${this.duration}s ${this.timeF},
+        height ${this.duration}s ${this.timeF},
+        width ${this.duration}s ${this.timeF},
+        box-shadow ${this.duration}s ${this.timeF}`;
+    }
+
+    findActiveSize() {
+        this.activeSize = this.el
+        .querySelector('.sl-p__slide-item_active .sl-p__size-item_active');
+    }
+
+    // определяем активный внутренний слайдер и его элементы
+    findActiveCardSlider() {
+        this.activeCardSlider = this.activeCard.querySelector('.sl-p__card-wr-slider');
+        this.activeCardSlidesList = this.activeCardSlider.querySelector('.sl-p__card-slides-list');;
+        this.activePaginationList = this.activeCardSlider.querySelector('.sl-p__card-slider-pag-list');
+        this.activeColorPag = this.activeCardSlider.querySelector('.sl-p__card-slider-color-list');
+    }
+
+    changeActiveClassMob() {
+        /** DOM меняется в мобильной версии **/ 
+        // смещаем (меняем) prev в prev-l
+        this.prevCard.classList.remove('sl-p__slide-item_prev');
+        this.prevCard = this.itemsList.children[0];
+        this.prevCard.classList.add('sl-p__slide-item_prev');
+
+        // смещаем (меняем) active в prev
+        this.activeCard.classList.remove('sl-p__slide-item_active');
+        this.activeCard = this.itemsList.children[1];
+        this.activeCard.classList.add('sl-p__slide-item_active');
+
+        // смещаем (меняем) next в актив
+        this.nextCard.classList.remove('sl-p__slide-item_next');
+        this.nextCard = this.itemsList.children[2];
+        this.nextCard.classList.add('sl-p__slide-item_next');
     }
 }

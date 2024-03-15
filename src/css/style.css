@@ -332,12 +332,34 @@
 
 /* ------------------------------------- */
 
+/* MERCH */
+
+@media( max-width: 961px ) {
+    .merch {
+        padding-top: 14.6vw;
+    }
+}
+
+/* ------------------------------------- */
+
+
+/* ACCESSORIES */
+
+@media( max-width: 961px ) {
+    .accessories {
+        padding-top: 14.6vw;
+    }
+}
+
+/* ------------------------------------- */
+
 
 /* CONTACTS */
 
+
 @media( max-width: 961px ) {
     .contacts {
-        padding-top: 17.2vw;
+        padding-top: 14.6vw;
     }
 }
 

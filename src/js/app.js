@@ -50,7 +50,7 @@ window.addEventListener('load', () => {
         controllSlCoffe.init();
     }
 
-
+    
     // слайдер Мерч с карточками в перспективе
     const merchSL = document.querySelector('.merch__wr-slider .sl-p');
     if(merchSL) {
