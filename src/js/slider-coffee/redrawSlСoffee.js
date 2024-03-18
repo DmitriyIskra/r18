@@ -214,7 +214,7 @@ export default class RedrawSlСoffee {
 
         // Вычисляем за какое время во время касания сдвигался один пиксель 
         // и умножаем это значение на количество оставшихся для сдвига пикселей
-        const durationOnePx = (timeDifference) / Math.abs(this.touchMoved);    
+        const durationOnePx = timeDifference / Math.abs(this.touchMoved);    
         let durationRemained = (durationOnePx * r) / 1000;
         durationRemained = durationRemained > 0.3 ? 0.3 : durationRemained;
 
@@ -279,9 +279,8 @@ export default class RedrawSlСoffee {
 
         //  ====== ----   to prev
         if(this.swipeStart < data) {          
-            setTimeout(() => {
-                this.slides.style.transform = ``;
-            },10)
+
+            this.slides.style.transform = ``;
 
             this.activeSlide = this.slides.children[0];
 

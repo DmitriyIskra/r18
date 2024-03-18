@@ -21,6 +21,8 @@ export default class ControllSLP {
     }
 
     click(e) {
+        e.preventDefault();
+
         if(e.target.closest('.slider__arrow-next')) {
             this.d.next();
         }
@@ -49,15 +51,23 @@ export default class ControllSLP {
         }
     }
 
-    touchStart(e) {
-        this.d.touchStart(e.changedTouches[0].clientX);
+    touchStart(e) {        
+        if(!e.changedTouches[0].target.closest('.sl-p__card-wr-slider')) {
+            this.d.touchStart(e.changedTouches[0].clientX);
+        }
     }
 
     touchMoove(e) {
-        this.d.swipe(e.changedTouches[0].clientX);
+        if(!e.changedTouches[0].target.closest('.sl-p__card-wr-slider')) {
+            this.d.swipe(e.changedTouches[0].clientX);
+        }
+        
     }
 
     touchEnd(e) {
-        this.d.touchEnd(e.changedTouches[0].clientX);
+        if(!e.changedTouches[0].target.closest('.sl-p__card-wr-slider')) {
+            this.d.touchEnd(e.changedTouches[0].clientX);
+        }
+        
     }
 }

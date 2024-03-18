@@ -16,14 +16,14 @@ export default class RedrawSLP {
         this.activeCard = null;
         this.nextCard = null;
 
-        this.activeCardSlider = null;
+        this.activeCardSlider = null; // слайдер внутри активной карточки (большой, основного слайда)
         this.activeCardSlidesList = null;
         this.activePaginationList = null;
         this.activeColorPag = null;
 
         this.activeSize = null;
 
-        this.duration = 0.5;
+        this.duration = 0.5; 
         this.durationMobile = 0.3;
         this.timeF = 'linear';
         
@@ -39,7 +39,7 @@ export default class RedrawSLP {
         this.startTimeStamp
         this.durationSwipe = null; // расчитанное время свайпа когда косание окончено для завершения сдвига
         this.touchMoved = null; // сдвиг блока со слайдами до touchend
-        this.relocated = false; // если true значит в начало блока подставлен слайд
+        this.relocated = false; // если true значит в начало блока подставлен слайд (false проставляется только по окончании свайпа в конце анимации)
 
         this.stoped = false;
     }
@@ -144,34 +144,32 @@ export default class RedrawSLP {
 
         // МОБИЛЬНАЯ ВЕРСИЯ
         if(innerWidth <= 961) {
-            this.itemsList.style.transition = `transform ${this.durationMobile}s ${this.timeF}`;
-            setTimeout(() => {
-                this.itemsList.style.transform = `translateX(${this.sizeMobileOffset * -1}px)`;
-            }, 15)
             
-            this.itemsList.addEventListener('transitionend', () => {
-                this.itemsList.style.transition = ``;
+            this.itemsList.style.transition = `transform ${this.durationMobile}s ${this.timeF}`;
 
-                const firstEl = this.itemsList.children[0];
-                this.itemsList.append(firstEl);
+            this.itemsList.style.transform = `translateX(${this.sizeMobileOffset * -1}px)`;
 
-                this.itemsList.style.transform = `translateX(${this.initOffsetVW}vw)`;
-
-                /** DOM меняется в мобильной версии **/ 
-                this.changeActiveClassMob();
-
-                // сбрасываем слайдер в карточке на ноль
-                this.mooveCardSlider(0);
-
-                // переопределяем активный блок с размерами
-                this.findActiveSize();
-                // переопределяем активный внутренний слайдер
-                this.findActiveCardSlider();
-                
-                this.stoped = false;
-            }, {once: true})
-
-            return
+            setTimeout(() => {                
+                    this.itemsList.style.transition = ``;
+    
+                    const firstEl = this.itemsList.children[0];
+                    this.itemsList.append(firstEl);
+    
+                    this.itemsList.style.transform = `translateX(${this.initOffsetVW}vw)`;
+    
+                    /** DOM меняется в мобильной версии **/ 
+                    this.changeActiveClassMob();
+    
+                    // сбрасываем слайдер в карточке на ноль
+                    this.mooveCardSlider(0);
+    
+                    // переопределяем активный блок с размерами
+                    this.findActiveSize();
+                    // переопределяем активный внутренний слайдер
+                    this.findActiveCardSlider();
+                    
+                    this.stoped = false;
+            }, this.durationMobile * 1000 + 50);
         }
 
         // ДЕСКТОПНАЯ ВЕРСИЯ
@@ -243,9 +241,9 @@ export default class RedrawSLP {
             setTimeout(() => {
                 this.itemsList.style.transition = `transform ${this.durationMobile}s ${this.timeF}`;
                 this.itemsList.style.transform = `translateX(${this.initOffsetVW}vw)`;
-            }, 15)
+            }, 10)
 
-            this.itemsList.addEventListener('transitionend', () => {
+            setTimeout(() => {
                 this.itemsList.style.transition = ``;
 
                 /** DOM меняется в мобильной версии **/ 
@@ -260,7 +258,7 @@ export default class RedrawSLP {
                 this.findActiveCardSlider();
                 
                 this.stoped = false;
-            }, {once: true})
+            }, this.durationMobile * 1000 + 50);
         }
 
         // ДЕСКТОПНАЯ ВЕРСИЯ
@@ -308,6 +306,7 @@ export default class RedrawSLP {
     }
 
     touchStart(data) {
+        console.log('touch start')
         this.swipeStart = data;
 
         /**
@@ -320,7 +319,8 @@ export default class RedrawSLP {
     }
 
     swipe(p) {
-        this.touchMoved = (this.swipeStart - p);
+        console.log('swipe')
+        this.touchMoved = this.swipeStart - p;
 
         if(Math.abs(this.touchMoved) < 3) return;
 
@@ -347,7 +347,121 @@ export default class RedrawSLP {
     }
 
     touchEnd(data) {
+        console.log(this.touchMoved)
+        if(Math.abs(this.touchMoved) < 3) return;
+        console.log(this.stoped)
+        // блокируем накликивание
+        if(this.stoped) return;
+        this.stoped = true;
+        console.log('touchEnd')
+        // сколько времени прошло между start и end
+        const timeDifference = new Date().getTime() - this.startTimeStamp;
 
+        // осталось до полной прокрутки
+        const r = this.sizeMobileOffset - this.touchMoved;
+
+        // Вычисляем за какое время во время касания сдвигался один пиксель 
+        // и умножаем это значение на количество оставшихся для сдвига пикселей
+        const durationOnePx = timeDifference / Math.abs(this.touchMoved);    
+        let durationRemained = (durationOnePx * r) / 1000;
+        durationRemained = durationRemained > 0.3 ? 0.3 : durationRemained;
+
+        // Установка анимаций 
+        this.itemsList.style.transition = `
+            transform ${durationRemained}s ${this.timeF}
+        `;
+        
+
+        //  ====== ----  если слайд был смещен не на много
+        if(Math.abs(this.touchMoved) <= this.widthSlide / 3.5) {
+            console.log('start position')
+            // смещение устанавливаем в зависимости подставлен слайд в начало или нет
+            const offset = this.relocated ? this.sizeMobileOffset * -1 : this.initOffset * -1;
+            this.itemsList.style.transform = `
+                    translateX(${offset}px)
+                `;
+            
+            this.itemsList.addEventListener('transitionend', () => {
+                this.itemsList.style.transition = '';
+
+                // если уже был подставлен элемент в начало
+                if(this.relocated) {
+                    this.itemsList.append(this.itemsList.children[0]);
+                    this.itemsList.style.transform = `translateX(${this.initOffset * -1}px)`;
+                    this.relocated = false;
+                }
+
+                this.touchMoved = null;
+                this.stoped = false;
+            }, {once: true})
+
+            return;
+        }
+
+
+        //  ====== ----  swipe to next
+        if(this.swipeStart > data) {  
+            console.log('next position')
+            this.itemsList.style.transform = `translateX(${this.sizeMobileOffset * -1}px)`;
+
+            this.itemsList.addEventListener('transitionend', () => {
+                this.itemsList.style.transition = ``;
+
+                this.itemsList.append(this.itemsList.children[0]);
+                // если в процессе свайпа, сначала был свайп в prev
+                // и только потом в next и был добавлен элемент в начало
+                if(this.relocated) {
+                    this.itemsList.append(this.slides.children[0]);
+                    this.relocated = false;
+                }
+
+                this.itemsList.style.transform = `translateX(${this.initOffset * -1}px)`; 
+
+                // переставляем классы prev active next
+                this.changeActiveClassMob();
+
+                // сбрасываем слайдер в карточке на ноль
+                this.mooveCardSlider(0);
+
+                // переопределяем активный блок с размерами
+                this.findActiveSize();
+                // переопределяем активный внутренний слайдер
+                this.findActiveCardSlider();
+                
+                this.touchMoved = null;
+                this.stoped = false;
+
+            }, {once: true})
+        }
+
+        //  ====== ----  swipe to prev
+        if(this.swipeStart < data) {          
+            console.log('prev position')
+            this.itemsList.style.transform = `translateX(${this.initOffset * -1}px)`;
+
+            this.itemsList.addEventListener('transitionend', () => {
+                this.itemsList.style.transition = ``;
+                // если в процессе свайпа, сначала был свайп в prev и был добавлен элемент в начало
+                if(this.relocated) {
+                    this.relocated = false;
+                }
+
+                // переставляем классы prev active next
+                this.changeActiveClassMob();
+
+                // сбрасываем слайдер в карточке на ноль
+                this.mooveCardSlider(0);
+
+                // переопределяем активный блок с размерами
+                this.findActiveSize();
+                // переопределяем активный внутренний слайдер
+                this.findActiveCardSlider();
+                
+                this.touchMoved = null;
+                this.stoped = false;
+
+            }, {once: true})
+        }
     }
 
     /**
