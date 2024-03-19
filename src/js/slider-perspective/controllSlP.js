@@ -51,23 +51,42 @@ export default class ControllSLP {
         }
     }
 
-    touchStart(e) {        
+    touchStart(e) {      
+        // свайп внешнего слайда  
         if(!e.changedTouches[0].target.closest('.sl-p__card-wr-slider')) {
             this.d.touchStart(e.changedTouches[0].clientX);
+        }
+        // свайп внутреннего слайда
+        if(e.changedTouches[0].target.closest('.sl-p__card-wr-slider') &&
+        !e.changedTouches[0].target.closest('.sl-p__card-slider-pag-list')) {
+            this.d.touchInSideCardStart(
+                e.changedTouches[0].clientX,
+                e.changedTouches[0].target.closest('.sl-p__card-slides-item')
+                );
         }
     }
 
     touchMoove(e) {
+        // свайп внешнего слайда 
         if(!e.changedTouches[0].target.closest('.sl-p__card-wr-slider')) {
             this.d.swipe(e.changedTouches[0].clientX);
         }
-        
+        // свайп внутреннего слайда
+        if(e.changedTouches[0].target.closest('.sl-p__card-wr-slider') &&
+        !e.changedTouches[0].target.closest('.sl-p__card-slider-pag-list')) {
+            this.d.inSideCardSwipe(e.changedTouches[0].clientX);
+        }        
     }
 
     touchEnd(e) {
+        // свайп внешнего слайда 
         if(!e.changedTouches[0].target.closest('.sl-p__card-wr-slider')) {
             this.d.touchEnd(e.changedTouches[0].clientX);
+        }  
+        // свайп внутреннего слайда 
+        if(e.changedTouches[0].target.closest('.sl-p__card-wr-slider') &&
+        !e.changedTouches[0].target.closest('.sl-p__card-slider-pag-list')) {
+            this.d.touchInSideCardEnd(e.changedTouches[0].clientX);
         }
-        
     }
 }
