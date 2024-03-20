@@ -3,6 +3,8 @@ export default class Filter {
         this.list = list;
 
         this.createEl = null;
+
+        this.currentActive = null;
     }
 
     initial(arr) {
@@ -10,11 +12,9 @@ export default class Filter {
     }
 
     rendering(data) {
-        console.log(data)
         const arr = Array.from(data.entries());
-        console.log(arr)
+
         for(let i = arr.length - 1 ; i >= 0; i -= 1) {
-            console.log(arr[i])
             const li = document.createElement('li');
             li.classList.add('sl-prod__filter-item');
             li.classList.add('sl-prod__filter-type');
@@ -23,6 +23,18 @@ export default class Filter {
     
             this.list.prepend(li);
         }
+    }
+
+    setActive(el) {
+        if(this.currentActive) {
+            this.currentActive.classList.remove('sl-prod__filter_active');
+        }
+
+        this.currentActive = el;
+        this.currentActive.classList.add('sl-prod__filter_active');
+    }
+
+    resetActive() {
 
     }
 }

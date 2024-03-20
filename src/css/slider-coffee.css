@@ -32,7 +32,14 @@
     align-items: center;
     flex-shrink: 0;
 
+    transition: box-shadow 0.1s linear;
+
+    user-select: none;
     cursor: pointer;
+}
+
+.sl-prod__filter-item:hover {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 1);
 }
 
 .sl-prod__filter-type {
@@ -51,7 +58,12 @@
 .sl-prod__filter_active {
     background: #F1551C;
 
+    pointer-events: none;
     cursor: default;
+}
+
+.sl-prod__filter_active:hover {
+    box-shadow: none;
 }
 
 .sl-prod__wr-big-img {

@@ -33,6 +33,10 @@ export default class ControllSlСoffee {
         if(e.target.closest('.slider__arrow-prev')) {
             this.d.movePrev();
         }
+
+        if(e.target.closest('.sl-prod__filter-type')) {
+            this.filter.setActive(e.target.closest('.sl-prod__filter-type'));
+        }
     }
 
     touchStart(e) {
