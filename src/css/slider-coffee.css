@@ -5,12 +5,61 @@
     gap: 2.5vw;
 }
 
+.sl-prod__wr-big-img-filter {
+    max-width: 21.46vw;
+}
+
+.sl-prod__filter-list {
+    display: flex;
+    min-width: 120%;
+    gap: 1.04vw;
+
+    transform: translateX(-1.5vw);
+    justify-content: center;
+}
+
+.sl-prod__filter-item {
+    display: flex;
+    height: 3.13vw;
+
+    font-family: "Inria Sans";
+    font-size: 1.25vw;
+    font-weight: 400;
+
+    color: #fff;
+    border: 0.15vw solid #FFF;
+
+    align-items: center;
+    flex-shrink: 0;
+
+    cursor: pointer;
+}
+
+.sl-prod__filter-type {
+    padding-left: 1.56vw;
+    padding-right: 1.56vw;
+
+    border-radius: 1.56vw;
+}
+
+.sl-prod__filter-reset {
+    width: 3.13vw;
+
+    border-radius: 50%;
+}
+
+.sl-prod__filter_active {
+    background: #F1551C;
+
+    cursor: default;
+}
+
 .sl-prod__wr-big-img {
     position: relative;
 
     width: 21.46vw;
     min-width: 21.46vw;
-    height: 100%;
+    margin-top: 4vw;
 }
 
 .sl-prod__big-img {
@@ -19,6 +68,7 @@
     width: 100%;
 
     opacity: 0;
+    z-index: 1;
 }
 
 .sl-prod__big-img_visible {
@@ -40,6 +90,7 @@
 
 .sl-prod__wr-descr-preview {
     display: flex;
+    gap: 6.97vw;
 
     flex-direction: column;
     flex-grow: 1;
@@ -146,7 +197,6 @@
     position: relative;
 
     height: 25.2vw;
-    margin-top: 2.97vw;
 }
 
 .sl-prod__wr-slides {

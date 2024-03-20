@@ -10,6 +10,7 @@ import ControllSlHead from "./slider-head/controllSlHead";
 // кофейный слайдер
 import ControllSlСoffee from "./slider-coffee/controllSlСoffee";
 import RedrawSlСoffee from "./slider-coffee/redrawSlСoffee";
+import Filter from "./slider-coffee/filter";
 import sliderCoffeeData from "../base/slider-coffee.json"
 
 // слайдер с карточками в перспективе
@@ -31,23 +32,17 @@ window.addEventListener('load', () => {
         controllSlHead.init();
     }
 
-    // Верхний кофейный слайдер
+    // Кофейный слайдер
     const sliderCoffe1 = document.querySelector('.coffee__wr-slider-top');
 
     if(sliderCoffe1) {
+        const filterList = sliderCoffe1.querySelector('.sl-prod__filter-list');
+
         const redrawSlCoffe = new RedrawSlСoffee(sliderCoffe1, sliderCoffeeData);
-        const controllSlCoffe = new ControllSlСoffee(redrawSlCoffe);
+        const filter = new Filter(filterList);
+        const controllSlCoffe = new ControllSlСoffee(redrawSlCoffe, filter);
         controllSlCoffe.init();
     }
-
-    // Нижний кофейный слайдер
-    // const sliderCoffe2 = document.querySelector('.coffee__wr-slider-bottom');
-
-    // if(sliderCoffe2) {
-    //     const redrawSlCoffe = new RedrawSlСoffee(sliderCoffe2, sliderCoffeeData2);
-    //     const controllSlCoffe = new ControllSlСoffee(redrawSlCoffe);
-    //     controllSlCoffe.init();
-    // }
 
     
     // слайдер Мерч с карточками в перспективе

@@ -1,6 +1,7 @@
 export default class ControllSlСoffee {
-    constructor(d) {
+    constructor(d, filter) {
         this.d = d;
+        this.filter = filter;
 
         this.click = this.click.bind(this);
         this.touchMoove = this.touchMoove.bind(this);
@@ -11,6 +12,10 @@ export default class ControllSlСoffee {
     init() {
         this.d.initSlider();
         this.registerEvents();
+
+        const data = new Map();
+        this.d.data.forEach(item => data.set(item.packing, item['packing-desc'],));
+        this.filter.rendering(data);
     }
 
     registerEvents() {

@@ -1,6 +1,7 @@
 [
     {
-        "packaging": "espresso",
+        "packing": "espresso",
+        "packing-desc": "Эспрессо",
         "id": "columbia1",
         "title": "colombia espresso",
         "taste": "аромат ягод и карамели, с нотами спелого винограда, земляники и шоколада",
@@ -15,7 +16,8 @@
         "img": "./img/content/pack_content2.png"
     },
     {
-        "packaging": "espresso",
+        "packing": "espresso",
+        "packing-desc": "Эспрессо",
         "id": "columbia2",
         "title": "colombia espresso2",
         "taste": "аромат ягод и карамели, с нотами спелого, земляники и шоколада",
@@ -30,7 +32,8 @@
         "img": "./img/content/pack_content7.png"
     },
     {
-        "packaging": "espresso",
+        "packing": "espresso",
+        "packing-desc": "Эспрессо",
         "id": "columbia3",
         "title": "colombia espresso3",
         "taste": "аромат ягод и карамели, с нотами спелого, земляники и шоколада и шоколада",
@@ -45,7 +48,8 @@
         "img": "./img/content/pack_content2.png"
     },
     {
-        "packaging": "filter",
+        "packing": "filter",
+        "packing-desc": "Фильтр-кофе",
         "id": "columbia1",
         "title": "colombia filter",
         "taste": "описание вкуса 1",
@@ -60,7 +64,8 @@
         "img": "./img/content/pack_content2.png"
     },
     {
-        "packaging": "filter",
+        "packing": "filter",
+        "packing-desc": "Фильтр-кофе",
         "id": "columbia2",
         "title": "colombia filter2",
         "taste": "описание вкуса 2, описание вкуса 2",
@@ -75,7 +80,56 @@
         "img": "./img/content/pack_content7.png"
     },
     {
-        "packaging": "filter",
+        "packing": "filter",
+        "packing-desc": "Фильтр-кофе",
+        "id": "columbia3",
+        "title": "colombia filter3",
+        "taste": "описание вкуса 3",
+        "region": "Толима",
+        "height": "1500-1900м 3",
+        "sort": "катурра, filter",
+        "processing": "не мытая",
+        "q": "84.75",
+        "roasting": "эспрессо",
+        "harvest": "2023",
+        "weight": "1 кг",
+        "img": "./img/content/pack_content2.png"
+    },
+    {
+        "packing": "drip",
+        "packing-desc": "Дрип пакет",
+        "id": "columbia1",
+        "title": "colombia filter",
+        "taste": "описание вкуса 1",
+        "region": "Толима",
+        "height": "1500-1900м 1",
+        "sort": "кат=урра, колумбия, кастильо, , filter",
+        "processing": "мытая",
+        "q": "84.75",
+        "roasting": "эспрессо",
+        "harvest": "2023",
+        "weight": "1 кг",
+        "img": "./img/content/pack_content2.png"
+    },
+    {
+        "packing": "drip",
+        "packing-desc": "Дрип пакет",
+        "id": "columbia2",
+        "title": "colombia filter2",
+        "taste": "описание вкуса 2, описание вкуса 2",
+        "region": "Толима",
+        "height": "1500-1900м 2",
+        "sort": "катурра, колумбия, кастильо, filter",
+        "processing": "мытая",
+        "q": "84.75",
+        "roasting": "эспрессо",
+        "harvest": "2023",
+        "weight": "1 кг",
+        "img": "./img/content/pack_content7.png"
+    },
+    {
+        "packing": "drip",
+        "packing-desc": "Дрип пакет",
         "id": "columbia3",
         "title": "colombia filter3",
         "taste": "описание вкуса 3",
