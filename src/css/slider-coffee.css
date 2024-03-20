@@ -1,4 +1,6 @@
 .sl-prod { 
+    position: relative;
+
     display: flex;
     gap: 2.5vw;
 }
@@ -9,7 +11,6 @@
     width: 21.46vw;
     min-width: 21.46vw;
     height: 100%;
-    padding-top: 1.98vw;
 }
 
 .sl-prod__big-img {
@@ -76,8 +77,8 @@
     margin-top: 2.29vw;
 }
 
-.sl-prod__taste {
-    display: flex;
+.sl-prod__taste p{
+    position: relative;
 }
 
 .sl-prod__taste-title {
@@ -90,42 +91,10 @@
 }
 
 .sl-prod__wr-taste-text {
-    position: relative;
-
     flex-grow: 1;
 }
 
 .sl-prod__taste-text {
-    font-family: 'SofiaSans';
-    font-size: 1.25vw;
-    font-weight: 400;
-
-    color: #FFF;
-}
-
-.sl-prod__aroma {
-    position: relative;
-
-    display: flex;
-    margin-top: 2.08vw;
-}
-
-.sl-prod__aroma-title {
-    font-family: 'SofiaSans';
-    font-size: 1.25vw;
-    font-weight: 700;
-    text-transform: uppercase;
-
-    color: #FFF;
-}
-
-.sl-prod__wr-aroma-text {
-    position: relative;
-
-    flex-grow: 1;
-}
-
-.sl-prod__aroma-text {
     font-family: 'SofiaSans';
     font-size: 1.25vw;
     font-weight: 400;
@@ -464,7 +433,7 @@
         height: 82.13vw;
         margin-top: 0;
     }
-}
+} 
 
 @media( max-width: 961px ) {
     .sl-prod__img-slide-deco {

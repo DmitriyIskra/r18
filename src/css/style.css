@@ -28,6 +28,14 @@
 
 /* ////////////////  MAIN   ///////////////// */
 
+.main {
+    padding-bottom: 11.28vw;
+
+    background:no-repeat url(../img/roasteria-side.png), #483D41;
+    background-position: right 0.35vw top 48vw;
+    background-size: 11.41vw auto; /*auto 70.8%*/
+}
+
 /* products start */
 .coffee {
     position: relative;
@@ -36,9 +44,7 @@
     padding-top: 2.81vw;
     padding-bottom: 2.97vw;
 
-    background:no-repeat url(../img/roasteria-side.png), #483D41;
-    background-position: right 2.08vw top 0.5vw;
-    background-size: auto 70.8%;
+    
 
     flex-direction: column;
     align-items: center;
@@ -83,8 +89,6 @@
     display: flex;
     padding-top: 6vw;
 
-    background: #483D41;
-
     flex-direction: column;
     align-items: center;
 }
@@ -105,8 +109,6 @@
     display: flex;
     padding-top: 4.5vw;
 
-    background: #483D41;
-
     flex-direction: column;
     align-items: center;
 }
@@ -125,8 +127,6 @@
 .contacts {
     display: flex;
     padding-top: 5.2vw;
-
-    background: #483D41;
 
     flex-direction: column;
     align-items: center;
@@ -241,6 +241,7 @@
     position: relative;
 
     display: flex;
+
     background: #483D41;
 
     flex-direction: column;
@@ -252,20 +253,19 @@
     top: 0;
     left: 0;
 
-    height: 79.90vw;
-    width: 12.14vw;
+    height: 80.21vw;
+    width: 11.41vw;
 
     background: no-repeat url('../img/roasteria-side.png');
     background-position: center;
     background-size: 100% auto;
 
-    transform: translate(4%, -87.3%);
+    transform: translate(3%, -95.3%);
 }
 
 .footer__wr-content {
     display: flex;
     width: 85%;
-    padding-top: 11.28vw;
     padding-bottom: 0.94vw;
 
     justify-content: space-between;

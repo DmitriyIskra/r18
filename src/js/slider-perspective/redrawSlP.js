@@ -53,6 +53,8 @@ export default class RedrawSLP {
         this.stoped = false;
     }
 
+    // !!!!!!!! количество карточек для внешнего слайдера должно быть больше трех
+
     // работает на основе абсолютного позиционирования
     initSlider() {
         // перебираем json и элементы вставляем this.cardDecoR.before(...)

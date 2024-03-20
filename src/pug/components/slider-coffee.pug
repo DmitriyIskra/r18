@@ -8,20 +8,17 @@
                 h2.sl-prod__title(data-type="title")
             .sl-prod__description
                 .sl-prod__taste
-                    .sl-prod__taste-title во вкусе:&nbsp;
-                    .sl-prod__wr-taste-text
-                        .sl-prod__taste-text(data-type="taste")
-                .sl-prod__aroma
-                    .sl-prod__aroma-title в аромате:&nbsp;
-                    .sl-prod__wr-aroma-text
-                        .sl-prod__aroma-text(data-type="aroma")
+                    p 
+                        span.sl-prod__taste-title вкусовой профиль:&nbsp;
+                        span.sl-prod__wr-taste-text
+                            span.sl-prod__taste-text(data-type="taste")
 
             .sl-prod__line
 
             ul.sl-prod__character-list
                 li.sl-prod__character-item
-                    .sl-prod__prop обработка
-                    .sl-prod__val(data-type="processing")
+                    .sl-prod__prop регион
+                    .sl-prod__val(data-type="region")
                 li.sl-prod__character-item
                     .sl-prod__prop высота
                     .sl-prod__val(data-type="height")
@@ -29,8 +26,17 @@
                     .sl-prod__prop сорт
                     .sl-prod__val(data-type="sort")
                 li.sl-prod__character-item
+                    .sl-prod__prop обработка
+                    .sl-prod__val(data-type="processing")
+                li.sl-prod__character-item 
                     .sl-prod__prop q
                     .sl-prod__val(data-type="q")
+                li.sl-prod__character-item 
+                    .sl-prod__prop обжарка
+                    .sl-prod__val(data-type="roasting")
+                li.sl-prod__character-item 
+                    .sl-prod__prop урожай
+                    .sl-prod__val(data-type="harvest")
                 li.sl-prod__character-item
                     .sl-prod__prop вес
                     .sl-prod__val(data-type="weight")

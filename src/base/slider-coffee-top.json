@@ -34,29 +34,5 @@
         "q": "84.75",
         "weight": "1 кг",
         "img": "./img/content/pack_content2.png"
-    },
-    {
-        "id": "columbia4",
-        "title": "colombia andino4",
-        "taste": "описание вкуса 4",
-        "aroma": "описание аромата 4",
-        "processing": "мытая",
-        "height": "1500-1900м 4",
-        "sort": "катурра, колумбия, кастильо, катурра, катурра",
-        "q": "84.75",
-        "weight": "1 кг",
-        "img": "./img/content/pack_content7.png"
-    },
-    {
-        "id": "columbia5",
-        "title": "colombia andino5",
-        "taste": "описание вкуса 5",
-        "aroma": "описание аромата 5",
-        "processing": "мытая",
-        "height": "1500-1900м 5",
-        "sort": "катурра, колумбия, кастильо",
-        "q": "84.75",
-        "weight": "1 кг",
-        "img": "./img/content/pack_content2.png"
     }
 ]

@@ -74,6 +74,9 @@ export default class RedrawSlСoffee {
 
         // Определяем анимацию для блока с текстом, описанием товара
         this.description.style.transition = `opacity ${this.durationHalf}s ${this.timeFunc}`;
+
+        // Определяем анимацию для блока со слайдами, описанием товара
+        this.slides.style.transition = `opacity ${this.durationHalf}s ${this.timeFunc}`;
     }
 
     moveNext() {
@@ -335,15 +338,22 @@ export default class RedrawSlСoffee {
                 const newEl = this.createEl(el.localName, el.className);
                 newEl.dataset.type = el.dataset.type;
                 newEl.textContent = info[item];
+
                 newEl.style = `
                     position: absolute;
                     top: 0;
-                    ${el.dataset.type === 'title' ||
-                    el.dataset.type === 'taste' ||
-                    el.dataset.type === 'aroma' ? (
-                        'left: 0;'
+                    ${el.dataset.type !== 'title' &&
+                    el.dataset.type !== 'taste' ? (
+                        `
+                        right: 0;`
+                    ) : el.dataset.type === 'taste' ? (
+                        `
+                        text-indent: ${
+                            el.parentElement.previousElementSibling.offsetWidth
+                        }px;
+                        left: 0;`
                     ) : (
-                        'right: 0;'
+                        ''
                     )}
                     opacity: 0;
                     transition:

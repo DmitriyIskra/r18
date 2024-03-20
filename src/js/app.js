@@ -10,8 +10,7 @@ import ControllSlHead from "./slider-head/controllSlHead";
 // кофейный слайдер
 import ControllSlСoffee from "./slider-coffee/controllSlСoffee";
 import RedrawSlСoffee from "./slider-coffee/redrawSlСoffee";
-import sliderCoffeeData from "../base/slider-coffee-top.json";
-import sliderCoffeeData2 from "../base/slider-coffee-bottom.json";
+import sliderCoffeeData from "../base/slider-coffee.json"
 
 // слайдер с карточками в перспективе
 import ControllSLP from "./slider-perspective/controllSlP";
@@ -42,13 +41,13 @@ window.addEventListener('load', () => {
     }
 
     // Нижний кофейный слайдер
-    const sliderCoffe2 = document.querySelector('.coffee__wr-slider-bottom');
+    // const sliderCoffe2 = document.querySelector('.coffee__wr-slider-bottom');
 
-    if(sliderCoffe2) {
-        const redrawSlCoffe = new RedrawSlСoffee(sliderCoffe2, sliderCoffeeData2);
-        const controllSlCoffe = new ControllSlСoffee(redrawSlCoffe);
-        controllSlCoffe.init();
-    }
+    // if(sliderCoffe2) {
+    //     const redrawSlCoffe = new RedrawSlСoffee(sliderCoffe2, sliderCoffeeData2);
+    //     const controllSlCoffe = new ControllSlСoffee(redrawSlCoffe);
+    //     controllSlCoffe.init();
+    // }
 
     
     // слайдер Мерч с карточками в перспективе
