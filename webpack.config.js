@@ -91,6 +91,8 @@ module.exports = {
           patterns: [ 
             { from: 'src/img/content/pack_content2.png', to: 'img/content' },
             { from: 'src/img/content/pack_content7.png', to: 'img/content' },
+            { from: 'src/img/content/drip-pack.png', to: 'img/content' },
+            { from: 'src/img/content/filter-pack.png', to: 'img/content' },
             
 
             { from: 'src/img/content/t-shirt-white-1-front_content.png', to: 'img/content' },

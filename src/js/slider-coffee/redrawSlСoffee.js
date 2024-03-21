@@ -40,6 +40,7 @@ export default class RedrawSlСoffee {
             const el = this.createSlide(
                 item.img,
                 item.title,
+                item.packing,
                 '#',
                 item.title
                 );
@@ -50,6 +51,7 @@ export default class RedrawSlСoffee {
                 el.classList.add('sl-prod__slide_active');
 
                 this.bigImg.src = item.img;
+                this.bigImg.classList.add(`sl-prod__big-img_${item.packing}`);
                 this.bigImg.alt = item.title;
             }
             el.id = item.id;
@@ -303,28 +305,33 @@ export default class RedrawSlСoffee {
     // SWIPE END
 
     changeBigImg() {
+        // получаем следующий эелемент который станет активным
+        const activeImg = this.oldActiveSlide.nextSibling.children[0].children[0];
+
+        // Определяем упаковку активного слайда
+        const pack = activeImg.dataset.pack
+
         // создаем новый элемент и создаем для него все необходимые параметры
-        const img = this.createEl('img', 'sl-prod__big-img');
+        const img = this.createEl('img', ['sl-prod__big-img', `sl-prod__big-img_${pack}`]);
         img.style = `
             position: absolute;
             left: 0;
             transition: opacity ${this.duration}s ${this.timeFunc};
         `;
 
-        // получаем следующий эелемент который станет активным
-        const activeImg = this.oldActiveSlide.nextSibling.children[0].children[0];
         img.src = activeImg.src; // указываем src для нового элемента
-        this.wrBigImg.append(img);
+        this.wrBigImg.prepend(img);
 
         setTimeout(() => {  
-            this.wrBigImg.lastElementChild.classList.add('sl-prod__big-img_visible');
+            this.wrBigImg.firstElementChild.classList.add('sl-prod__big-img_visible');
             this.bigImg.classList.remove('sl-prod__big-img_visible');
         });
         
         this.bigImg.addEventListener('transitionend', () => {
             this.bigImg.remove();
-            this.bigImg = this.wrBigImg.lastElementChild;
-            this.bigImg.style.position = 'relative';
+            this.bigImg = this.wrBigImg.firstElementChild;
+            this.bigImg.style.position = '';
+            this.bigImg.style.left = '';
         }, {once: true})
     }
 
@@ -335,7 +342,7 @@ export default class RedrawSlСoffee {
         keys.forEach( item => {
             const el = this.description.querySelector(`[data-type="${item}"]`);
             if(el) {
-                const newEl = this.createEl(el.localName, el.className);
+                const newEl = this.createEl(el.localName, [el.className]);
                 newEl.dataset.type = el.dataset.type;
                 newEl.textContent = info[item];
 
@@ -395,27 +402,28 @@ export default class RedrawSlСoffee {
         })
     }
 
-    createSlide(pathImg, title, href, linkTitle) {
-        const li = this.createEl('li', 'sl-prod__slide');
+    createSlide(pathImg, title, packing, href, linkTitle) {
+        const li = this.createEl('li', ['sl-prod__slide']);
 
-        const divImg = this.createEl('div', 'sl-prod__wr-img-slide');
-        const img = this.createEl('img', 'sl-prod__img-slide');
-        const imgDecoShadow = this.createEl('div', 'sl-prod__img-slide-deco');
+        const divImg = this.createEl('div', ['sl-prod__wr-img-slide']);
+        const img = this.createEl('img', ['sl-prod__img-slide']);
+        img.dataset.pack = packing;
+        const imgDecoShadow = this.createEl('div', ['sl-prod__img-slide-deco']);
         img.src = pathImg;
         divImg.append(img);
         divImg.append(imgDecoShadow);
 
-        const divTitle = this.createEl('div', 'sl-prod__wr-title-slide');
-        const h3 = this.createEl('h3', 'sl-prod__title-slide');
+        const divTitle = this.createEl('div', ['sl-prod__wr-title-slide']);
+        const h3 = this.createEl('h3', ['sl-prod__title-slide']);
         h3.textContent = title;
         divTitle.append(h3);
 
-        const divButton = this.createEl('div', 'sl-prod__wr-button-slide');
-        const link = this.createEl('a', 'sl-prod__button-slide');
+        const divButton = this.createEl('div', ['sl-prod__wr-button-slide']);
+        const link = this.createEl('a', ['sl-prod__button-slide']);
         link.href = href;
         link.title = linkTitle;
         link.textContent = 'Заказать';
-        const linkDeco = this.createEl('div', 'sl-prod__wr-button-slide-deco');
+        const linkDeco = this.createEl('div', ['sl-prod__wr-button-slide-deco']);
         linkDeco.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
         divButton.append(link);
         divButton.append(linkDeco);
@@ -427,9 +435,11 @@ export default class RedrawSlСoffee {
         return li;
     }
 
-    createEl(el, className) {
+    createEl(el, arrClassName) {
         const element = document.createElement(el);
-        element.classList.add(className);
+
+        arrClassName.forEach(c => element.classList.add(c));
+        
         return element;
     }
 

@@ -1,4 +1,5 @@
-.sl-prod { 
+
+.sl-prod__wrapper-images {
     position: relative;
 
     display: flex;
@@ -69,16 +70,20 @@
 .sl-prod__wr-big-img {
     position: relative;
 
+    height: 100%;
     width: 21.46vw;
     min-width: 21.46vw;
-    margin-top: 4vw;
 }
 
 .sl-prod__big-img {
     position: relative;
 
     width: 100%;
+    height: 100%;
 
+
+    object-fit: contain;
+    object-position: center;
     opacity: 0;
     z-index: 1;
 }
@@ -89,15 +94,20 @@
 
 .sl-prod__big-img_deco {
     position: absolute;
-    top: 53%;
+    
     left: 50%;
     
-    height: 84%;
     width: 80%;
 
     box-shadow: 0.78vw 1.04vw 3.02vw 0.63vw rgba(0, 0, 0, 1);
 
     transform: translate(-50%, -50%);
+}
+
+.sl-prod__big-img_espresso + .sl-prod__big-img_deco {
+    top: 50.5%;
+
+    height: 78.5%;
 }
 
 .sl-prod__wr-descr-preview {
