@@ -35,7 +35,16 @@ export default class ControllSlСoffee {
         }
 
         if(e.target.closest('.sl-prod__filter-type')) {
-            this.filter.setActive(e.target.closest('.sl-prod__filter-type'));
+            this.filter.setActive(
+                e.target.closest('.sl-prod__filter-type'),
+                this.d.renderingWithFilter.bind(this.d)
+            );
+        }
+
+        if(e.target.closest('.sl-prod__filter-reset')) {
+            this.filter.resetActive(
+                this.d.renderingWithFilter.bind(this.d)
+            );
         }
     }
 

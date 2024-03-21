@@ -8,6 +8,7 @@ export default class RedrawSlСoffee {
         this.slides = this.slider.querySelector('.sl-prod__slides');
         this.wrBigImg = this.slider.querySelector('.sl-prod__wr-big-img');
         this.bigImg = this.wrBigImg.querySelector('img');
+        this.bigImgDeco = this.wrBigImg.querySelector('.sl-prod__big-img_deco');
 
         this.amountSlides = null;
 
@@ -66,7 +67,7 @@ export default class RedrawSlСoffee {
 
         // задаем ширину контейнеру со слайдами во vw для десктоп
         // в % для мобилки
-        this.setWidthSliderContainer();
+        this.setWidthSliderContainer(this.slides, this.wrSlides);
 
         // Заполняем информацию о продукте
         this.fillTextInfo();
@@ -92,7 +93,7 @@ export default class RedrawSlСoffee {
             const clone = this.activeSlide.cloneNode(true);
             clone.classList.remove('sl-prod__slide_active');
             this.slides.append(clone);
-            this.setWidthSliderContainer();
+            this.setWidthSliderContainer(this.slides, this.wrSlides);
 
             // устанавливаем анимацию
             this.slides.style.transition = `transform ${this.duration}s ${this.timeFunc}`;
@@ -116,8 +117,8 @@ export default class RedrawSlСoffee {
             }, {once: true});
 
             // меняем большую картинку и описание товара
-            this.changeBigImg();
-            this.changeTextInfo();
+            this.changeBigImg(this.activeSlide);
+            this.changeTextInfo(this.activeSlide, this.data);
         }
 
         // Для мобилки
@@ -142,7 +143,7 @@ export default class RedrawSlСoffee {
             }, {once: true});
 
             // Меняем описание
-            this.changeTextInfo();
+            this.changeTextInfo(this.activeSlide, this.data);
         }
         
     }
@@ -173,7 +174,7 @@ export default class RedrawSlСoffee {
         }, {once: true});
 
         // Меняем описание
-        this.changeTextInfo();
+        this.changeTextInfo(this.activeSlide, this.data);
     }
 
     // SWIPE START
@@ -299,45 +300,64 @@ export default class RedrawSlСoffee {
         }
 
         // Меняем описание
-        this.changeTextInfo();
+        this.changeTextInfo(this.activeSlide, this.data);
     }
 
     // SWIPE END
 
-    changeBigImg() {
-        // получаем следующий эелемент который станет активным
-        const activeImg = this.oldActiveSlide.nextSibling.children[0].children[0];
 
+    renderingWithFilter(pack) {
+        if(pack === 'reset') {
+            console.log(pack);
+
+            return;
+        }
+
+        console.log(pack)
+    }
+
+    createListPrevWithFilter() {
+        
+    }
+
+    changeBigImg(newImage) {   // parameters nextActiveImg(то что будем подставлять)
         // Определяем упаковку активного слайда
-        const pack = activeImg.dataset.pack
+        const pack = newImage.dataset.pack
 
         // создаем новый элемент и создаем для него все необходимые параметры
         const img = this.createEl('img', ['sl-prod__big-img', `sl-prod__big-img_${pack}`]);
+        const deco = this.createEl('div', ['sl-prod__big-img_deco']);
         img.style = `
             position: absolute;
             left: 0;
             transition: opacity ${this.duration}s ${this.timeFunc};
         `;
+        deco.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
 
         img.src = activeImg.src; // указываем src для нового элемента
+        this.wrBigImg.prepend(deco);
         this.wrBigImg.prepend(img);
 
-        setTimeout(() => {  
-            this.wrBigImg.firstElementChild.classList.add('sl-prod__big-img_visible');
+        setTimeout(() => {
+            this.wrBigImg.children[0].classList.add('sl-prod__big-img_visible');
+            this.wrBigImg.children[1].classList.add('sl-prod__big-img_deco_visible');
             this.bigImg.classList.remove('sl-prod__big-img_visible');
+            this.bigImgDeco.classList.remove('sl-prod__big-img_deco_visible');
         });
         
         this.bigImg.addEventListener('transitionend', () => {
             this.bigImg.remove();
-            this.bigImg = this.wrBigImg.firstElementChild;
+            this.bigImgDeco.remove();
+            this.bigImg = this.wrBigImg.children[0];
+            this.bigImgDeco = this.wrBigImg.children[1];
             this.bigImg.style.position = '';
             this.bigImg.style.left = '';
         }, {once: true})
     }
 
-    changeTextInfo() {
-        const id = this.activeSlide.id;
-        const info = this.data.find( item => item.id === id);
+    changeTextInfo(activeSlide, data) {
+        const id = activeSlide.id;
+        const info = data.find( item => item.id === id);
         const keys = Object.keys(info);
         keys.forEach( item => {
             const el = this.description.querySelector(`[data-type="${item}"]`);
@@ -402,14 +422,46 @@ export default class RedrawSlСoffee {
         })
     }
 
+    
+    /**
+     * так как будем создавать новый блок при применении фильтра
+     * некоторые данные или элементы передаем параметрами
+     * **/ 
+    
+    setWidthSliderContainer(slides, wrSlides) {
+        // для десктопа
+        if(innerWidth > 961) {
+            // задаем ширину контейнеру со слайдами во vw
+            let width = [...slides.children].reduce( (acc, item, index) => {
+                return index < this.amountShowDesc ? 
+                (
+                    acc += item.offsetWidth / innerWidth * 100
+                ) : 
+                (
+                    acc
+                );
+            }, 0);
+            width += ((this.getGap() * this.amountShowDesc) / innerWidth * 100);
+            wrSlides.style = `width: ${width.toFixed(3)}vw;`;
+        }
+        
+        // для мобилки
+        if(innerWidth <= 961 ) {
+            const widtsSlidesList = this.amountSlides * 100;
+            slides.style.width = `${widtsSlidesList}%`;
+        }
+    }
+
     createSlide(pathImg, title, packing, href, linkTitle) {
         const li = this.createEl('li', ['sl-prod__slide']);
 
-        const divImg = this.createEl('div', ['sl-prod__wr-img-slide']);
+        const divImg = this.createEl('div', ['sl-prod__wr-img-slide', `sl-prod__wr-img-slide_${packing}`]);
         const img = this.createEl('img', ['sl-prod__img-slide']);
         img.dataset.pack = packing;
-        const imgDecoShadow = this.createEl('div', ['sl-prod__img-slide-deco']);
         img.src = pathImg;
+        const imgDecoShadow = this.createEl('div', ['sl-prod__img-slide-deco']);
+
+        
         divImg.append(img);
         divImg.append(imgDecoShadow);
 
@@ -441,30 +493,6 @@ export default class RedrawSlСoffee {
         arrClassName.forEach(c => element.classList.add(c));
         
         return element;
-    }
-
-    setWidthSliderContainer() { 
-        // для десктопа
-        if(innerWidth > 961) {
-            // задаем ширину контейнеру со слайдами во vw
-            let width = [...this.slides.children].reduce( (acc, item, index) => {
-                return index < this.amountShowDesc ? 
-                (
-                    acc += item.offsetWidth / innerWidth * 100
-                ) : 
-                (
-                    acc
-                );
-            }, 0);
-            width += ((this.getGap() * this.amountShowDesc) / innerWidth * 100);
-            this.wrSlides.style = `width: ${width.toFixed(3)}vw;`;
-        }
-        
-        // для мобилки
-        if(innerWidth <= 961 ) {
-            const widtsSlidesList = this.amountSlides * 100;
-            this.slides.style.width = `${widtsSlidesList}%`;
-        }
     }
 
     getWidthOffset() {

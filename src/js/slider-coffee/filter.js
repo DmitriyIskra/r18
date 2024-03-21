@@ -1,6 +1,6 @@
 export default class Filter {
-    constructor(list) {
-        this.list = list;
+    constructor(filter) {
+        this.filter = filter;
 
         this.createEl = null;
 
@@ -21,20 +21,29 @@ export default class Filter {
             li.id = arr[i][0];
             li.textContent = arr[i][1];
     
-            this.list.prepend(li);
+            this.filter.prepend(li);
+        }
+
+        if(innerWidth <= 961) {
+            this.filter.parentElement.parentElement.prepend(this.filter)
         }
     }
 
-    setActive(el) {
+    setActive(el, rendering) {
         if(this.currentActive) {
             this.currentActive.classList.remove('sl-prod__filter_active');
         }
 
         this.currentActive = el;
         this.currentActive.classList.add('sl-prod__filter_active');
+
+        rendering(el.id);
     }
 
-    resetActive() {
+    resetActive(rendering) {
+        if(this.currentActive)
+            this.currentActive.classList.remove('sl-prod__filter_active');
 
+        rendering('reset');
     }
 }
