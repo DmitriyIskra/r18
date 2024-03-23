@@ -239,6 +239,8 @@
 }
 
 .sl-prod__wr-slides {
+    position: relative;
+
     height: 100%;
     padding-left: 0.65vw;
 
@@ -250,6 +252,12 @@
     gap: 3.49vw;
 
     align-items: center;
+    
+    opacity: 0;
+}
+
+.sl-prod__slides_visible {
+    opacity: 1;
 }
 
 .sl-prod__slide {

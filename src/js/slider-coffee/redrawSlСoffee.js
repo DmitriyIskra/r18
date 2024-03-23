@@ -42,7 +42,7 @@ export default class RedrawSlСoffee {
                 item.img,
                 item.title,
                 item.packing,
-                '#',
+                item.link,
                 item.title
                 );
 
@@ -59,6 +59,9 @@ export default class RedrawSlСoffee {
 
             this.slides.append(el);
         });
+
+        // Изначально слайды не видимы, показываем их
+        this.slides.classList.add('sl-prod__slides_visible');
 
         // Запоминаем активный слайд
         this.activeSlide = this.slides.children[0];
@@ -79,7 +82,7 @@ export default class RedrawSlСoffee {
         this.description.style.transition = `opacity ${this.durationHalf}s ${this.timeFunc}`;
 
         // Определяем анимацию для блока со слайдами, описанием товара
-        this.slides.style.transition = `opacity ${this.durationHalf}s ${this.timeFunc}`;
+        this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
     }
 
     moveNext() {
@@ -111,7 +114,8 @@ export default class RedrawSlСoffee {
             })
 
             this.slides.addEventListener('transitionend', () => {
-                this.slides.style.transition = ``;
+                // убираем transform возвращаем opacity
+                this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
                 this.oldActiveSlide.remove();
                 this.slides.style.transform = ``;
             }, {once: true});
@@ -137,7 +141,7 @@ export default class RedrawSlСoffee {
             })
 
             this.slides.addEventListener('transitionend', () => {
-                this.slides.style.transition = ``;
+                this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
                 this.slides.append(this.slides.children[0]);
                 this.slides.style.transform = ``;
             }, {once: true});
@@ -170,7 +174,7 @@ export default class RedrawSlСoffee {
         }, 20)
         
         this.slides.addEventListener('transitionend', () => {
-            this.slides.style.transition = ``;
+            this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
         }, {once: true});
 
         // Меняем описание
@@ -242,7 +246,7 @@ export default class RedrawSlСoffee {
                 `;
             
             this.slides.addEventListener('transitionend', () => {
-                this.slides.style.transition = '';
+                this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
 
                 // если уже был подставлен элемент в начало
                 if(this.relocated) {
@@ -271,7 +275,7 @@ export default class RedrawSlСoffee {
             this.activeSlide = this.slides.children[1];
 
             this.slides.addEventListener('transitionend', () => {
-                this.slides.style.transition = ``;
+                this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
                 this.slides.append(this.slides.children[0]);
                 // если в процессе свайпа, сначала был свайп в prev и был добавлен элемент в начало
                 if(this.relocated) {
@@ -291,7 +295,7 @@ export default class RedrawSlСoffee {
             this.activeSlide = this.slides.children[0];
 
             this.slides.addEventListener('transitionend', () => {
-                this.slides.style.transition = ``;
+                this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
                 // если в процессе свайпа, сначала был свайп в prev и был добавлен элемент в начало
                 if(this.relocated) {
                     this.relocated = false;
@@ -306,6 +310,7 @@ export default class RedrawSlСoffee {
     // SWIPE END
 
 
+    // Замена элемнтов при выборе фильтра
     renderingWithFilter(pack) {
         if(pack === 'reset') {
             console.log(pack);
@@ -313,14 +318,61 @@ export default class RedrawSlСoffee {
             return;
         }
 
-        console.log(pack)
+        const filter = this.data.filter(item => item.packing === pack);
+        console.log(filter)
+
+        const ul = this.createEl('ul', ['sl-prod__slides']);
+        const left = parseFloat(getComputedStyle(this.wrSlides).paddingLeft);
+        ul.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
+        ul.style.position = 'absolute';
+        ul.style.top = '0';
+        ul.style.left = `${left}px`;
+
+        filter.forEach((item, index) => {
+            const li = this.createSlide(item.img, item.title, item.packing, item.link, item.title);
+            li.style.transition = `height ${this.duration}s ${this.timeFunc}, width ${this.duration}s ${this.timeFunc}`;
+
+            if(index === 0 && innerWidth > 961) {
+                li.classList.add('sl-prod__slide_active');
+            }
+            li.id = item.id;
+
+            ul.append(li);
+        });
+
+        this.wrSlides.append(ul);
+
+        this.changeBigImg(ul.children[0]);
+        this.changeTextInfo(ul.children[0], filter);
+
+        setTimeout(() => {
+            this.slides.classList.remove('sl-prod__slides_visible');
+            ul.classList.add('sl-prod__slides_visible');
+        }, 10)
+        
+        this.slides.addEventListener('transitionend', () => {
+            this.slides.remove();
+
+            ul.style.position = '';
+            ul.style.top = '';
+            ul.style.left = '';
+
+            this.slides = ul;
+
+            // Запоминаем активный слайд
+            this.activeSlide = this.slides.children[0];
+
+            this.amountSlides = this.slides.children.length;
+        })
     }
 
     createListPrevWithFilter() {
         
     }
 
-    changeBigImg(newImage) {   // parameters nextActiveImg(то что будем подставлять)
+    changeBigImg(activeSlide) { 
+        const newImage = activeSlide.children[0].children[0];
+
         // Определяем упаковку активного слайда
         const pack = newImage.dataset.pack
 
@@ -334,7 +386,7 @@ export default class RedrawSlСoffee {
         `;
         deco.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
 
-        img.src = activeImg.src; // указываем src для нового элемента
+        img.src = newImage.src; // указываем src для нового элемента
         this.wrBigImg.prepend(deco);
         this.wrBigImg.prepend(img);
 
@@ -420,14 +472,9 @@ export default class RedrawSlСoffee {
             const el = this.description.querySelector(`[data-type="${item}"]`);
             if(el) el.textContent = info[item]
         })
-    }
+    } 
 
-    
-    /**
-     * так как будем создавать новый блок при применении фильтра
-     * некоторые данные или элементы передаем параметрами
-     * **/ 
-    
+    // ширина обертки над слайдами (в которой слайды сдвигаются)
     setWidthSliderContainer(slides, wrSlides) {
         // для десктопа
         if(innerWidth > 961) {

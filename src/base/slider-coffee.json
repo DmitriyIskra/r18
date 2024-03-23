@@ -13,7 +13,8 @@
         "roasting": "эспрессо",
         "harvest": "2023",
         "weight": "1 кг",
-        "img": "./img/content/pack_content2.png"
+        "img": "./img/content/pack_content2.png",
+        "link": "#"
     },
     {
         "packing": "espresso",
@@ -29,7 +30,8 @@
         "roasting": "эспрессо",
         "harvest": "2023",
         "weight": "1 кг",
-        "img": "./img/content/pack_content7.png"
+        "img": "./img/content/pack_content7.png",
+        "link": "#"
     },
     {
         "packing": "espresso",
@@ -45,7 +47,8 @@
         "roasting": "эспрессо",
         "harvest": "2023",
         "weight": "1 кг",
-        "img": "./img/content/pack_content2.png"
+        "img": "./img/content/pack_content2.png",
+        "link": "#"
     },
     {
         "packing": "filter",
@@ -61,7 +64,8 @@
         "roasting": "эспрессо",
         "harvest": "2023",
         "weight": "1 кг",
-        "img": "./img/content/filter-pack.png"
+        "img": "./img/content/filter-pack.png",
+        "link": "#"
     },
     {
         "packing": "filter",
@@ -77,7 +81,8 @@
         "roasting": "эспрессо",
         "harvest": "2023",
         "weight": "1 кг",
-        "img": "./img/content/filter-pack.png"
+        "img": "./img/content/filter-pack.png",
+        "link": "#"
     },
     {
         "packing": "filter",
@@ -93,7 +98,25 @@
         "roasting": "эспрессо",
         "harvest": "2023",
         "weight": "1 кг",
-        "img": "./img/content/filter-pack.png"
+        "img": "./img/content/filter-pack.png",
+        "link": "#"
+    },
+    {
+        "packing": "filter",
+        "packing-desc": "Фильтр-кофе",
+        "id": "columbia-filter4",
+        "title": "colombia filter4",
+        "taste": "цитрусы, цветы, ноты персика, лайма, красной смородины и черного чая 4",
+        "region": "Толима",
+        "height": "1500-1900м 4",
+        "sort": "катурра, filter",
+        "processing": "не мытая",
+        "q": "84.75",
+        "roasting": "эспрессо",
+        "harvest": "2023",
+        "weight": "1 кг",
+        "img": "./img/content/filter-pack.png",
+        "link": "#"
     },
     {
         "packing": "drip",
@@ -109,7 +132,8 @@
         "roasting": "фильтр",
         "harvest": "2023",
         "weight": "250 г.",
-        "img": "./img/content/drip-pack.png"
+        "img": "./img/content/drip-pack.png",
+        "link": "#"
     },
     {
         "packing": "drip",
@@ -125,7 +149,8 @@
         "roasting": "фильтр",
         "harvest": "2023",
         "weight": "250 г.",
-        "img": "./img/content/drip-pack.png"
+        "img": "./img/content/drip-pack.png",
+        "link": "#"
     },
     {
         "packing": "drip",
@@ -141,6 +166,7 @@
         "roasting": "фильтр",
         "harvest": "2023",
         "weight": "250 г.",
-        "img": "./img/content/drip-pack.png"
+        "img": "./img/content/drip-pack.png",
+        "link": "#"
     }
 ]
