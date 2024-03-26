@@ -1,3 +1,6 @@
+include ../mixines/slider-coffee-big-description
+include ../variable/slider-coffee-big-description
+
 .sl-prod
     .sl-prod__wrapper-images
         .sl-prod__wr-big-img-filter
@@ -20,7 +23,7 @@
                             span.sl-prod__wr-taste-text
                                 span.sl-prod__taste-text(data-type="taste")
 
-                .sl-prod__line
+                .sl-prod__line 
 
                 ul.sl-prod__character-list
                     li.sl-prod__character-item
@@ -53,15 +56,9 @@
                     ul.sl-prod__slides
                 include arrow-next
                 include arrow-prev
+
+    +slCoffeBigDescr(dataCoffee)
     
-    .sl-prod__wr-big-description 
-        .sl-prod__big-desc-images 
-            .sl-prod__big-desc-wr-img
-                img.sl-prod__big-desc-img-top(src="#", alt="...")
-            .sl-prod__big-desc-wr-img
-                img.sl-prod__big-desc-img-bottom(src="#", alt="...")
-        .sl-prod__big-desc-wr-text 
-            .sl-prod__big-desc-wr-title 
-                h2.sl-prod__big-desc-title
-            .sl-prod__big-desc-wr-text
-                p
+            
+
+                    

@@ -18,7 +18,7 @@ export default class Filter {
             const li = document.createElement('li');
             li.classList.add('sl-prod__filter-item');
             li.classList.add('sl-prod__filter-type');
-            li.id = arr[i][0];
+            li.dataset.id = arr[i][0];
             li.textContent = arr[i][1];
     
             this.filter.prepend(li);
@@ -37,13 +37,13 @@ export default class Filter {
         this.currentActive = el;
         this.currentActive.classList.add('sl-prod__filter_active');
 
-        rendering(el.id);
+        rendering(el.dataset.id);
     }
 
     resetActive(rendering) {
         if(this.currentActive)
             this.currentActive.classList.remove('sl-prod__filter_active');
-
+            
         rendering('reset');
     }
 }

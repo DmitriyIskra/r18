@@ -32,7 +32,7 @@
     padding-bottom: 11.28vw;
 
     background:no-repeat url(../img/roasteria-side.png), #483D41;
-    background-position: right 0.35vw top 48vw;
+    background-position: right 0.35vw top 8.6%;
     background-size: 11.41vw auto;
 }
 
@@ -336,7 +336,7 @@
 
 @media( max-width: 961px ) {
     .merch {
-        padding-top: 14.6vw;
+        padding-top: 10.13vw;
     }
 }
 
