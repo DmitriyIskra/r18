@@ -13,6 +13,7 @@ export default class ControllSlСoffee {
         this.d.initSlider();
         this.registerEvents();
 
+        // отрисовка кнопок фильтра
         const data = new Map();
         this.d.data.forEach(item => data.set(item.packing, item['packing-desc'],));
         this.filter.rendering(data);

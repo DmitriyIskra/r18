@@ -8,7 +8,6 @@ export default class RedrawSlСoffee {
         this.slides = this.slider.querySelector('.sl-prod__slides');
         this.wrBigImg = this.slider.querySelector('.sl-prod__wr-big-img');
         this.bigImg = this.wrBigImg.querySelector('img');
-        this.bigImgDeco = this.wrBigImg.querySelector('.sl-prod__big-img_deco');
         this.bigDescriptions = this.slider.querySelectorAll('.sl-prod__big-desc-card');
 
         this.amountSlides = null;
@@ -96,9 +95,8 @@ export default class RedrawSlСoffee {
             item.style.transition = `opacity ${this.duration}s ${this.timeFunc}`
         })
         // Активируем актуальную карточку с большим описанием
-        // const el = [...this.bigDescriptions].find(item => item.dataset.id === this.activeSlide.dataset.id);
-        // el.classList.add('sl-prod__big-desc-card_active');
-        this.bigDescriptions[8].classList.add('sl-prod__big-desc-card_active')
+        this.activeBigDesc = [...this.bigDescriptions].find(item => item.dataset.id === this.activeSlide.dataset.id);
+        this.activeBigDesc.classList.add('sl-prod__big-desc-card_active');
     }
 
     moveNext() {
@@ -136,9 +134,10 @@ export default class RedrawSlСoffee {
                 this.slides.style.transform = ``;
             }, {once: true});
 
-            // меняем большую картинку и описание товара
+            // меняем большую картинку и описания товара
             this.changeBigImg(this.activeSlide);
             this.changeTextInfo(this.activeSlide, this.data);
+            this.changeBigDescription(this.activeSlide);
         }
 
         // Для мобилки
@@ -164,6 +163,7 @@ export default class RedrawSlСoffee {
 
             // Меняем описание
             this.changeTextInfo(this.activeSlide, this.data);
+            this.changeBigDescription(this.activeSlide);
         }
         
     }
@@ -195,6 +195,7 @@ export default class RedrawSlСoffee {
 
         // Меняем описание
         this.changeTextInfo(this.activeSlide, this.data);
+        this.changeBigDescription(this.activeSlide);
     }
 
     // SWIPE START
@@ -321,12 +322,13 @@ export default class RedrawSlСoffee {
 
         // Меняем описание
         this.changeTextInfo(this.activeSlide, this.data);
+        this.changeBigDescription(this.activeSlide);
     }
 
     // SWIPE END
 
 
-    // Замена элемнтов при выборе фильтра
+    // Замена элементов при выборе фильтра
     renderingWithFilter(pack) {
         // если клик по тому же фильтру или фильтр не активен
         if(this.activePack === pack || (!this.activePack && pack === 'reset')) return;
@@ -363,6 +365,7 @@ export default class RedrawSlСoffee {
 
         this.changeBigImg(ul.children[0]);
         this.changeTextInfo(ul.children[0], this.filter);
+        this.changeBigDescription(ul.children[0]);
 
         // для мобилки и десктопа разных подход к распределению ширин и элементов
         // ообязательный метод
@@ -397,32 +400,29 @@ export default class RedrawSlСoffee {
 
         // создаем новый элемент и создаем для него все необходимые параметры
         const img = this.createEl('img', ['sl-prod__big-img', `sl-prod__big-img_${pack}`]);
-        const deco = this.createEl('div', ['sl-prod__big-img_deco']);
+
         img.style = `
             position: absolute;
             left: 0;
             transition: opacity ${this.duration}s ${this.timeFunc};
         `;
-        deco.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
 
         img.src = newImage.src; // указываем src для нового элемента
-        this.wrBigImg.prepend(deco);
+
         this.wrBigImg.prepend(img);
 
         setTimeout(() => {
             this.wrBigImg.children[0].classList.add('sl-prod__big-img_visible');
-            this.wrBigImg.children[1].classList.add('sl-prod__big-img_deco_visible');
             this.bigImg.classList.remove('sl-prod__big-img_visible');
-            this.bigImgDeco.classList.remove('sl-prod__big-img_deco_visible');
         });
         
         this.bigImg.addEventListener('transitionend', () => {
             this.bigImg.remove();
-            this.bigImgDeco.remove();
+
             this.bigImg = this.wrBigImg.children[0];
-            this.bigImgDeco = this.wrBigImg.children[1];
+
             this.bigImg.style.position = '';
-            this.bigImg.style.left = '';
+            this.bigImg.style.left = '';    
         }, {once: true})
     }
 
@@ -476,11 +476,27 @@ export default class RedrawSlСoffee {
 
                     // Возвращаем сдантартное время смены текста (для клика)
                     this.durationChangeTextInfo = this.duration;
-
-                    this.block = false;
                 }, {once: true})
             }
         })
+    }
+
+    changeBigDescription(activeSlide) {
+        const id = activeSlide.dataset.id;
+
+        // Активируем карточку
+        const el = [...this.bigDescriptions].find(item => item.dataset.id === id);
+
+        el.classList.add('sl-prod__big-desc-card_active');
+        setTimeout(() => {
+            this.activeBigDesc.classList.remove('sl-prod__big-desc-card_active');
+        }, 5)
+
+        this.activeBigDesc.addEventListener('transitionend', () => {
+            this.activeBigDesc = el;
+
+            this.block = false;
+        }, {once: true})
     }
 
     fillTextInfo() {
@@ -525,11 +541,9 @@ export default class RedrawSlСoffee {
         const img = this.createEl('img', ['sl-prod__img-slide']);
         img.dataset.pack = packing;
         img.src = pathImg;
-        const imgDecoShadow = this.createEl('div', ['sl-prod__img-slide-deco']);
 
         
         divImg.append(img);
-        divImg.append(imgDecoShadow);
 
         const divTitle = this.createEl('div', ['sl-prod__wr-title-slide']);
         const h3 = this.createEl('h3', ['sl-prod__title-slide']);

@@ -11,6 +11,7 @@ export default class Filter {
         this.rendering(arr);
     }
 
+    // отрисовка кнопок фильтра, исходит из того какие упаковки есть
     rendering(data) {
         const arr = Array.from(data.entries());
 

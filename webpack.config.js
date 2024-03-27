@@ -88,11 +88,16 @@ module.exports = {
             filename: 'css/style.css',
         }),
         new CopyWebpackPlugin({
-          patterns: [ 
-            { from: 'src/img/content/pack_content2.png', to: 'img/content' },
-            { from: 'src/img/content/pack_content7.png', to: 'img/content' },
+          patterns: [  
+            { from: 'src/img/content/espresso-colombia-andino-content.png', to: 'img/content' },
+            { from: 'src/img/content/espresso-colombia-excelso-decaf-content.png', to: 'img/content' },
+            { from: 'src/img/content/espresso-guatemala-blue-ayarsa-content.png', to: 'img/content' },
+            { from: 'src/img/content/espresso-honduras-otilo-garsias-content.png', to: 'img/content' },
+            { from: 'src/img/content/espresso-kenya-anfdb-kibendo-content.png', to: 'img/content' },
+            { from: 'src/img/content/filter-burundi-muranga-content.png', to: 'img/content' },
+            { from: 'src/img/content/filter-columbia-punch-content.png', to: 'img/content' },
+            { from: 'src/img/content/filter-ethiopia-banko-gotete-content.png', to: 'img/content' },
             { from: 'src/img/content/drip-pack.png', to: 'img/content' },
-            { from: 'src/img/content/filter-pack.png', to: 'img/content' },
             
 
             { from: 'src/img/content/t-shirt-white-1-front_content.png', to: 'img/content' },
