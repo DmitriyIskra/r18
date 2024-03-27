@@ -15,7 +15,7 @@ export default class ControllSlСoffee {
 
         // отрисовка кнопок фильтра
         const data = new Map();
-        this.d.data.forEach(item => data.set(item.packing, item['packing-desc'],));
+        this.d.data.forEach(item => data.set(item.packing, item['filter-name'],));
         this.filter.rendering(data);
     }
 
