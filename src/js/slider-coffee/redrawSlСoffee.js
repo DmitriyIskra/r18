@@ -110,7 +110,6 @@ export default class RedrawSlСoffee {
             const clone = this.activeSlide.cloneNode(true);
             clone.classList.remove('sl-prod__slide_active');
             this.slides.append(clone);
-            this.setWidthSliderContainer(this.slides, this.wrSlides);
 
             // устанавливаем анимацию
             this.slides.style.transition = `transform ${this.duration}s ${this.timeFunc}`;
@@ -136,8 +135,6 @@ export default class RedrawSlСoffee {
 
             // меняем большую картинку и описания товара
             this.changeBigImg(this.activeSlide);
-            this.changeTextInfo(this.activeSlide, this.data);
-            this.changeBigDescription(this.activeSlide);
         }
 
         // Для мобилки
@@ -160,11 +157,11 @@ export default class RedrawSlСoffee {
                 this.slides.append(this.slides.children[0]);
                 this.slides.style.transform = ``;
             }, {once: true});
-
-            // Меняем описание
-            this.changeTextInfo(this.activeSlide, this.data);
-            this.changeBigDescription(this.activeSlide);
         }
+
+        // Меняем описание
+        this.changeBigDescription(this.activeSlide);
+        this.changeTextInfo(this.activeSlide, this.data);
         
     }
 
@@ -173,29 +170,70 @@ export default class RedrawSlСoffee {
         if(this.block) return;
         this.block = true;
 
-        // ставим последний слайд в начало
-        const lastElement = this.slides.children[this.slides.children.length - 1];
-        this.slides.prepend(lastElement);
-        const offset = this.slides.children[0].offsetWidth / innerWidth * 100;
+        // Для десктопа
+        if(innerWidth > 961) {
+            // клонируем и подставляем первый слайд назад
+            console.log(this.slides.children.length)
+            const el = this.slides.children[this.slides.children.length - 1];
+            const clone = el.cloneNode(true);
+            clone.classList.add('sl-prod__slide_active');
+            this.slides.prepend(clone);
 
-        this.slides.style.transform = `translateX(-${offset}vw)`;
+            // получаем ширину активного слайда vw и
+            // ставим блок со слайдами в нужное стартовое положение
+            const width = this.activeSlide.offsetWidth;
+            const offset = (width + this.getGap()) / innerWidth * 100;
+            this.slides.style.transform = `translateX(-${offset}vw)`;
 
-        // Меняем активный слайд
-        this.activeSlide = this.slides.children[0];
+            this.oldActiveSlide = this.activeSlide;
+            this.activeSlide = this.slides.children[0];
+            this.oldActiveSlide.classList.remove('sl-prod__slide_active');
 
-        setTimeout(() => {
-            // сдвигаем
-            this.slides.style.transition = `transform ${this.duration}s ${this.timeFunc}`;
-            this.slides.style.transform = ``;
-        }, 20)
-        
-        this.slides.addEventListener('transitionend', () => {
-            this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
-        }, {once: true});
+
+            setTimeout(() => {
+                // устанавливаем анимацию
+                this.slides.style.transition = `transform ${this.duration}s ${this.timeFunc}`;
+                // получаем ширину активного слайда vw и двигаем
+                this.slides.style.transform = ``; //translateX(-${offset}vw)
+            }, 5)
+
+            this.slides.addEventListener('transitionend', () => {
+                // убираем transform возвращаем opacity
+                this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
+                el.remove();
+                // this.slides.style.transform = ``;
+            }, {once: true});
+
+            // меняем большую картинку и описания товара
+            this.changeBigImg(this.activeSlide);
+        }
+
+        // Для мобилки
+        if(innerWidth <= 961) {
+            // ставим последний слайд в начало
+            const lastElement = this.slides.children[this.slides.children.length - 1];
+            this.slides.prepend(lastElement);
+            const offset = this.slides.children[0].offsetWidth / innerWidth * 100;
+
+            this.slides.style.transform = `translateX(-${offset}vw)`;
+
+            // Меняем активный слайд
+            this.activeSlide = this.slides.children[0];
+
+            setTimeout(() => {
+                // сдвигаем
+                this.slides.style.transition = `transform ${this.duration}s ${this.timeFunc}`;
+                this.slides.style.transform = ``;
+            }, 20)
+            
+            this.slides.addEventListener('transitionend', () => {
+                this.slides.style.transition = `opacity ${this.duration}s ${this.timeFunc}`;
+            }, {once: true});
+        }
 
         // Меняем описание
-        this.changeTextInfo(this.activeSlide, this.data);
         this.changeBigDescription(this.activeSlide);
+        this.changeTextInfo(this.activeSlide, this.data);
     }
 
     // SWIPE START
@@ -321,8 +359,8 @@ export default class RedrawSlСoffee {
         }
 
         // Меняем описание
-        this.changeTextInfo(this.activeSlide, this.data);
         this.changeBigDescription(this.activeSlide);
+        this.changeTextInfo(this.activeSlide, this.data);
     }
 
     // SWIPE END
@@ -476,6 +514,8 @@ export default class RedrawSlСoffee {
 
                     // Возвращаем сдантартное время смены текста (для клика)
                     this.durationChangeTextInfo = this.duration;
+
+                    this.block = false;
                 }, {once: true})
             }
         })
@@ -483,6 +523,8 @@ export default class RedrawSlСoffee {
 
     changeBigDescription(activeSlide) {
         const id = activeSlide.dataset.id;
+        
+        if(id === this.activeBigDesc.dataset.id) return;
 
         // Активируем карточку
         const el = [...this.bigDescriptions].find(item => item.dataset.id === id);
@@ -491,11 +533,9 @@ export default class RedrawSlСoffee {
         setTimeout(() => {
             this.activeBigDesc.classList.remove('sl-prod__big-desc-card_active');
         }, 5)
-
+        
         this.activeBigDesc.addEventListener('transitionend', () => {
             this.activeBigDesc = el;
-
-            this.block = false;
         }, {once: true})
     }
 

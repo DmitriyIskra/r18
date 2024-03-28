@@ -97,7 +97,15 @@ module.exports = {
             { from: 'src/img/content/filter-burundi-muranga-content.png', to: 'img/content' },
             { from: 'src/img/content/filter-columbia-punch-content.png', to: 'img/content' },
             { from: 'src/img/content/filter-ethiopia-banko-gotete-content.png', to: 'img/content' },
-            { from: 'src/img/content/drip-pack.png', to: 'img/content' },
+            { from: 'src/img/content/drip-brasil-cocatrel-content.png', to: 'img/content' },
+            { from: 'src/img/content/drip-burundi-muranga-content.png', to: 'img/content' },
+            { from: 'src/img/content/drip-colombia-excelso-decaf-content.png', to: 'img/content' },
+            { from: 'src/img/content/drip-colombia-punch-content.png', to: 'img/content' },
+            { from: 'src/img/content/drip-ethiopia-banko-gotete-content.png', to: 'img/content' },
+            { from: 'src/img/content/drip-guatemala-blue-ayarza-content.png', to: 'img/content' },
+            { from: 'src/img/content/drip-honduras-otilo-garsias-content.png', to: 'img/content' },
+            { from: 'src/img/content/drip-kenya-anfdb-kibendo-content.png', to: 'img/content' },
+            { from: 'src/img/content/drip-peru-cajamarca-content.png', to: 'img/content' },
             
 
             { from: 'src/img/content/t-shirt-white-1-front_content.png', to: 'img/content' },

@@ -373,13 +373,17 @@
     position: absolute;
     top: 50%;
 
+    display: block;
+
     transform: translate(0, -50%);
 }
 
 .sl-prod .slider__arrow-next {
-    right: 2%;
+    right: -0.5%;
+}
 
-    display: block;
+.sl-prod .slider__arrow-prev {
+    right: 5%;
 }
 
 
@@ -407,7 +411,8 @@
      52px 116px 51px 0px rgba(0, 0, 0, 0.02),
       29px 65px 43px 0px rgba(0, 0, 0, 0.08),
        13px 29px 32px 0px rgba(0, 0, 0, 0.13),
-        3px 7px 17px 0px rgba(0, 0, 0, 0.15);
+        3px 7px 17px 0px rgba(0, 0, 0, 0.15),
+         -2px -2px 5px rgba(0,0,0,0.2);
 
     opacity: 0;
     z-index: 0;
@@ -442,8 +447,10 @@
     height: 100%;
     width: 100%;
 
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
+
+    filter: drop-shadow(6px 9px 14px rgba(0, 0, 0, 0.65))
 }
 
 /* карточки не drip */
@@ -517,6 +524,7 @@
     font-family: 'SofiaSans';
     font-size: 1.25vw;
     font-weight: 400;
+    text-transform: uppercase;
 
     color: #fff;
 }
@@ -832,8 +840,6 @@
 @media( max-width: 961px ) {
     .sl-prod .slider__arrow-prev {
         left: 2%;
-
-        display: block;
     }
 
     .sl-prod .slider__arrow {
