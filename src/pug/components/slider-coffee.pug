@@ -1,0 +1,61 @@
+include ../mixines/slider-coffee-big-description
+include ../variable/slider-coffee-big-description
+
+.sl-prod
+    .sl-prod__wrapper-images
+        .sl-prod__wr-big-img-filter
+            ul.sl-prod__filter-list
+                li.sl-prod__filter-item.sl-prod__filter-reset
+
+            .sl-prod__wr-big-img
+                img.sl-prod__big-img.sl-prod__big-img_visible(src="#", alt="Кофе R18")
+        .sl-prod__wr-descr-preview
+            .sl-prod__text-about.sl-prod__text-about_visible
+                header.sl-prod__header
+                    h2.sl-prod__title(data-type="title")
+                .sl-prod__description
+                    .sl-prod__taste
+                        p
+                            span.sl-prod__taste-title вкусовой профиль:&nbsp;
+                            span.sl-prod__wr-taste-text
+                                span.sl-prod__taste-text(data-type="taste")
+
+                .sl-prod__line
+
+                ul.sl-prod__character-list
+                    li.sl-prod__character-item
+                        .sl-prod__prop регион
+                        .sl-prod__val(data-type="region")
+                    li.sl-prod__character-item
+                        .sl-prod__prop высота
+                        .sl-prod__val(data-type="height")
+                    li.sl-prod__character-item
+                        .sl-prod__prop сорт
+                        .sl-prod__val(data-type="sort")
+                    li.sl-prod__character-item
+                        .sl-prod__prop обработка
+                        .sl-prod__val(data-type="processing")
+                    li.sl-prod__character-item 
+                        .sl-prod__prop q
+                        .sl-prod__val(data-type="q")
+                    li.sl-prod__character-item 
+                        .sl-prod__prop обжарка
+                        .sl-prod__val(data-type="roasting")
+                    li.sl-prod__character-item 
+                        .sl-prod__prop урожай
+                        .sl-prod__val(data-type="harvest")
+                    li.sl-prod__character-item
+                        .sl-prod__prop вес
+                        .sl-prod__val(data-type="weight")
+
+            .sl-prod__wr-prev
+                .sl-prod__wr-slides
+                    ul.sl-prod__slides
+                include arrow-next
+                include arrow-prev
+
+    +slCoffeBigDescr(dataCoffee)
+    
+            
+
+                    

@@ -1,0 +1,179 @@
+const path = require('path')
+const webpack = require('webpack');
+const miniCss = require('mini-css-extract-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
+
+module.exports = {
+    devServer: {
+        port: 8800,
+    },
+    devtool: 'source-map',
+    output: {
+        path: __dirname + '/dist',
+        filename: 'js/main.js',
+        assetModuleFilename: (data) => {
+            return `${/^.*content\.(png|jpg|jpeg|gif|webp)$/i.test(data.filename) ? (
+              `img/content/[name][ext]`
+            ) : 
+            /\.(mov|mp4|webm)$/i.test(data.filename) ? (
+              `video/[name][ext]`
+            ) : 
+            /^.*icon\.(png|jpg|jpeg|gif|webp)$/i.test(data.filename) ? (
+              `img/icon/[name][ext]`
+            ) : 
+            /\.(svg)$/i.test(data.filename) ? (
+              `svg/[name][ext]`
+            ) : 
+            (
+              `img/[name][ext]`
+            ) }`
+        }, // [name] или [hash], путь куда сохранять изображения
+        clean: true, // очищает папку dist
+    },
+    module: {
+        rules: [
+            {
+              test: /\.(png|jpg|jpeg|gif|svg|mov|mpeg4|webp|mp4|webm)$/i,
+              type: 'asset/resource',
+            }, {
+                test: /\.css$/, // /\.(s*)css$/
+                use: [
+                    miniCss.loader, 'css-loader', // sass-loader,
+                ],
+            }, {
+                test: /\.html$/,
+                use: [
+                  {
+                    loader: 'html-loader',
+                    options: {
+                      minimize: false,  // отключаем минификацию html
+                    },
+                  },
+                ],
+            }, {
+              test: /\.(woff|woff2|eot|ttf|otf)$/i,
+              type: 'asset/resource',
+              generator: {
+                filename: 'fonts/[name][ext]',  // указываем путь сборки
+              }
+            }, {
+                test: /\.pug$/,
+                // loader: 'pug-loader',
+                exclude: /(node_modules|bower_components)/,
+                use:[
+                  {
+                    loader: 'pug-loader', // чтобы нормально подтягивало картинки и собирало
+                    options: {
+                      exports: false,
+                      pretty : false,  // не минифицировать
+                    }
+                  }
+                  
+                ]
+            },
+        ]
+    },
+    plugins: [
+        new HtmlWebPackPlugin({
+            // title: '....' // здесь можно указать title конкретной страницы
+            template: './src/pug/index.pug',
+            filename: './index.html',   // куда компилировать
+            // minify: {
+            //   html: false // отключаем минификацию html, еще есть версия minify: false
+            // },
+            scriptLoading: 'blocking', // defer | module. можно также указать inject: 'body' скрипт будет в конце body но с defer
+        }),
+        new HtmlWebPackPlugin({
+          // title: '....' // здесь можно указать title конкретной страницы
+          template: './src/pug/about-us.pug',
+          filename: './about-us.html',   // куда компилировать
+          // minify: {
+          //   html: false // отключаем минификацию html, еще есть версия minify: false
+          // },
+          scriptLoading: 'blocking', // defer | module. можно также указать inject: 'body' скрипт будет в конце body но с defer
+        }),
+        new HtmlWebPackPlugin({
+          // title: '....' // здесь можно указать title конкретной страницы
+          template: './src/pug/service.pug',
+          filename: './service.html',   // куда компилировать
+          // minify: {
+          //   html: false // отключаем минификацию html, еще есть версия minify: false
+          // },
+          scriptLoading: 'blocking', // defer | module. можно также указать inject: 'body' скрипт будет в конце body но с defer
+        }),
+        new miniCss({
+            filename: 'css/style.css',
+        }),
+        new CopyWebpackPlugin({
+          patterns: [  
+            { from: 'src/img/content/espresso-colombia-andino-content.webp', to: 'img/content' },
+            { from: 'src/img/content/espresso-colombia-excelso-decaf-content.webp', to: 'img/content' },
+            { from: 'src/img/content/espresso-guatemala-blue-ayarsa-content.webp', to: 'img/content' },
+            { from: 'src/img/content/espresso-honduras-otilo-garsias-content.webp', to: 'img/content' },
+            { from: 'src/img/content/espresso-kenya-anfdb-kibendo-content.webp', to: 'img/content' },
+            { from: 'src/img/content/filter-burundi-muranga-content.webp', to: 'img/content' },
+            { from: 'src/img/content/filter-columbia-punch-content.webp', to: 'img/content' },
+            { from: 'src/img/content/filter-ethiopia-banko-gotete-content.webp', to: 'img/content' },
+            { from: 'src/img/content/drip-brasil-cocatrel-content.webp', to: 'img/content' },
+            { from: 'src/img/content/drip-burundi-muranga-content.webp', to: 'img/content' },
+            { from: 'src/img/content/drip-colombia-excelso-decaf-content.webp', to: 'img/content' },
+            { from: 'src/img/content/drip-colombia-punch-content.webp', to: 'img/content' },
+            { from: 'src/img/content/drip-ethiopia-banko-gotete-content.webp', to: 'img/content' },
+            { from: 'src/img/content/drip-guatemala-blue-ayarza-content.webp', to: 'img/content' },
+            { from: 'src/img/content/drip-honduras-otilo-garsias-content.webp', to: 'img/content' },
+            { from: 'src/img/content/drip-kenya-anfdb-kibendo-content.webp', to: 'img/content' },
+            { from: 'src/img/content/drip-peru-cajamarca-content.webp', to: 'img/content' },
+            
+
+            { from: 'src/img/content/merch-t-shirt-white-from-center-front-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-t-shirt-white-from-center-rear-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-t-shirt-black-from-center-front-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-t-shirt-black-from-center-rear-content.webp', to: 'img/content' },
+
+            { from: 'src/img/content/merch-t-shirt-white-black-inside-front-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-t-shirt-white-black-inside-rear-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-t-shirt-black-black-inside-front-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-t-shirt-black-black-inside-rear-content.webp', to: 'img/content' },
+
+            { from: 'src/img/content/merch-t-shirt-white-only-arabica-front-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-t-shirt-white-only-arabica-rear-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-t-shirt-black-only-arabica-front-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-t-shirt-black-only-arabica-rear-content.webp', to: 'img/content' },
+
+            { from: 'src/img/content/merch-shopper-black-front-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-shopper-black-side-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-shopper-black-rear-content.webp', to: 'img/content' },
+
+            { from: 'src/img/content/merch-hoodies-black-front-content.webp', to: 'img/content' },
+            { from: 'src/img/content/merch-hoodies-black-rear-content.webp', to: 'img/content' },
+
+
+            { from: 'src/img/content/accessories-neodisher-content.webp', to: 'img/content' },
+            { from: 'src/img/content/accessories-neodisher-special-content.webp', to: 'img/content' },
+            { from: 'src/img/content/accessories-nok-box-motta-105-content.webp', to: 'img/content' },
+            { from: 'src/img/content/accessories-nok-box-motta-content.webp', to: 'img/content' },
+            { from: 'src/img/content/accessories-pitcher-ascaso-content.webp', to: 'img/content' },
+            { from: 'src/img/content/accessories-pitcher-motta-content.webp', to: 'img/content' },
+            { from: 'src/img/content/accessories-scales-content.webp', to: 'img/content' },
+            { from: 'src/img/content/accessories-temper-content.webp', to: 'img/content' },
+            { from: 'src/img/content/accessories-thermometer-motta-content.webp', to: 'img/content' },
+
+            { from: 'src/files/conditions-ctm.pdf', to: 'files/conditions-ctm.pdf' },
+          ],
+        }),
+        // new ImageminWebpWebpackPlugin({
+        //   config: [{
+        //     test: /.(jpe?g|png)/,
+        //     options: {
+        //       quality: 90,
+        //     },
+        //   }],
+        //   overrideExtension: true,
+        //   detailedLogs: false,
+        //   silent: false,
+        //   strict: true,
+        // }),
+    ]
+}

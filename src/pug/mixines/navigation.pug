@@ -1,0 +1,11 @@
+mixin nav(obj)
+    nav.nav 
+        ul.nav__list 
+            each item in obj
+                li.nav__item(data-item=item.title)
+                    if item.link
+                        a.nav__item-link(href=item.link title=item.title) #{item.name}
+                    else
+                        | #{item.name}
+        .nav__sub-menu.nav__sub-menu-coffee
+            ul.nav__sub-menu-coffee-list
