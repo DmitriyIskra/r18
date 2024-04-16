@@ -3,6 +3,8 @@ src/video/roasting-coffee-1.MOV
 src/video/roasting-coffee-2.MOV
 src/video/roasting-coffee-3.MOV
 
+src/video/
+
 # настройки PHPStorm и VC
 /.idea/
 /.vscode/
