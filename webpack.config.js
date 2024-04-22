@@ -161,6 +161,10 @@ module.exports = {
             { from: 'src/img/content/accessories-thermometer-motta-content.webp', to: 'img/content' },
 
             { from: 'src/files/conditions-ctm.pdf', to: 'files/conditions-ctm.pdf' },
+
+            { from: 'src/img/favicon/apple-touch-icon.png', to: 'img/favicon' },
+            { from: 'src/img/favicon/32.png', to: 'img/favicon' },
+            { from: 'src/img/favicon/16.png', to: 'img/favicon' },
           ],
         }),
         // new ImageminWebpWebpackPlugin({
