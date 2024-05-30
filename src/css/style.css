@@ -52,13 +52,19 @@
     width: 2.60vw;
 
     border-radius: 50%;
+    border: 2px solid #FFF;
 
     cursor: pointer;
+}
+
+.header__user-buttons-item:hover {
+    border: 2px solid #F1551C;
 }
 
 .header__user-buttons-item svg {
     display: block;
 }
+
 
 /* HEADER END */
 
