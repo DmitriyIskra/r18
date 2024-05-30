@@ -34,6 +34,10 @@ import buttonToTop from "./button-to-top/button-to-top";
 // Заказы временно через контакты
 import temporaryOrders from "./temporary-orders/temporary-orders";
 
+// DELIVERY
+import ControllDelivery from "./delivery/ControllDelivery";
+import RedrawDelivery from "./delivery/RedrawDelivery";
+
 window.addEventListener('load', () => {
     
     // SLIDER HEAD
@@ -116,5 +120,12 @@ window.addEventListener('load', () => {
         const redrawService = new RedrawService(service);
         const controlService = new ControlService(redrawService);
         controlService.init();
+    }
+
+    const delivery = document.querySelector('.delivery');
+    if(delivery && innerWidth <= 1200) {
+        const redraw = new RedrawDelivery(delivery, 'delivery__controll-item_active', 'delivery__direction_active');
+        const controll = new ControllDelivery(redraw);
+        controll.init();
     }
 })

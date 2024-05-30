@@ -14,3 +14,4 @@ import './css/mixin-navigation-mobile.css';
 import './css/layout.css';
 import './css/about-us.css';
 import './css/service.css';
+import './css/delivery.css';
