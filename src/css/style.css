@@ -51,6 +51,8 @@
 .header__user-buttons-item {
     width: 2.60vw;
 
+    border-radius: 50%;
+
     cursor: pointer;
 }
 
