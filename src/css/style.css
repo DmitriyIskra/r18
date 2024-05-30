@@ -38,6 +38,26 @@
     align-items: center;
 }
 
+.header__wr-buttons {
+    display: flex;
+    gap: 1.56vw;
+}
+
+.header__user-buttons-list {
+    display: flex;
+    gap: 1.56vw;
+}
+
+.header__user-buttons-item {
+    width: 2.60vw;
+
+    cursor: pointer;
+}
+
+.header__user-buttons-item svg {
+    display: block;
+}
+
 /* HEADER END */
 
 /* ////////////////  MAIN   ///////////////// */

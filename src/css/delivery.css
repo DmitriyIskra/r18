@@ -161,6 +161,7 @@ p.delivery__documents {
     }
 
     .delivery__controll-item_active {
+        color: #fff;
         background-color: #F1551C;
     }
 }
