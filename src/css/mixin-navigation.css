@@ -27,6 +27,10 @@ ul.nav__list {
     cursor: pointer;
 }
 
+.nav__item-account {
+    width: 2.60vw;
+}
+
 .nav__item:hover {
     border-color: #F1551C;
 }

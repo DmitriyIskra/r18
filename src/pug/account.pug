@@ -1,0 +1,22 @@
+extends layout/layout
+
+block  variable
+    - let pageName = 'account'; 
+
+block content
+    main.main.main-account 
+        .account 
+            .account__controll
+                ul.account__tabs-list 
+                    li.account__tabs-item Профиль
+                    li.account__tabs-item История заказов
+                ul.account__links-list 
+                    li.account__links-item Профиль
+                    li.account__links-item История заказов
+            
+            .account__content 
+                .profile 
+                    .profile__wr-img 
+                        img.profile__img(src='#' alt="фото пользователя")
+
+            

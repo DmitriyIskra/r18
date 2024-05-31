@@ -25,11 +25,11 @@ export default class RedrawNav {
 
         // получаем часть пути страницы на которой находимся
         const page = window.location.pathname.replace(/(.*)(\/.*\.html)$/, '$2');
-
+        
         // подсвечиваем в навигации пункт страницы на которой находимся
         this.itemsNav.forEach(item => {
             if(item.children[0].href.includes(page) && !isIndex) {
-                item.classList.add('nav__item_active-page')
+                item.classList.add('nav__item_active-page');
             }
         });
 

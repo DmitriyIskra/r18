@@ -3,15 +3,11 @@
 }
 
 .nav-mob__control-list {
-    position: absolute;
-    top: 50%;
-    left: 5.33vw;
+    position: relative;
     
     display: none;
     width: 9.33vw;
     height: 9.33vw;
-
-    transform: translateY(-50%);
 }
 
 .nav-mob__control-item {

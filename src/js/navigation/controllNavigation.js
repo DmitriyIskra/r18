@@ -19,14 +19,12 @@ export default class ControllNav {
         e.preventDefault();
         // проверка находимся на главной или нет
         const isIndexPage = /.*\/{1}(index.html)?$/.test(window.location.pathname);
-        console.log('isIndexPage', isIndexPage)
+
         if(e.target.closest('.nav__item')) {
             const el = e.target.closest('.nav__item');
             const flag = el.dataset.item;
             const path = e.target.closest('a')?.pathname;
             const isIndexPath = /.*\/{1}(index.html)?$/.test(path);
-            console.log('path', path)
-            console.log('isIndexPath', isIndexPath)
 
             // находимся не на главной, клик по элементу 
             // для прокрутки, и нет данных для подменю значит нижняя навигация
