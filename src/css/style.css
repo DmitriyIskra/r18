@@ -51,6 +51,8 @@
     border-radius: 50%;
 
     cursor: pointer;
+
+    display: none;
 }
 
 .header__basket:hover {
@@ -71,13 +73,12 @@
 
 /* products start */
 .coffee {
-    position: relative;
-
     display: flex;
     padding-top: 2.81vw;
     padding-bottom: 2.97vw;
 
-    
+    background: no-repeat linear-gradient(180deg, rgba(114, 107, 104, 1) 0%, rgba(114, 107, 104, 1) 100%);
+    background-size: 41.5% 100%;
 
     flex-direction: column;
     align-items: center;
@@ -93,6 +94,35 @@
     z-index: 5;
 }
 
+.coffee__wr-button-price {
+    margin-top: 3.23vw;
+    margin-left: 12.24vw;
+}
+
+.coffee__button-price {
+    display: flex;
+
+    width: 17.40vw;
+    height: 2.60vw;
+
+    
+    font-family: "SofiaSans";
+    font-size: 1.04vw;
+    font-weight: 400;
+    
+    color: #fff;
+    border-radius: 1.56vw;
+    background: #F1551C;
+    box-shadow: 31px 18px 10px 0px rgba(0, 0, 0, 0.00),
+     20px 12px 9px 0px rgba(0, 0, 0, 0.02),
+      11px 7px 8px 0px rgba(0, 0, 0, 0.08),
+       5px 3px 6px 0px rgba(0, 0, 0, 0.13),
+        1px 1px 3px 0px rgba(0, 0, 0, 0.15);
+
+    align-items: center;
+    justify-content: center;
+}
+
 .coffee__wr-slider-bottom {
     position: relative;
 
@@ -100,19 +130,6 @@
     width: 85%;
 
     z-index: 5;
-}
-
-.coffee__side-deco {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-
-    width: 41.5%;
-
-    background-color: #6B6462;
-
-    z-index: 0;
 }
 
 /* products end */
@@ -143,7 +160,7 @@
     font-weight: 700;
 
     color: #F1551C;
-}
+} 
 
 .orders-are-temporary a {
     text-decoration: underline;
@@ -390,18 +407,53 @@
     }
 }
 
+@media( max-width: 1200px ) {
+    .header__basket {
+        width: 9.87vw;
+        height: 9.87vw;
+
+        display: block;
+        visibility: hidden;
+    }
+}
+
 /* ------------------------------------- */
 
 /* COFFEE */
 @media( max-width: 1200px ) {
     .coffee {
         padding-top: 0;
+        background-size: 0;
+        padding-bottom: 9.97vw;
     }
 }
 
 @media( max-width: 1200px ) {
     .coffee__wr-slider-top {
         width: 100%;
+    }
+}
+
+@media( max-width: 1200px ) {
+    .coffee__wr-button-price {
+        margin-top: 7.20vw;
+        margin-left: 0;
+    }
+}
+
+@media( max-width: 1200px ) {
+    .coffee__button-price {
+        width: 54.40vw;
+        height: 10.67vw;
+
+        font-size: 4.27vw;
+
+        border-radius: 8vw;
+        box-shadow: 31px 18px 10px 0px rgba(0, 0, 0, 0.00),
+         20px 12px 9px 0px rgba(0, 0, 0, 0.02),
+          11px 7px 8px 0px rgba(0, 0, 0, 0.08),
+           5px 3px 6px 0px rgba(0, 0, 0, 0.13),
+            1px 1px 3px 0px rgba(0, 0, 0, 0.15);
     }
 }
 
