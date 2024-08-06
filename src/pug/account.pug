@@ -8,15 +8,50 @@ block content
         .account 
             .account__controll
                 ul.account__tabs-list 
-                    li.account__tabs-item Профиль
-                    li.account__tabs-item История заказов
-                ul.account__links-list 
-                    li.account__links-item Профиль
-                    li.account__links-item История заказов
+                    li.account__tabs-item.account__tabs-profile.account__tabs-item_active Профиль
+                    li.account__tabs-item.account__tabs-history История заказов
+                    li.account__tabs-item.account__tabs-loyalty Система лояльности
+                    li.account__tabs-item.account__tabs-delivery Доставка
             
             .account__content 
                 .profile 
                     .profile__wr-img 
-                        img.profile__img(src='#' alt="фото пользователя")
+                        img.profile__img(src=require('../img/icons/profile-default-photo.webp') alt="фото пользователя")
+
+                    form.profile__user-contacts-form
+                        ul.profile__user-contacts-list 
+                            li.profile__user-contacts-item
+                                input(type="text" name="second_name" value="Фамилия" disabled)
+                            li.profile__user-contacts-item
+                                input(type="text" name="name" value="Имя" disabled)
+                            li.profile__user-contacts-item
+                                input(type="text" name="patronymic" value="Отчество" disabled)
+                            li.profile__user-contacts-item
+                                input(type="text" name="phone" value="Телефон" disabled)
+                            li.profile__user-contacts-item
+                                input(type="text" name="email" value="Электронная почта" disabled)
+
+                        .profile__wr-gender
+                            span.profile__gender-title Пол
+                            span.profile__gender-wr-radio 
+                                label.profile__gender-label
+                                    input.profile__gender-input(type="radio" name="gender" value="man" checked disabled) 
+                                    span.profile__gender-mark М
+                                label.profile__gender-label
+                                    input.profile__gender-input(type="radio" name="gender" value="woman" disabled) 
+                                    span.profile__gender-mark Ж
+
+                        .profile__wr-born-date 
+                            label.profile__born-date-label
+                                | Дата рождения
+                                input.profile__born-date-input(type="text" name="born-date" value="__/__/____" disabled)       
+
+                        .profile__wr-buttons 
+                            //- .profile__buttons-group-edit_active
+                            .profile__buttons-group.profile__buttons-group-edit.profile__buttons-group-edit_active
+                                button.profile__button.profile__button_edit(type="button") Редактировать
+                                button.profile__button.profile__button_delete(type="button") Удалить
+                            .profile__buttons-group.profile__buttons-group-save
+                                button.profile__button.profile__button_save(type="button") Сохранить
 
             
