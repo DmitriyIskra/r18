@@ -244,7 +244,7 @@
 
 /* ------- START HISTORY ------ */
 
-.history {
+.account__history {
     width: 76.83%;
     margin: 0 auto;
 }
@@ -307,8 +307,8 @@
     text-align: end;
 }
 
-.histiry__wr-details {
-    margin-top: 1.67vw;
+.history__wr-details {
+    margin-top: 0.42vw;
 }
 
 .history__details-title {
@@ -433,3 +433,261 @@
 }
 
 /* ------- END DELIVERY ------ */
+
+
+
+@media(max-width: 1200px) {
+    .account {
+        width: auto;
+        padding-top: 0;
+    }
+}
+
+@media(max-width: 1200px) {
+    .wrapper-account {
+        background-position:
+         right 0.35vw top 77vw,
+          left 0.35vw top 77vw
+        ;
+    }
+}
+
+@media(max-width: 1200px) {
+    .account__tabs-list {
+        display: block;
+        width: auto;
+
+        background-color: #3F3937;
+    }
+}
+
+@media(max-width: 1200px) {
+    .account__tabs-item {
+        display: flex;
+        height: 13.33vw;
+        padding: 0;
+
+        font-size: 5.33vw;
+        font-weight: 300;
+
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #fff;
+        color: rgba(217, 217, 217, 0.90);
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .account__tabs-item:hover {
+        border-color: none;
+    }
+
+    .account__tabs-item_active {
+        color: #fff;
+    }
+}
+
+@media(max-width: 1200px) {
+    .account__content-list {
+        width: 89.34%;
+        margin: 14.13vw auto 0;
+        padding-top: 11.73vw;
+        padding-bottom: 16.53vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .profile__wr-img {
+        width: 26.67vw;
+        height: 26.67vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .profile__user-contacts-form {
+        width: 91.65%;
+        margin: 4.27vw auto 0;
+    }
+}
+
+@media(max-width: 1200px) {
+    .profile__user-contacts-item input {
+        padding-top: 3.47vw;
+        padding-bottom: 3.47vw;
+        padding-left: 4vw;
+
+        font-size: 2.93vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+    .account__history {
+        width: 96.13%;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__list {
+        gap: 4vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__item {
+        padding: 3.20vw 2.93vw 8.80vw 2.67vw;
+        grid-template-columns: 56% 30.4%;
+
+        justify-content: space-between;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__delivery, 
+    .history__delivery-cost, 
+    .history__order-number, 
+    .history__order-state {
+        font-size: 3.73vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__delivery-address, 
+    .history__delivery-date {
+        font-size: 3.20vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__delivery-address, 
+    .history__delivery-date {
+        margin-top: 3.20vw;
+    } 
+}
+
+@media(max-width: 1200px) {
+    .history__delivery-date {
+        text-align: end;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__order-number, 
+    .history__order-state {
+        margin-top: 9.60vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__wr-details {
+        margin-top: 0;
+
+        grid-column: 1 / 3;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__details-title {
+        gap: 3.20vw;
+    }
+
+    .history__details-title::after {
+        width: 5.33vw;
+        height: 5.33vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__details-list {
+        margin-top: 8.27vw;
+        gap: 3.47vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__details-title p {
+        font-size: 2.93vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__details-wr-img {
+        width: 9.07vw;
+        height: 10.13vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .history__details-description, 
+    .history__details-amount {
+        font-size: 3.20vw;
+    }
+
+    .history__details-description {
+        width: 41.5%;
+        margin-left: 2.40vw;
+    }
+
+    .history__details-amount {
+        margin-left: 7.73vw;
+    }
+}
+
+
+
