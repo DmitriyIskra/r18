@@ -1,3 +1,22 @@
+.wrapper-account {
+    background:
+    no-repeat url(../img/roasteria-side.webp),
+     no-repeat url(../img/roasteria-side.webp),
+       #483D41
+    ;
+    background-position:
+     right 0.35vw top 8vw, 
+      left 0.35vw top 8vw 
+    ;
+    background-size: 10.9vw auto, 10.9vw auto;
+}
+
+.main-account {
+    min-height: 100vh;
+    padding-bottom: 11.28vw;
+    background: none;
+}
+
 .account {
     width: 76.4%;
     margin: 0 auto;
@@ -12,20 +31,21 @@
 }
 
 .account__tabs-item {
-    padding-top: 0.57vw;
-    padding-right: 1.56vw;
-    padding-bottom: 0.57vw;
-    padding-left: 1.56vw;
+    padding: 0.57vw 1.56vw;
 
     font-family: "SofiaSans";
     font-size: 1.25vw;
     font-weight: 400;
 
     border-radius: 1.56vw;
-    border: 0.10vw solid #FFF;
+    border: 0.15vw solid #FFF;
     color: #FFF;
 
     cursor: pointer;
+}
+
+.account__tabs-item:hover {
+    border-color: #f1551c;
 }
 
 .account__tabs-item_active {
@@ -35,13 +55,23 @@
     pointer-events: none;
 }
 
-.account__content {
+.account__content-list {
     margin-top: 2.19vw;
     padding-top: 3.65vw;
     padding-bottom: 6.82vw;
 
     background: #726B68;
 }
+
+.account__content-item {
+    display: none;
+}
+
+.account__content-item_active {
+    display: block;
+}
+
+/* ------- START PROFILE ------ */
 
 .profile__wr-img {
     width: 6.51vw;
@@ -138,3 +168,268 @@
 .profile__gender-input:checked + .profile__gender-mark:before {
     background: #F1551C;
 }
+
+.profile__wr-born-date {
+    margin-top: 1.15vw;
+    padding-left: 0.78vw;
+}
+
+.profile__born-date-label {
+    display: flex;
+    gap: 1.15vw;
+
+    font-family: "SofiaSans";
+
+    color: #fff;
+
+    align-items: center;
+}
+
+.profile__born-date-mark {
+    font-size: 0.57vw;
+    font-weight: 700;
+}
+
+.profile__born-date-input {
+    width: 45.55%;
+    padding-left: 0.83vw;
+    padding-top: 1.04vw;
+    padding-bottom: 1.04vw;
+
+    font-size: 0.83vw;
+    font-weight: 400;
+
+    background: no-repeat url('../img/icons/profile-icon-born-date.webp'), transparent;
+    background-size: auto 66%;
+    background-position: center right 3%;
+    border: 1px solid #fff;
+    border-radius: 0.3vw;
+    outline: none;
+    color: #fff;
+}
+
+.profile__wr-buttons {
+    margin-top: 8.44vw;
+}
+
+.profile__buttons-group {
+    display: none;
+    margin: 0 auto;
+    gap: 1.56vw;
+
+    justify-content: center;
+}
+
+.profile__buttons-group-edit_active {
+    display: flex;
+}
+
+.profile__button {
+    padding: 0.57vw 1.56vw;
+ 
+    font-family: "SofiaSans";
+    font-size: 1.25vw;
+    font-weight: 400;
+
+    color: #FFF;
+
+    background: none;
+    border-radius: 1.56vw;
+    border: 0.10vw solid #FFF;
+
+    cursor: pointer;
+}
+
+/* ------- END PROFILE ------ */
+
+/* ------- START HISTORY ------ */
+
+.history {
+    width: 76.83%;
+    margin: 0 auto;
+}
+
+.history__list {
+    display: flex;
+    gap: 0.78vw;
+
+    flex-direction: column;
+}
+
+.history__item {
+    display: grid;
+    padding: 0.63vw 0.99vw 2.60vw 0.83vw;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, min-content);
+
+    border: 1px solid #FFF;
+}
+
+.history__delivery,
+.history__delivery-cost,
+.history__order-number,
+.history__order-state {
+    font-family: "SofiaSans";
+    font-size: 1.04vw;
+    font-weight: 700;
+
+    color: #FFF;
+}
+
+.history__delivery-cost,
+.history__order-state {
+    color: #F37548;
+
+    justify-self: end;
+}
+
+.history__delivery-address,
+.history__delivery-date {
+    margin-top: 0.99vw;
+
+    font-family: "SofiaSans";
+    font-size: 1.04vw;
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.history__delivery-date {
+    justify-self: end;
+}
+
+.history__order-number,
+.history__order-state {
+    margin-top: 2.29vw;
+}
+
+.history__order-state {
+    text-align: end;
+}
+
+.histiry__wr-details {
+    margin-top: 1.67vw;
+}
+
+.history__details-title {
+    display: flex;
+    width: fit-content;
+    gap: 0.78vw;
+
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.history__details-title::after {
+    content: "";
+
+    display: inline-block;
+    width: 1.56vw;
+    height: 1.56vw;
+
+    background: no-repeat url('../img/icons/arrow-top-bottom-icon.webp');
+    background-size: 100% auto;
+    background-position: center;
+}
+
+.history__details-title p {
+    font-family: "SofiaSans";
+    font-size: 0.83vw;
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.history__details-list {
+    display: flex;
+    margin-top: 0.57vw;
+    gap: 1.09vw;
+
+    flex-direction: column;
+}
+
+.history__details-item {
+    display: flex;
+
+    align-items: center;
+}
+
+.history__details-wr-img {
+    height: 3.23vw;
+    width: 2.86vw;
+}
+
+.history__details-wr-img img {
+    height: 100%;
+    width: 100%;
+
+    object-fit: contain;
+    object-position: center;
+}
+
+.history__details-description,
+.history__details-amount {
+    font-family: "SofiaSans";
+    font-size: 0.73vw;
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.history__details-description {
+    margin-left: 0.52vw;
+}
+
+.history__details-amount {
+    margin-left: 1.46vw;
+}
+
+/* ------ END HISTORY ------ */
+
+/* ------- START LOYALTY ------ */
+
+.account__tabs-loyalty {
+    position: relative;
+
+    pointer-events: none;
+}
+
+.account__tabs-loyalty::before {
+    content: "скоро";
+
+    position: absolute;
+    left: 50%;
+    top: 0;
+
+    font-family: "SofiaSans";
+    font-size: 1.25vw;
+    font-weight: 400;
+
+    translate: -50% -107%;
+
+    color: #F1551C;
+}
+
+
+
+/* ------- END LOYALTY ------ */
+
+/* ------- START DELIVERY ------ */
+
+.account__tabs-delivery {
+    position: relative;
+}
+
+.account__tabs-delivery a {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    border-radius: 1.56vw;
+}
+
+/* ------- END DELIVERY ------ */

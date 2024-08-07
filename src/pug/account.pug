@@ -8,13 +8,14 @@ block content
         .account 
             .account__controll
                 ul.account__tabs-list 
-                    li.account__tabs-item.account__tabs-profile.account__tabs-item_active Профиль
-                    li.account__tabs-item.account__tabs-history История заказов
-                    li.account__tabs-item.account__tabs-loyalty Система лояльности
+                    li.account__tabs-item.account__tabs-profile.account__tabs-item_active(data-item="profile") Профиль
+                    li.account__tabs-item.account__tabs-history(data-item="history") История заказов
+                    li.account__tabs-item.account__tabs-loyalty(data-item="loyalty") Система лояльности
                     li.account__tabs-item.account__tabs-delivery Доставка
+                        a(href="/delivery.html" title="Доставка") 
             
-            .account__content 
-                .profile 
+            ul.account__content-list
+                li.profile.account__content-item
                     .profile__wr-img 
                         img.profile__img(src=require('../img/icons/profile-default-photo.webp') alt="фото пользователя")
 
@@ -43,7 +44,7 @@ block content
 
                         .profile__wr-born-date 
                             label.profile__born-date-label
-                                | Дата рождения
+                                span.profile__born-date-mark Дата рождения
                                 input.profile__born-date-input(type="text" name="born-date" value="__/__/____" disabled)       
 
                         .profile__wr-buttons 
@@ -53,5 +54,74 @@ block content
                                 button.profile__button.profile__button_delete(type="button") Удалить
                             .profile__buttons-group.profile__buttons-group-save
                                 button.profile__button.profile__button_save(type="button") Сохранить
+
+                li.history.account__content-item.account__content-item_active
+                    ul.history__list
+                        li.history__item 
+                            .history__delivery Доставка
+                            .history__delivery-cost 
+                                | #[span.history__delivery-cost_num 5000] #[span.history__delivery-cost_currency р.]
+
+                            .history__delivery-address Москва, Полярная улица, 24 дом, 87 квартира.
+                            .history__delivery-date 22 апреля, с 13:00 до 18:00
+
+                            .history__order-number Заказ №: #[span.history__order-number_num 25689516]
+                            .history__order-state
+                                .history__is-paid Оплачено
+                                .history__execution Выполняется
+
+                            .history__wr-details 
+                                .history__details-title
+                                    p Посмотреть детали заказа
+                                ul.history__details-list
+                                    li.history__details-item
+                                        .history__details-wr-img 
+                                            img(src=require('../img/content/merch-t-shirt-white-from-center-front-content.webp') alt="фото заказанного товара")
+                                        .history__details-description 
+                                            p Футболка R18, “От центра к краю
+                                        .history__details-amount 
+                                            | #[span.history__details-amount-num 2] #[span.history__details-amount_unit шт.]
+                                    li.history__details-item
+                                        .history__details-wr-img 
+                                            img(src=require('../img/content/accessories-nok-box-motta-content.webp') alt="фото заказанного товара")
+                                        .history__details-description 
+                                            p Нок-бокс
+                                        .history__details-amount 
+                                            | #[span.history__details-amount-num 1] #[span.history__details-amount_unit шт.]
+
+
+                        li.history__item 
+                            .history__delivery Доставка
+                            .history__delivery-cost 
+                                | #[span.history__delivery-cost_num 5000] #[span.history__delivery-cost_currency р.]
+
+                            .history__delivery-address Москва, Полярная улица, 24 дом, 87 квартира.
+                            .history__delivery-date 22 апреля, с 13:00 до 18:00
+
+                            .history__order-number Заказ №: #[span.history__order-number_num 25689516]
+                            .history__order-state
+                                .history__is-paid Оплачено
+                                .history__execution Выполняется
+
+                            .history__wr-details 
+                                .history__details-title
+                                    p Посмотреть детали заказа
+                                ul.history__details-list
+                                    li.history__details-item
+                                        .history__details-wr-img 
+                                            img(src=require('../img/content/merch-t-shirt-white-from-center-front-content.webp') alt="фото заказанного товара")
+                                        .history__details-description 
+                                            p Футболка R18, “От центра к краю
+                                        .history__details-amount 
+                                            | #[span.history__details-amount-num 2] #[span.history__details-amount_unit шт.]
+                                    li.history__details-item
+                                        .history__details-wr-img 
+                                            img(src=require('../img/content/accessories-nok-box-motta-content.webp') alt="фото заказанного товара")
+                                        .history__details-description 
+                                            p Нок-бокс
+                                        .history__details-amount 
+                                            | #[span.history__details-amount-num 1] #[span.history__details-amount_unit шт.]
+
+
 
             

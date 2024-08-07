@@ -57,6 +57,9 @@
 
 .service__control-item_active {
     background: #f1551c;
+
+    pointer-events: none;
+    cursor: default;
 }
 
 .service__content-list {
