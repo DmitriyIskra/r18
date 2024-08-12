@@ -38,6 +38,16 @@ import temporaryOrders from "./temporary-orders/temporary-orders";
 import ControllDelivery from "./delivery/ControllDelivery";
 import RedrawDelivery from "./delivery/RedrawDelivery";
 
+// АССOUNT
+import ControllAccount from "./account/ControllAccount";
+import RedrawTypeContent from "./account/RedrawTypeContent";
+import RedrawAccountProfile from "./account/RedrawAccountProfile";
+
+// AIR DATAPICKER
+import AirDatepicker from "air-datepicker";
+
+
+
 window.addEventListener('load', () => {
     
     // SLIDER HEAD
@@ -122,10 +132,30 @@ window.addEventListener('load', () => {
         controlService.init();
     }
 
+    // DELIVERY
     const delivery = document.querySelector('.delivery');
     if(delivery && innerWidth <= 1200) {
         const redraw = new RedrawDelivery(delivery, 'delivery__controll-item_active', 'delivery__direction_active');
         const controll = new ControllDelivery(redraw);
         controll.init();
+    }
+
+    // ACCOUNT
+    const account = document.querySelector('.account');
+    if(account) {
+        const redrawTypeContent = new RedrawTypeContent(account)
+
+        const profile = account.querySelector('.account__profile');
+        const redrawProfile = new RedrawAccountProfile(profile);
+
+        const redraw = {
+            content : redrawTypeContent,
+            profile : redrawProfile,
+        }
+
+        const airDatepicker = new AirDatepicker();
+
+        const controll = new ControllAccount(redraw, AirDatepicker);
+        controll.init(); 
     }
 })

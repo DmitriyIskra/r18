@@ -8,18 +8,18 @@ block content
         .account 
             .account__controll
                 ul.account__tabs-list 
-                    li.account__tabs-item.account__tabs-profile.account__tabs-item_active(data-item="profile") Профиль
-                    li.account__tabs-item.account__tabs-history(data-item="history") История заказов
-                    li.account__tabs-item.account__tabs-loyalty(data-item="loyalty") Система лояльности
+                    li.account__tabs-item.account__tabs-profile.account__tabs-item_active(data-type_acc="profile") Профиль
+                    li.account__tabs-item.account__tabs-history(data-type_acc="history") История заказов
+                    li.account__tabs-item.account__tabs-loyalty(data-type_acc="loyalty") Система лояльности
                     li.account__tabs-item.account__tabs-delivery Доставка
                         a(href="/delivery.html" title="Доставка") 
             
             ul.account__content-list
-                li.account__profile.account__content-item.account__content-item_active
+                li.account__profile.account__content-item.account__content-item_active(data-account="profile")
                     .profile__wr-img 
                         img.profile__img(src=require('../img/icons/profile-default-photo.webp') alt="фото пользователя")
 
-                    form.profile__user-contacts-form
+                    form.profile__user-contacts-form(name="form_profile")
                         ul.profile__user-contacts-list 
                             li.profile__user-contacts-item
                                 input(type="text" name="second_name" value="Фамилия" disabled)
@@ -45,7 +45,7 @@ block content
                         .profile__wr-born-date 
                             label.profile__born-date-label
                                 span.profile__born-date-mark Дата рождения
-                                input.profile__born-date-input(type="text" name="born-date" value="__/__/____" disabled)       
+                                input.profile__born-date-input(type="text" name="born_date" value="__/__/____" disabled)       
 
                         .profile__wr-buttons 
                             //- .profile__buttons-group-edit_active
@@ -55,7 +55,7 @@ block content
                             .profile__buttons-group.profile__buttons-group-save
                                 button.profile__button.profile__button_save(type="button") Сохранить
 
-                li.account__history.account__content-item
+                li.account__history.account__content-item(data-account="history")
                     ul.history__list
                         li.history__item 
                             .history__delivery Доставка

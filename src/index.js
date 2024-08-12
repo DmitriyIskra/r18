@@ -17,3 +17,4 @@ import './css/service.css';
 import './css/delivery.css';
 import './css/price.css';
 import './css/account.css';
+import 'air-datepicker/air-datepicker.css';
