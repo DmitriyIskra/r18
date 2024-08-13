@@ -42,8 +42,9 @@ import RedrawDelivery from "./delivery/RedrawDelivery";
 import ControllAccount from "./account/ControllAccount";
 import RedrawTypeContent from "./account/RedrawTypeContent";
 import RedrawAccountProfile from "./account/RedrawAccountProfile";
+import RedrawHistory from "./account/RedrawHistory";
 
-// AIR DATAPICKER
+// AIR DATAPICKER (для account)
 import AirDatepicker from "air-datepicker";
 
 
@@ -148,9 +149,13 @@ window.addEventListener('load', () => {
         const profile = account.querySelector('.account__profile');
         const redrawProfile = new RedrawAccountProfile(profile);
 
+        const history = account.querySelector('.account__history');
+        const redrawHistory = new RedrawHistory(history);
+
         const redraw = {
             content : redrawTypeContent,
             profile : redrawProfile,
+            history : redrawHistory,
         }
 
         const airDatepicker = new AirDatepicker();

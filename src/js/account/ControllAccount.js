@@ -11,6 +11,8 @@ export default class ControllAccount {
     init() {
         this.registerEvents();
 
+        this.redraw.history.initScroll();
+
         this.initCalendar();
     }
 
@@ -25,9 +27,11 @@ export default class ControllAccount {
     registerEvents() {
         this.redraw.content.el.addEventListener('click', this.clickNav);
         this.redraw.profile.el.addEventListener('click', this.click);
+        this.redraw.history.el.addEventListener('click', this.click);
     }
 
     click(e) {
+        console.log(e.target)
         // открытие возможности редактирования
         if(e.target.closest('.profile__button_edit')) {
             this.redraw.profile.openEditProfile();
@@ -39,6 +43,12 @@ export default class ControllAccount {
             console.log(Array.from(formData));
 
             this.redraw.profile.closeEditProfile();
+        }
+
+        if(e.target.closest('.history__details-title') || e.target.matches('.history__details-title')) {
+            const el = e.target.parentElement;
+
+            this.redraw.history.showHideDetails(el);
         }
     }
 
