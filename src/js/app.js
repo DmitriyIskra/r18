@@ -38,14 +38,23 @@ import temporaryOrders from "./temporary-orders/temporary-orders";
 import ControllDelivery from "./delivery/ControllDelivery";
 import RedrawDelivery from "./delivery/RedrawDelivery";
 
-// АССOUNT
+// ACCOUNT BUTTON
+import ControllAccountButton from "./accountButton/ControllAccountButton";
+import RedrawAccountButton from "./accountButton/RedrawAccountButton";
+
+// АССOUNT PAGE
 import ControllAccount from "./account/ControllAccount";
 import RedrawTypeContent from "./account/RedrawTypeContent";
 import RedrawAccountProfile from "./account/RedrawAccountProfile";
 import RedrawHistory from "./account/RedrawHistory";
 
+
 // AIR DATAPICKER (для account)
 import AirDatepicker from "air-datepicker";
+
+// IMASK
+import IMask from "imask";
+
 
 
 
@@ -141,7 +150,15 @@ window.addEventListener('load', () => {
         controll.init();
     }
 
-    // ACCOUNT
+    // АССOUNT PAGE
+    const accButton = document.querySelector('.header__account');
+    if(accButton) {
+        const redraw = new RedrawAccountButton(accButton);
+        const controll = new ControllAccountButton(redraw);
+        controll.init();
+    }
+
+    // ACCOUNT PAGE
     const account = document.querySelector('.account');
     if(account) {
         const redrawTypeContent = new RedrawTypeContent(account)
@@ -158,9 +175,7 @@ window.addEventListener('load', () => {
             history : redrawHistory,
         }
 
-        const airDatepicker = new AirDatepicker();
-
-        const controll = new ControllAccount(redraw, AirDatepicker);
+        const controll = new ControllAccount(redraw, AirDatepicker, IMask);
         controll.init(); 
     }
 })

@@ -3,8 +3,9 @@ export default class RedrawAccountProfile {
         this.el = el;
 
         this.form = this.el.querySelector('form');
-        // инпуты профайла пользователя
+        // инпуты профайла пользователя 
         this.inputs = this.el.querySelectorAll('input');
+        this.phone = this.form.phone;
 
         // кнопки профайла
         this.groupButtonsEdit = this.el.querySelector('.profile__buttons-group-edit');

@@ -193,6 +193,11 @@ module.exports = {
             { from: 'src/img/favicon/apple-touch-icon.png', to: 'img/favicon' },
             { from: 'src/img/favicon/32.png', to: 'img/favicon' },
             { from: 'src/img/favicon/16.png', to: 'img/favicon' },
+
+            { from: 'src/modals-html/__modal-is-delete-account.html', to: './__modal-is-delete-account.html' },
+            { from: 'src/modals-html/__modal-deleted-account.html', to: './__modal-deleted-account.html' },
+            { from: 'src/modals-html/__modal-edit-profile-successfully.html', to: './__modal-edit-profile-successfully.html' },
+            { from: 'src/modals-html/__modal-log-reg.html', to: './__modal-log-reg.html' },
           ],
         }),
         // new ImageminWebpWebpackPlugin({

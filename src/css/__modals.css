@@ -1,0 +1,300 @@
+.wrapper-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000000;
+}
+
+.modal {
+    display: flex;
+
+    background: #726B68;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal__wr-close {
+    display: flex;
+    width: 100%;
+    padding-top: 1.56vw;
+    padding-right: 1.56vw;
+
+    justify-content: flex-end;
+}
+
+.modal__close {
+    width: 1.56vw;
+    height: 1.41vw;
+
+    cursor: pointer;
+}
+
+.modal__wr-icon {
+    margin-top: 2.60vw;
+}
+
+.modal__icon {
+    width: 6.51vw;
+    height: 6.51vw;
+    margin: 0 auto;
+}
+
+.modal__icon-king {
+    background: no-repeat url('../img/icons/modal__icon-king.webp');
+    background-position: center;
+    background-size: 100%;
+}
+
+.modal__icon-photo {
+    background: no-repeat url('../img/icons/modal__icon-photo.webp');
+    background-position: center;
+    background-size: 100%;
+}
+
+.modal__text {
+    font-family: 'SofiaSans';
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.modal__info-text {
+    font-size: 1.04vw;
+    text-align: center;
+}
+
+.modal__button {
+    height: 2.60vw;
+
+    font-size: 1.04vw;
+
+    border-radius: 1.56vw;
+    border: 0.10vw solid #FFF;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.modal__button_color {
+    background: #F1551C;
+}
+
+
+/* START УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ, ОТ ПОЛЬЗОВАТЕЛЯ */
+.modal-del-acc {
+    width: 18%;
+    padding-bottom: 3.28vw;
+}
+
+.modal-del-acc__text {
+    width: 70%;
+    margin-top: 5.05vw;
+}
+
+.modal-del-acc__wr-battons {
+    display: flex;
+    width: 84%;
+    margin-top: 4.79vw;
+
+    justify-content: space-between;
+}
+
+.modal-del-acc__button {
+    width: 47%;
+}
+/* END УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ, ПОДТВЕРЖДЕНИЕ ОТ ПОЛЬЗОВАТЕЛЯ */
+
+
+/* ------------------==============================------------------- */
+
+
+/* START АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО УДАЛЕН */
+.modal-acc-deleted {
+    width: 18%;
+    height: 18.23vw;
+
+    justify-content: center;
+}
+
+.modal-acc-deleted-text {
+    width: 69%;
+}
+/* END АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО УДАЛЕН */
+
+
+/* ------------------==============================------------------- */
+
+
+/* START АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО ОТРЕДАКТИРОВАН */
+.modal-profile-edited {
+    width: 26.04vw;
+}
+
+.modal-profile-edited-text {
+    margin-top: 4.06vw;
+    margin-bottom: 11.51vw;
+}
+/* END АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО ОТРЕДАКТИРОВАН */
+
+
+/* ------------------==============================------------------- */
+
+
+/* START ПЕРВОЕ ОКНО ВХОД РЕГИСТРАЦИЯ */
+.modal-log-reg {
+    width: 26.3%;
+}
+
+.modal-log-reg__wr-battons {
+    display: flex;
+    width: 50%;
+    margin-top: 2.08vw;
+    margin-bottom: 6.20vw;
+    gap: 0.78vw;
+
+    flex-direction: column;
+}
+/* END ПЕРВОЕ ОКНО ВХОД РЕГИСТРАЦИЯ */
+
+@media(max-width: 1200px) {
+    div.modal {
+        width: 80%;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal__wr-close {
+        padding-top: 4.80vw;
+        padding-right: 4.80vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal__close {
+        width: 5.33vw;
+        height: 5.33vw;
+    }
+}
+@media(max-width: 1200px) {
+    .modal__wr-icon {
+        margin-top: 4.80vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal__icon {
+        width: 26.67vw;
+        height: 26.67vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal__info-text {
+        font-size: 5.33vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal__button {
+        height: 9.87vw;
+    
+        font-size: 4.27vw;
+    
+        border-radius: 8vw;
+        border: 0.53vw solid #FFF;
+    }
+}
+
+/* START УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ, ОТ ПОЛЬЗОВАТЕЛЯ */
+@media(max-width: 1200px) {
+    .modal-del-acc {
+        padding-bottom: 13.87vw;
+    } 
+}
+
+@media(max-width: 1200px) {
+    .modal-del-acc__text {
+        width: 86%;
+        margin-top: 25.87vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-del-acc__wr-battons {
+        display: flex;
+        width: 86%;
+        margin-top: 17.07vw;
+    
+        justify-content: space-between;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-del-acc__button {
+        width: 46%;
+    }
+}
+/* END УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ, ПОДТВЕРЖДЕНИЕ ОТ ПОЛЬЗОВАТЕЛЯ */
+
+
+/* ------------------==============================------------------- */
+
+
+/* START АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО УДАЛЕН */
+@media(max-width: 1200px) {
+    .modal-acc-deleted {
+        height: 76.80vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-acc-deleted-text {
+        width: 86%;
+    }
+}
+/* END АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО УДАЛЕН */
+
+
+/* ------------------==============================------------------- */
+
+
+/* START АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО ОТРЕДАКТИРОВАН */
+
+@media(max-width: 1200px) {
+    .modal-profile-edited-text {
+        margin-top: 9.33vw;
+        margin-bottom: 43.20vw;
+    }
+}
+
+/* END АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО ОТРЕДАКТИРОВАН */
+
+
+/* ------------------==============================------------------- */
+
+
+/* START ПЕРВОЕ ОКНО ВХОД РЕГИСТРАЦИЯ */
+
+@media(max-width: 1200px) {
+    .modal-log-reg__wr-battons {
+        width: 50%;
+        margin-top: 11.20vw;
+        margin-bottom: 9.60vw;
+        gap: 4.80vw;
+    
+        flex-direction: column;
+    }
+}
+
+/* END ПЕРВОЕ ОКНО ВХОД РЕГИСТРАЦИЯ */

@@ -172,6 +172,7 @@
 
 .profile__born-date-label {
     display: flex;
+    width: 60%;
     gap: 1.15vw;
 
     font-family: "SofiaSans";
@@ -187,7 +188,7 @@
 }
 
 .profile__born-date-input {
-    width: 45.55%;
+    width: 76%;
     padding-left: 0.83vw;
     padding-top: 1.04vw;
     padding-bottom: 1.04vw;
@@ -594,6 +595,7 @@
 
 @media(max-width: 1200px) {
     .profile__born-date-label {
+        width: auto;
         gap: 1.33vw;
     }
 }
