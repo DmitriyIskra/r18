@@ -1,4 +1,4 @@
-export default class RedrawAccountButton {
+export default class RedrawBasketButton {
     constructor(el) {
         this.el = el;
 
@@ -20,6 +20,29 @@ export default class RedrawAccountButton {
             input.dataset.invalid = '';
             if(input.name === 'password') input.type = 'password';
         }, { once : true })
+    }
+
+    // изменение количества товара
+    calcAmountGoods(button) {
+        const type = button.dataset.type;
+
+        let amount;
+        let num;
+
+        if(type === 'decrement') {
+            amount = button.nextElementSibling;
+
+            num = +amount?.value;
+            if(+amount.value === 0) return;
+            amount.value = num - 1;
+        }
+
+        if(type === 'increment') {
+            amount = button.previousElementSibling;
+
+            num = +amount?.value;
+            amount.value = num + 1;
+        }
     }
 
     openNewModal(modal) {

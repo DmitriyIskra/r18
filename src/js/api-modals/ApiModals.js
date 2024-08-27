@@ -11,7 +11,7 @@ export default class ApiModals {
                 }
             });
 
-            const text = await response.text();
+            const text = await response.text(); 
             
             const parser = new DOMParser();
             const html = parser.parseFromString(text, 'text/html');

@@ -199,6 +199,12 @@ module.exports = {
             { from: 'src/modals-html/__modal-edit-profile-successfully.html', to: './__modal-edit-profile-successfully.html' },
             { from: 'src/modals-html/__modal-log-reg.html', to: './__modal-log-reg.html' },
             { from: 'src/modals-html/__modal-login.html', to: './__modal-login.html' },
+            { from: 'src/modals-html/__modal-recover.html', to: './__modal-recover.html' },
+            { from: 'src/modals-html/__modal-registration.html', to: './__modal-registration.html' },
+            { from: 'src/modals-html/__modal-basket.html', to: './__modal-basket.html' },
+            
+            { from: 'src/robots/robots.txt', to: './robots.txt' },
+            { from: 'src/robots/sitemap.xml', to: './sitemap.xml' },
           ],
         }),
         // new ImageminWebpWebpackPlugin({

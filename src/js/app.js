@@ -42,6 +42,10 @@ import RedrawDelivery from "./delivery/RedrawDelivery";
 import ControllAccountButton from "./accountButton/ControllAccountButton";
 import RedrawAccountButton from "./accountButton/RedrawAccountButton";
 
+// BASKET BUTTON
+import ControllBasketButton from "./basketButton/ControlBasketButton";
+import RedrawBasketButton from "./basketButton/RedrawBasketButton";
+
 // АССOUNT PAGE
 import ControllAccount from "./account/ControllAccount";
 import RedrawTypeContent from "./account/RedrawTypeContent";
@@ -150,11 +154,19 @@ window.addEventListener('load', () => {
         controll.init();
     }
 
-    // АССOUNT PAGE
+    // АССOUNT ВХОД - РЕГИСТРАЦИЯ
     const accButton = document.querySelector('.header__account');
     if(accButton) {
         const redraw = new RedrawAccountButton(accButton);
-        const controll = new ControllAccountButton(redraw);
+        const controll = new ControllAccountButton(redraw, IMask);
+        controll.init();
+    }
+
+    // BASKET
+    const basket = document.querySelector('.header__basket');
+    if(basket) {
+        const redraw = new RedrawBasketButton(basket);
+        const controll = new ControllBasketButton(redraw, IMask);
         controll.init();
     }
 
