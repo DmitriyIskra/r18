@@ -26,6 +26,7 @@ export default class ControllAccountButton extends ApiModals {
     
     // нажатие на КНОПКУ ACCOUNT в HEADER
     click(e) {
+        // если пользователь незалогинин показываем модалку
         if(e.target.closest('.header__account a') &&
         e.target.closest('.header__account a').hash === '#0' &&
         !location.pathname.includes('account')) {

@@ -30,7 +30,7 @@ export default class RedrawBasketButton {
         let num;
 
         if(type === 'decrement') {
-            amount = button.nextElementSibling;
+            amount = button.nextElementSibling; 
 
             num = +amount?.value;
             if(+amount.value === 0) return;

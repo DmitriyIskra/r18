@@ -13,7 +13,7 @@ export default class ControllBasketButton extends ApiModals {
     }
 
     init() {
-        this.registerEvents();
+        this.registerEvents(); 
     }
 
     registerEvents() {
@@ -52,18 +52,6 @@ export default class ControllBasketButton extends ApiModals {
                 })
             })()
         }
-        // if(e.target.closest('.header__account a') &&
-        // e.target.closest('.header__account a').hash === '#0' &&
-        // !location.pathname.includes('account')) {
-            
-        //     // ---- pop-up ЛОГИН ИЛИ РЕГИСТРАЦИЯ
-        //     (async () => {
-        //         const logRegPopUp = await super.read('log-reg');
-        //         this.redraw.openNewModal(logRegPopUp)
-
-        //         this.redraw.lastActiveModal.addEventListener('click', this.clickLogReg);
-        //     })()
-        // }
     }
 
     clickBasket(e) {
@@ -74,6 +62,27 @@ export default class ControllBasketButton extends ApiModals {
             const button = e.target.closest('.modal-basket__goods-amount-button');
             
             this.redraw.calcAmountGoods(button);            
+        }
+
+        // отправляем заказ на сервер и показываем соответствующую модалку
+        if(e.target.closest('.modal-basket__button')) {
+
+            // Открытие модалки заказ успешно или не успешно отправлен
+            // результат отправки
+            const resultSend = false;
+            (async () => {
+                // тип модалки
+                let typeModal = 'order-successfully';
+                if(!resultSend) typeModal = 'failed';
+
+                const orderSuccessfully = await super.read(typeModal);
+                this.redraw.openNewModal(orderSuccessfully);
+
+                this.redraw.lastActiveModal.addEventListener('click', (e) => {
+                    // закрытие корзины
+                    if(e.target.closest('.modal__close')) this.redraw.closeModal();
+                });
+            })()
         }
     }
 

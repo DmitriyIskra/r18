@@ -1,7 +1,8 @@
-<!-- регистрация аккаунта -->
+<!-- что то пошло не так -->
+<!-- заказ отправлен успешно -->
 <div class="wrapper-modal">
 
-    <div class="modal modal-reg">
+    <div class="modal modal-failed">
         
         <div class="modal__wr-close">
             <div class="modal__close">
@@ -11,26 +12,13 @@
             </div>
         </div>
         <div class="modal__wr-icon">
-            <div class="modal__icon modal__icon-photo"><!-- icon css --></div>
+            <div class="modal__icon modal__icon-sad"><!-- icon css --></div>
         </div>
-        <div class="modal__wr-form">
-            <form class="modal__form" name="form_login">
-                <div class="modal__wr-input">
-                    <input class="modal__input" type="text" name="name" placeholder="Имя">
-                </div>
-                <div class="modal__wr-input">
-                    <input class="modal__input" type="text" name="phone" placeholder="Телефон">
-                </div>
-                <div class="modal__wr-input">
-                    <input class="modal__input" type="text" name="email" placeholder="Почта">
-                </div>
-                <div class="modal__wr-input">
-                    <input class="modal__input" type="password" name="password" placeholder="Пароль">
-                </div>
-            </form>
+        <div class="modal__text modal__info-text modal-failed__info-text">
+            <p>Ой, что-то пошло не так.</p>
         </div>
-        <div class="modal-reg__wr-battons">
-            <button class="modal__button modal__text modal__button_color modal-reg__button">Регистрация</button>
+        <div class="modal-failed__wr-battons">
+            <a href="/" class="modal__button modal__text modal__button_color modal-failed__button">Вернуться на главную</a>
         </div>
     </div>
 
