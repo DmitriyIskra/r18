@@ -1,6 +1,7 @@
 export default class ControllSLP {
-    constructor(d) {
+    constructor(d, addToBasket) {
         this.d = d;
+        this.addToBasket = addToBasket;
  
         this.click = this.click.bind(this);
         this.touchMoove = this.touchMoove.bind(this);
@@ -52,7 +53,36 @@ export default class ControllSLP {
         }
 
         if(e.target.closest('.sl-p__card-link')) {
-            this.d.scrollToContacts();
+            // this.d.scrollToContacts();
+            const button = e.target.closest('.sl-p__card-link');
+            const section = button.closest('section');
+            const card = e.target.closest('.sl-p__card');
+            const el_color = card.querySelector('.sl-p__card-slider-color-item_active');
+            const index_color = +el_color.dataset.color_id;
+            const size = card.querySelector('.sl-p__size-item_active');
+
+            let choice = {
+                sectionName : section.className,
+                article : button.dataset.article,
+                color : el_color.dataset.color,
+                size : size.children[0].textContent
+            }
+
+            const allDataChoice = this.d.data.find(item => choice.article === item.article);
+            const imgUrl = 
+                allDataChoice[choice.color]?.img[index_color] 
+                || 
+                allDataChoice.black.img[0];
+
+            const data = {
+                ...choice, 
+                price : allDataChoice.price,
+                imgUrl,
+                title : allDataChoice.title,
+                amount : 1,
+            };
+    
+            this.addToBasket(data);
         }
     }
 

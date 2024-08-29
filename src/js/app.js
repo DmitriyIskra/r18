@@ -72,6 +72,44 @@ window.addEventListener('load', () => {
         controllSlHead.init();
     }
 
+    // АССOUNT ВХОД - РЕГИСТРАЦИЯ
+    const accButton = document.querySelector('.header__account');
+    if(accButton) {
+        const redraw = new RedrawAccountButton(accButton);
+        const controll = new ControllAccountButton(redraw, IMask);
+        controll.init();
+    }
+
+    // BASKET
+    const basket = document.querySelector('.header__basket');
+    let controllBasket;
+    if(basket) {
+        const redraw = new RedrawBasketButton(basket);
+        controllBasket = new ControllBasketButton(redraw, IMask);
+        controllBasket.init();
+    }
+
+    // ACCOUNT PAGE
+    const account = document.querySelector('.account');
+    if(account) {
+        const redrawTypeContent = new RedrawTypeContent(account)
+
+        const profile = account.querySelector('.account__profile');
+        const redrawProfile = new RedrawAccountProfile(profile);
+
+        const history = account.querySelector('.account__history');
+        const redrawHistory = new RedrawHistory(history);
+
+        const redraw = {
+            content : redrawTypeContent,
+            profile : redrawProfile,
+            history : redrawHistory,
+        }
+
+        const controll = new ControllAccount(redraw, AirDatepicker, IMask);
+        controll.init(); 
+    }
+
     // Кофейный слайдер
     const sliderCoffe1 = document.querySelector('.coffee__wr-slider-top');
     if(sliderCoffe1) {
@@ -84,19 +122,19 @@ window.addEventListener('load', () => {
     }
 
     
-    // слайдер Мерч с карточками в перспективе
+    // слайдер МЕРЧ с карточками в перспективе
     const merchSL = document.querySelector('.merch__wr-slider .sl-p');
     if(merchSL) {
         const redrawSLP = new RedrawSLP(merchSL, sliderMerchData);
-        const controllSLP = new ControllSLP(redrawSLP);
+        const controllSLP = new ControllSLP(redrawSLP, controllBasket.addToBasket);
         controllSLP.init();
     }
 
-    // слайдер Аксессуары с карточками в перспективе
+    // слайдер АКСЕССУАРЫ с карточками в перспективе
     const accessSL = document.querySelector('.accessories__wr-slider .sl-p');
     if(accessSL) {
         const redrawSLP = new RedrawSLP(accessSL, sliderAccessData);
-        const controllSLP = new ControllSLP(redrawSLP);
+        const controllSLP = new ControllSLP(redrawSLP, controllBasket.addToBasket);
         controllSLP.init(); 
     }
 
@@ -152,42 +190,5 @@ window.addEventListener('load', () => {
         const redraw = new RedrawDelivery(delivery, 'delivery__controll-item_active', 'delivery__direction_active');
         const controll = new ControllDelivery(redraw);
         controll.init();
-    }
-
-    // АССOUNT ВХОД - РЕГИСТРАЦИЯ
-    const accButton = document.querySelector('.header__account');
-    if(accButton) {
-        const redraw = new RedrawAccountButton(accButton);
-        const controll = new ControllAccountButton(redraw, IMask);
-        controll.init();
-    }
-
-    // BASKET
-    const basket = document.querySelector('.header__basket');
-    if(basket) {
-        const redraw = new RedrawBasketButton(basket);
-        const controll = new ControllBasketButton(redraw, IMask);
-        controll.init();
-    }
-
-    // ACCOUNT PAGE
-    const account = document.querySelector('.account');
-    if(account) {
-        const redrawTypeContent = new RedrawTypeContent(account)
-
-        const profile = account.querySelector('.account__profile');
-        const redrawProfile = new RedrawAccountProfile(profile);
-
-        const history = account.querySelector('.account__history');
-        const redrawHistory = new RedrawHistory(history);
-
-        const redraw = {
-            content : redrawTypeContent,
-            profile : redrawProfile,
-            history : redrawHistory,
-        }
-
-        const controll = new ControllAccount(redraw, AirDatepicker, IMask);
-        controll.init(); 
     }
 })

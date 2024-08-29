@@ -868,7 +868,8 @@ export default class RedrawSLP {
         colorList.dataset.article = data.article;
         data.colors.forEach((item, index) => {
             const colorItem  = this.createEl('li', 'sl-p__card-slider-color-item');
-            colorItem.id = `color${index}`; // для поиска и смены цвета кружочка
+            colorItem.id = `color_${index}`; // для поиска и смены цвета кружочка
+            colorItem.dataset.color_id = index;
             colorItem.dataset.color = item.name;
             if(index === 0) 
                 colorItem.classList.add('sl-p__card-slider-color-item_active');
@@ -922,8 +923,10 @@ export default class RedrawSLP {
         const link  = this.createEl('a', 'sl-p__card-link');
         link.textContent = 'Купить'
         link.href = data.link;
-        link.alt = data.title;
+        link.title = data.title;
         link.target = '_blank';
+        link.dataset.article = data.article;
+        // link.dataset.color = data.article.colors.name;
         wrLink.append(link);
 
         cardContent.append(sizeList);

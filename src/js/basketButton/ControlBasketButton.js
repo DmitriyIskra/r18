@@ -8,12 +8,15 @@ export default class ControllBasketButton extends ApiModals {
     
         this.click = this.click.bind(this);
         this.clickBasket = this.clickBasket.bind(this);
+        this.addToBasket = this.addToBasket.bind(this);
 
         this.mask;
     }
 
     init() {
         this.registerEvents(); 
+
+        // здесь проверяем локал сторадже и если там что то есть отрисовываем корзину иконку
     }
 
     registerEvents() {
@@ -94,5 +97,48 @@ export default class ControllBasketButton extends ApiModals {
                 this.redraw.incorrectData(item, 'Заполните пожалуйста поле');
             }
         })
+    }
+
+    addToBasket(data, amount = 1) {
+        // article: "3"
+        // color: ""
+        // imgUrl: ['./img/content/accessories-nok-box-motta-105-content.webp']
+        // price: "4 000 p."
+        // sectionName: "accessories"
+        // size: "105 мм"
+        // title: "Нок-бокс"
+
+        // если корзина пуста
+        if(!localStorage.basket) {
+            localStorage.basket = JSON.stringify([data]);
+            console.log('корзина пуста')
+            return;
+        }
+
+        // если в корзине уже что то есть
+        const basket = JSON.parse(localStorage.basket);
+        delete localStorage.basket;
+        
+        const product = basket.find(item => {
+            return item.article === data.article && item.title === data.title
+        })
+
+        // если товар не найден
+        if(!product) {
+            basket.push(data);
+            localStorage.basket = JSON.stringify(basket);
+            console.log('такой не найден', JSON.parse(localStorage.basket))
+            return;
+        }
+
+        // если найден, уже добавлялся, увеличиваем количество на 1
+        basket.forEach(item => {
+            if(item.article === data.article && item.title === data.title) {
+                item.amount = +item.amount + amount;
+            }
+        })
+
+        
+        localStorage.basket = JSON.stringify(basket);
     }
 }
