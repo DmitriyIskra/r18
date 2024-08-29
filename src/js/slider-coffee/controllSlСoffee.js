@@ -13,7 +13,7 @@ export default class ControllSlСoffee {
         this.d.initSlider();
         this.registerEvents();
 
-        // отрисовка кнопок фильтра
+        // отрисовка кнопок фильтра 
         const data = new Map();
         this.d.data.forEach(item => data.set(item.packing, item['filter-name']));
         this.filter.rendering(data);
@@ -51,7 +51,25 @@ export default class ControllSlСoffee {
         }
 
         if(e.target.closest('.sl-prod__button-slide')) {
-            this.d.scrollToContacts();
+            // this.d.scrollToContacts();
+
+            // article: "3"
+            // color: ""
+            // imgUrl: ['./img/content/accessories-nok-box-motta-105-content.webp']
+            // price: "4 000 p."
+            // sectionName: "accessories"
+            // size: "105 мм"
+            // title: "Нок-бокс"
+
+            const card = e.target.closest('li');
+            const img = card.querySelector('img');
+
+            let choice = {
+                article : '',
+                title : '',
+                imgUrl : '',
+                sectionName : '',
+            }
         }
     }
 

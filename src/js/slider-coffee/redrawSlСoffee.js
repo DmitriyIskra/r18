@@ -50,7 +50,7 @@ export default class RedrawSlСoffee {
                 item.title,
                 item.packing,
                 item.link, 
-                item.title
+                item.title,
                 );
 
             el.style.transition = `height ${this.duration}s ${this.timeFunc}, width ${this.duration}s ${this.timeFunc}`;
@@ -400,7 +400,7 @@ export default class RedrawSlСoffee {
                 item.title, 
                 item.packing, 
                 item.link, 
-                item.title
+                item.title,
             );
             li.style.transition = `height ${this.duration}s ${this.timeFunc}, width ${this.duration}s ${this.timeFunc}`;
 
@@ -595,6 +595,7 @@ export default class RedrawSlСoffee {
         const img = this.createEl('img', ['sl-prod__img-slide']);
         li.dataset.id = id;
         if(part) li.dataset.part = part // для дрип, к какому набору относится
+        li.dataset.packing = packing;
         img.dataset.pack = packing;
         img.src = pathImg;
 
@@ -610,7 +611,8 @@ export default class RedrawSlСoffee {
         const link = this.createEl('a', ['sl-prod__button-slide']);
         link.href = href;
         link.title = linkTitle;
-        link.textContent = 'Заказать';
+        link.dataset.part
+        link.textContent = 'Купить';
         const linkDeco = this.createEl('div', ['sl-prod__wr-button-slide-deco']);
         divButton.append(link);
         divButton.append(linkDeco);
