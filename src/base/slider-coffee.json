@@ -160,6 +160,7 @@
         "harvest": "2023",
         "weight": "11,5 г",
         "img": "./img/content/drip-kenya-anfdb-kibendo-content.webp",
+        "img_part" : "./img/content/big-desc-part-of-africa-1-content.webp",
         "link": "#"
     },
     {
@@ -178,6 +179,7 @@
         "harvest": "2023",
         "weight": "11,5 г",
         "img": "./img/content/drip-ethiopia-banko-gotete-content.webp",
+        "img_part" : "./img/content/big-desc-part-of-africa-1-content.webp",
         "link": "#"
     },
     {
@@ -196,6 +198,7 @@
         "harvest": "2023",
         "weight": "11,5 г",
         "img": "./img/content/drip-burundi-muranga-content.webp",
+        "img_part" : "./img/content/big-desc-part-of-africa-1-content.webp",
         "link": "#"
     },
 
@@ -215,6 +218,7 @@
         "harvest": "2023",
         "weight": "11,5 г",
         "img": "./img/content/drip-colombia-excelso-decaf-content.webp",
+        "img_part" : "./img/content/big-desc-part-of-assorti-1-content.webp",
         "link": "#"
     },
     {
@@ -233,6 +237,7 @@
         "harvest": "2023",
         "weight": "11,5 г",
         "img": "./img/content/drip-brasil-cocatrel-content.webp",
+        "img_part" : "./img/content/big-desc-part-of-assorti-1-content.webp",
         "link": "#"
     },
     {
@@ -251,6 +256,7 @@
         "harvest": "2023",
         "weight": "11,5 г",
         "img": "./img/content/drip-peru-cajamarca-content.webp",
+        "img_part" : "./img/content/big-desc-part-of-assorti-1-content.webp",
         "link": "#"
     },
 
@@ -270,6 +276,7 @@
         "harvest": "2023",
         "weight": "11,5 г",
         "img": "./img/content/drip-colombia-punch-content.webp",
+        "img_part" : "./img/content/big-desc-part-of-amerika-1-content.webp",
         "link": "#"
     },
     {
@@ -288,6 +295,7 @@
         "harvest": "2023",
         "weight": "11,5 г",
         "img": "./img/content/drip-guatemala-blue-ayarza-content.webp",
+        "img_part" : "./img/content/big-desc-part-of-amerika-1-content.webp",
         "link": "#"
     },
     {
@@ -306,6 +314,7 @@
         "harvest": "2023",
         "weight": "11,5 г",
         "img": "./img/content/drip-honduras-otilo-garsias-content.webp",
+        "img_part" : "./img/content/big-desc-part-of-amerika-1-content.webp",
         "link": "#"
     }
 ]

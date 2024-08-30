@@ -1,6 +1,10 @@
 export default class RedrawBasketButton {
-    constructor(el) {
+    constructor(el, mobileEl) {
         this.el = el;
+        this.mobileEl = mobileEl;
+
+        // количество товаров над иконкой
+        this.amount = this.el.querySelector('.header__basket-amount');
 
         this.lastActiveModal = null;
     }
@@ -21,6 +25,26 @@ export default class RedrawBasketButton {
             if(input.name === 'password') input.type = 'password';
         }, { once : true })
     }
+
+    // подсветка корзины и отображение общего количества товаров в ней
+    redrawIconAmount() {
+        if(!localStorage?.basket) {
+            this.amount.classList.remove('header__basket_active');
+            return;
+        }
+        const basket = JSON.parse(localStorage.basket);
+        
+        const result = basket.reduce((acc, item) => {
+            return acc += +item.amount
+        }, 0);
+    
+        this.amount.textContent = result;
+        if(!this.el.classList.contains('header__basket_active')) {
+            this.el.classList.add('header__basket_active');
+        }
+    }
+
+
 
     // изменение количества товара
     calcAmountGoods(button) {
@@ -45,15 +69,96 @@ export default class RedrawBasketButton {
         }
     }
 
+    // открываем модалку
     openNewModal(modal) {
         if(this.lastActiveModal) this.lastActiveModal.remove();
         this.lastActiveModal = modal;
 
+        if(this.lastActiveModal.classList.contains('wrapper-modal__basket')) {
+            this.fillingBasket();
+        }
+
         document.body.append(modal);
     }
 
-    closeModal(form) {
+    // наполнение модалки корзина товарами которые пользователь набрал
+    fillingBasket() {
+        if(!localStorage?.basket) {
+            return;
+        }
+
+        const goodsList = this.lastActiveModal.querySelector('.modal-basket__goods-list');
+    
+        const basket = JSON.parse(localStorage.basket);
+
+        const goods = basket.map(item => {
+            return this.patternProduct(item);
+        });
+   
+        goodsList.append(...goods);
+    }
+
+    closeModal() {
         this.lastActiveModal.remove();
         this.lastActiveModal = null;
+    }
+
+    patternProduct(data) {
+        const li = this.createEl('li', ['modal-basket__goods-item'])
+
+        // левая часть: картинка и описание
+        const goods_content = this.createEl('div', ['modal-basket__goods-content']);
+
+        const goods_img = this.createEl('div', ['modal-basket__goods-img']);
+        
+        const img = this.createEl('img', null, null, data.imgUrl);
+        img.alt = 'Фото товара'
+
+        goods_img.append(img);
+
+        const description = this.createEl('div', ['modal-basket__goods-description']);
+        
+        const description_p = this.createEl('p', null, data.title);
+
+        description.append(description_p);
+
+        goods_content.append(goods_img);
+        goods_content.append(description);
+
+        // правая часть количество
+        const goods_amount = this.createEl('div', ['modal-basket__goods-amount']);
+
+        const decrement = this.createEl('div', ['modal-basket__goods-amount-button']);
+        decrement.dataset.type = 'decrement';
+        
+        const amount_num = this.createEl('input', ['modal-basket__goods-amount-num']);
+        amount_num.type = 'text';
+        amount_num.placeholder = "0";
+        amount_num.value = data.amount;
+
+        const increment = this.createEl('div', ['modal-basket__goods-amount-button']);
+        increment.dataset.type = 'increment';
+        // .img/content/big-desc-part-of-africa-1-content.webp 
+        goods_amount.append(decrement);
+        goods_amount.append(amount_num);
+        goods_amount.append(increment);
+
+        // ---------------------------
+        li.append(goods_content);
+        li.append(goods_amount);
+
+        return li;
+    }
+
+    createEl(tag, classes = null, content = null, url = null) {
+        const el = document.createElement(tag);
+
+        if(classes) el.classList.add(...classes);
+  
+        if(content) el.textContent = content;
+
+        if(url) el.src = url;
+
+        return el;
     }
 }

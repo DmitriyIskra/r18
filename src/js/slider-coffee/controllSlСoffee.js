@@ -1,7 +1,8 @@
 export default class ControllSlСoffee {
-    constructor(d, filter) {
+    constructor(d, filter, addToBasket) {
         this.d = d;
         this.filter = filter;
+        this.addToBasket = addToBasket;
 
         this.click = this.click.bind(this);
         this.touchMoove = this.touchMoove.bind(this);
@@ -62,14 +63,30 @@ export default class ControllSlСoffee {
             // title: "Нок-бокс"
 
             const card = e.target.closest('li');
-            const img = card.querySelector('img');
 
             let choice = {
-                article : '',
-                title : '',
+                article : card.dataset.id,
+                title : card.dataset.id,
                 imgUrl : '',
-                sectionName : '',
+                sectionName : 'coffee',
+                amount : 1,
             }
+
+            const coffee = this.d.data.find(item => {
+                return (
+                    item.id === choice.title && item.packing === card.dataset.packing
+                );
+            });
+
+            // если дрип пакет то подставляем путь к картинке набор 
+            // если другой тьо картинка пачка кофе
+            if(coffee?.img_part) {
+                choice.imgUrl = coffee.img_part;
+            } else {
+                choice.imgUrl = coffee.img;
+            }
+
+            this.addToBasket(choice);
         }
     }
 

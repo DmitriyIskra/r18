@@ -44,16 +44,45 @@
 }
 
 .header__basket {
+    position: relative;
+    
     display: block;
     height: 2.60vw;
     width: 2.60vw;
-
+    
     border: 2px solid #fff;
     border-radius: 50%;
-
+    
     cursor: pointer;
 }
 
+.header__basket_active {
+    background-color: #F1551C;
+}
+
+.header__basket-amount {
+    position: absolute;
+    top: -51%;
+    right: -2%;
+
+    display: none;
+    width: 1.15vw;
+    height: 1.15vw;
+
+    font-family: "SofiaSans";
+    font-size: 0.73vw;
+    font-weight: 700;
+
+    background-color: #fff;
+    border-radius: 50%;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.header__basket_active > .header__basket-amount {
+    display: flex;
+}
 
 .header__basket:hover {
     border-color: #F1551C;
@@ -440,12 +469,20 @@
 }
 
 @media( max-width: 1200px ) {
-    .header__basket {
+    .header__account {
         width: 9.87vw;
         height: 9.87vw;
+    }
 
-        display: block;
-        visibility: hidden;
+    .header__account svg {
+        height: 62%;
+        width: 62%;
+    }
+}
+
+@media( max-width: 1200px ) {
+    .header__basket {
+        display: none;
     }
 }
 

@@ -12,7 +12,7 @@ mixin navMob(obj)
     ul.nav-mob-list
         each item in obj
             li.nav-mob__item(data-item=item.title)
-                if item.link 
+                if item.link
                     a.nav-mob__item-link(href=item.link title=item.title) #{item.name}
                 else 
                     | #{item.name}

@@ -15,18 +15,19 @@ export default class ControllBasketButton extends ApiModals {
 
     init() {
         this.registerEvents(); 
-
-        // здесь проверяем локал сторадже и если там что то есть отрисовываем корзину иконку
+        this.redraw.redrawIconAmount();
     }
 
     registerEvents() {
         this.redraw.el.addEventListener('click', this.click);
+        this.redraw.mobileEl.addEventListener('click', this.click);
     }
 
     
     // нажатие на КНОПКУ ACCOUNT в HEADER
     click(e) {
-        if(e.target.closest('.header__basket')) {
+        if(e.target.closest('.header__basket') ||
+        e.target.dataset.item === 'basket') {
             // ---- pop-up basket
             (async () => {
                 const logRegPopUp = await super.read('basket');
@@ -111,23 +112,28 @@ export default class ControllBasketButton extends ApiModals {
         // если корзина пуста
         if(!localStorage.basket) {
             localStorage.basket = JSON.stringify([data]);
-            console.log('корзина пуста')
+            
+            // перерисовка/отрисовка значка корзины с количеством товаров в ней
+            this.redraw.redrawIconAmount();
             return;
         }
 
         // если в корзине уже что то есть
         const basket = JSON.parse(localStorage.basket);
         delete localStorage.basket;
-        
+
+        // проверка добавлялся ли уже такой продукт в корзину
         const product = basket.find(item => {
             return item.article === data.article && item.title === data.title
         })
 
-        // если товар не найден
+        // если продукт не найден
         if(!product) {
             basket.push(data);
             localStorage.basket = JSON.stringify(basket);
-            console.log('такой не найден', JSON.parse(localStorage.basket))
+
+            // перерисовка/отрисовка значка корзины с количеством товаров в ней
+            this.redraw.redrawIconAmount();
             return;
         }
 
@@ -138,7 +144,9 @@ export default class ControllBasketButton extends ApiModals {
             }
         })
 
-        
         localStorage.basket = JSON.stringify(basket);
+
+        // перерисовка/отрисовка значка корзины с количеством товаров в ней
+        this.redraw.redrawIconAmount();
     }
 }

@@ -84,7 +84,9 @@ window.addEventListener('load', () => {
     const basket = document.querySelector('.header__basket');
     let controllBasket;
     if(basket) {
-        const redraw = new RedrawBasketButton(basket);
+        const mobileBasket = document.querySelector('.nav-mob__item[data-item="basket"]')
+        
+        const redraw = new RedrawBasketButton(basket, mobileBasket);
         controllBasket = new ControllBasketButton(redraw, IMask);
         controllBasket.init();
     }
@@ -117,7 +119,7 @@ window.addEventListener('load', () => {
 
         const redrawSlCoffe = new RedrawSlСoffee(sliderCoffe1, sliderCoffeeData);
         const filter = new Filter(filterList);
-        const controllSlCoffe = new ControllSlСoffee(redrawSlCoffe, filter);
+        const controllSlCoffe = new ControllSlСoffee(redrawSlCoffe, filter, controllBasket.addToBasket);
         controllSlCoffe.init();
     }
 

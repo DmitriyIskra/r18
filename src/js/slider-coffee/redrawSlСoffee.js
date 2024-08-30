@@ -177,7 +177,6 @@ export default class RedrawSlСoffee {
         // Для десктопа
         if(innerWidth > 1200) {
             // клонируем и подставляем первый слайд назад
-            console.log(this.slides.children.length)
             const el = this.slides.children[this.slides.children.length - 1];
             const clone = el.cloneNode(true);
             clone.classList.add('sl-prod__slide_active');

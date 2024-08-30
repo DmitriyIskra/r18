@@ -1,5 +1,6 @@
 include ../variable/navigationVar
 include ../variable/bottomNavigationVar
+include ../variable/mobileNav
 include ../mixines/navigation
 include ../mixines/navMobile
 include ../variable/contacts
@@ -47,7 +48,7 @@ html(lang='ru')
     .wrapper-page.wrapper-rest-page(class=`wrapper-${pageName}`)
         header.header
             .header__wr-content
-              +navMob(bottomNav) 
+              +navMob(mobileNav) 
               include ../components/logo
               .header__wr-buttons
                 +nav(nav)

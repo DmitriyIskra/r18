@@ -11,7 +11,7 @@ mixin nav(obj)
                                 defs
                                     clipPath#clip0_1853_2287
                                         rect(width='50', height='50', fill='white', transform='translate(0 0.5)')                            
-                else 
+                else if item.title !== 'basket'
                     li.nav__item(data-item=item.title)
                         if item.link
                             a.nav__item-link(href=item.link title=item.title) #{item.name}
