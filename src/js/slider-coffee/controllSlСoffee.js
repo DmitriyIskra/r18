@@ -66,7 +66,8 @@ export default class ControllSlСoffee {
 
             let choice = {
                 article : card.dataset.id,
-                title : card.dataset.id,
+                part : card.dataset.part,
+                packing : card.dataset.packing,
                 imgUrl : '',
                 sectionName : 'coffee',
                 amount : 1,
@@ -74,16 +75,23 @@ export default class ControllSlСoffee {
 
             const coffee = this.d.data.find(item => {
                 return (
-                    item.id === choice.title && item.packing === card.dataset.packing
+                    item.id === choice.article && item.packing === card.dataset.packing
                 );
             });
 
+            // значение набор (того что получит в итоге покупатель)
+            choice.part = coffee.part;
+            choice.description = coffee.description;
+
             // если дрип пакет то подставляем путь к картинке набор 
-            // если другой тьо картинка пачка кофе
+            // если другой то картинка пачка кофе
             if(coffee?.img_part) {
                 choice.imgUrl = coffee.img_part;
+                choice.article = coffee.part;
+                choice.title = coffee.part;
             } else {
                 choice.imgUrl = coffee.img;
+                choice.title = coffee.title;
             }
 
             this.addToBasket(choice);

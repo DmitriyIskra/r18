@@ -20,7 +20,8 @@
         },
         "price": "5 600 p.",
         "composition": ["Нержавеющая сталь"],
-        "link": "#"
+        "link": "#",
+        "description" : "Нок-бокс 167 мм"
     },
     {
         "article": "3",
@@ -43,7 +44,8 @@
         },
         "price": "4 000 p.",
         "composition": ["Нержавеющая сталь"],
-        "link": "#"
+        "link": "#",
+        "description" : "Нок-бокс 105 мм"
     },
     {
         "article": "0",
@@ -66,7 +68,8 @@
         },
         "price": "4 400 p.",
         "composition": ["Нержавеющая сталь"],
-        "link": "#"
+        "link": "#",
+        "description" : "Питчер 0,35 мл 'Motta'"
     },
     {
         "article": "1",
@@ -89,7 +92,8 @@
         },
         "price": "1 440 p.",
         "composition": ["Нержавеющая сталь"],
-        "link": "#"
+        "link": "#",
+        "description" : "Питчер 0,35 мл 'Ascaso'"
     },
     {
         "article": "4",
@@ -108,7 +112,8 @@
         },
         "price": "5 520 p.",
         "composition": ["Нержавеющая сталь", "Швеция"],
-        "link": "#"
+        "link": "#",
+        "description" : "Темпер 58 мм"
     },
     {
         "article": "5",
@@ -127,7 +132,8 @@
         },
         "price": "616 p.",
         "composition": ["Аналоговый"],
-        "link": "#"
+        "link": "#",
+        "description" : "Термометр аналоговый 0 – 100 °C"
     },
     {
         "article": "6",
@@ -146,7 +152,8 @@
         },
         "price": "11 868 p.",
         "composition": ["Умные весы для бариста"],
-        "link": "#"
+        "link": "#",
+        "description" : "Умные весы для бариста"
     },
     {
         "article": "7",
@@ -165,7 +172,8 @@
         },
         "price": "2500 р.",
         "composition": ["Порошок для удаления накипи"],
-        "link": "#"
+        "link": "#",
+        "description" : "Порошок для удаления накипи 1 кг 'Neodisher СM special'"
     },
     {
         "article": "8",
@@ -184,6 +192,7 @@
         },
         "price": "2200 р.",
         "composition": ["Порошок для прочистки классических кофемашин"],
-        "link": "#"
+        "link": "#",
+        "description" : "Порошок для прочистки классических кофемашин 1 кг Neodisher CM P"
     }
 ]

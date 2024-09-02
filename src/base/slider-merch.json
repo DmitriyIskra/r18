@@ -28,7 +28,8 @@
         },
         "price": "2 500 p.",
         "composition": ["Хлопок 100%"],
-        "link": "#"
+        "link": "#",
+        "description" : "Футболка R18: 'От центра к краю'"
     },
     {
         "article": "1",
@@ -59,7 +60,8 @@
         },
         "price": "2 500 p.",
         "composition": ["Хлопок 100%"],
-        "link": "#"
+        "link": "#",
+        "description" : "Футболка R18: 'Черный внутри'"
     },
     {
         "article": "2",
@@ -90,7 +92,8 @@
         },
         "price": "2 500 p.",
         "composition": ["Хлопок 100%"],
-        "link": "#"
+        "link": "#",
+        "description" : "Футболка R18: 'only Arabica'"
     },
     {
         "article": "3",
@@ -111,7 +114,8 @@
         },
         "price": "2 500 p.",
         "composition": ["Хлопок 100%"],
-        "link": "#"
+        "link": "#",
+        "description" : "Шоппер R18"
     },
     {
         "article": "4",
@@ -131,6 +135,7 @@
         },
         "price": "5000 p.",
         "composition": ["Хлопок 80%, полиэстер 20%."],
-        "link": "#"
+        "link": "#",
+        "description" : "Худи R18"
     }
 ]

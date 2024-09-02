@@ -79,6 +79,7 @@ export default class ControllSLP {
                 price : allDataChoice.price,
                 imgUrl,
                 title : allDataChoice.title,
+                description : allDataChoice.description,
                 amount : 1,
             };
     

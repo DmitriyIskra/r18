@@ -30,6 +30,11 @@ export default class RedrawBasketButton {
     redrawIconAmount() {
         if(!localStorage?.basket) {
             this.amount.classList.remove('header__basket_active');
+            this.amount.textContent = 0;
+
+            if(this.el.classList.contains('header__basket_active')) {
+                this.el.classList.remove('header__basket_active');
+            }
             return;
         }
         const basket = JSON.parse(localStorage.basket);
@@ -46,7 +51,7 @@ export default class RedrawBasketButton {
 
 
 
-    // изменение количества товара
+    // изменение количества товара в корзине визуально
     calcAmountGoods(button) {
         const type = button.dataset.type;
 
@@ -91,11 +96,16 @@ export default class RedrawBasketButton {
     
         const basket = JSON.parse(localStorage.basket);
 
-        const goods = basket.map(item => {
-            return this.patternProduct(item);
+        const goods = basket.map((item, index) => {
+            return this.patternProduct(item, index);
         });
    
         goodsList.append(...goods);
+    }
+
+    deleteProduct(index) {
+        const product = this.lastActiveModal.querySelector(`[data-index="${index}"]`);
+        product.remove();
     }
 
     closeModal() {
@@ -103,8 +113,12 @@ export default class RedrawBasketButton {
         this.lastActiveModal = null;
     }
 
-    patternProduct(data) {
+    patternProduct(data, index) {
         const li = this.createEl('li', ['modal-basket__goods-item'])
+        li.dataset.sku_title = data.title;
+        li.dataset.sku_packing = data.title;
+        li.dataset.article = data.article;
+        li.dataset.index = index;
 
         // левая часть: картинка и описание
         const goods_content = this.createEl('div', ['modal-basket__goods-content']);
@@ -118,7 +132,7 @@ export default class RedrawBasketButton {
 
         const description = this.createEl('div', ['modal-basket__goods-description']);
         
-        const description_p = this.createEl('p', null, data.title);
+        const description_p = this.createEl('p', null, data.description);
 
         description.append(description_p);
 

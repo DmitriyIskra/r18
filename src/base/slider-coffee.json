@@ -15,7 +15,8 @@
         "harvest": "2023",
         "weight": "1 кг",
         "img": "./img/content/espresso-colombia-andino-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Кофе R18: 'Colombia andino'"
     },
     {
         "packing": "espresso",
@@ -33,7 +34,8 @@
         "harvest": "2023",
         "weight": "1 кг",
         "img": "./img/content/espresso-guatemala-blue-ayarsa-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Кофе R18: 'Guatemala blue ayarza'"
     },
     {
         "packing": "espresso",
@@ -51,7 +53,8 @@
         "harvest": "2023",
         "weight": "1 кг",
         "img": "./img/content/espresso-honduras-otilo-garsias-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Кофе R18: 'Honduras otilo garsias'"
     },
     {
         "packing": "espresso",
@@ -69,7 +72,8 @@
         "harvest": "2023",
         "weight": "1 кг",
         "img": "./img/content/espresso-kenya-anfdb-kibendo-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Кофе R18: 'Kenya anfdb kibendo'"
     },
     {
         "packing": "espresso",
@@ -87,7 +91,8 @@
         "harvest": "2023",
         "weight": "1 кг",
         "img": "./img/content/espresso-colombia-excelso-decaf-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Кофе R18: 'Colombia excelso decaf'"
     },
     {
         "packing": "filter",
@@ -105,7 +110,8 @@
         "harvest": "2023",
         "weight": "250 г",
         "img": "./img/content/filter-ethiopia-banko-gotete-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Кофе R18: 'Ethiopia banko gotete'"
     },
     {
         "packing": "filter",
@@ -123,7 +129,8 @@
         "harvest": "2023",
         "weight": "250 г",
         "img": "./img/content/filter-columbia-punch-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Кофе R18: 'Columbia punch'"
     },
     {
         "packing": "filter",
@@ -141,7 +148,8 @@
         "harvest": "2023",
         "weight": "250 г",
         "img": "./img/content/filter-burundi-muranga-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Кофе R18: 'Burundi muranga'"
     },
 
     {
@@ -161,7 +169,8 @@
         "weight": "11,5 г",
         "img": "./img/content/drip-kenya-anfdb-kibendo-content.webp",
         "img_part" : "./img/content/big-desc-part-of-africa-1-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Сет дрип-пакетов: 'Африка'"
     },
     {
         "packing": "drip",
@@ -180,7 +189,8 @@
         "weight": "11,5 г",
         "img": "./img/content/drip-ethiopia-banko-gotete-content.webp",
         "img_part" : "./img/content/big-desc-part-of-africa-1-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Сет дрип-пакетов: 'Африка'"
     },
     {
         "packing": "drip",
@@ -199,7 +209,8 @@
         "weight": "11,5 г",
         "img": "./img/content/drip-burundi-muranga-content.webp",
         "img_part" : "./img/content/big-desc-part-of-africa-1-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Сет дрип-пакетов: 'Африка'"
     },
 
     {
@@ -219,7 +230,8 @@
         "weight": "11,5 г",
         "img": "./img/content/drip-colombia-excelso-decaf-content.webp",
         "img_part" : "./img/content/big-desc-part-of-assorti-1-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Сет дрип-пакетов: 'Ассорти'"
     },
     {
         "packing": "drip",
@@ -238,7 +250,8 @@
         "weight": "11,5 г",
         "img": "./img/content/drip-brasil-cocatrel-content.webp",
         "img_part" : "./img/content/big-desc-part-of-assorti-1-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Сет дрип-пакетов: 'Ассорти'"
     },
     {
         "packing": "drip",
@@ -257,7 +270,8 @@
         "weight": "11,5 г",
         "img": "./img/content/drip-peru-cajamarca-content.webp",
         "img_part" : "./img/content/big-desc-part-of-assorti-1-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Сет дрип-пакетов: 'Ассорти'"
     },
 
     {
@@ -277,7 +291,8 @@
         "weight": "11,5 г",
         "img": "./img/content/drip-colombia-punch-content.webp",
         "img_part" : "./img/content/big-desc-part-of-amerika-1-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Сет дрип-пакетов: 'Америка'"
     },
     {
         "packing": "drip",
@@ -296,7 +311,8 @@
         "weight": "11,5 г",
         "img": "./img/content/drip-guatemala-blue-ayarza-content.webp",
         "img_part" : "./img/content/big-desc-part-of-amerika-1-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Сет дрип-пакетов: 'Америка'"
     },
     {
         "packing": "drip",
@@ -315,6 +331,7 @@
         "weight": "11,5 г",
         "img": "./img/content/drip-honduras-otilo-garsias-content.webp",
         "img_part" : "./img/content/big-desc-part-of-amerika-1-content.webp",
-        "link": "#"
+        "link": "#",
+        "description" : "Сет дрип-пакетов: 'Америка'"
     }
 ]

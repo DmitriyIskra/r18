@@ -65,7 +65,24 @@ export default class ControllBasketButton extends ApiModals {
         if(e.target.closest('.modal-basket__goods-amount-button')) {
             const button = e.target.closest('.modal-basket__goods-amount-button');
             
-            this.redraw.calcAmountGoods(button);            
+            this.redraw.calcAmountGoods(button); 
+
+
+            // пересчет количества в корзине в localStorage
+            // при нажатии + или -
+            const li = button.closest('li');
+
+            let amount;
+
+            amount = button.dataset.type === 'increment' ? 1 : -1;
+
+            this.addToBasket({
+                index : li.dataset.index,
+                article : li.dataset.article,
+                title : li.dataset.sku_title,
+            }, amount);
+
+            // console.log(JSON.parse(localStorage.basket))
         }
 
         // отправляем заказ на сервер и показываем соответствующую модалку
@@ -73,7 +90,7 @@ export default class ControllBasketButton extends ApiModals {
 
             // Открытие модалки заказ успешно или не успешно отправлен
             // результат отправки
-            const resultSend = false;
+            const resultSend = true;
             (async () => {
                 // тип модалки
                 let typeModal = 'order-successfully';
@@ -86,6 +103,12 @@ export default class ControllBasketButton extends ApiModals {
                     // закрытие корзины
                     if(e.target.closest('.modal__close')) this.redraw.closeModal();
                 });
+
+                console.log('ORDER: ', JSON.parse(localStorage.basket))
+
+                this.clearLocalStorage();
+
+                this.redraw.redrawIconAmount()
             })()
         }
     }
@@ -138,15 +161,32 @@ export default class ControllBasketButton extends ApiModals {
         }
 
         // если найден, уже добавлялся, увеличиваем количество на 1
-        basket.forEach(item => {
+        basket.forEach((item, index, array) => {
             if(item.article === data.article && item.title === data.title) {
                 item.amount = +item.amount + amount;
+
+                // если количество единицы товара 0, удаляем его из корзины везде
+                if(item.amount <= 0){
+                     array.splice(array[index], 1);
+                     this.redraw.deleteProduct(data.index);
+                    };
+                // если в корзине не осталось товаров чистим localStorage
+                if(array.length === 0) {
+                    this.clearLocalStorage();
+                }
             }
         })
-
-        localStorage.basket = JSON.stringify(basket);
-
+        
+        if(basket.length) localStorage.basket = JSON.stringify(basket);
+        
         // перерисовка/отрисовка значка корзины с количеством товаров в ней
         this.redraw.redrawIconAmount();
+    }
+
+    clearLocalStorage() {
+        if(localStorage.basket) {
+            delete localStorage.basket();
+        }
+        localStorage.clear()
     }
 }
