@@ -9,6 +9,7 @@ export default class ControllBasketButton extends ApiModals {
         this.click = this.click.bind(this);
         this.clickBasket = this.clickBasket.bind(this);
         this.addToBasket = this.addToBasket.bind(this);
+        this.bloor = this.bloor.bind(this);
 
         this.mask;
     }
@@ -30,10 +31,20 @@ export default class ControllBasketButton extends ApiModals {
         e.target.dataset.item === 'basket') {
             // ---- pop-up basket
             (async () => {
-                const logRegPopUp = await super.read('basket');
-                this.redraw.openNewModal(logRegPopUp)
+                const basket = await super.read('basket');
+                this.redraw.openNewModal(basket);
 
                 this.redraw.lastActiveModal.addEventListener('click', this.clickBasket);
+
+                // собираем инпуты в корзине и назначаем слушать
+                // для того чтобы пользователь мог ввести количество руками
+                const inputs = this.redraw.lastActiveModal
+                    .querySelectorAll('.modal-basket__goods-amount-num');
+
+                if(inputs) {
+                    [...inputs].forEach(item => item
+                        .addEventListener('change', this.bloor));
+                }
 
                 // на телефон формы регистрации вешаем при фокусе маску
                 const form = this.redraw.lastActiveModal.querySelector('form');
@@ -104,7 +115,8 @@ export default class ControllBasketButton extends ApiModals {
                     if(e.target.closest('.modal__close')) this.redraw.closeModal();
                 });
 
-                console.log('ORDER: ', JSON.parse(localStorage.basket))
+                const order = localStorage?.basket ? JSON.parse(localStorage.basket) : '';
+                console.log('ORDER: ', order)
 
                 this.clearLocalStorage();
 
@@ -113,16 +125,46 @@ export default class ControllBasketButton extends ApiModals {
         }
     }
 
-    // валидация заполненности полей
-    validation(inputs) { 
-        inputs.forEach(item => {
-            // поле не заполненно
-            if(!item.value) { // валидация
-                this.redraw.incorrectData(item, 'Заполните пожалуйста поле');
+    // метод для отлавливания изменений в корзине в input 
+    bloor(e) {
+        const value = +e.target.value;
+        const basket = JSON.parse(localStorage.basket);
+        
+        delete localStorage.basket;
+
+        // пересчет количества в корзине в localStorage
+        // при нажатии + или -
+        const li = e.target.closest('li');
+        const article = li.dataset.article;
+        const title = li.dataset.sku_title;
+        const indexItem = li.dataset.index;
+
+        // если найден, уже добавлялся, увеличиваем количество на 1 или уменьшаем на -1
+        basket.forEach((item, index, array) => {
+            // ищем по двум параметрам т.к. один может быть одинаков у нескольких
+            if(item.article == article && item.title == title) {
+                item.amount = value;
+                // если количество единицы товара 0, удаляем его из корзины везде
+                if(item.amount <= 0){
+                    array.splice(index, 1); // удалить из basket
+                    this.redraw.deleteProduct(indexItem); // удалить с экрана
+                };
+                // если в корзине не осталось товаров чистим localStorage
+                if(array.length === 0) {
+                    this.clearLocalStorage();
+                }
             }
         })
+
+        if(basket.length) localStorage.basket = JSON.stringify(basket);
+        
+        // перерисовка/отрисовка значка корзины с количеством товаров в ней
+        this.redraw.redrawIconAmount();
     }
 
+
+    // Добавляет в корзину и если уже есть увеличивает на 1,
+    // а также работает с increment и decrement
     addToBasket(data, amount = 1) {
         // article: "3"
         // color: ""
@@ -160,16 +202,18 @@ export default class ControllBasketButton extends ApiModals {
             return;
         }
 
-        // если найден, уже добавлялся, увеличиваем количество на 1
+        // если найден, уже добавлялся, увеличиваем количество на 1 или уменьшаем на -1
         basket.forEach((item, index, array) => {
+            // ищем по двум параметрам т.к. один может быть одинаков у нескольких
             if(item.article === data.article && item.title === data.title) {
-                item.amount = +item.amount + amount;
+
+                item.amount = item.amount + amount;
 
                 // если количество единицы товара 0, удаляем его из корзины везде
                 if(item.amount <= 0){
-                     array.splice(array[index], 1);
-                     this.redraw.deleteProduct(data.index);
-                    };
+                    array.splice(index, 1); // удалить из basket
+                    this.redraw.deleteProduct(data.index); // удалить с экрана
+                };
                 // если в корзине не осталось товаров чистим localStorage
                 if(array.length === 0) {
                     this.clearLocalStorage();
@@ -183,10 +227,22 @@ export default class ControllBasketButton extends ApiModals {
         this.redraw.redrawIconAmount();
     }
 
+
     clearLocalStorage() {
-        if(localStorage.basket) {
-            delete localStorage.basket();
+        if(localStorage?.basket) {
+            delete localStorage.basket;
         }
         localStorage.clear()
+    }
+
+    
+    // валидация заполненности полей
+    validation(inputs) { 
+        inputs.forEach(item => {
+            // поле не заполненно
+            if(!item.value) { // валидация
+                this.redraw.incorrectData(item, 'Заполните пожалуйста поле');
+            }
+        })
     }
 }
