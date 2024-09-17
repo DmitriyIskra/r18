@@ -12,7 +12,7 @@ export default class ControllAccountButton extends ApiModals {
         this.clickRecover = this.clickRecover.bind(this);
         this.clickRegistration = this.clickRegistration.bind(this);
 
-        this.mask;
+        this.mask = null;
     }
 
     init() {

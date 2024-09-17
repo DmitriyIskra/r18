@@ -7,11 +7,14 @@ export default class ControllAccount extends ApiModals {
         this.AirDatepicker = AirDatepicker;
         this.IMask = IMask; // активируем при фокусе
 
+        this.instanceIMask = null;
+
         this.clickNav = this.clickNav.bind(this);
         this.click = this.click.bind(this);
         this.focus = this.focus.bind(this);
+        this.blur = this.blur.bind(this);
     }
-
+ 
     init() {
         this.registerEvents();
 
@@ -25,7 +28,10 @@ export default class ControllAccount extends ApiModals {
         this.redraw.profile.el.addEventListener('click', this.click);
         this.redraw.history.el.addEventListener('click', this.click);
 
-        this.redraw.profile.form.phone.addEventListener('focus', this.focus);
+        [...this.redraw.profile.inputsText]
+            .forEach(item => item.addEventListener('focus', this.focus));
+        [...this.redraw.profile.inputsText]
+            .forEach(item => item.addEventListener('blur', this.blur));
     }
 
     initCalendar() {
@@ -97,10 +103,35 @@ export default class ControllAccount extends ApiModals {
 
     // активируем маску ввода телефона
     focus(e) {
-        new this.IMask(e.target, {
-            mask: '+{7} (000) 000-00-00',
-            lazy: false,
-            placeholderChar: '_',
-        })
+        console.log('focus')
+        if(e.target.closest('[name="phone"]')) {
+            this.instanceIMask = new this.IMask(e.target, {
+                mask: '+{7} (000) 000-00-00',
+                lazy: false,
+                placeholderChar: '_',
+            })
+        }
+
+        if(!e.target.closest('[name="phone"]')) {
+            this.redraw.profile.clearInput(e.target);
+        }
+    }
+
+    blur(e) {
+        console.log('blur')
+        if(e.target.closest('[name="phone"]')) {
+            const value = e.target.value;
+            const result = /\+\d{1} \(___\) ___-__-__/.test(value);
+            if(result) {
+                console.log(this.instanceIMask)
+                this.instanceIMask.destroy();
+                console.log(this.instanceIMask)
+                e.target.value = 'Телефон';
+            }
+        }
+    
+        if(!e.target.closest('[name="phone"]')) {
+            this.redraw.profile.fillInput(e.target);
+        }
     }
 }

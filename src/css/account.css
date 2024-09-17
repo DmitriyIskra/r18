@@ -102,7 +102,7 @@
     color: #FFF;
 
     font-family: "SofiaSans";
-    font-size: 0.57vw;
+    font-size: 1.04vw;
     font-weight: 400;
 
     background: none;
@@ -125,7 +125,7 @@
 }
 
 .profile__gender-title {
-    font-size: 0.57vw;
+    font-size: 1.04vw;
     font-weight: 700;
 }
 
@@ -133,7 +133,7 @@
     display: flex;
     gap: 0.47vw;
 
-    font-size: 0.83vw;
+    font-size: 1.1vw;
     font-weight: 400;
 
     align-items: end;
@@ -172,7 +172,7 @@
 
 .profile__born-date-label {
     display: flex;
-    width: 60%;
+    width: 64%;
     gap: 1.15vw;
 
     font-family: "SofiaSans";
@@ -183,12 +183,12 @@
 }
 
 .profile__born-date-mark {
-    font-size: 0.57vw;
+    font-size: 1.04vw;
     font-weight: 700;
 }
 
 .profile__born-date-input {
-    width: 76%;
+    width: 62%;
     padding-left: 0.83vw;
     padding-top: 1.04vw;
     padding-bottom: 1.04vw;
