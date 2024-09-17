@@ -46,7 +46,7 @@
 }
 
 .delivery__direction {
-    width: 31.25vw;
+    width: 47.995%;
     padding: 0.89vw 1.56vw 3.02vw;
 
     border: 1px solid #FFF;
@@ -234,33 +234,5 @@ p.delivery__documents {
     .wrapper-delivery .contacts__wr-address {
         background: none;
     }
-}
-
-@media(max-width: 1200px) {
-    
-}
-
-@media(max-width: 1200px) {
-    
-}
-
-@media(max-width: 1200px) {
-    
-}
-
-@media(max-width: 1200px) {
-    
-}
-
-@media(max-width: 1200px) {
-    
-}
-
-@media(max-width: 1200px) {
-    
-}
-
-@media(max-width: 1200px) {
-    
 }
 
