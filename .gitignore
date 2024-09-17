@@ -1,9 +1,9 @@
-src/video/about-us.MOV
-src/video/roasting-coffee-1.MOV
-src/video/roasting-coffee-2.MOV
-src/video/roasting-coffee-3.MOV
+# src/video/about-us.MOV
+# src/video/roasting-coffee-1.MOV
+# src/video/roasting-coffee-2.MOV
+# src/video/roasting-coffee-3.MOV
 
-src/video/
+src/video/about-us.MOV
 
 # настройки PHPStorm и VC
 /.idea/
@@ -15,7 +15,7 @@ src/video/
 .Trashes
 Thumbs.db
 ehthumbs.db
-
+ 
 # composer
 composer.phar
 /vendor/
