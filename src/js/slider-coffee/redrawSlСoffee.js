@@ -172,7 +172,7 @@ export default class RedrawSlСoffee {
     movePrev() {
         // блокируем накликивание
         if(this.block) return;
-        this.block = true;
+        this.block = true; 
 
         // Для десктопа
         if(innerWidth > 1200) {
