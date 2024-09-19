@@ -9,13 +9,14 @@
     background-size: 10.9vw auto;
 }
 
-.wrapper-index-page .header {
+/* .wrapper-index-page .header {
     position: absolute;
-}
+} */
 
 /* HEADER START */
 
 .header {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -24,6 +25,7 @@
     height: 7.81vw;
 
     border-bottom: 1px solid #fff;
+    background: #000;
 
     justify-content: center;
 

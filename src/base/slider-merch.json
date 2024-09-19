@@ -35,7 +35,7 @@
         "article": "1",
         "title": "Черный внутри",
         "colors": [
-            {
+            { 
                 "name": "black",
                 "value": "#3F3937"
             }, 

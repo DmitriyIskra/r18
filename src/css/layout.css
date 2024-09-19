@@ -1,9 +1,30 @@
-.wrapper-rest-page header {
+/* .wrapper-rest-page header {
     position: relative;
+} */
+.wrapper-rest-page .main:not(.main-delivery) {
+    position: relative;
+    top: 7.8vw;
+}
+
+.wrapper-rest-page .main-delivery {
+    position: relative;
+    top: 14.6vw;
 }
 
 .wrapper-rest-page .contacts {
     display: none;
+}
+
+@media( max-width: 1200px ) {
+    .wrapper-rest-page .main:not(.main-delivery) {
+        top: 21.75vw;
+    }
+}
+
+@media( max-width: 1200px ) {
+    .wrapper-rest-page .main-delivery {
+        top: 22.5vw;
+    }
 }
 
 @media( max-width: 1200px ) {
