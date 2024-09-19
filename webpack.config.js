@@ -137,8 +137,9 @@ module.exports = {
           patterns: [  
             { from: 'src/img/content/espresso-colombia-andino-content.webp', to: 'img/content' },
             { from: 'src/img/content/espresso-colombia-excelso-decaf-content.webp', to: 'img/content' },
+            { from: 'src/img/content/espresso-colombia-excelso-ground-content.webp', to: 'img/content' },
             { from: 'src/img/content/espresso-guatemala-blue-ayarsa-content.webp', to: 'img/content' },
-            { from: 'src/img/content/espresso-honduras-otilo-garsias-content.webp', to: 'img/content' },
+            { from: 'src/img/content/espresso-honduras-intibuca-content.webp', to: 'img/content' },
             { from: 'src/img/content/espresso-kenya-anfdb-kibendo-content.webp', to: 'img/content' },
             { from: 'src/img/content/filter-burundi-muranga-content.webp', to: 'img/content' },
             { from: 'src/img/content/filter-columbia-punch-content.webp', to: 'img/content' },

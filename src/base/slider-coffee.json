@@ -40,9 +40,9 @@
     {
         "packing": "espresso",
         "filter-name": "Эспрессо",
-        "id": "honduras-otilo-garsias",
-        "part": "honduras-otilo-garsias",
-        "title": "honduras otilo garsias",
+        "id": "honduras-intibuca",
+        "part": "honduras-intibuca",
+        "title": "honduras intibuca",
         "taste": "пряности и ягоды, ноты брусники, карамели и клюквы, пряностей и черного чая",
         "region": "Лемпира, Интибука",
         "height": "1750-1950 м",
@@ -52,9 +52,9 @@
         "roasting": "эспрессо",
         "harvest": "2023",
         "weight": "1 кг",
-        "img": "./img/content/espresso-honduras-otilo-garsias-content.webp",
+        "img": "./img/content/espresso-honduras-intibuca-content.webp",
         "link": "#",
-        "description" : "Кофе R18: 'Honduras otilo garsias'"
+        "description" : "Кофе R18: 'Honduras intibuca'"
     },
     {
         "packing": "espresso",
@@ -91,6 +91,25 @@
         "harvest": "2023",
         "weight": "1 кг",
         "img": "./img/content/espresso-colombia-excelso-decaf-content.webp",
+        "link": "#",
+        "description" : "Кофе R18: 'Colombia excelso decaf'"
+    },
+    {
+        "packing": "espresso",
+        "filter-name": "Эспрессо",
+        "id": "colombia-excelso-decaf-ground",
+        "part": "colombia-excelso-decaf-ground",
+        "title": "colombia excelso decaf",
+        "taste": "аромат выпечки и специй с нотами бородинского хлеба, темного шоколада и печеных яблок",
+        "region": "Толима, Уила, Нариньо",
+        "height": "1200-2000 м",
+        "sort": "Кастильо, Катурра, Типика, Бурбон",
+        "processing": "мытая (декофеинизация)",  
+        "q": "83",
+        "roasting": "эспрессо",
+        "harvest": "2023",
+        "weight": "1 кг",
+        "img": "./img/content/espresso-colombia-excelso-ground-content.webp",
         "link": "#",
         "description" : "Кофе R18: 'Colombia excelso decaf'"
     },
