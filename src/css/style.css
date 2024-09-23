@@ -25,11 +25,11 @@
     height: 7.81vw;
 
     border-bottom: 1px solid #fff;
-    background: #000;
+    background: rgba(0, 0, 0, 0.35);
 
     justify-content: center;
 
-    z-index: 10;
+    z-index: 1200;
 }
 
 .header__wr-content {
