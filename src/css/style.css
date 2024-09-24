@@ -9,10 +9,6 @@
     background-size: 10.9vw auto;
 }
 
-/* .wrapper-index-page .header {
-    position: absolute;
-} */
-
 /* HEADER START */
 
 .header {
@@ -22,10 +18,10 @@
     right: 0;
 
     display: flex;
-    height: 7.81vw;
+    height: 6.51vw;
 
-    border-bottom: 1px solid #fff;
-    background: rgba(0, 0, 0, 0.35);
+    border-bottom: 1px solid #ddd;
+    background: #483D41;
 
     justify-content: center;
 
@@ -455,6 +451,8 @@
 
 @media( max-width: 1200px ) {
     .header {
+        position: relative;
+
         height: auto;
         padding-bottom: 2.40vw;
         padding-top: 2.40vw;

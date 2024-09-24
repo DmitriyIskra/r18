@@ -648,4 +648,14 @@ export default class RedrawSlСoffee {
             inline: "nearest"
         })
     }
+
+    scrollToDescription() {
+        const el = this.bigDescriptions[0].parentElement;
+
+        el.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+            inline: "nearest"
+        })
+    }
 }

@@ -115,7 +115,7 @@
     },
     {
         "packing": "filter",
-        "filter-name": "Фильтр-кофе",
+        "filter-name": "Фильтр",
         "id": "ethiopia-banko-gotete",
         "part": "ethiopia-banko-gotete",
         "title": "ethiopia banko gotete",
@@ -134,7 +134,7 @@
     },
     {
         "packing": "filter",
-        "filter-name": "Фильтр-кофе",
+        "filter-name": "Фильтр",
         "id": "columbia-punch",
         "part": "columbia-punch",
         "title": "columbia punch",
@@ -153,7 +153,7 @@
     },
     {
         "packing": "filter",
-        "filter-name": "Фильтр-кофе",
+        "filter-name": "Фильтр",
         "id": "burundi-muranga",
         "part": "burundi-muranga",
         "title": "burundi muranga",

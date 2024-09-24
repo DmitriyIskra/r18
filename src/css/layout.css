@@ -1,14 +1,13 @@
 /* .wrapper-rest-page header {
     position: relative;
 } */
-.wrapper-rest-page .main:not(.main-delivery) {
+.wrapper-rest-page .main {
     position: relative;
-    top: 7.8vw;
+
 }
 
-.wrapper-rest-page .main-delivery {
-    position: relative;
-    top: 14.6vw;
+.wrapper-rest-page .main:not(.main-delivery) {
+    top: 7.8vw;
 }
 
 .wrapper-rest-page .contacts {
@@ -17,15 +16,16 @@
 
 @media( max-width: 1200px ) {
     .wrapper-rest-page .main:not(.main-delivery) {
-        top: 21.75vw;
+        top: 0;
     }
 }
 
 @media( max-width: 1200px ) {
     .wrapper-rest-page .main-delivery {
-        top: 22.5vw;
+        top: 0;
     }
 }
+
 
 @media( max-width: 1200px ) {
     .wrapper-rest-page .contacts {

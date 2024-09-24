@@ -12,6 +12,10 @@
 }
 
 .main-delivery {
+    padding-bottom: 0;
+    padding-top: 14.5vw;
+    margin-bottom: 11.28vw;
+
     background: none;
 }
 
@@ -114,6 +118,12 @@ p.delivery__documents {
 
     background: #F1551C;
     border-radius: 50%;
+}
+
+@media(max-width: 1200px) {
+    .main-delivery {
+        padding-top: 0;
+    }
 }
 
 @media(max-width: 1200px) {

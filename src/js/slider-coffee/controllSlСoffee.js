@@ -78,7 +78,7 @@ export default class ControllSlСoffee {
                     item.id === choice.article && item.packing === card.dataset.packing
                 );
             });
- 
+  
             // значение набор (того что получит в итоге покупатель)
             choice.part = coffee.part;
             choice.description = coffee.description;
@@ -95,6 +95,10 @@ export default class ControllSlСoffee {
             }
 
             this.addToBasket(choice);
+        }
+
+        if(e.target.closest('.sl-prod__wr-to-big-description')) {
+            this.d.scrollToDescription();
         }
     }
 
