@@ -28,7 +28,10 @@ export default class ControllSlСoffee {
     }
 
     click(e) {
-        e.preventDefault();
+        // не блокируем поведение радио кнопок
+        if(!e.target.closest('.sl-prod__radio-item')) {
+            e.preventDefault();
+        }
 
         if(e.target.closest('.slider__arrow-next')) {
             this.d.moveNext();

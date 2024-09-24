@@ -588,8 +588,10 @@ export default class RedrawSlСoffee {
     }
 
     createSlide(id, part, pathImg, title, packing, href, linkTitle) {
+        // слайд
         const li = this.createEl('li', ['sl-prod__slide']);
         
+        // изоюражение на слайде
         const divImg = this.createEl('div', ['sl-prod__wr-img-slide', `sl-prod__wr-img-slide_${packing}`]);
         const img = this.createEl('img', ['sl-prod__img-slide']);
         li.dataset.id = id;
@@ -601,11 +603,50 @@ export default class RedrawSlСoffee {
          
         divImg.append(img);
 
+        li.append(divImg);
+
+        // выбор типа кофе для фильтра(зерно или какой-то помол)
+        if(packing === 'filter') {
+            const arrText = ['Зерно', 'Эспрессо', 'Капельная кофеварка', 'Турка'];
+
+            const radioForm = this.createEl('form', ['sl-prod__radio-form']);
+
+            const radioList = this.createEl('ul', ['sl-prod__radio-list']);
+
+            for(let i = 0; i < 4; i += 1) {
+                const radioItem = this.createEl('li', ['sl-prod__radio-item']);
+
+                const label = this.createEl('label', ['sl-prod__radio-label']);
+
+                const radioButton = this.createEl('input', ['sl-prod__radio-input']);
+                radioButton.type = 'radio';
+                radioButton.name = 'sl-prod-radio';
+                radioButton.value = arrText[i];
+                if(i === 0) radioButton.checked = true;
+
+                const radioText = this.createEl('span', ['sl-prod__radio-text']);
+                radioText.textContent = arrText[i];
+
+                label.append(radioButton);
+                label.append(radioText);
+
+                radioItem.append(label);
+
+                radioList.append(radioItem)
+            }
+
+            radioForm.append(radioList);
+
+            li.append(radioForm);
+        }
+
+        // заголовок слайда
         const divTitle = this.createEl('div', ['sl-prod__wr-title-slide']);
         const h3 = this.createEl('h3', ['sl-prod__title-slide']);
         h3.textContent = title;
         divTitle.append(h3);
 
+        // кнопка 
         const divButton = this.createEl('div', ['sl-prod__wr-button-slide']);
         const link = this.createEl('a', ['sl-prod__button-slide']);
         link.href = href;
@@ -616,7 +657,6 @@ export default class RedrawSlСoffee {
         divButton.append(link);
         divButton.append(linkDeco);
 
-        li.append(divImg);
         li.append(divTitle);
         li.append(divButton);
 
