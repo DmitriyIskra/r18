@@ -625,10 +625,15 @@ export default class RedrawSlСoffee {
                 radioButton.value = arrText[i];
                 if(i === 0) radioButton.checked = true;
 
+                const radioButtonCustomBack = this.createEl('span', ['sl-prod__radio-input-cust-back']);
+                const radioButtonCustomBody = this.createEl('span', ['sl-prod__radio-input-cust-body']);
+                radioButtonCustomBack.append(radioButtonCustomBody);
+
                 const radioText = this.createEl('span', ['sl-prod__radio-text']);
                 radioText.textContent = arrText[i];
 
                 label.append(radioButton);
+                label.append(radioButtonCustomBack);
                 label.append(radioText);
 
                 radioItem.append(label);

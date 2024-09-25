@@ -357,10 +357,10 @@
     box-shadow: 0.78vw 1.04vw 2.02vw 0.63vw rgba(0, 0, 0, 0.6);
 }
 
-
 .sl-prod__radio-form {
     width: 73%;
     height: 0;
+    padding: 0.21vw 0 0.21vw 0.21vw;
 
     transition: height 0.7s linear, opacity 0.7s linear;
 
@@ -369,16 +369,15 @@
 }
 
 .sl-prod__slide_active .sl-prod__radio-form {
-    height: 17%;
+    height: 18%;
 
     opacity: 1;
 }
 
-
 .sl-prod__radio-list {
     display: grid;
     grid-template-rows: min-content min-content;
-    grid-template-columns: 1fr min-content;
+    grid-template-columns: 1fr 42%;
     row-gap: 0.68vw;
 
     justify-content: center;
@@ -386,12 +385,15 @@
 }
 
 .sl-prod__radio-label {
+    display: flex;
+
     font-family: "SofiaSans";
     font-size: 0.73vw;
     font-weight: 400;
-
+    
     color: #3F3937;
-
+    
+    align-items: center;
     cursor: pointer;
 }
 
@@ -399,40 +401,37 @@
     display: none;
 }
 
-.sl-prod__radio-text {
-    display: flex;
-
-    align-items: center;
-}
-
-.sl-prod__radio-text::before {
-    content: "";
-
-    width: 1.04vw;
-    height: 1.04vw;
+.sl-prod__radio-input-cust-back {
+    display: inline-block;
+    width: 1.35vw;
+    height: 1.35vw;
     margin-right: 10%;
 
-    border: 3px solid transparent;
     border-radius: 50%;
-    background: #fff;
-    outline: 0px solid #F1551C;
-    outline-offset: 0.16vw;
+    border: 0px solid #F1551C;
 
     flex-shrink: 0;
 }
 
-.sl-prod__radio-input:checked ~ .sl-prod__radio-text::before {
-    background: #F1551C;
-    outline: 1px solid #F1551C;
+.sl-prod__radio-input-cust-body {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    
+    border: 3px solid transparent;
+    border-radius: 50%;
+    background: linear-gradient(to top, #fff, #fff) padding-box,
+                linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)) border-box;
 }
 
+.sl-prod__radio-input:checked + .sl-prod__radio-input-cust-back {
+    border: 0.05vw solid #F1551C;
+}
 
-
-
-
-
-
-
+.sl-prod__radio-input:checked + .sl-prod__radio-input-cust-back > .sl-prod__radio-input-cust-body {
+    background: linear-gradient(to top, #F1551C, #F1551C) padding-box,
+                linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)) border-box;
+}
 
 .sl-prod__wr-title-slide {
     margin-top: 0.83vw;
