@@ -129,7 +129,7 @@ export default class ControllBasketButton extends ApiModals {
     bloor(e) {
         const value = +e.target.value;
         const basket = JSON.parse(localStorage.basket);
-        
+         
         delete localStorage.basket;
 
         // пересчет количества в корзине в localStorage
@@ -189,10 +189,15 @@ export default class ControllBasketButton extends ApiModals {
 
         // проверка добавлялся ли уже такой продукт в корзину
         const product = basket.find(item => {
-            return item.article === data.article && item.title === data.title
+            // если в товаре нет помола то это не фильтр кофе
+            if(!item?.grinding) {
+                return item.article === data.article && item.title === data.title
+            }
+            // иначе если в товаре есть помол то это фильтр кофе
+            return item.article === data.article && item.title === data.title && item.grinding === data.grinding
         })
 
-        // если продукт не найден
+        // если продукт не добавлялся
         if(!product) {
             basket.push(data);
             localStorage.basket = JSON.stringify(basket);
@@ -202,12 +207,14 @@ export default class ControllBasketButton extends ApiModals {
             return;
         }
 
-        // если найден, уже добавлялся, увеличиваем количество на 1 или уменьшаем на -1
+        // если найден, уже добавлялся, увеличиваем количество на 1 или уменьшаем на -1 
+        // (при нажатии в корзине на значек -)
+        // расчет зависит от amount положительное там число или отрицательное
         basket.forEach((item, index, array) => {
             // ищем по двум параметрам т.к. один может быть одинаков у нескольких
             if(item.article === data.article && item.title === data.title) {
 
-                item.amount = item.amount + amount;
+                item.amount = item.amount + amount; // amount может быть + или -
 
                 // если количество единицы товара 0, удаляем его из корзины везде
                 if(item.amount <= 0){

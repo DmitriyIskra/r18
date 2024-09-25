@@ -67,6 +67,7 @@ export default class ControllSlСoffee {
 
             const card = e.target.closest('li');
 
+            
             let choice = {
                 article : card.dataset.id,
                 part : card.dataset.part,
@@ -74,6 +75,14 @@ export default class ControllSlСoffee {
                 imgUrl : '',
                 sectionName : 'coffee',
                 amount : 1,
+            }
+
+            // для фильтр кофе получаем значение радио кнопок (зерно/помол)
+            const radioForm = card.querySelector('form');
+            if(radioForm) {
+                const radioButtons = radioForm['sl-prod-radio'];
+                const valueButtonChecked = [...radioButtons].find(i => i.checked).value;
+                choice.grinding = valueButtonChecked;
             }
 
             const coffee = this.d.data.find(item => {

@@ -360,7 +360,6 @@
 .sl-prod__radio-form {
     width: 73%;
     height: 0;
-    padding: 0.21vw 0 0.21vw 0.21vw;
 
     transition: height 0.7s linear, opacity 0.7s linear;
 
@@ -391,7 +390,7 @@
     font-size: 0.73vw;
     font-weight: 400;
     
-    color: #3F3937;
+    color: #cfcfcf;
     
     align-items: center;
     cursor: pointer;
@@ -431,6 +430,10 @@
 .sl-prod__radio-input:checked + .sl-prod__radio-input-cust-back > .sl-prod__radio-input-cust-body {
     background: linear-gradient(to top, #F1551C, #F1551C) padding-box,
                 linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)) border-box;
+}
+
+.sl-prod__radio-text {
+    color: #cfcfcf;
 }
 
 .sl-prod__wr-title-slide {

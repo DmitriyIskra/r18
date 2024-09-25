@@ -28,7 +28,7 @@ export default class RedrawBasketButton {
 
     // подсветка корзины и отображение общего количества товаров в ней
     redrawIconAmount() {
-        if(!localStorage?.basket) {
+        if(!localStorage?.basket) { 
             this.amount.classList.remove('header__basket_active');
             this.amount.textContent = 0;
 
