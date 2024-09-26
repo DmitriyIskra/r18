@@ -358,28 +358,8 @@
     transition: height 0.3s linear;
 
     flex-direction: column;
-    overflow: hidden;
+    overflow: auto;
 }
-
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
 
 .account__add-scroll {
     scrollbar-width: thin;
@@ -838,6 +818,16 @@ p.delivery-account__documents {
         max-height: 66.55vw;
         margin-top: 8.27vw;
         gap: 3.47vw;
+    }
+
+    .history__details-list::-webkit-scrollbar {
+        width: 1.13vw;
+    }
+    .history__details-list::-webkit-scrollbar-thumb {
+        background: #919192;
+    }
+    .history__details-list::-webkit-scrollbar-track {
+        background: #ebe9e9;
     }
 }
 
