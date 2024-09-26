@@ -289,6 +289,11 @@
     margin-top: 1.25vw;
 }
 
+.sl-prod__slide[data-id="colombia-excelso-decaf"] .sl-prod__wr-img-slide_espresso,
+.sl-prod__slide[data-id="colombia-excelso-decaf-ground"] .sl-prod__wr-img-slide_espresso  {
+    width: 67.528%;
+}
+
 .sl-prod__wr-img-slide_filter {
     width: 68%;
 
