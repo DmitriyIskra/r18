@@ -361,6 +361,26 @@
     overflow: hidden;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
 .account__add-scroll {
     scrollbar-width: thin;
     scrollbar-color: #919192 #ebe9e9;
@@ -393,7 +413,7 @@
 .history__details-description,
 .history__details-amount {
     font-family: "SofiaSans";
-    font-size: 0.78vw;
+    font-size: 0.83vw;
     font-weight: 400;
 
     color: #fff;
