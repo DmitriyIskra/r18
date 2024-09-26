@@ -114,11 +114,13 @@ export default class RedrawBasketButton {
     }
 
     patternProduct(data, index) {
+        console.log(data)
         const li = this.createEl('li', ['modal-basket__goods-item'])
+        li.dataset.index = index;
         li.dataset.sku_title = data.title;
         li.dataset.sku_packing = data.title;
         li.dataset.article = data.article;
-        li.dataset.index = index;
+        if(data?.grinding) li.dataset.grinding = data.grinding;
 
         // левая часть: картинка и описание
         const goods_content = this.createEl('div', ['modal-basket__goods-content']);
@@ -133,8 +135,33 @@ export default class RedrawBasketButton {
         const description = this.createEl('div', ['modal-basket__goods-description']);
         
         const description_p = this.createEl('p', null, data.description);
-
         description.append(description_p);
+
+        // определяем текст контента (если есть помол или зерно)
+        let textGrinding = null;
+
+        if(data.packing === "espresso") {
+            switch(data.article) {
+                case 'colombia-excelso-decaf-ground' :
+                    textGrinding = 'Молотый';
+                break;
+                default : 
+                    textGrinding = 'Зерно';
+            }  
+        } else if (data.packing === "filter") {  
+            switch(data.grinding) {
+                case 'Зерно' :
+                    textGrinding = 'Зерно';
+                break;
+                default : 
+                    textGrinding = `Молотый: ${data.grinding.toLowerCase()}`;
+            }     
+        } else if (data.packing === "drip") {
+            textGrinding = `Молотый`;
+        }
+            
+        const description_grinding = this.createEl('p', null, textGrinding);
+        description.append(description_grinding);
 
         goods_content.append(goods_img);
         goods_content.append(description);

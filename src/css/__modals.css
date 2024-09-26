@@ -391,6 +391,10 @@
 
         color: #FFF;
     }
+
+    > p:first-child {
+        font-weight: 700;
+    }
 }
 
 .modal-basket__goods-amount {

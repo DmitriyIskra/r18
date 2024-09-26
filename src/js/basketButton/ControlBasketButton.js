@@ -36,6 +36,7 @@ export default class ControllBasketButton extends ApiModals {
 
                 this.redraw.lastActiveModal.addEventListener('click', this.clickBasket);
 
+                // НАЗНАЧАЕМ СЛУШАТЕЛИ НА КОРЗИНУ (МОДАЛКУ КОРЗИНЫ)
                 // собираем инпуты в корзине и назначаем слушать
                 // для того чтобы пользователь мог ввести количество руками
                 const inputs = this.redraw.lastActiveModal
@@ -73,27 +74,32 @@ export default class ControllBasketButton extends ApiModals {
         // закрытие корзины
         if(e.target.closest('.modal__close')) this.redraw.closeModal();
 
+        // кнопки в корзине + или -
         if(e.target.closest('.modal-basket__goods-amount-button')) {
             const button = e.target.closest('.modal-basket__goods-amount-button');
-            
+            // меняем и показываем количество товара в корзине (визуально на странице)
             this.redraw.calcAmountGoods(button); 
 
 
-            // пересчет количества в корзине в localStorage
+            // пересчет количества в корзине в localStorage хранилище
             // при нажатии + или -
             const li = button.closest('li');
 
-            let amount;
+            let counter;
 
-            amount = button.dataset.type === 'increment' ? 1 : -1;
+            counter = button.dataset.type === 'increment' ? 1 : -1;
 
-            this.addToBasket({
+            // Собираем параметры для добавления параметров в метод addToBasket
+            const dataForToBasket = {
                 index : li.dataset.index,
                 article : li.dataset.article,
                 title : li.dataset.sku_title,
-            }, amount);
+            }
+            // получаем данные есть ли помол
+            let grinding = li.dataset?.grinding;
+            if(grinding ) dataForToBasket.grinding = grinding;
 
-            // console.log(JSON.parse(localStorage.basket))
+            this.addToBasket(dataForToBasket, counter);
         }
 
         // отправляем заказ на сервер и показываем соответствующую модалку
@@ -126,23 +132,26 @@ export default class ControllBasketButton extends ApiModals {
     }
 
     // метод для отлавливания изменений в корзине в input 
+    // когда количество вводится не нажатием + или -
+    // вводится сразу количество товара
     bloor(e) {
         const value = +e.target.value;
         const basket = JSON.parse(localStorage.basket);
          
         delete localStorage.basket;
 
-        // пересчет количества в корзине в localStorage
-        // при нажатии + или -
         const li = e.target.closest('li');
         const article = li.dataset.article;
         const title = li.dataset.sku_title;
         const indexItem = li.dataset.index;
+        const grinding = li.dataset?.grinding ? li.dataset?.grinding : false;
 
-        // если найден, уже добавлялся, увеличиваем количество на 1 или уменьшаем на -1
+        // изменение количества товара в корзине без + - 
+        // только при вводе цифры в input с количеством
         basket.forEach((item, index, array) => {
             // ищем по двум параметрам т.к. один может быть одинаков у нескольких
-            if(item.article == article && item.title == title) {
+            if((!grinding && item.article == article && item.title == title) ||
+            (grinding && item.article == article && item.title == title && grinding === item.grinding)) {
                 item.amount = value;
                 // если количество единицы товара 0, удаляем его из корзины везде
                 if(item.amount <= 0){
@@ -165,6 +174,12 @@ export default class ControllBasketButton extends ApiModals {
 
     // Добавляет в корзину и если уже есть увеличивает на 1,
     // а также работает с increment и decrement
+    /**
+     * необходимые data для поиска и расчета
+     * article
+     * title
+     * grinding
+     * */ 
     addToBasket(data, amount = 1) {
         // article: "3"
         // color: ""
@@ -197,7 +212,7 @@ export default class ControllBasketButton extends ApiModals {
             return item.article === data.article && item.title === data.title && item.grinding === data.grinding
         })
 
-        // если продукт не добавлялся
+        // если такого продукта в корзине нет закидываем его туда
         if(!product) {
             basket.push(data);
             localStorage.basket = JSON.stringify(basket);
@@ -211,8 +226,11 @@ export default class ControllBasketButton extends ApiModals {
         // (при нажатии в корзине на значек -)
         // расчет зависит от amount положительное там число или отрицательное
         basket.forEach((item, index, array) => {
-            // ищем по двум параметрам т.к. один может быть одинаков у нескольких
-            if(item.article === data.article && item.title === data.title) {
+            // если в данных о товаре нет помола
+            // ищем по нескольким параметрам т.к. один может быть одинаков у нескольких
+            // также проверяем указан ли в объекте товара помол (grinding)
+            if((!item?.grinding && item.article === data.article && item.title === data.title) ||
+            (item?.grinding && item.article === data.article && item.title === data.title && item.grinding === data.grinding)) {
 
                 item.amount = item.amount + amount; // amount может быть + или -
 
@@ -227,7 +245,7 @@ export default class ControllBasketButton extends ApiModals {
                 }
             }
         })
-        
+
         if(basket.length) localStorage.basket = JSON.stringify(basket);
         
         // перерисовка/отрисовка значка корзины с количеством товаров в ней
