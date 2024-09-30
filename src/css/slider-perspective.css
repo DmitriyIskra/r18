@@ -68,14 +68,18 @@
 .sl-p__card-price {
     position: absolute;
     top: 4%; 
-    left: 10%;
+    left: 0;
+
+    padding-left: 0.52vw;
+    padding-right: 0.42vw;
 
     font-family: "SofiaSans";
     font-size: 1.04vw;
     font-weight: 700;
-    text-transform: uppercase;
 
-    color: #3F3937;
+    color: #fff;
+    background: #F1551C;
+    border-radius: 0px 0.78vw 0.78vw 0px;
 
     opacity: 0;
 }
@@ -575,6 +579,7 @@
     .sl-p__card-wr-slider {
         height: 52.53vw;
         width: 44.27vw;
+        margin-top: 1vw;
     }
 
     .sl-p__slide-item_active .sl-p__card-wr-slider {
@@ -635,9 +640,15 @@
 @media( max-width: 1200px ) {
     .sl-p__card-price {
         top: 2%;
-        left: 3%;
+        left: 0;
+
+        padding-left: 2.7vw;
+        padding-right: 2.5vw;
+        padding-bottom: 0.53vw;
 
         font-size: 4.80vw;
+
+        border-radius: 0px 4vw 4vw 0px;
 
         opacity: 1;
     }
