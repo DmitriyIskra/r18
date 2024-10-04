@@ -146,7 +146,7 @@ export default class RedrawBasketButton {
                     textGrinding = 'Молотый';
                 break;
                 default : 
-                    textGrinding = 'Зерно';
+                    textGrinding = 'Зерно'; 
             }  
         } else if (data.packing === "filter") {  
             switch(data.grinding) {

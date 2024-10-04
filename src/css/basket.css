@@ -1,0 +1,48 @@
+.wrapper-basket {
+    background:
+    no-repeat url(../img/roasteria-side.webp),
+     no-repeat url(../img/roasteria-side.webp),
+       #483D41
+    ;
+    background-position:
+     right 0.35vw top 8vw, 
+      left 0.35vw top 8vw 
+    ;
+    background-size: 10.9vw auto, 10.9vw auto;
+}
+
+.main-basket {
+    min-height: 100vh; 
+    padding-bottom: 11.28vw;
+    background: none;
+}
+
+.basket {
+    width: 76.4%;
+    margin: 0 auto;
+    padding-top: 5.78vw;
+}
+
+.basket__content {
+    background: #726B68;
+}
+
+
+
+
+@media(max-width: 1200px) {
+    .basket {
+        width: auto;
+        padding-top: 0;
+    }
+}
+
+@media(max-width: 1200px) {
+    .wrapper-basket {
+        background-position:
+         right 0.35vw top 77vw,
+          left 0.35vw top 77vw
+        ;
+    }
+}
+

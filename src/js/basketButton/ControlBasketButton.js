@@ -15,8 +15,8 @@ export default class ControllBasketButton extends ApiModals {
     }
 
     init() {
-        this.registerEvents(); 
-        this.redraw.redrawIconAmount();
+        // this.registerEvents();           // отключен весь функционал по корзине формирование и тд
+        // this.redraw.redrawIconAmount();
     }
 
     registerEvents() {
@@ -127,7 +127,7 @@ export default class ControllBasketButton extends ApiModals {
                 this.clearLocalStorage();
 
                 this.redraw.redrawIconAmount()
-            })()
+            })() 
         }
     }
 

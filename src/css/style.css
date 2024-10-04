@@ -12,7 +12,7 @@
 /* HEADER START */
 
 .header {
-    position: fixed;
+    position: fixed; 
     top: 0;
     left: 0;
     right: 0;
@@ -39,6 +39,38 @@
 .header__wr-buttons {
     display: flex;
     gap: 1.56vw;
+}
+
+.header__account {
+    position: relative;
+
+    display: flex;
+    height: 2.60vw;
+    width: 2.60vw;
+    
+    border: 2px solid #fff;
+    border-radius: 50%;
+    
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.header__account:hover {
+    border-color: #F1551C;
+}
+
+.header__account a {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    border-radius: 50%;
+}
+
+.header__account svg {
+    width: 1.09vw; 
+    height: 1.25vw;
 }
 
 .header__basket {
@@ -86,36 +118,13 @@
     border-color: #F1551C;
 }
 
-.header__account {
-    position: relative;
-
-    display: flex;
-    height: 2.60vw;
-    width: 2.60vw;
-    
-    border: 2px solid #fff;
-    border-radius: 50%;
-    
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.header__account:hover {
-    border-color: #F1551C;
-}
-
-.header__account a {
+.header__basket-link {
     position: absolute;
+    top: 0;
+    left: 0;
+
     height: 100%;
     width: 100%;
-
-    border-radius: 50%;
-}
-
-.header__account svg {
-    width: 1.09vw; 
-    height: 1.25vw;
 }
 
 /* HEADER END */
