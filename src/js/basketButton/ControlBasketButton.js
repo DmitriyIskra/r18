@@ -18,6 +18,7 @@ export default class ControllBasketButton extends ApiModals {
         // this.registerEvents();           // отключен весь функционал по корзине формирование и тд
         // this.redraw.redrawIconAmount();
 
+        // подсвечиваем иконку при заходе на страницу корзина
         const path = location.pathname;
         if(path.includes('basket')) {
             this.redraw.redrawIconBasket();
