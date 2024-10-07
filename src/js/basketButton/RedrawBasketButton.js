@@ -9,6 +9,8 @@ export default class RedrawBasketButton {
         this.lastActiveModal = null;
     }
 
+    page
+
     incorrectData(input, text) {
         if(input.type === 'password') input.type = 'text';
 
@@ -26,15 +28,19 @@ export default class RedrawBasketButton {
         }, { once : true })
     }
 
+    redrawIconBasket() {
+        this.el.classList.add('header__basket_active');
+    }
+
     // подсветка корзины и отображение общего количества товаров в ней
     redrawIconAmount() {
         if(!localStorage?.basket) { 
             this.amount.classList.remove('header__basket_active');
             this.amount.textContent = 0;
 
-            if(this.el.classList.contains('header__basket_active')) {
-                this.el.classList.remove('header__basket_active');
-            }
+            // if(this.el.classList.contains('header__basket_active')) {
+            //     this.el.classList.remove('header__basket_active');
+            // }
             return;
         }
         const basket = JSON.parse(localStorage.basket);
@@ -44,9 +50,9 @@ export default class RedrawBasketButton {
         }, 0);
     
         this.amount.textContent = result;
-        if(!this.el.classList.contains('header__basket_active')) {
-            this.el.classList.add('header__basket_active');
-        }
+        // if(!this.el.classList.contains('header__basket_active')) {
+        //     this.el.classList.add('header__basket_active');
+        // }
     }
 
 
@@ -143,7 +149,7 @@ export default class RedrawBasketButton {
         if(data.packing === "espresso") {
             switch(data.article) {
                 case 'colombia-excelso-decaf-ground' :
-                    textGrinding = 'Молотый';
+                    textGrinding = 'Молотый'; 
                 break;
                 default : 
                     textGrinding = 'Зерно'; 

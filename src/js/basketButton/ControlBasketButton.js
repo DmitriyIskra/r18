@@ -14,9 +14,14 @@ export default class ControllBasketButton extends ApiModals {
         this.mask;
     }
 
-    init() {
+    init() { 
         // this.registerEvents();           // отключен весь функционал по корзине формирование и тд
         // this.redraw.redrawIconAmount();
+
+        const path = location.pathname;
+        if(path.includes('basket')) {
+            this.redraw.redrawIconBasket();
+        }
     }
 
     registerEvents() {

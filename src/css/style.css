@@ -110,7 +110,7 @@
     justify-content: center;
 }
 
-.header__basket_active > .header__basket-amount {
+.header__basket-amount_active {
     display: flex;
 }
 
