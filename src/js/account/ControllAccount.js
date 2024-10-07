@@ -69,7 +69,7 @@ export default class ControllAccount extends ApiModals {
             // })()
         }
 
-        if(e.target.closest('.profile__button_delete')) {
+        if(e.target.closest('.profile__button_delete')) { 
             // получаем html модалки на подтверждение удаления аккаунта
             (async () => {
                 const result = await super.read('is-delete-account');

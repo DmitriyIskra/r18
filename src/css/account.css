@@ -93,7 +93,13 @@
     margin: 2.03vw auto 0;
 }
 
+.profile__user-contacts-item {
+    position: relative;
+}
+
 .profile__user-contacts-item input {
+    position: relative;
+
     width: 100%;
     padding-top: 1.20vw;
     padding-bottom: 1vw;
@@ -109,6 +115,40 @@
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
+}
+
+.profile__required-start {
+    position: absolute;
+    top: 1vw;
+    left: 0;
+
+    font-size: 1vw;
+
+    color: #F00;
+}
+
+.profile__required-start_second_name {
+    left: 13.7%;
+}
+
+.profile__required-start_name {
+    left: 7.6%;
+}
+
+.profile__required-start_patronymic {
+    left: 13.65%;
+}
+
+.profile__required-start_phone {
+    left: 13%;
+}
+
+.profile__required-start_email {
+    left: 25.6%;
+}
+
+.profile__user-contacts-item input:focus + .profile__required-start {
+    display: none;
 }
 
 .profile__wr-gender {
@@ -206,15 +246,11 @@
 }
 
 .profile__wr-buttons {
-    margin-top: 8.44vw;
+    margin-top: 2.45vw;
 }
 
 .profile__buttons-group {
     display: none;
-    margin: 0 auto;
-    gap: 1.56vw;
-
-    justify-content: center;
 }
 
 .profile__buttons-group-edit_active {
@@ -230,15 +266,11 @@
 
     color: #FFF;
 
-    background: none;
+    background: #F1551C;
     border-radius: 1.56vw;
-    border: 0.10vw solid #FFF;
+    border: 0.15vw solid #FFF;
 
     cursor: pointer;
-}
-
-.profile__button:hover {
-    border: 0.10vw solid #F1551C;
 }
 
 /* ------- END PROFILE ------ */
@@ -359,8 +391,8 @@
 
     flex-direction: column;
     overflow: auto;
-}
-
+} 
+ 
 .account__add-scroll {
     scrollbar-width: thin;
     scrollbar-color: #919192 #ebe9e9;

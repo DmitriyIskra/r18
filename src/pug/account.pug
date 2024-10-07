@@ -23,14 +23,19 @@ block content
                         ul.profile__user-contacts-list 
                             li.profile__user-contacts-item
                                 input(type="text" name="second_name" value="Фамилия" disabled)
+                                .profile__required-start.profile__required-start_second_name *
                             li.profile__user-contacts-item
                                 input(type="text" name="name" value="Имя" disabled)
+                                .profile__required-start.profile__required-start_name *
                             li.profile__user-contacts-item
                                 input(type="text" name="patronymic" value="Отчество" disabled)
+                                .profile__required-start.profile__required-start_patronymic *
                             li.profile__user-contacts-item
                                 input(type="tel" name="phone" value="Телефон" placeholder="Телефон" disabled)
+                                .profile__required-start.profile__required-start_phone *
                             li.profile__user-contacts-item
-                                input(type="text" name="email" value="Электронная почта" disabled) 
+                                input(type="text" name="email" value="Электронная почта" disabled)
+                                .profile__required-start.profile__required-start_email *
 
                         .profile__wr-gender
                             span.profile__gender-title Пол
@@ -46,14 +51,19 @@ block content
                             label.profile__born-date-label
                                 span.profile__born-date-mark Дата рождения
                                 input.profile__born-date-input(type="text" name="born_date" value="__/__/____" disabled)       
-
+ 
                         .profile__wr-buttons 
                             //- .profile__buttons-group-edit_active
                             .profile__buttons-group.profile__buttons-group-edit.profile__buttons-group-edit_active
                                 button.profile__button.profile__button_edit(type="button") Редактировать
-                                button.profile__button.profile__button_delete(type="button") Удалить
                             .profile__buttons-group.profile__buttons-group-save
                                 button.profile__button.profile__button_save(type="button") Сохранить
+
+                    ul.profile__address-form-list
+                        li.profile__address-form-item
+                            form.profile__address-form
+
+
 
                 li.account__history.account__content-item(data-account="history")
                     ul.history__list
