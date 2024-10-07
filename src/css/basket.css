@@ -241,9 +241,26 @@
 }
 
 .basket__total-price-old {
+    position: relative;
+
     margin-top: 1.04vw;
 
     color: #FFF;
+}
+
+.basket__total-price-old::before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    height: 2px;
+    width: 107%;
+
+    background-color: #F37548;
+
+    transform: translate(-50%, -50%) rotate(-12deg);
 }
 
 .basket__total-price {
@@ -260,7 +277,7 @@
 
     height: 2.60vw;
     width: 17.2%;
-    margin-top: 1.88vw;
+    margin-top: 6.51vw;
 
     font-family: "SofiaSans";
     font-size: 1.04vw;
@@ -282,7 +299,15 @@
 @media(max-width: 1200px) {
     .basket {
         width: auto;
-        padding-top: 0;
+        padding-top: 15.73vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__content {
+        width: 89%;
+        margin: 0 auto;
+        padding-bottom: 20vw;
     }
 }
 
@@ -290,7 +315,7 @@
 /* START ОКНО BASKET */
 @media(max-width: 1200px) {
     .basket__wr-title {
-        margin-top: 8vw;
+        padding-top: 8.27vw;
     }
     
 }
@@ -306,6 +331,7 @@
         width: 88.7%;
         height: 107vw;
         margin-top: 13.87vw;
+        padding-right: 0;
         gap: 7.73vw;
     }
 }
@@ -361,8 +387,91 @@
 }
 
 @media(max-width: 1200px) {
+    .basket__goods-info-price {
+        margin-top: 2.13vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__goods-info {
+        width: 76%;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__goods-info p {
+        width: auto;
+        padding-left: 0;
+
+        font-size: 2.67vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__goods-wr-price {
+        padding-right: 0.5%;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__goods-discount {
+        font-size: 3.73vw;
+        white-space: nowrap;
+    }
+
+    .basket__goods-discount::before {
+        width: 105%;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__goods-price {
+        font-size: 4.27vw;
+        white-space: nowrap;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__underline {
+        width: 88.7%;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__wr-total-price {
+        width: 88.7%;
+        margin-top: 4.80vw;
+        padding-right: 4.9%;
+
+        font-size: 3.73vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__total-price-old {
+        margin-top: 2.4vw;
+        
+        font-size: 4.27vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .basket__total-price {
+        margin-top: 2.4vw;
+        
+        font-size: 4.27vw;
+    }
+}
+
+@media(max-width: 1200px) {
     .basket__button {
-        width: 83.4%;
+        height: 9.87vw;
+        width: 75%;
+        margin-top: 18.13vw;
+
+        font-size: 4.27vw;
+
+        border-radius: 8vw;
     }
 }
 /* END ОКНО BASKET */
