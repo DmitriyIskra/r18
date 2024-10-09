@@ -56,7 +56,7 @@ export default class ControllAccount extends ApiModals {
 
             // блокировка inputs (disabled)
             this.redraw.profile.closeEditProfile();
-
+            
             // открытие модалки профиль успешно отредактирован
             // (async () => {
             //     const result = await super.read('edit-profile-successfully');
