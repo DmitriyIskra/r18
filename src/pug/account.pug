@@ -61,8 +61,8 @@ block content
 
                     .profile__wr-address
                         .profile__wr-address-list
-                            label.profile__wr-address-title(for="profile__wr-address-checkbox") Имя адреса 
                             input#profile__wr-address-checkbox(type="checkbox")
+                            label.profile__wr-address-title(for="profile__wr-address-checkbox") Имя адреса 
                             ul.profile__address-list 
                                 li.profile__address-item Домашний
                                 li.profile__address-item Рабочий
@@ -75,6 +75,9 @@ block content
                                 <path d="M18.75 18.125H8.75C8.58424 18.125 8.42527 18.0592 8.30806 17.9419C8.19085 17.8247 8.125 17.6658 8.125 17.5C8.125 17.3342 8.19085 17.1753 8.30806 17.0581C8.42527 16.9408 8.58424 16.875 8.75 16.875H18.75C18.9158 16.875 19.0747 16.9408 19.1919 17.0581C19.3092 17.1753 19.375 17.3342 19.375 17.5C19.375 17.6658 19.3092 17.8247 19.1919 17.9419C19.0747 18.0592 18.9158 18.125 18.75 18.125Z" fill="white"/>
                             </svg>
                         form(name="profile__address-form").profile__address-form
+                            .profile__address-wr-input(data-value="Имя адреса") 
+                                //- .profile__address-input_required - ставим когда активируем поле для добавления адреса
+                                input.profile__address-input(type="text" name="name" data-value="Имя адреса" value="Имя адреса" disabled)
                             .profile__address-wr-input(data-value="Индекс") 
                                 input.profile__address-input(type="text" name="zip-code" data-value="Индекс" value="Индекс" disabled)
                             .profile__address-wr-input(data-value="Область") 
@@ -91,7 +94,9 @@ block content
                                 input.profile__address-input(type="text" name="appartment" data-value="Квартира/Офис" value="Квартира/Офис" disabled)
                         .profile__address-wr-buttons 
                             input.profile__button(type="button", value="+ Добавить адрес")
-                            input.profile__button(type="button", value="Сохранить")
+                            input.profile__button.profile__button_disabled(type="button", value="Сохранить")
+                    .profile__delete 
+                            a(href="#0") Удалить профиль
 
 
 
@@ -444,7 +449,7 @@ block content
                                         .history__details-amount 
                                             | #[span.history__details-amount-num 1] #[span.history__details-amount_unit шт.]
                
-                li.account__history.account__content-item(data-account="delivery")
+                li.account__delivery.account__content-item(data-account="delivery")
                     .delivery-account__wr-info
                         .delivery-account__line 
                             .delivery-account__direction(data-item="in-mkad")
