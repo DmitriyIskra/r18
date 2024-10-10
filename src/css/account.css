@@ -1,3 +1,18 @@
+input:-internal-autofill-selected {
+    appearance: none;
+    background: none !important;
+}
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,input:-webkit-autofill:active,input:-webkit-autofill {
+    appearance: none;
+    background: none !important;
+
+    -webkit-text-fill-color: rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0 0 0px 0px rgba(0, 0, 0, 0) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
 .wrapper-account {
     background:
     no-repeat url(../img/roasteria-side.webp),
@@ -111,17 +126,19 @@
     color: #FFF;
 
     font-family: "SofiaSans";
-    font-size: 1.04vw;
+    font-size: 1vw;
     font-weight: 400;
 
     background: none;
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
+    caret-color: #fff;
 }
 
-.profile__user-contacts-item input:focus {
-    border-bottom: 1px solid #F1551C;
+.profile__user-contacts-item input[no-valid] {
+    color: #FF7C7C;
+    border-bottom: 1px solid #FF7C7C;
 }
 
 .profile__user-contacts-item input:focus + .profile__required-start {
@@ -270,7 +287,7 @@
     padding: 0.68vw 0.78vw;
 
     font-family: "SofiaSans";
-    font-size: 0.57vw;
+    font-size: 1vw;
     font-weight: 400;
     
     color: #FFF;
@@ -310,7 +327,7 @@
     padding: 0.68vw 1.30vw;
 
     font-family: "SofiaSans";
-    font-size: 0.57vw;
+    font-size: 1vw;
     font-weight: 400;
 
     border-bottom: 1px solid #DDD;
@@ -396,7 +413,7 @@
     padding: 0.78vw 0.68vw;
 
     font-family: "SofiaSans";
-    font-size: 0.57vw;
+    font-size: 1vw;
     font-weight: 400;
     
     color: #FFF;
@@ -404,10 +421,6 @@
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
-}
-
-.profile__address-input:focus {
-    border-bottom: 1px solid #F1551C;
 }
 
 .profile__address-input_required {

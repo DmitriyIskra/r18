@@ -2,12 +2,17 @@ export default class RedrawAccountProfile {
     constructor(el) {
         this.el = el;
 
-        this.form = this.el.querySelector('form');
-        // все инпуты профайла пользователя 
-        this.inputs = this.el.querySelectorAll('input');
-        // инпуты без радио и пола
-        this.inputsText = this.el.querySelectorAll('.profile__user-contacts-item > input');
-        this.phone = this.form.phone;
+        // все инпуты профайла пользователя личных данных пользователя и адреса
+        this.inputsForms = {
+            'user-data' : this.el.querySelectorAll('.profile__user-contacts-form input'),
+            address : this.inputsUserAddress = this.el.querySelectorAll('.profile__address-form input'),
+        }
+        // USER DATA
+        this.formUserData = this.el.querySelector('form');
+        // инпуты без радио и пола личных данных пользователя
+        this.inputsUserDataText = this.el.querySelectorAll('.profile__user-contacts-item > input');
+        this.phone = this.formUserData.phone;
+        this.email = this.formUserData.email;
 
         // кнопки профайла
         this.groupButtonsEdit = this.el.querySelector('.profile__buttons-group-edit');
@@ -15,38 +20,54 @@ export default class RedrawAccountProfile {
 
         // если в инпут ничего не ввели в профайле, чтоб было что вернуть
         this.lastInputValue = null;
+
+        // ADDRESS
+        // инпуты адреса пользователя
+        this.buttonAddAdress = this.el.querySelector('.profile__button-add-adress');
+        this.buttonSaveAdress = this.el.querySelector('.profile__button-save-adress');
     }
 
-    // открываем возможность редактирования
-    openEditProfile() {
-        [...this.inputs].forEach(item => item.removeAttribute('disabled'));
-        this.inputs[0].focus();
-        
-        this.changeGroupButton();
+    // открываем редактирование формы
+    openEditForm(type) {
+        console.log(type);
+        [...this.inputsForms[type]].forEach(item => item.removeAttribute('disabled'));
+
+        this.inputsForms[type][0].focus();
+
+        if(type === 'user-data') this.changeGroupButton();
+
+        if(type === 'address') this.buttonSaveAdress.classList.remove('profile__button_disabled');
     }
+
+    // USER DATA
+    // открываем возможность редактирования
 
     // закрываем возможность редактирования
     closeEditProfile() {
-        [...this.inputs].forEach(item => item.setAttribute('disabled', ""));
+        [...this.inputsForms['user-data']].forEach(item => item.setAttribute('disabled', ""));
         
         this.changeGroupButton();
     }
 
     // очистка input при focus
     clearInput(el) {
-        console.log('clear');
         if(el.value) this.lastInputValue = el.value;
+
+        if(el.hasAttribute('no-valid')) el.removeAttribute('no-valid');
         
-        el.value = '';
+        if(!el.closest('[name="phone"]')) el.value = '';
     }
     
     // заполнение input при blur если ничего не введено
     fillInput(el) {
-        console.log('fill');
         // если при потере фокуса в нем нет value, но оно там было
         // ставим предидущий
         if(!el.value && this.lastInputValue) {
             el.value = this.lastInputValue;
+
+            if(this.lastInputValue === 'Неверно указана почта') {
+                this.noValidUserData({email: false});
+            }
         }
 
         if(!el.value && !this.lastInputValue) {
@@ -58,4 +79,20 @@ export default class RedrawAccountProfile {
         this.groupButtonsEdit.classList.toggle('profile__buttons-group-edit_active');
         this.groupButtonSave.classList.toggle('profile__buttons-group-edit_active');
     }
+
+    noValidUserData(data) {
+        if(!data?.email) {
+            this.email.value = 'Неверно указана почта';
+            this.email.setAttribute('no-valid', '');
+        }
+        
+        if(!data?.phone) {
+            this.phone.value = 'Неверно указан номер телефона';
+            this.phone.setAttribute('no-valid', '');
+        }
+    }
+
+
+    // ADDRESS
+ 
 }

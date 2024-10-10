@@ -23,19 +23,14 @@ block content
                         ul.profile__user-contacts-list 
                             li.profile__user-contacts-item
                                 input(type="text" name="second_name" data-standart_value="Фамилия" value="Фамилия" disabled)
-                                //- .profile__required-star.profile__required-star_second_name *
                             li.profile__user-contacts-item
                                 input(type="text" name="name" data-standart_value="Имя" value="Имя" disabled)
-                                //- .profile__required-star.profile__required-star_name *
                             li.profile__user-contacts-item
                                 input(type="text" name="patronymic" data-standart_value="Отчество" value="Отчество" disabled)
-                                //- .profile__required-star.profile__required-star_patronymic *
                             li.profile__user-contacts-item
                                 input(type="tel" name="phone" data-standart_value="Телефон" value="Телефон" placeholder="Телефон" disabled)
-                                //- .profile__required-star.profile__required-star_phone *
                             li.profile__user-contacts-item
                                 input(type="text" name="email" data-standart_value="Телефон" value="Электронная почта" disabled)
-                                //- .profile__required-star.profile__required-star_email *
 
                         .profile__wr-gender
                             span.profile__gender-title Пол
@@ -93,8 +88,8 @@ block content
                             .profile__address-wr-input(data-value="Квартира/Офис") 
                                 input.profile__address-input(type="text" name="appartment" data-value="Квартира/Офис" value="Квартира/Офис" disabled)
                         .profile__address-wr-buttons 
-                            input.profile__button(type="button", value="+ Добавить адрес")
-                            input.profile__button.profile__button_disabled(type="button", value="Сохранить")
+                            input.profile__button.profile__button-add-adress(type="button", value="+ Добавить адрес")
+                            input.profile__button.profile__button-save-adress.profile__button_disabled(type="button", value="Сохранить")
                     .profile__delete 
                             a(href="#0") Удалить профиль
 
