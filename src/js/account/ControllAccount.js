@@ -32,6 +32,11 @@ export default class ControllAccount extends ApiModals {
             .forEach(item => item.addEventListener('focus', this.focus));
         [...this.redraw.profile.inputsUserDataText]
             .forEach(item => item.addEventListener('blur', this.blur));
+
+        [...this.redraw.profile.inputsForms['address']]
+            .forEach(item => item.addEventListener('focus', this.focus));
+        [...this.redraw.profile.inputsForms['address']]
+            .forEach(item => item.addEventListener('blur', this.blur));
     }
 
     initCalendar() {
@@ -86,6 +91,7 @@ export default class ControllAccount extends ApiModals {
         // добавить адрес
         if(e.target.closest('.profile__button-add-adress')) {
             this.redraw.profile.openEditForm('address');
+            this.redraw.profile.fillStartValue();
         }
 
 

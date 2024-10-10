@@ -9,8 +9,9 @@ export default class RedrawAccountProfile {
         }
         // USER DATA
         this.formUserData = this.el.querySelector('form');
-        // инпуты без радио и пола личных данных пользователя
+        // инпуты без радио, пола личных данных пользователя
         this.inputsUserDataText = this.el.querySelectorAll('.profile__user-contacts-item > input');
+
         this.phone = this.formUserData.phone;
         this.email = this.formUserData.email;
 
@@ -29,7 +30,6 @@ export default class RedrawAccountProfile {
 
     // открываем редактирование формы
     openEditForm(type) {
-        console.log(type);
         [...this.inputsForms[type]].forEach(item => item.removeAttribute('disabled'));
 
         this.inputsForms[type][0].focus();
@@ -37,6 +37,7 @@ export default class RedrawAccountProfile {
         if(type === 'user-data') this.changeGroupButton();
 
         if(type === 'address') this.buttonSaveAdress.classList.remove('profile__button_disabled');
+        console.log('open')
     }
 
     // USER DATA
@@ -56,6 +57,9 @@ export default class RedrawAccountProfile {
         if(el.hasAttribute('no-valid')) el.removeAttribute('no-valid');
         
         if(!el.closest('[name="phone"]')) el.value = '';
+ 
+        if(el.closest('.profile__address-input')) el.classList.remove('profile__address-input_required');
+        console.log('clear')
     }
     
     // заполнение input при blur если ничего не введено
@@ -67,6 +71,14 @@ export default class RedrawAccountProfile {
 
             if(this.lastInputValue === 'Неверно указана почта') {
                 this.noValidUserData({email: false});
+            }
+
+            // для адреса, определяем необходимость и ставим или нет звездочку
+            if(el.closest('.profile__address-input')) {
+                const dataValue = el.dataset.value;
+                if(dataValue === this.lastInputValue) {
+                    el.classList.add('profile__address-input_required');
+                }
             }
         }
 
@@ -94,5 +106,21 @@ export default class RedrawAccountProfile {
 
 
     // ADDRESS
- 
+    /**
+     * при добавлении нового адреса, меняет данные в форме на 
+     * стандартные стартовые и устанавливает метку обязательных
+     * для заполнения полей
+     * */ 
+    fillStartValue() {
+        [...this.inputsForms['address']].forEach(input => {
+            const dataValue = input.dataset.value;
+            const value = input.value;
+
+            // если поле не в фокусе и у него есть value и оно не стандартное
+            if(value && dataValue !== value) input.value = dataValue;
+            // если поле не в фокусе и унего соответственно не очищен value
+            if(value) input.classList.add('profile__address-input_required');
+            console.log('fill')
+        })
+    }
 }
