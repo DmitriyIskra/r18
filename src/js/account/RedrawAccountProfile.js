@@ -40,7 +40,6 @@ export default class RedrawAccountProfile {
         if(type === 'user-data') this.changeGroupButton();
 
         if(type === 'address') this.buttonSaveAdress.classList.remove('profile__button_disabled');
-        console.log('open')
     }
 
     // закрываем возможность редактирования
@@ -68,7 +67,6 @@ export default class RedrawAccountProfile {
         if(!el.closest('[name="phone"]')) el.value = '';
  
         if(el.closest('.profile__address-input')) el.classList.remove('profile__address-input_required');
-        console.log('clear')
     }
     
     // заполнение input при blur
@@ -136,7 +134,6 @@ export default class RedrawAccountProfile {
             if(value && dataValue !== value) input.value = dataValue;
             // если поле не в фокусе и унего соответственно не очищен value
             if(value) input.classList.add('profile__address-input_required');
-            console.log('fill')
         })
     }
 

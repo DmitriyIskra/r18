@@ -178,7 +178,7 @@ export default class ControllAccount extends ApiModals {
     validateUserData(email, phone) {
         const data = {};
         if(email) data.phone = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/ig.test(phone);
-        if(phone) data.email = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(email);
+        if(phone) data.email = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+\.[A-Z]{2,4}$/i.test(email);
         return data;
     }
 
