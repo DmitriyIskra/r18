@@ -421,6 +421,8 @@ input:-webkit-autofill:focus,input:-webkit-autofill:active,input:-webkit-autofil
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
+
+    caret-color: #fff;
 }
 
 .profile__address-input[no-valid] {
