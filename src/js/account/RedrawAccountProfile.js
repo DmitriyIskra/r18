@@ -23,6 +23,9 @@ export default class RedrawAccountProfile {
         this.lastInputValue = null;
 
         // ADDRESS
+        // список адресов
+        this.addresses = this.el.querySelectorAll('.profile__address-item');
+
         // инпуты адреса пользователя
         this.buttonAddAdress = this.el.querySelector('.profile__button-add-adress');
         this.buttonSaveAdress = this.el.querySelector('.profile__button-save-adress');
@@ -40,15 +43,21 @@ export default class RedrawAccountProfile {
         console.log('open')
     }
 
+    // закрываем возможность редактирования
+    closeEditForm(type) {
+        [...this.inputsForms[type]].forEach(item => item.setAttribute('disabled', ""));
+        
+        if(type === 'user-data') this.changeGroupButton();
+
+        if(type === 'address') {
+            this.buttonSaveAdress.classList.add('profile__button_disabled');
+            this.buttonSaveAdress.removeAttribute('no-valid');
+        };
+    }
+
     // USER DATA
     // открываем возможность редактирования
 
-    // закрываем возможность редактирования
-    closeEditProfile() {
-        [...this.inputsForms['user-data']].forEach(item => item.setAttribute('disabled', ""));
-        
-        this.changeGroupButton();
-    }
 
     // очистка input при focus
     clearInput(el) {
@@ -62,7 +71,7 @@ export default class RedrawAccountProfile {
         console.log('clear')
     }
     
-    // заполнение input при blur если ничего не введено
+    // заполнение input при blur
     fillInput(el) {
         // если при потере фокуса в нем нет value, но оно там было
         // ставим предидущий
@@ -79,6 +88,11 @@ export default class RedrawAccountProfile {
                 if(dataValue === this.lastInputValue) {
                     el.classList.add('profile__address-input_required');
                 }
+                // если в форме уже были не валидные значения и в данном поле
+                // при потере фокуса стандартное значение, значит показываем что оно не валидно
+                if(this.buttonSaveAdress.hasAttribute('no-valid') && dataValue === this.lastInputValue) {
+                    this.noValidUserAddress([el]);
+                }
             }
         }
 
@@ -87,11 +101,13 @@ export default class RedrawAccountProfile {
         }
     }
 
+    // переключает кнопки под формой с данными пользователя
     changeGroupButton() {
         this.groupButtonsEdit.classList.toggle('profile__buttons-group-edit_active');
         this.groupButtonSave.classList.toggle('profile__buttons-group-edit_active');
     }
 
+    // заполняет ошибками поля с данными пользователя (не адрес)
     noValidUserData(data) {
         if(!data?.email) {
             this.email.value = 'Неверно указана почта';
@@ -122,5 +138,16 @@ export default class RedrawAccountProfile {
             if(value) input.classList.add('profile__address-input_required');
             console.log('fill')
         })
+    }
+
+    // показываем не валидные поля пользователю
+    noValidUserAddress(elements) {
+        elements.forEach(el => el.setAttribute('no-valid', ''));
+
+        this.buttonSaveAdress.setAttribute('no-valid', '');
+    }
+
+    countAddresses() {
+        this.buttonAddAdress.style.display = 'none';
     }
 }

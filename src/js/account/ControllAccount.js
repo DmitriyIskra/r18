@@ -21,6 +21,7 @@ export default class ControllAccount extends ApiModals {
         this.redraw.history.initScroll();
 
         this.initCalendar();
+        this.initAddresses();
     }
 
     registerEvents() {
@@ -47,6 +48,10 @@ export default class ControllAccount extends ApiModals {
         });
     }
 
+    initAddresses() {
+        this.redraw.profile.countAddresses();
+    }
+
     click(e) {
         // PROFILE
         // ---- user data
@@ -68,7 +73,7 @@ export default class ControllAccount extends ApiModals {
                 return;
             }
             // блокировка inputs (disabled)
-            this.redraw.profile.closeEditProfile();
+            this.redraw.profile.closeEditForm('user-data');
             
             // открытие модалки профиль успешно отредактирован
             // (async () => {
@@ -92,6 +97,19 @@ export default class ControllAccount extends ApiModals {
         if(e.target.closest('.profile__button-add-adress')) {
             this.redraw.profile.openEditForm('address');
             this.redraw.profile.fillStartValue();
+        }
+
+        if(e.target.closest('.profile__button-save-adress')) {
+            const elements = this.validateUserAddress();
+
+            // если есть не заполненные поля, показываем их пользователю
+            if(elements.length) {
+                this.redraw.profile.noValidUserAddress(elements);
+                
+                return;
+            }
+
+            this.redraw.profile.closeEditForm('address');
         }
 
 
@@ -162,5 +180,19 @@ export default class ControllAccount extends ApiModals {
         if(email) data.phone = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/ig.test(phone);
         if(phone) data.email = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(email);
         return data;
+    }
+
+    // валидация адреса (проверка на заполненность)
+    validateUserAddress() {
+        const elements = [];
+        
+        [...this.redraw.profile.inputsForms.address].forEach(el => {
+            const dataVal = el.dataset.value;
+            const value = el.value;
+
+            if(dataVal === value) elements.push(el);
+        })
+
+        return elements;
     }
 }

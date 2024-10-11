@@ -423,6 +423,11 @@ input:-webkit-autofill:focus,input:-webkit-autofill:active,input:-webkit-autofil
     outline: none;
 }
 
+.profile__address-input[no-valid] {
+    color: #FF7C7C;
+    border-bottom: 1px solid #FF7C7C;
+}
+
 .profile__address-input_required {
     background-image: url('../svg/profile__required-star.svg');
     background-repeat: no-repeat;
