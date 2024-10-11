@@ -148,6 +148,6 @@ export default class RedrawAccountProfile {
     }
 
     countAddresses() {
-        this.buttonAddAdress.style.display = 'none';
+        if(this.addresses.length === 3) this.buttonAddAdress.style.display = 'none';
     }
 }
