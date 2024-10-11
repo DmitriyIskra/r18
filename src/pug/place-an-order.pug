@@ -1,0 +1,203 @@
+extends layout/layout
+
+block  variable
+    - let pageName = 'place-order'; 
+
+block content
+    main.main.main-place-order
+        .place-order
+            .place-order__content
+                .place-order__wr-main-title 
+                    h1.place-order__main-title Оформление заказа
+
+                .place-order__wr-data 
+                    .place-order__user-data-list 
+                        .place-order__user-data-item Фамилия 
+                        .place-order__user-data-item Имя
+                        .place-order__user-data-item Отчество
+                        .place-order__user-data-item Телефон
+                        .place-order__user-data-item Почта
+
+                    .place-order__wr-order 
+                        .place-order__order-list 
+                            .place-order__order-item 
+                                .place-order__product-info 
+                                    .place-order__product-wr-img
+                                        img.place-order__product-img(src="#" alt="изображение товара")
+                                    .place-order__product-wr-description 
+                                        p Футболка R18, “От центра к краю”
+                                        p Размер: XL; Белая
+                                    .place-order__product-wr-amount
+                                        span.place-order__product-amount
+                                        span шт
+                                .place-order__product-price #[span 5000] р.
+                        .place-order__wr-total 
+                            .place-order__total-dop-info
+                                .place-order__total-wr-delivery 
+                                    .place-order__total-delivery-title Доставка
+                                    .place-order__total-delivery-price #[span 0] р.
+                                .place-order__total-wr-discount 
+                                    .place-order__total-discount-title Скидка #[span 5]%
+                                    .place-order__total-discount-price #[span 750] р.
+                            .place-order__total-price 
+                                .place-order__total-price-title Итог:
+                                .place-order__total-price #[span 9870] р.
+
+                    .place-order__wr-receiving
+                        .place-order__wr-title
+                            h2.place-order__title Способ получения
+                        .place-order__receiving-wr-list
+                            .place-order__receiving-list 
+                                .place-order__receiving-item
+                                        span.place-order__radio-input-cust-back
+                                            span.place-order__radio-input-cust-body 
+                                        span Москва
+                                .place-order__receiving-item
+                                        span.place-order__radio-input-cust-back
+                                            span.place-order__radio-input-cust-body 
+                                        span Московская область
+                                .place-order__receiving-item
+                                        span.place-order__radio-input-cust-back
+                                            span.place-order__radio-input-cust-body 
+                                        span Регионы
+                                .place-order__receiving-item
+                                        span.place-order__radio-input-cust-back
+                                            span.place-order__radio-input-cust-body 
+                                        span Самовывоз
+                                .place-order__receiving-item
+                                        span.place-order__radio-input-cust-back
+                                            span.place-order__radio-input-cust-body 
+                                        span.place-order__receiving-item-cdek 
+                            .place-order__cdek-type-list 
+                                .place-order__cdek-type-item 
+                                    label.place-order__cdek-type-label
+                                        input(type="radio" name="radio-cdek" value="Курьером")    
+                                        span Курьером
+                                    label.place-order__cdek-type-label
+                                        input(type="radio" name="radio-cdek" value="ПВЗ") 
+                                        span ПВЗ
+
+                        .place-order__wr-type-address
+                            .place-order__type-address-title
+                            .place-order__type-address-list
+                                .place-order__type-address-item Адрес 1
+                                .place-order__type-address-item Адрес 2
+                                .place-order__type-address-item Адрес 3
+
+                        .place-order__forms-address-list
+                            .place-order__forms-address-item(data-type="moskow")
+                                form.place-order__form-address
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="street" value="Улица").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="hause" value="").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="appartment" value="Квартира/Офис").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="entrance" value="Подъезд").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="stage" value="Этаж").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="intercom" value="Код домофона").place-order__form-address-input 
+                            .place-order__forms-address-item(data-type="area-region")
+                                form.place-order__form-address
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="zip" value="Индекс").place-order__form-address-input
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="area" value="Область").place-order__form-address-input
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="city" value="Город").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="street" value="Улица").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="hause" value="").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="appartment" value="Квартира/Офис").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="entrance" value="Подъезд").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="stage" value="Этаж").place-order__form-address-input 
+                                    .place-order__form-address-wr-input 
+                                        input(type="text" name="intercom" value="Код домофона").place-order__form-address-input 
+                            .place-order__forms-address-item(data-type="pickup")
+                                .place-order__forms-address-pickup
+                                    p 
+                                        span Вы можете забрать товары из нашего шоурума, по рабочим дням с 10:00 до 18:00. 
+                                        span По адресу: Россия, город Москва, Хорошевское шоссе, д. 32, корп. А, подъезд 2, офис 109.
+                                    p 
+                                        span Перемещение заказов с оптового склада на пункт выдачи составляет 1-2 дня. 
+                                        span Стоимость самовывоза - бесплатно.
+                                    p 
+                                        span Возможен заезд на территорию на личном 
+                                        span транспорте, кроме такси и каршеринга.
+                                        span Тел. для заказа пропуска: +7 (495) 789-67-27
+                                    p 
+                                        | Для входа на территорию офиса необходимо иметь при себе паспорт или другой документ удостоверяющий личность!
+                            .place-order__forms-address-item(data-type="cdek")
+                                .place-order__forms-address-cdek-list
+                                    .place-order__forms-address-cdek-item(data-type="courier")
+                                        form.place-order__form-address
+                                            .place-order__form-address-wr-input 
+                                                input(type="text" name="city" value="Город").place-order__form-address-input 
+                                            .place-order__form-address-wr-input 
+                                                input(type="text" name="street" value="Улица").place-order__form-address-input 
+                                            .place-order__form-address-wr-input 
+                                                input(type="text" name="hause" value="").place-order__form-address-input 
+                                            .place-order__form-address-wr-input 
+                                                input(type="text" name="appartment" value="Квартира/Офис").place-order__form-address-input 
+                                            .place-order__form-address-wr-input 
+                                                input(type="text" name="entrance" value="Подъезд").place-order__form-address-input 
+                                            .place-order__form-address-wr-input 
+                                                input(type="text" name="stage" value="Этаж").place-order__form-address-input 
+                                            .place-order__form-address-wr-input 
+                                                input(type="text" name="intercom" value="Код домофона").place-order__form-address-input 
+                                    .place-order__forms-address-cdek-item(data-type="opp")
+                                        p ПЛАГИН СДЕК
+
+                    .place-order__payment
+                        .place-order__wr-title
+                            h2.place-order__title Тип оплаты
+                        .place-order__wr-choice
+                            .place-order__payment-type 
+                                span.place-order__radio-input-cust-back
+                                    span.place-order__radio-input-cust-body 
+                                span Наличными
+                            .place-order__payment-type 
+                                span.place-order__radio-input-cust-back
+                                    span.place-order__radio-input-cust-body 
+                                span Картой на сайте
+                            .place-order__payment-type 
+                                span.place-order__radio-input-cust-back
+                                    span.place-order__radio-input-cust-body 
+                                span Картой при получении
+                            .place-order__payment-type 
+                                span.place-order__radio-input-cust-back
+                                    span.place-order__radio-input-cust-body 
+                                span Для юрлица
+
+                            form.place-order__payment-form
+                                .place-order__payment-wr-input 
+                                    input(type="text" name="name" value="Название организации")
+                                .place-order__payment-wr-input 
+                                    input(type="text" name="address" value="Адрес")
+                                .place-order__payment-wr-input 
+                                    input(type="text" name="inn" value="ИНН")
+                                .place-order__payment-wr-input 
+                                    input(type="text" name="ogrn" value="ОГРН")
+
+                    .place-order__comment
+                        .place-order__wr-title
+                            h2.place-order__title Комментарий к заказу
+                        .place-order__wr-comment
+                            textarea.place-order__comment
+
+                    .place-order__personal-data
+                        label.place-order__personal-data-label
+                            input(type="checkbox" value="personal-data")
+                            span Согласие на обработку персональных данных
+                        label.place-order__personal-data-label
+                            input(type="checkbox" value="subscription-email")
+                            span Согласие на E-mail рассылку
+
+                    .place-order__button-submit 
+                        button(type="button") Оформить

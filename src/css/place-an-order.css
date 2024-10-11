@@ -1,0 +1,139 @@
+.wrapper-place-order {
+    background:
+    no-repeat url(../img/roasteria-side.webp),
+     no-repeat url(../img/roasteria-side.webp),
+       #483D41
+    ;
+    background-position:
+     right 0.35vw top 8vw, 
+      left 0.35vw top 8vw 
+    ;
+    background-size: 10.9vw auto, 10.9vw auto;
+}
+
+.main-place-order {
+    padding-bottom: 11.28vw;
+
+    background: none;
+}
+
+.place-order {
+    width: 76.4%;
+    margin: 0 auto;
+    padding-top: 5.78vw; 
+}
+
+.place-order__content {
+    display: flex;
+    padding-bottom: 5.68vw;
+
+    background: #726B68;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.place-order__wr-main-title {
+    padding-top: 2.97vw;
+}
+
+.place-order__main-title {
+    font-family: "SofiaSans";
+    font-size: 1.25vw;
+    font-weight: 700;
+
+    color: #F1551C;
+}
+
+.place-order__wr-data {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: repeat(6, min-content);
+}
+
+.place-order__user-data-list {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+
+
+
+.place-order__wr-order {
+    grid-column: 2;
+    grid-row: 1/7;
+}
+
+
+
+
+
+.place-order__wr-receiving {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+
+
+
+.place-order__payment {
+    grid-column: 1; 
+    grid-row: 3;
+}
+
+
+
+
+.place-order__comment {
+    grid-column: 1; 
+    grid-row: 4;
+}
+
+
+
+
+.place-order__personal-data {
+    grid-column: 1; 
+    grid-row: 5;
+}
+
+
+
+
+.place-order__button-submit {
+    grid-column: 1; 
+    grid-row: 6;
+}
+
+
+
+
+@media(max-width: 1200px) {
+    .place-order {
+        width: auto;
+        padding-top: 15.73vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .place-order__content {
+        width: 89%;
+        margin: 0 auto;
+        padding-bottom: 20vw;
+    }
+}
+
+
+/* START ОКНО BASKET */
+@media(max-width: 1200px) {
+    .place-order__wr-title {
+        padding-top: 8.27vw;
+    }
+    
+}
+
+@media(max-width: 1200px) {
+    .basket__title {
+        font-size: 4.80vw;
+    }
+}

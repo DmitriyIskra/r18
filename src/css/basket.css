@@ -5,13 +5,13 @@
        #483D41
     ;
     background-position:
-     right 0.35vw top 23vw, 
-      left 0.35vw top 23vw 
+     right 0.35vw top 8vw, 
+      left 0.35vw top 8vw 
     ;
     background-size: 10.9vw auto, 10.9vw auto;
 }
 
-.main-basket {
+.main-basket { 
     padding-bottom: 11.28vw;
 
     background: none;
@@ -20,7 +20,7 @@
 .basket {
     width: 76.4%;
     margin: 0 auto;
-    padding-top: 5.78vw;
+    padding-top: 5.78vw; 
 }
 
 .basket__content {

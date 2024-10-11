@@ -18,5 +18,6 @@ import './css/delivery.css';
 import './css/price.css';
 import './css/account.css';
 import './css/basket.css';
+import './css/place-an-order.css';
 import './css/__modals.css';
 import 'air-datepicker/air-datepicker.css';
