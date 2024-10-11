@@ -17,6 +17,11 @@ export default class ControllAccountButton extends ApiModals {
 
     init() {
         this.registerEvents();
+
+        const path = location.pathname;
+        if(path.includes('account')) {
+            this.redraw.el.classList.add('header__account_active');
+        }
     }
 
     registerEvents() {

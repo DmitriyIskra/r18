@@ -56,6 +56,10 @@
     cursor: pointer;
 }
 
+.header__account_active {
+    background-color: #F1551C;
+}
+
 .header__account:hover {
     border-color: #F1551C;
 }
