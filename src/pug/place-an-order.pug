@@ -8,6 +8,10 @@ block content
         .place-order
             .place-order__content
                 .place-order__wr-main-title 
+                    a.place-order__main-title-link(href="./basket.html" title="link to basket") 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 31" fill="none">
+                            <path d="M19 3.6425L15.3846 0L0 15.5L15.3846 31L19 27.3575L7.25641 15.5L19 3.6425Z" fill="white"/>
+                        </svg>
                     h1.place-order__main-title Оформление заказа
 
                 .place-order__wr-data 
@@ -167,30 +171,31 @@ block content
                     .place-order__wr-receiving
                         .place-order__wr-title
                             h2.place-order__title Способ получения
-                        .place-order__receiving-wr-list
-                            .place-order__receiving-list 
-                                .place-order__receiving-item.place-order__receiving-item_active
+                        .place-order__receiving-wr-list(data-current="")
+                            .place-order__receiving-list
+                                //- .place-order__receiving-item_active
+                                .place-order__receiving-item(data-receiving="moskow" data-type="moskow")
                                         span.place-order__radio-input-cust-back
                                             span.place-order__radio-input-cust-body 
                                         span Москва
-                                .place-order__receiving-item
+                                .place-order__receiving-item(data-receiving="moskow-area" data-type="area-region")
                                         span.place-order__radio-input-cust-back
                                             span.place-order__radio-input-cust-body 
                                         span Московская область
-                                .place-order__receiving-item
+                                .place-order__receiving-item(data-receiving="regions" data-type="area-region")
                                         span.place-order__radio-input-cust-back
                                             span.place-order__radio-input-cust-body 
                                         span Регионы
-                                .place-order__receiving-item
+                                .place-order__receiving-item(data-receiving="pickup" data-type="pickup")
                                         span.place-order__radio-input-cust-back
                                             span.place-order__radio-input-cust-body 
                                         span Самовывоз
-                                .place-order__receiving-item
+                                .place-order__receiving-item(data-receiving="cdek" data-type="cdek")
                                         span.place-order__radio-input-cust-back
                                             span.place-order__radio-input-cust-body 
                                         span.place-order__receiving-logo-cdek 
                             //- .place-order__cdek-type_active
-                            .place-order__cdek-type
+                            .place-order__cdek-type.place-order__cdek-type_active
                                 label.place-order__cdek-type-label
                                     input.place-order__cdek-radio(type="radio" name="radio-cdek" value="Курьером" checked)    
                                     //- span.place-order__cdek-type-circle
@@ -199,6 +204,8 @@ block content
                                     input.place-order__cdek-radio(type="radio" name="radio-cdek" value="ПВЗ") 
                                     //- span.place-order__cdek-type-circle
                                     span.place-order__cdek-type-text ПВЗ
+                        .place-order__calc-delivery-info 
+                            p Ожидайте ответа менеджера для точного расчета доставки
 
                         .place-order__wr-type-address
                             .place-order__type-wr-address
@@ -211,6 +218,7 @@ block content
                                         .place-order__type-address-item Адрес 3
 
                         .place-order__forms-address-list
+                            //- .place-order__forms-address-item_active
                             .place-order__forms-address-item(data-type="moskow")
                                 form.place-order__form-address(name="moskow")
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_moskow(data-name-input="city")
@@ -320,9 +328,6 @@ block content
                         .place-order__wr-comment-textarea
                             textarea.place-order__comment
 
-                    .place-order__button-submit 
-                        button(type="button") Оформить
-
                     .place-order__personal-data
                         label.place-order__personal-data-label
                             input.place-order__personal-data-input(type="checkbox" value="personal-data")
@@ -331,4 +336,6 @@ block content
                             input.place-order__personal-data-input(type="checkbox" value="subscription-email")
                             span.place-order__personal-data-text Согласие на E-mail рассылку
 
+                    .place-order__button-submit 
+                        button(type="button") Оформить
                     
