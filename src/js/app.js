@@ -46,6 +46,10 @@ import RedrawAccountButton from "./accountButton/RedrawAccountButton";
 import ControllBasketButton from "./basketButton/ControlBasketButton";
 import RedrawBasketButton from "./basketButton/RedrawBasketButton";
 
+// PLACE ORDER
+import ControllPlaceOrder from "./place-order/controllPlaceOrder";
+import RedrawPlaceOrder from "./place-order/redrawPlaceOrder";
+
 // АССOUNT PAGE
 import ControllAccount from "./account/ControllAccount";
 import RedrawTypeContent from "./account/RedrawTypeContent";
@@ -91,8 +95,16 @@ window.addEventListener('load', () => {
         controllBasket.init();
     }
 
+    // ОФРМЛЕНИЕ ЗАКАЗА
+    const placeOrder = document.querySelector('.place-order__wr-data');
+    if(placeOrder) {
+        const redraw = new RedrawPlaceOrder(placeOrder);
+        const controll = new ControllPlaceOrder(redraw);
+        controll.init();
+    }
+
     // ACCOUNT PAGE
-    const account = document.querySelector('.account');
+    const account = document.querySelector('.account'); 
     if(account) {
         const redrawTypeContent = new RedrawTypeContent(account)
 

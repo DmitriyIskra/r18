@@ -49,7 +49,7 @@ export default class ControllAccount extends ApiModals {
     }
 
     initAddresses() {
-        this.redraw.profile.countAddresses();
+        this.redraw.profile.setStartAddress();
     }
 
     click(e) {
@@ -93,12 +93,12 @@ export default class ControllAccount extends ApiModals {
         if(e.target.closest('.profile__address-edit')) {
             this.redraw.profile.openEditForm('address');
         }
-        // добавить адрес
+        // добавить адрес 
         if(e.target.closest('.profile__button-add-adress')) {
             this.redraw.profile.openEditForm('address');
             this.redraw.profile.fillStartValue();
         }
-
+        // сохранение адреса 
         if(e.target.closest('.profile__button-save-adress')) {
             const elements = this.validateUserAddress();
 
@@ -110,6 +110,17 @@ export default class ControllAccount extends ApiModals {
             }
 
             this.redraw.profile.closeEditForm('address');
+
+            // !!!!!!
+            // после сохранения адреса и добавления его в список
+            // запускаем проверку количество добавленных адресов
+            // для того чтобы, если их уже три, скрыть кнопку добавить адрес
+            this.redraw.profile.countAddresses();
+        }
+        // отображение имени выбранного адреса в селект
+        if(e.target.closest('.profile__address-item')) {
+            const element = e.target.closest('.profile__address-item');
+            this.redraw.profile.choiceAddressName(element.textContent); 
         }
 
 

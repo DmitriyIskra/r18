@@ -5,8 +5,8 @@
        #483D41
     ;
     background-position:
-     right 0.35vw top 23.5vw, 
-      left 0.35vw top 23.5vw 
+     right 0.35vw top 8vw, 
+      left 0.35vw top 8vw 
     ;
     background-size: 10.9vw auto, 10.9vw auto;
 }
@@ -297,6 +297,12 @@
 
 
 @media(max-width: 1200px) {
+    .wrapper-basket {
+        background-position: right 0.35vw top 23.5vw, left 0.35vw top 23.5vw;
+    }
+}
+
+@media(max-width: 1200px) {
     .basket {
         width: auto;
         padding-top: 15.73vw;
@@ -456,7 +462,7 @@
 }
 
 @media(max-width: 1200px) {
-    .basket__total-price {
+    .basket__total-price { 
         margin-top: 2.4vw;
         
         font-size: 4.27vw;

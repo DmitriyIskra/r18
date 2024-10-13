@@ -195,12 +195,12 @@ block content
                                             span.place-order__radio-input-cust-body 
                                         span.place-order__receiving-logo-cdek 
                             //- .place-order__cdek-type_active
-                            .place-order__cdek-type.place-order__cdek-type_active
-                                label.place-order__cdek-type-label
+                            .place-order__cdek-type
+                                label.place-order__cdek-type-label(data-type="courier")
                                     input.place-order__cdek-radio(type="radio" name="radio-cdek" value="Курьером" checked)    
                                     //- span.place-order__cdek-type-circle
                                     span.place-order__cdek-type-text Курьером
-                                label.place-order__cdek-type-label
+                                label.place-order__cdek-type-label(data-type="opp")
                                     input.place-order__cdek-radio(type="radio" name="radio-cdek" value="ПВЗ") 
                                     //- span.place-order__cdek-type-circle
                                     span.place-order__cdek-type-text ПВЗ
@@ -269,7 +269,7 @@ block content
                                         span Тел. для заказа пропуска: +7 (495) 789-67-27
                                     p 
                                         | Для входа на территорию офиса необходимо иметь при себе паспорт или другой документ удостоверяющий личность!
-                            .place-order__forms-address-item.place-order__forms-address-item_active(data-type="cdek")
+                            .place-order__forms-address-item(data-type="cdek")
                                 .place-order__forms-address-cdek-list
                                     .place-order__forms-address-cdek-item.place-order__forms-address-cdek-item_active(data-type="courier")
                                         form.place-order__form-address
@@ -295,19 +295,20 @@ block content
                             h2.place-order__title Тип оплаты
                         .place-order__wr-choice
                             //- .place-order__payment-type_active
-                            .place-order__payment-type(data-payment-type="cash")
+                            //- .place-order__payment-type_disabled
+                            .place-order__payment-type(data-payment_type="cash")
                                 span.place-order__radio-input-cust-back
                                     span.place-order__radio-input-cust-body 
                                 span Наличными
-                            .place-order__payment-type(data-payment-type="card-site") 
+                            .place-order__payment-type(data-payment_type="card-site") 
                                 span.place-order__radio-input-cust-back
                                     span.place-order__radio-input-cust-body 
                                 span Картой на сайте
-                            .place-order__payment-type(data-payment-type="card-place") 
+                            .place-order__payment-type(data-payment_type="card-place") 
                                 span.place-order__radio-input-cust-back
                                     span.place-order__radio-input-cust-body 
                                 span Картой при получении
-                            .place-order__payment-type(data-payment-type="legal") 
+                            .place-order__payment-type(data-payment_type="legal") 
                                 span.place-order__radio-input-cust-back
                                     span.place-order__radio-input-cust-body 
                                 span Для юрлица

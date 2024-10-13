@@ -5,8 +5,8 @@
        #483D41
     ;
     background-position:
-     right 0.35vw top 23.5vw, 
-      left 0.35vw top 23.5vw 
+     right 0.35vw top 8vw, 
+      left 0.35vw top 8vw 
     ;
     background-size: 10.9vw auto, 10.9vw auto;
 }
@@ -46,7 +46,7 @@
     width: 1.35vw;
     height: 1.35vw;
 
-    border-radius: 50%;
+    border-radius: 50%; 
     border: 0vw solid #fff;
     flex-shrink: 0;
 }
@@ -112,7 +112,7 @@
 
 .place-order__wr-order {
     height: min-content;
-    max-height: 68.02vw;
+    max-height: 63.02vw;
     padding: 1.30vw 3.33vw 2.97vw 2.71vw;
     grid-column: 2;
     grid-row: 1/7;
@@ -236,7 +236,7 @@
 
 
 .place-order__wr-receiving {
-    margin-top: 1.73vw;
+    margin-top: 1.67vw;
     grid-column: 1;
     grid-row: 2;
 }
@@ -550,7 +550,7 @@
 }
 
 .place-order__forms-address-cdek-item_active {
-    display: block;
+    display: block; 
 }
 
 .place-order__form-address-wr-input_courier[data-name-input="city"] {
@@ -613,23 +613,33 @@
     cursor: pointer;
 }
 
-.place-order__payment-type[data-payment-type="cash"] {
+.place-order__payment-type[data-payment_type="cash"] {
     grid-column: 1;
     grid-row: 1;
 }
-.place-order__payment-type[data-payment-type="card-site"] {
+.place-order__payment-type[data-payment_type="card-site"] {
     grid-column: 2;
     grid-row: 1;
 }
-.place-order__payment-type[data-payment-type="card-place"] {
+.place-order__payment-type[data-payment_type="card-place"] {
     grid-column: 3;
     grid-row: 1;
 }
-.place-order__payment-type[data-payment-type="legal"] {
+.place-order__payment-type[data-payment_type="legal"] {
     margin-top: 1.45vw;
     grid-column: 1;
     grid-row: 2;
     align-self: flex-start;
+}
+
+.place-order__payment-type_disabled {
+    color: rgba(255, 255, 255, 0.30);
+
+    pointer-events: none;
+}
+
+.place-order__payment-type_disabled .place-order__radio-input-cust-body {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.30), rgba(255, 255, 255, 0.30)) padding-box, linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)) border-box;
 }
 
 .place-order__payment-type_active .place-order__radio-input-cust-back {
@@ -700,7 +710,7 @@
     display: flex;
     gap: 0.68vw;
     flex-direction: column;
-    margin-top: 1.7vw;
+    margin-top: 1.93vw;
     grid-column: 1; 
     grid-row: 5;
 }
@@ -778,6 +788,12 @@
 
 
 
+
+@media(max-width: 1200px) {
+    .wrapper-basket {
+        background-position: right 0.35vw top 23.5vw, left 0.35vw top 23.5vw;
+    }
+}
 
 @media(max-width: 1200px) {
     .place-order {

@@ -30,7 +30,7 @@ export default class RedrawBasketButton {
 
     // подсвечиваем иконку при заходе на страницу корзина
     redrawIconBasket() {
-        this.el.classList.add('header__basket_active');
+        this.el.classList.add('header__basket_active'); 
     }
 
     // отображение общего количества товаров в корзине

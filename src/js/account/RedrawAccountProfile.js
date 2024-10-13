@@ -23,6 +23,10 @@ export default class RedrawAccountProfile {
         this.lastInputValue = null;
 
         // ADDRESS
+        // чекбокс для открытия списка имен адресов
+        this.addressSelectCheckbox = this.el.querySelector('#profile__wr-address-checkbox');
+        // Селект где отображается имя выбранного адреса если он есть
+        this.addressesSelect = this.el.querySelector('.profile__wr-address-title');
         // список адресов
         this.addresses = this.el.querySelectorAll('.profile__address-item');
 
@@ -120,12 +124,29 @@ export default class RedrawAccountProfile {
 
 
     // ADDRESS
+
+    // показ в селект выбранного имени адреса при старте страницы
+    setStartAddress() {
+        if(this.addresses.length) {
+            const value = this.addresses[0].textContent;
+            this.addressesSelect.textContent = value;
+        }
+
+        this.countAddresses();
+    }
+    // показ в селект выбранного имени адреса при выборе
+    choiceAddressName(value) {
+        this.addressesSelect.textContent = value;
+        // закрываем селект
+        this.addressSelectCheckbox.checked = false;
+    }
+
     /**
      * при добавлении нового адреса, меняет данные в форме на 
      * стандартные стартовые и устанавливает метку обязательных
      * для заполнения полей
      * */ 
-    fillStartValue() {
+    fillStartValue() { 
         [...this.inputsForms['address']].forEach(input => {
             const dataValue = input.dataset.value;
             const value = input.value;

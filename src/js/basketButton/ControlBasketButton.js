@@ -14,13 +14,13 @@ export default class ControllBasketButton extends ApiModals {
         this.mask;
     }
 
-    init() { 
+    init() {  
         // this.registerEvents();           // отключен весь функционал по корзине формирование и тд
         // this.redraw.redrawIconAmount();
 
         // подсвечиваем иконку при заходе на страницу корзина
         const path = location.pathname;
-        if(path.includes('basket')) {
+        if(path.includes('basket') || path.includes('place-an-order')) {
             this.redraw.redrawIconBasket();
         }
     }
