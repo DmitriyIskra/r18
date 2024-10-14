@@ -911,7 +911,7 @@
 
 
 @media(max-width: 1200px) {
-    .wrapper-basket {
+    .wrapper-place-order {
         background-position: right 0.35vw top 23.5vw, left 0.35vw top 23.5vw;
     }
 }
@@ -1091,6 +1091,13 @@
     .place-order__wr-type-address {
         margin-top: 5.33vw;
     }
+
+    .place-order__receiving-wr-list[data-current="pickup"] ~ .place-order__wr-type-address {
+        display: none;
+    }
+    .place-order__receiving-wr-list[data-current="cdek"][data-type_content="opp"] ~ .place-order__wr-type-address {
+        display: none;
+    }
 }
 
 @media(max-width: 1200px) {
@@ -1208,6 +1215,7 @@
 
 @media(max-width: 1200px) {
     .place-order__wr-cdek-app {
+        height: 138.67vw;
         width: 108.81%;
         margin-top: 7.47vw;
         translate: -4.1% 0;

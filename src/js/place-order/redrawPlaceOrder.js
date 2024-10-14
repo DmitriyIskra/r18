@@ -5,6 +5,9 @@ export default class RedrawPlaceOrder {
         this.checkboxAddress = this.el.querySelector('.place-order__type-address-check');
         this.selectAddress = this.el.querySelector('.place-order__type-address-select span');
 
+        // контейнер c навигацией по способам доставки
+        this.wrReceivingNav = this.el.querySelector('.place-order__receiving-wr-list');
+
         this.allTextInputs = this.el.querySelectorAll('input[type="text"]');
         this.buttonSend = this.el.querySelector('.place-order__button-submit');
 
@@ -39,7 +42,7 @@ export default class RedrawPlaceOrder {
             legal : this.el.querySelector('.place-order__payment-type[data-payment_type="legal"]'),
         }
 
-        // КОНТЕНТ
+        // КОНТЕНТ ФОРМЫ
         // --- способ получения
         // форма или текст для выбра способа получения
         this.receivingsContent = {
@@ -68,11 +71,14 @@ export default class RedrawPlaceOrder {
         this.lastValueInput = null;
     }
 
-    // выбор кастомного (открытие) способа получения
+    
+    // START УПРАВЛЕНИЕ ФОРМАМИ ПОЛУЧЕНИЯ
+
+    // выбор (открытие форм и активация соответствующей радио кнопки) способа получения
     choiceReceiving(typeReceiving, typeContent) {
         if(this.currentReceivingNav) this.currentReceivingNav.classList.remove('place-order__receiving-item_active');
         if(this.currentReceivingContent) this.currentReceivingContent.classList.remove('place-order__forms-address-item_active');
-
+        
         this.receivingsNav[typeReceiving].classList.add('place-order__receiving-item_active');
 
         
@@ -83,11 +89,12 @@ export default class RedrawPlaceOrder {
             this.currentReceivingContentCdek.classList.remove('place-order__forms-address-cdek-item_active')
         };
         
-        // если сдек включаем радио кнопки курьер или пвз
-        // и первую форму
+        // если сдек включаем радио кнопку курьер
+        // и первую форму (сбрасываем в начальное положение)
         if(typeContent === 'cdek') {
             this.wrTypeCdekNav.classList.add('place-order__cdek-type_active');
             this.choiceReceivingCdek('courier');
+            this.typeCdekNavInputs[0].checked = true;
         };
         
         // блокируем или разблокируем способы оплаты в зависимости от выбора
@@ -99,9 +106,11 @@ export default class RedrawPlaceOrder {
         
         this.currentReceivingNav = this.receivingsNav[typeReceiving];
         this.currentReceivingContent = this.receivingsContent[typeContent];
-    }
 
-    // закрытие кастомного способа получения
+        // показ и скрытие фразы: Ожидайте ответа менеджера для точного расчета доставки
+        this.controllTextCountDelivery(typeReceiving);
+    }
+    // закрытие кастомного способа получения (форма для способа получения)
     closeReceiving() {
         if(this.currentReceivingNav) {
             this.currentReceivingNav.classList.remove('place-order__receiving-item_active');
@@ -120,17 +129,53 @@ export default class RedrawPlaceOrder {
 
         this.typeCdekNavInputs[0].checked = true;
     }
-
-    // выбор способа получения сдек
+    // выбор способа получения сдек 
+    // используется по кликам по радио кнопкам курьер и пвз
+    // а также при выборе сдек для сброса в начало (курьер)
     choiceReceivingCdek(type) {
         if(this.currentReceivingContentCdek) {
             this.currentReceivingContentCdek.classList.remove('place-order__forms-address-cdek-item_active');
         }
-        
-        this.listCdek[type].classList.add('place-order__forms-address-cdek-item_active');
 
+        this.listCdek[type].classList.add('place-order__forms-address-cdek-item_active');
+        
         this.currentReceivingContentCdek = this.listCdek[type];
+
+        // скрытие селект с адресами по сдек ПВЗ
+        this.showHideSelectAddress(type);
     }
+
+    // END УПРАВЛЕНИЕ ФОРМАМИ ПОЛУЧЕНИЯ
+
+
+    // показ и скрытие фразы: Ожидайте ответа менеджера для точного расчета доставки
+    controllTextCountDelivery(current) {
+        this.wrReceivingNav.dataset.current = current;
+    }
+
+
+    // START SELECT с адресами
+
+    // выбор адреса (SELECT)
+    setSelectAddress(value) {
+        this.selectAddress.textContent = value;
+
+        // если пользователь выберет уже сохраненный ранее 
+        // тип адреса то закрываем форму кастомного адреса,
+        // чтобы пользователь понимал что или то или то, чтоб ориентировался
+        this.closeReceiving();
+    }
+    // скрытие селект с адресами по сдек ПВЗ
+    showHideSelectAddress(type) {
+        if(type === 'opp') this.wrReceivingNav.dataset.type_content = type;
+        if(!type || type !== 'opp') this.wrReceivingNav.dataset.type_content = "";
+    }
+
+    // END SELECT с адресами
+
+
+
+    // ---- START ОПЛАТА
 
     // выбор способа оплаты
     choicePayment(type) {
@@ -165,17 +210,12 @@ export default class RedrawPlaceOrder {
         this.paymentNav.cash.classList.remove('place-order__payment-type_disabled');
     }
 
+    // ---- END ОПЛАТА
 
 
-    // выбор адреса (select)
-    setSelectAddress(value) {
-        this.selectAddress.textContent = value;
 
-        // если пользователь выберет уже сохраненный ранее 
-        // тип адреса то закрываем форму кастомного адреса,
-        // чтобы пользователь понимал что или то или то, чтоб ориентировался
-        this.closeReceiving();
-    }
+
+    // START РАБОТА С INPUT ФОРМ
 
     // очищает input при focus
     clearInput(input) {
@@ -204,9 +244,13 @@ export default class RedrawPlaceOrder {
         // значения введено и старое совпадает со стандартным
         if(value && value === standartValue) input.classList.add('place-order__form-input_required');
     }
+    // END РАБОТА С INPUT ФОРМ
 
 
-    // ПОДСВЕТКА НЕ ВАЛИДНЫХ ДАННЫХ
+
+
+
+    // ПОДСВЕТКА НЕ ВАЛИДНЫХ ДАННЫХ ПРИ ОТПРАВКЕ
     // подсвечивает не валидные текстовые инпуты
     setInvalidInputText(input) {
         console.log(input);
@@ -220,9 +264,10 @@ export default class RedrawPlaceOrder {
     setInvalidPersonalData() {
         this.agreePersonalData.classList.add('place-order__personal-data-agree_invalid');
     }
+    // снимает подсветку если выбрано пользовательское соглашение
     removeInvalidPersonalData() {
         if(this.agreePersonalData.classList.contains('place-order__personal-data-agree_invalid')) {
             this.agreePersonalData.classList.remove('place-order__personal-data-agree_invalid');
         }
-    }
+    } 
 }

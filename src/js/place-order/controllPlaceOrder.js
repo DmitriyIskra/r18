@@ -34,8 +34,9 @@ export default class ControllPlaceOrder {
 
             // когда выбрана новая кнопка
             this.d.choiceReceiving(typeReceiving, typeContent);
-
-
+            
+            // // если при выборе сдек, активен ПВЗ скрыть select с адресами
+            // if(this.d.typeCdekNavInputs.checked) this.d.choiceReceivingCdek('opp');
         }
 
         // переключение способа получения СДЕК
@@ -61,7 +62,7 @@ export default class ControllPlaceOrder {
      
             this.d.setSelectAddress(value);
         }
-
+ 
         // чек бокс с персональными данными
         if(e.target.closest('.place-order__personal-data-label')) {
             this.d.removeInvalidPersonalData();
