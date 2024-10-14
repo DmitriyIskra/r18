@@ -290,8 +290,9 @@ block content
                                                 input(type="text" name="intercom" data-standart_value="Код домофона" value="Код домофона").place-order__form-address-input.place-order__form-input_required
                                     .place-order__forms-address-cdek-item(data-type="opp")
                                         .place-order__wr-cdek
-                                            form.place-order__form-cdek-address 
-                                                input.place-order__wr-cdek-address.place-order__form-address-input(value="Москва, ул. Хорошевская, д.32")
+                                            form.place-order__form-cdek-address(name="form-opp")
+                                                //-  value="Москва, ул. Хорошевская, д.32"
+                                                input.place-order__wr-cdek-address.place-order__form-address-input(type="text" value="Москва, ул. Хорошевская, д.32")
                                             .place-order__wr-cdek-app 
                                             .place-order__wr-cdek-confirm
                                                 p 

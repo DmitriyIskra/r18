@@ -341,6 +341,14 @@
     margin-top: 3.39vw;
 }
 
+
+.place-order__receiving-wr-list[data-current="pickup"] ~ .place-order__wr-type-address {
+    display: none;
+}
+.place-order__receiving-wr-list[data-current="cdek"][data-type_content="opp"] ~ .place-order__wr-type-address {
+    display: none;
+}
+
 .place-order__type-wr-address {
     display: flex;
     gap: 2.03vw;
@@ -1090,13 +1098,6 @@
 @media(max-width: 1200px) {
     .place-order__wr-type-address {
         margin-top: 5.33vw;
-    }
-
-    .place-order__receiving-wr-list[data-current="pickup"] ~ .place-order__wr-type-address {
-        display: none;
-    }
-    .place-order__receiving-wr-list[data-current="cdek"][data-type_content="opp"] ~ .place-order__wr-type-address {
-        display: none;
     }
 }
 

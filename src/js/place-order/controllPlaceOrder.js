@@ -87,9 +87,10 @@ export default class ControllPlaceOrder {
                 let inputs;
                 if(form) {
                     inputs = form.querySelectorAll('input[type="text"]');
-                
+
                     [...inputs].forEach(input => {
                         const validation = this.validationInputText(input);
+                        console.log(form, validation)
                         if(!validation) this.d.setInvalidInputText(input);
                     });
                 }
@@ -109,7 +110,6 @@ export default class ControllPlaceOrder {
 
             // СОГЛАСИЕ НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ 
             if(!this.d.agreePersonalDataCheckbox.checked) {
-                console.log('agree')
                 this.d.setInvalidPersonalData();
             }
         }
@@ -129,9 +129,20 @@ export default class ControllPlaceOrder {
 
     // валидация текстовых инпутов в формах
     validationInputText(input) {
-        const standartValue = input.dataset.standart_value;
         const value = input.value;
 
-        return value !== standartValue;
+        let result;
+
+        // для всех инпутов
+        if(input.dataset?.standart_value) {
+            console.log(input)
+            const standartValue = input.dataset.standart_value;
+            result = value !== standartValue;
+        }
+        console.log(value);
+        // для инпута ПВЗ
+        result = value !== '' ? true : false;
+
+        return result;
     }
 }

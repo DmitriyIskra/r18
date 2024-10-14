@@ -253,7 +253,6 @@ export default class RedrawPlaceOrder {
     // ПОДСВЕТКА НЕ ВАЛИДНЫХ ДАННЫХ ПРИ ОТПРАВКЕ
     // подсвечивает не валидные текстовые инпуты
     setInvalidInputText(input) {
-        console.log(input);
         input.classList.add('place-order__form-input_disabled');
     }
     // подсвечивает если не выбран способ оплаты
