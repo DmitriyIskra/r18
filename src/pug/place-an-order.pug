@@ -293,7 +293,7 @@ block content
 
                     .place-order__payment
                         .place-order__wr-title
-                            h2.place-order__title Тип оплаты
+                            h2.place-order__title.place-order__payment-title Тип оплаты
                         .place-order__wr-choice
                             //- .place-order__payment-type_active
                             //- .place-order__payment-type_disabled
@@ -332,7 +332,7 @@ block content
 
                     .place-order__personal-data
                         label.place-order__personal-data-label
-                            input.place-order__personal-data-input(type="checkbox" value="personal-data")
+                            input.place-order__personal-data-input(type="checkbox" value="personal-data" required)
                             span.place-order__personal-data-text Согласие на обработку персональных данных
                         label.place-order__personal-data-label
                             input.place-order__personal-data-input(type="checkbox" value="subscription-email")

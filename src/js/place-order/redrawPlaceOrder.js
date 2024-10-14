@@ -6,6 +6,15 @@ export default class RedrawPlaceOrder {
         this.selectAddress = this.el.querySelector('.place-order__type-address-select span');
 
         this.allTextInputs = this.el.querySelectorAll('input[type="text"]');
+        this.buttonSend = this.el.querySelector('.place-order__button-submit');
+
+        this.paymentTitle = this.el.querySelector('.place-order__payment-title');
+
+        // визуальная часть пользовательского соглашения
+        this.agreePersonalData = this.el.querySelector('.place-order__personal-data-label');
+        // чекбокс пользовательского соглашения
+        this.agreePersonalDataCheckbox = this.el.querySelector('.place-order__personal-data-input');
+
         
         // НАВИГАЦИИ
         // --- способ получения
@@ -19,9 +28,10 @@ export default class RedrawPlaceOrder {
         }
 
         // радио кнопки с вариантами курьер и ПВЗ
-        this.typeCdekNav = this.el.querySelector('.place-order__cdek-type');
+        this.wrTypeCdekNav = this.el.querySelector('.place-order__cdek-type');
+        this.typeCdekNavInputs = this.el.querySelectorAll('.place-order__cdek-radio');
 
-        // способы оплаты
+        // способы оплаты радио кнопки
         this.paymentNav = {
             cash : this.el.querySelector('.place-order__payment-type[data-payment_type="cash"]'),
             'card-site' : this.el.querySelector('.place-order__payment-type[data-payment_type="card-site"]'),
@@ -31,58 +41,84 @@ export default class RedrawPlaceOrder {
 
         // КОНТЕНТ
         // --- способ получения
-        // контент для выбра способа получения
+        // форма или текст для выбра способа получения
         this.receivingsContent = {
             moskow : this.el.querySelector('.place-order__forms-address-item[data-type="moskow"]'),
             'area-region' : this.el.querySelector('.place-order__forms-address-item[data-type="area-region"]'),
             pickup : this.el.querySelector('.place-order__forms-address-item[data-type="pickup"]'),
             cdek : this.el.querySelector('.place-order__forms-address-item[data-type="cdek"]'),
         }
-        // контент которые показываем в зависимости от выбора курьер или пвз
+        // форма которую показываем в зависимости от выбора курьер или пвз
         this.listCdek = {
             courier : this.el.querySelector('.place-order__forms-address-cdek-item[data-type="courier"]'),
             opp : this.el.querySelector('.place-order__forms-address-cdek-item[data-type="opp"]'),
         }
+        // Форма для юр.лица
+        this.formLegal = this.el.querySelector('.place-order__payment-form');
 
-
-        // последний активный кнопка для выбора способа получения
+        // последняя активная кнопка для выбора способа получения
         this.currentReceivingNav = null;
-        // последний активный контент для способа получения
+        // последняя активная форма для способа получения
         this.currentReceivingContent = null;
-        // последний активный контент для способа получения cdek
+        // последняя активная форма для способа получения cdek
         this.currentReceivingContentCdek = this.listCdek.courier;
-        // последний активный кнопка для выбора типа оплаты
+        // последняя активная кнопка для выбора типа оплаты
         this.currentPayment = null;
         // последнее активное значение input
         this.lastValueInput = null;
     }
 
-    // выбор способа получения
+    // выбор кастомного (открытие) способа получения
     choiceReceiving(typeReceiving, typeContent) {
         if(this.currentReceivingNav) this.currentReceivingNav.classList.remove('place-order__receiving-item_active');
         if(this.currentReceivingContent) this.currentReceivingContent.classList.remove('place-order__forms-address-item_active');
 
         this.receivingsNav[typeReceiving].classList.add('place-order__receiving-item_active');
 
+        
         this.receivingsContent[typeContent].classList.add('place-order__forms-address-item_active');
-
         if(typeContent !== 'cdek') {
             // если не сдек отключаем радио кнопки курьер или пвз
-            this.typeCdekNav.classList.remove('place-order__cdek-type_active');
+            this.wrTypeCdekNav.classList.remove('place-order__cdek-type_active');
+            this.currentReceivingContentCdek.classList.remove('place-order__forms-address-cdek-item_active')
         };
-
+        
         // если сдек включаем радио кнопки курьер или пвз
-        if(typeContent === 'cdek') this.typeCdekNav.classList.add('place-order__cdek-type_active');
-
+        // и первую форму
+        if(typeContent === 'cdek') {
+            this.wrTypeCdekNav.classList.add('place-order__cdek-type_active');
+            this.choiceReceivingCdek('courier');
+        };
+        
         // блокируем или разблокируем способы оплаты в зависимости от выбора
         if(typeReceiving === 'cdek' || typeReceiving === 'regions') {
             this.blockingPayment();
         } else {
             this.unblockingPayment();
         }
-
+        
         this.currentReceivingNav = this.receivingsNav[typeReceiving];
         this.currentReceivingContent = this.receivingsContent[typeContent];
+    }
+
+    // закрытие кастомного способа получения
+    closeReceiving() {
+        if(this.currentReceivingNav) {
+            this.currentReceivingNav.classList.remove('place-order__receiving-item_active');
+            this.currentReceivingNav = null;
+        }
+
+        if(this.currentReceivingContent) {
+            this.currentReceivingContent.classList.remove('place-order__forms-address-item_active');
+            this.currentReceivingContent = null;
+        }
+
+        this.wrTypeCdekNav.classList.remove('place-order__cdek-type_active');
+        this.currentReceivingContentCdek.classList.remove('place-order__forms-address-cdek-item_active');
+        this.currentReceivingContentCdek = this.listCdek.courier;
+        this.currentReceivingContentCdek.classList.add('place-order__forms-address-cdek-item_active');
+
+        this.typeCdekNavInputs[0].checked = true;
     }
 
     // выбор способа получения сдек
@@ -90,7 +126,7 @@ export default class RedrawPlaceOrder {
         if(this.currentReceivingContentCdek) {
             this.currentReceivingContentCdek.classList.remove('place-order__forms-address-cdek-item_active');
         }
-     
+        
         this.listCdek[type].classList.add('place-order__forms-address-cdek-item_active');
 
         this.currentReceivingContentCdek = this.listCdek[type];
@@ -103,6 +139,10 @@ export default class RedrawPlaceOrder {
         this.paymentNav[type].classList.add('place-order__payment-type_active');
 
         this.currentPayment = this.paymentNav[type];
+
+        if(this.paymentTitle.classList.contains('place-order__form-input_disabled')) {
+            this.paymentTitle.classList.remove('place-order__form-input_disabled');
+        }
     }
 
     // блокировка способов оплаты
@@ -112,9 +152,11 @@ export default class RedrawPlaceOrder {
 
         if(this.paymentNav["card-place"].classList.contains('place-order__payment-type_active')) {
             this.paymentNav["card-place"].classList.remove('place-order__payment-type_active')
+            this.currentPayment = null;
         }
         if(this.paymentNav.cash.classList.contains('place-order__payment-type_active')) {
             this.paymentNav.cash.classList.remove('place-order__payment-type_active')
+            this.currentPayment = null;
         }
     }
     // разблокировка способов оплаты
@@ -128,6 +170,11 @@ export default class RedrawPlaceOrder {
     // выбор адреса (select)
     setSelectAddress(value) {
         this.selectAddress.textContent = value;
+
+        // если пользователь выберет уже сохраненный ранее 
+        // тип адреса то закрываем форму кастомного адреса,
+        // чтобы пользователь понимал что или то или то, чтоб ориентировался
+        this.closeReceiving();
     }
 
     // очищает input при focus
@@ -144,7 +191,7 @@ export default class RedrawPlaceOrder {
 
     // заполняет input предъидущим значением если при blur
     // ничего отличного от стартового value не было введено
-    fillInputLastValue(input, error = null) {
+    fillInputLastValue(input) {
         const standartValue = input.dataset.standart_value;
         const value = input.value;
         // если при blur input пустой возвращаем туда предыдущее значение
@@ -156,10 +203,26 @@ export default class RedrawPlaceOrder {
         if(!value && this.lastValueInput === standartValue) input.classList.add('place-order__form-input_required');
         // значения введено и старое совпадает со стандартным
         if(value && value === standartValue) input.classList.add('place-order__form-input_required');
-        
-        
-        if(error) {
-            input.classList.add('place-order__form-input_disabled');
+    }
+
+
+    // ПОДСВЕТКА НЕ ВАЛИДНЫХ ДАННЫХ
+    // подсвечивает не валидные текстовые инпуты
+    setInvalidInputText(input) {
+        console.log(input);
+        input.classList.add('place-order__form-input_disabled');
+    }
+    // подсвечивает если не выбран способ оплаты
+    setInvalidPayment() {
+        this.paymentTitle.classList.add('place-order__form-input_disabled');
+    }
+    // подсвечивает если не выбрано пользовательское соглашение
+    setInvalidPersonalData() {
+        this.agreePersonalData.classList.add('place-order__personal-data-agree_invalid');
+    }
+    removeInvalidPersonalData() {
+        if(this.agreePersonalData.classList.contains('place-order__personal-data-agree_invalid')) {
+            this.agreePersonalData.classList.remove('place-order__personal-data-agree_invalid');
         }
     }
 }

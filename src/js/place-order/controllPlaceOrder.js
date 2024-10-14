@@ -24,8 +24,18 @@ export default class ControllPlaceOrder {
             const element = e.target.closest('.place-order__receiving-item');
             const typeReceiving = element.dataset.receiving;
             const typeContent = element.dataset.type;
+            
+            // когда выбрана та же кнопка что и в предыдущий раз все закрываем
+            if(this.d.currentReceivingNav && 
+                this.d.currentReceivingNav.dataset.receiving === typeReceiving) {
+                this.d.closeReceiving();
+                return;
+            }
 
+            // когда выбрана новая кнопка
             this.d.choiceReceiving(typeReceiving, typeContent);
+
+
         }
 
         // переключение способа получения СДЕК
@@ -51,6 +61,57 @@ export default class ControllPlaceOrder {
      
             this.d.setSelectAddress(value);
         }
+
+        // чек бокс с персональными данными
+        if(e.target.closest('.place-order__personal-data-label')) {
+            this.d.removeInvalidPersonalData();
+        }
+
+        // проводим ВАЛИДАЦИЮ обязательных полей при нажатии на кнопку ОФОРМИТЬ
+        if(e.target.closest('.place-order__button-submit')) {
+            // если выбрана какая-то форма СПОСОБА ПОЛУЧЕНИЯ 
+            // 
+            if(this.d.currentReceivingContent) {
+                const activeType = this.d.currentReceivingNav.dataset.type;
+
+                let form;
+                if(activeType !== 'cdek') {
+                    form = this.d.currentReceivingContent.querySelector('form');
+                }
+
+                if(activeType === 'cdek') {
+                    form = this.d.currentReceivingContentCdek.querySelector('form');
+                }
+
+                let inputs;
+                if(form) {
+                    inputs = form.querySelectorAll('input[type="text"]');
+                
+                    [...inputs].forEach(input => {
+                        const validation = this.validationInputText(input);
+                        if(!validation) this.d.setInvalidInputText(input);
+                    });
+                }
+            }
+
+            // СПОСОБ ОПЛАТЫ
+            if(!this.d.currentPayment) {
+                this.d.setInvalidPayment();
+            }
+            if(this.d.currentPayment && this.d.currentPayment.dataset.payment_type === 'legal') {
+                const inputs = this.d.formLegal.querySelectorAll('input[type="text"]');
+                [...inputs].forEach(input => {
+                    const validation = this.validationInputText(input);
+                    if(!validation) this.d.setInvalidInputText(input);
+                });
+            }
+
+            // СОГЛАСИЕ НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ 
+            if(!this.d.agreePersonalDataCheckbox.checked) {
+                console.log('agree')
+                this.d.setInvalidPersonalData();
+            }
+        }
     } 
 
     focus(e) {
@@ -63,5 +124,13 @@ export default class ControllPlaceOrder {
         if(e.target.closest('input[type="text"]')) {
             this.d.fillInputLastValue(e.target.closest('input[type="text"]'));
         }
+    }
+
+    // валидация текстовых инпутов в формах
+    validationInputText(input) {
+        const standartValue = input.dataset.standart_value;
+        const value = input.value;
+
+        return value !== standartValue;
     }
 }
