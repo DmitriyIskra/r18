@@ -211,7 +211,8 @@ block content
                             .place-order__type-wr-address
                                 .place-order__type-address-title Тип адреса
                                 input#place-order__type-address-check.place-order__type-address-check(type="checkbox")
-                                label.place-order__type-address-select(for="place-order__type-address-check") Домашний
+                                label.place-order__type-address-select(for="place-order__type-address-check") 
+                                    span Имя адреса
                                     .place-order__type-address-list
                                         .place-order__type-address-item Адрес 1
                                         .place-order__type-address-item Адрес 2
@@ -222,39 +223,39 @@ block content
                             .place-order__forms-address-item(data-type="moskow")
                                 form.place-order__form-address(name="moskow")
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_moskow(data-name-input="city")
-                                        input(type="text" name="city" value="Город").place-order__form-address-input 
+                                        input(type="text" name="city" value="Город").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_moskow(data-name-input="street")
-                                        input(type="text" name="street" value="Улица").place-order__form-address-input 
+                                        input(type="text" name="street" value="Улица").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_moskow(data-name-input="hause")
-                                        input(type="text" name="hause" value="Дом").place-order__form-address-input 
+                                        input(type="text" name="hause" value="Дом").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_moskow(data-name-input="appartment")
-                                        input(type="text" name="appartment" value="Квартира/Офис").place-order__form-address-input 
+                                        input(type="text" name="appartment" value="Квартира/Офис").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_moskow(data-name-input="entrance")
-                                        input(type="text" name="entrance" value="Подъезд").place-order__form-address-input 
+                                        input(type="text" name="entrance" value="Подъезд").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_moskow(data-name-input="stage")
-                                        input(type="text" name="stage" value="Этаж").place-order__form-address-input 
+                                        input(type="text" name="stage" value="Этаж").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_moskow(data-name-input="intercom")
-                                        input(type="text" name="intercom" value="Код домофона").place-order__form-address-input 
+                                        input(type="text" name="intercom" value="Код домофона").place-order__form-address-input.place-order__form-input_required
                             .place-order__forms-address-item(data-type="area-region")
                                 form.place-order__form-address(name="area-region")
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_area-region(data-name-input="zip")
-                                        input(type="text" name="zip" value="Индекс").place-order__form-address-input
+                                        input(type="text" name="zip" value="Индекс").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_area-region(data-name-input="area")
-                                        input(type="text" name="area" value="Область").place-order__form-address-input
+                                        input(type="text" name="area" value="Область").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_area-region(data-name-input="city")
-                                        input(type="text" name="city" value="Город").place-order__form-address-input 
+                                        input(type="text" name="city" value="Город").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_area-region(data-name-input="street")
-                                        input(type="text" name="street" value="Улица").place-order__form-address-input 
+                                        input(type="text" name="street" value="Улица").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_area-region(data-name-input="hause")
-                                        input(type="text" name="hause" value="Дом").place-order__form-address-input 
+                                        input(type="text" name="hause" value="Дом").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_area-region(data-name-input="appartment")
-                                        input(type="text" name="appartment" value="Квартира/Офис").place-order__form-address-input 
+                                        input(type="text" name="appartment" value="Квартира/Офис").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_area-region(data-name-input="entrance")
-                                        input(type="text" name="entrance" value="Подъезд").place-order__form-address-input 
+                                        input(type="text" name="entrance" value="Подъезд").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_area-region(data-name-input="stage")
-                                        input(type="text" name="stage" value="Этаж").place-order__form-address-input 
+                                        input(type="text" name="stage" value="Этаж").place-order__form-address-input.place-order__form-input_required
                                     .place-order__form-address-wr-input.place-order__form-address-wr-input_area-region(data-name-input="intercom")
-                                        input(type="text" name="intercom" value="Код домофона").place-order__form-address-input 
+                                        input(type="text" name="intercom" value="Код домофона").place-order__form-address-input.place-order__form-input_required
                             .place-order__forms-address-item(data-type="pickup")
                                 .place-order__forms-address-pickup
                                     p 
@@ -274,19 +275,19 @@ block content
                                     .place-order__forms-address-cdek-item.place-order__forms-address-cdek-item_active(data-type="courier")
                                         form.place-order__form-address
                                             .place-order__form-address-wr-input.place-order__form-address-wr-input_courier(data-name-input="city")
-                                                input(type="text" name="city" value="Город").place-order__form-address-input 
+                                                input(type="text" name="city" value="Город").place-order__form-address-input.place-order__form-input_required
                                             .place-order__form-address-wr-input.place-order__form-address-wr-input_courier(data-name-input="street")
-                                                input(type="text" name="street" value="Улица").place-order__form-address-input 
+                                                input(type="text" name="street" value="Улица").place-order__form-address-input.place-order__form-input_required
                                             .place-order__form-address-wr-input.place-order__form-address-wr-input_courier(data-name-input="hause")
-                                                input(type="text" name="hause" value="Дом").place-order__form-address-input 
+                                                input(type="text" name="hause" value="Дом").place-order__form-address-input.place-order__form-input_required
                                             .place-order__form-address-wr-input.place-order__form-address-wr-input_courier(data-name-input="appartment")
-                                                input(type="text" name="appartment" value="Квартира/Офис").place-order__form-address-input 
+                                                input(type="text" name="appartment" value="Квартира/Офис").place-order__form-address-input.place-order__form-input_required
                                             .place-order__form-address-wr-input.place-order__form-address-wr-input_courier(data-name-input="entrance")
-                                                input(type="text" name="entrance" value="Подъезд").place-order__form-address-input 
+                                                input(type="text" name="entrance" value="Подъезд").place-order__form-address-input.place-order__form-input_required
                                             .place-order__form-address-wr-input.place-order__form-address-wr-input_courier(data-name-input="stage")
-                                                input(type="text" name="stage" value="Этаж").place-order__form-address-input 
+                                                input(type="text" name="stage" value="Этаж").place-order__form-address-input.place-order__form-input_required
                                             .place-order__form-address-wr-input.place-order__form-address-wr-input_courier(data-name-input="intercom")
-                                                input(type="text" name="intercom" value="Код домофона").place-order__form-address-input 
+                                                input(type="text" name="intercom" value="Код домофона").place-order__form-address-input.place-order__form-input_required
                                     .place-order__forms-address-cdek-item(data-type="opp")
                                         p ПЛАГИН СДЕК
 
@@ -315,13 +316,13 @@ block content
 
                             form(name="legal-entity").place-order__payment-form
                                 .place-order__payment-wr-input 
-                                    input(type="text" name="name" value="Название организации")
+                                    input.place-order__payment-input.place-order__form-input_required(type="text" name="name" value="Название организации")
                                 .place-order__payment-wr-input 
-                                    input(type="text" name="address" value="Адрес")
+                                    input.place-order__payment-input.place-order__form-input_required(type="text" name="address" value="Адрес")
                                 .place-order__payment-wr-input 
-                                    input(type="text" name="inn" value="ИНН")
+                                    input.place-order__payment-input.place-order__form-input_required(type="text" name="inn" value="ИНН")
                                 .place-order__payment-wr-input 
-                                    input(type="text" name="ogrn" value="ОГРН")
+                                    input.place-order__payment-input.place-order__form-input_required(type="text" name="ogrn" value="ОГРН")
 
                     .place-order__wr-comment
                         .place-order__wr-title

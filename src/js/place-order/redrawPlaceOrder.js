@@ -1,6 +1,11 @@
 export default class RedrawPlaceOrder {
     constructor(el) {
         this.el = el;
+
+        this.checkboxAddress = this.el.querySelector('.place-order__type-address-check');
+        this.selectAddress = this.el.querySelector('.place-order__type-address-select span');
+
+        this.allTextInputs = this.el.querySelectorAll('input[type="text"]');
         
         // НАВИГАЦИИ
         // --- способ получения
@@ -46,8 +51,10 @@ export default class RedrawPlaceOrder {
         this.currentReceivingContent = null;
         // последний активный контент для способа получения cdek
         this.currentReceivingContentCdek = this.listCdek.courier;
-
+        // последний активный кнопка для выбора типа оплаты
         this.currentPayment = null;
+        // последнее активное значение input
+        this.lastValueInput = null;
     }
 
     // выбор способа получения
@@ -116,6 +123,23 @@ export default class RedrawPlaceOrder {
         this.paymentNav.cash.classList.remove('place-order__payment-type_disabled');
     }
 
-    // выбор способа оплаты
 
+
+    // выбор адреса (select)
+    setSelectAddress(value) {
+        this.selectAddress.textContent = value;
+    }
+
+
+    clearInput(input) {
+        this.lastValueInput = input.value;
+
+        input.value = '';
+        input.classList.remove('place-order__form-input_required');
+    }
+
+    fillInputLastValue(input) {
+        input.value = this.lastValueInput;
+        input.classList.add('place-order__form-input_required');
+    }
 }

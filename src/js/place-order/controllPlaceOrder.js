@@ -3,6 +3,8 @@ export default class ControllPlaceOrder {
         this.d = d;
 
         this.click = this.click.bind(this);
+        this.focus = this.focus.bind(this);
+        this.blur = this.blur.bind(this);
     }
 
     init() {
@@ -11,6 +13,9 @@ export default class ControllPlaceOrder {
 
     registerEvents() {
         this.d.el.addEventListener('click', this.click);
+
+        [...this.d.allTextInputs].forEach(input => input.addEventListener('focus', this.focus));
+        [...this.d.allTextInputs].forEach(input => input.addEventListener('blur', this.blur));
     }
 
     click(e) {
@@ -38,7 +43,25 @@ export default class ControllPlaceOrder {
      
             this.d.choicePayment(type);
         }
+
+        // выбор адреса (select)
+        if(e.target.closest('.place-order__type-address-item')) {
+            const element = e.target.closest('.place-order__type-address-item');
+            const value = element.textContent;
+     
+            this.d.setSelectAddress(value);
+        }
     } 
 
-    
+    focus(e) {
+        if(e.target.closest('input[type="text"]')) {
+            this.d.clearInput(e.target.closest('input[type="text"]'));
+        }
+    }
+
+    blur(e) {
+        if(e.target.closest('input[type="text"]')) {
+            this.d.fillInputLastValue(e.target.closest('input[type="text"]'));
+        }
+    }
 }
