@@ -529,6 +529,11 @@
     background-size: auto 17.5%;
 }
 
+.place-order__form-input_disabled {
+    color: #FF7C7C;
+    border-bottom: 1px solid #FF7C7C;
+}
+
 .place-order__form-input_required[name="zip"] {
     background-position: left 34.8% top 35%;
 }

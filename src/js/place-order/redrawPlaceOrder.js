@@ -130,16 +130,36 @@ export default class RedrawPlaceOrder {
         this.selectAddress.textContent = value;
     }
 
-
+    // очищает input при focus
     clearInput(input) {
         this.lastValueInput = input.value;
 
         input.value = '';
         input.classList.remove('place-order__form-input_required');
+
+        if(input.classList.contains('place-order__form-input_disabled')) {
+            input.classList.remove('place-order__form-input_disabled');
+        }
     }
 
-    fillInputLastValue(input) {
-        input.value = this.lastValueInput;
-        input.classList.add('place-order__form-input_required');
+    // заполняет input предъидущим значением если при blur
+    // ничего отличного от стартового value не было введено
+    fillInputLastValue(input, error = null) {
+        const standartValue = input.dataset.standart_value;
+        const value = input.value;
+        // если при blur input пустой возвращаем туда предыдущее значение
+        if(!value) {
+            input.value = this.lastValueInput; 
+        }
+        
+        // значения не введено и старое совпадает со стандартным
+        if(!value && this.lastValueInput === standartValue) input.classList.add('place-order__form-input_required');
+        // значения введено и старое совпадает со стандартным
+        if(value && value === standartValue) input.classList.add('place-order__form-input_required');
+        
+        
+        if(error) {
+            input.classList.add('place-order__form-input_disabled');
+        }
     }
 }
