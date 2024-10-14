@@ -114,12 +114,12 @@
 
 .place-order__wr-order {
     height: min-content;
-    max-height: 63.02vw;
+    max-height: 53.85vw;
     padding: 1.30vw 3.33vw 2.97vw 2.71vw;
     grid-column: 2;
     grid-row: 1/7;
 
-    border: 0.15vw solid #483D41;
+    border: 0.15vw solid #fff;
 
     scrollbar-width: thin;
     scrollbar-color: #d5cbc6 #726B68;
