@@ -161,10 +161,10 @@
 
 .basket__goods-info p {
     width: max-content;
-    padding-left: 23%;
+    padding-left: 19.2%;
 
     font-family: "SofiaSans";
-    font-size: 0.57vw;
+    font-size: 0.68vw;
     font-weight: 400;
 
     color: #FFF;
@@ -204,7 +204,7 @@
 
 .basket__goods-price {
     font-family: "SofiaSans";
-    font-size: 1.04vw;
+    font-size: 0.83vw;
     font-weight: 700;
 
     color: #F1551C; 
@@ -294,7 +294,7 @@
     cursor: pointer;
 }
 
-
+ 
 
 @media(max-width: 1200px) {
     .wrapper-basket {

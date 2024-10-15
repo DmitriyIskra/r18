@@ -766,6 +766,7 @@ input:-webkit-autofill:focus,input:-webkit-autofill:active,input:-webkit-autofil
     font-family: "SofiaSans";
     font-size: 1.04vw;
     font-weight: 400;
+    text-align: center;
     
     color: #fff;
 }
@@ -798,20 +799,9 @@ p.delivery-account__documents {
     font-family: "SofiaSans";
     font-size: 1.04vw;
     font-weight: 400;
+    text-align: center;
     
     color: #fff;
-}
-
-.delivery-account__item::before {
-    content: "";
-
-    display: inline-block;
-    width: 0.68vw;
-    height: 0.68vw;
-    transform: translateX(-.25vw);
-
-    background: #F1551C;
-    border-radius: 50%;
 }
 
 /* ------- END DELIVERY ------ */
@@ -1077,7 +1067,7 @@ p.delivery-account__documents {
     
     .profile__address-input[name="area"].profile__address-input_required {
         background-position: left 18.6% top 43%;
-    }
+    } 
     
     .profile__address-input[name="district"].profile__address-input_required {
         background-position: left 15.1% top 43%;
@@ -1330,17 +1320,6 @@ p.delivery-account__documents {
 @media(max-width: 1200px) {
     .delivery-account__item {
         font-size: 3.47vw;
-    }
-}
-
-@media(max-width: 1200px) {
-    .delivery-account__item::before {
-        display: none;
-        width: 2.67vw;
-        height: 2.67vw;
-        margin-right: -1.4vw;
-
-        transform: translateX(-2.7vw);
     }
 }
 

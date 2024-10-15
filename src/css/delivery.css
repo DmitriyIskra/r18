@@ -72,6 +72,7 @@
     font-family: "SofiaSans";
     font-size: 1.04vw;
     font-weight: 400;
+    text-align: center;
     
     color: #fff;
 }
@@ -104,20 +105,9 @@ p.delivery__documents {
     font-family: "SofiaSans";
     font-size: 1.04vw;
     font-weight: 400;
+    text-align: center;
     
     color: #fff;
-}
-
-.delivery__item::before {
-    content: "";
-
-    display: inline-block;
-    width: 0.68vw;
-    height: 0.68vw;
-    transform: translateX(-.25vw);
-
-    background: #F1551C;
-    border-radius: 50%;
 }
 
 @media(max-width: 1200px) {
@@ -227,16 +217,6 @@ p.delivery__documents {
 @media(max-width: 1200px) {
     .delivery__item {
         font-size: 3.47vw;
-    }
-}
-
-@media(max-width: 1200px) {
-    .delivery__item::before {
-        width: 2.67vw;
-        height: 2.67vw;
-        margin-right: -1.4vw;
-
-        transform: translateX(-2.7vw);
     }
 }
 

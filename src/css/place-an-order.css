@@ -181,10 +181,10 @@
 }
 
 .place-order__product-price {
-    margin-top: 1.04vw;
+    margin-top: 0.57vw;
 
     font-family: "SofiaSans";
-    font-size: 1.25vw;
+    font-size: 0.83vw;
     font-weight: 700;
     text-align: right;
 
@@ -207,7 +207,7 @@
     width: 43.65%;
 
     font-family: "SofiaSans";
-    font-size: 1.15vw;
+    font-size: 0.83vw;
     font-weight: 400;
 
     color: #FFF;
@@ -229,7 +229,7 @@
     justify-content: space-between;
 
     font-family: "SofiaSans";
-    font-size: 1.25vw;
+    font-size: 1.04vw;
     font-weight: 700;
 
     color: #F1551C;
