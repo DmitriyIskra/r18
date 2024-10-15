@@ -11,11 +11,13 @@ export default class ControllAccountButton extends ApiModals {
         this.clickLogin = this.clickLogin.bind(this);
         this.clickRecover = this.clickRecover.bind(this);
         this.clickRegistration = this.clickRegistration.bind(this);
+        this.clickConfirmCode = this.clickConfirmCode.bind(this);
 
         this.mask = null;
+        this.currentPlaceholder = null;
     }
 
-    init() {
+    init() { 
         this.registerEvents();
 
         const path = location.pathname;
@@ -62,6 +64,8 @@ export default class ControllAccountButton extends ApiModals {
                 this.redraw.openNewModal(loginPopUp);
 
                 this.redraw.lastActiveModal.addEventListener('click', this.clickLogin);
+                // удаление и установка input placeholder
+                this.registerEventsInputsText(this.redraw.lastActiveModal);
             })()
         }
 
@@ -73,6 +77,8 @@ export default class ControllAccountButton extends ApiModals {
                 this.redraw.openNewModal(registrationPopUp);
 
                 this.redraw.lastActiveModal.addEventListener('click', this.clickRegistration);
+                // удаление и установка input placeholder
+                this.registerEventsInputsText(this.redraw.lastActiveModal);
 
                 // на телефон формы регистрации вешаем при фокусе маску
                 const form = this.redraw.lastActiveModal.querySelector('form');
@@ -124,6 +130,8 @@ export default class ControllAccountButton extends ApiModals {
                 this.redraw.openNewModal(modalRecover);
 
                 this.redraw.lastActiveModal.addEventListener('click', this.clickRecover);
+                // удаление и установка input placeholder
+                this.registerEventsInputsText(this.redraw.lastActiveModal);
             })()
         }
     }
@@ -147,37 +155,123 @@ export default class ControllAccountButton extends ApiModals {
             }
         };
     }
-
+    // для событий по форме регистрации
     clickRegistration(e) {
         // форма из модалки
         const form = this.redraw.lastActiveModal.querySelector('form');
         
-
-        // закрытие модалки восстановление
+        // закрытие модалки регистрация
         if(e.target.closest('.modal__close')) this.redraw.closeModal(form);
         
         // отправка данных на сервер
         if(e.target.closest('.modal-reg__button')) {
-            // валидация
-            this.validation([form.name, form.email, form.phone, form.password]);
+            const inputs = form.querySelectorAll('.modal__wr-input > input');
 
-            if(form.name.value && !+form.name.dataset?.invalid &&
-                form.phone.value && !+form.phone.dataset?.invalid &&
-                form.email.value && !+form.email.dataset?.invalid &&
-                form.password.value && !+form.password.dataset?.invalid) {
-                const formData = new FormData(form);
-                console.log(Array.from(formData));
-            }
+            const resultsValidation = [];
+            // валидация заполненности текстовых полей
+            resultsValidation.push(this.validation([...inputs]));
+            // валидация email
+            resultsValidation.push(this.validationPatternEmail(form.email));
+            // валидация телефона
+            resultsValidation.push(this.validationPatternPhone(form.phone));
+            // валидация чекбокса
+            resultsValidation.push(this.validationCheckbox([form.confirm]));
+
+            const totalResult = resultsValidation.some(item => item.length > 0);
+            
+            // если хоть одно поле будет не валидно в 
+            // totalResult будет true
+            if(totalResult) return;
+
+            // ОТКРЫВАЕМ ФОРМУ ДЛЯ ВВОДА КОДА ПОДТВЕРЖДЕНИЯ
+            (async () => {
+                const confirmCodePopUp = await super.read('code');
+                console.log(confirmCodePopUp)
+                this.redraw.openNewModal(confirmCodePopUp);
+
+                this.redraw.lastActiveModal.addEventListener('click', this.clickConfirmCode);
+                // удаление и установка input placeholder
+                this.registerEventsInputsText(this.redraw.lastActiveModal);
+            })();
+
+            // if(form.name.value && !+form.name.dataset?.invalid &&
+            //     form.phone.value && !+form.phone.dataset?.invalid &&
+            //     form.email.value && !+form.email.dataset?.invalid &&
+            //     form.password.value && !+form.password.dataset?.invalid) {
+            //     const formData = new FormData(form);
+            //     console.log(Array.from(formData));
+            // }
         };
+    }
+
+    clickConfirmCode(e) {
+
+    }
+
+    // при фокусе поле очищается если нет value
+    // при blur заполняется, если нет value
+    registerEventsInputsText(modal) {
+        const inputs = modal.querySelectorAll('form input[type="text"], form input[type="email"], form input[type="password"]');
+
+        [...inputs].forEach(input => {
+            input.addEventListener('focus', e => {
+                this.currentPlaceholder = e.target.placeholder;
+                e.target.removeAttribute('placeholder');
+                this.redraw.hideRequiredStar(input);
+            })
+            input.addEventListener('blur', e => { 
+                e.target.setAttribute('placeholder', this.currentPlaceholder);
+                this.currentPlaceholder = null;
+                this.redraw.showRequiredStar(input);
+            })
+        });
     }
 
     // валидация заполненности полей
     validation(inputs) {
+        const result = [];
         inputs.forEach(item => {
             // поле не заполненно
             if(!item.value) { // валидация
-                this.redraw.incorrectData(item, 'Заполните пожалуйста поле');
+                this.redraw.incorrectData(item, 'Поле обязательное для заполнения');
+                result.push(false);
             }
         })
+
+        return result;
+    }
+
+    validationCheckbox(checkbox) {
+        const result = [];
+        checkbox.forEach(ch => {
+            if(!ch.checked) {
+                this.redraw.invalidCheckbox(ch)
+                result.push(false);
+            };
+        });
+
+        return result;
+    }
+
+    validationPatternPhone(phone) {
+        const totalResult = [];
+        const result = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/ig.test(phone.value);
+        if(!result) {
+            this.redraw.incorrectData(phone, 'Некорректно введен номер');
+            totalResult.push(false);
+        }
+
+        return totalResult;
+    }
+
+    validationPatternEmail(email) {
+        const totalResult = [];
+        const result = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+\.[A-Z]{2,4}$/i.test(email.value);
+        if(!result) {
+            this.redraw.incorrectData(email, 'Некорректно введена почта');
+            totalResult.push(false);
+        }
+
+        return totalResult;
     }
 }

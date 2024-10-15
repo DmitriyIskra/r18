@@ -335,7 +335,7 @@
 @media(max-width: 1200px) {
     .basket__goods-list {
         width: 88.7%;
-        height: 107vw;
+        /* height: 107vw; */
         margin-top: 13.87vw;
         padding-right: 0;
         gap: 7.73vw;

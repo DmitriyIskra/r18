@@ -19,7 +19,7 @@ export default class ApiModals {
 
             return modal;
         } catch (error) {
-            throw new Error('')
+            throw new Error('') 
         }
     }
 }

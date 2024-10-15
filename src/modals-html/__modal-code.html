@@ -1,7 +1,7 @@
 <!-- регистрация аккаунта -->
 <div class="wrapper-modal">
 
-    <div class="modal modal-reg">
+    <div class="modal modal-code">
         
         <div class="modal__wr-close">
             <div class="modal__close">
@@ -13,34 +13,21 @@
         <div class="modal__wr-icon">
             <div class="modal__icon modal__icon-photo"><!-- icon css --></div>
         </div>
+        <div class="modal__text modal__info-text modal-code__text">
+            Вам на телефон выслан код, введите его для подтверждения номера
+        </div>
         <div class="modal__wr-form">
-            <form class="modal__form" name="form_registration">
+            <form class="modal__form" name="form_code">
                 <div class="modal__wr-input">
-                    <input class="modal__input modal__input_required" type="text" name="surname" placeholder="Фамилия">
-                </div>
-                <div class="modal__wr-input">
-                    <input class="modal__input modal__input_required" type="text" name="name" placeholder="Имя">
-                </div>
-                <div class="modal__wr-input">
-                    <input class="modal__input modal__input_required" type="text" name="phone" placeholder="Телефон">
-                </div> 
-                <div class="modal__wr-input">
-                    <input class="modal__input modal__input_required" type="text" name="email" placeholder="Почта">
-                </div>
-                <div class="modal__wr-input">
-                    <input class="modal__input modal__input_required" type="password" name="password" placeholder="Пароль">
-                </div>
-                <div class="modal__wr-checkbox">
-                    <label class="modal__label-checkbox">
-                        <input class="modal__checkbox" type="checkbox" name="confirm" value="confirmation for processing">
-                        <span class="modal__checkbox-text">Согласие на обработку персональных данных</span>
-                    </label>
+                    <input class="modal__input" type="text" name="code" placeholder="Код">
                 </div>
             </form>
         </div>
-        <div class="modal-reg__wr-battons">
-            <button class="modal__button modal__text modal__button_color modal-reg__button">Регистрация</button>
+        <div class="modal-code__wr-code-repeate">
+            <div class="modal-code__code-repeate">Отправить код повторно</div>
+        </div>
+        <div class="modal-code__wr-battons">
+            <button class="modal__button modal__text modal__button_color modal-code__button">Регистрация</button>
         </div>
     </div>
-
 </div>

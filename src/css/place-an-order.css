@@ -134,8 +134,7 @@
 
 .place-order__product-info {
     display: grid;
-    grid-template-columns: min-content 1fr min-content;
-    grid-row: min-content min-content;
+    grid-template-columns: min-content 1fr max-content;
     align-items: center;
 }
 
@@ -174,7 +173,7 @@
 
 .place-order__product-wr-amount {
     font-family: "SofiaSans";
-    font-size: 0.83vw;
+    font-size: 0.73vw;
     font-weight: 400;
 
     color: #fff;

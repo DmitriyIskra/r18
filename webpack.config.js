@@ -223,6 +223,7 @@ module.exports = {
             { from: 'src/modals-html/__modal-basket.html', to: './__modal-basket.html' },
             { from: 'src/modals-html/__modal-order-successfully.html', to: './__modal-order-successfully.html' },
             { from: 'src/modals-html/__modal-failed.html', to: './__modal-failed.html' },
+            { from: 'src/modals-html/__modal-code.html', to: './__modal-code.html' },
             
             { from: 'src/robots/robots.txt', to: './robots.txt' },
             { from: 'src/robots/sitemap.xml', to: './sitemap.xml' },

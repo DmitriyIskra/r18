@@ -21,7 +21,7 @@ export default class ControllAccount extends ApiModals {
         this.redraw.history.initScroll();
 
         this.initCalendar();
-        this.initAddresses();
+        this.initAddresses(); 
     }
 
     registerEvents() {

@@ -105,6 +105,7 @@
     outline: 0;
     border-bottom: 1px solid #fff;
     color: #fff;
+    caret-color: #fff;
 }
 
 .modal__input::placeholder {
@@ -113,6 +114,31 @@
     font-weight: 400;
 
     color: #fff;
+}
+
+.modal__input_required {
+    background-image: url(../svg/profile__required-star.svg);
+    background-repeat: no-repeat;
+    background-size: auto 17.5%;
+}
+
+.modal__input_required[name="surname"] {
+    background-position: left 23.5% top 0.6vw;
+}
+.modal__input_required[name="name"] {
+    background-position: left 13.1% top 0.6vw;
+}
+.modal__input_required[name="phone"] {
+    background-position: left 22.5% top 0.6vw;
+}
+.modal__input_required[name="email"] {
+    background-position: left 17% top 0.6vw;
+}
+.modal__input_required[name="password"] {
+    background-position: left 20% top 0.6vw;
+}
+.modal__input_required[name="code"] {
+    background-position: left 12% top 0.6vw;
 }
 
 .modal__text {
@@ -180,7 +206,7 @@
     justify-content: center;
 }
 
-.modal-acc-deleted-text {
+.modal-acc-deleted__text {
     width: 69%;
 }
 /* END АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО УДАЛЕН */
@@ -194,7 +220,7 @@
     width: 26.04vw;
 }
 
-.modal-profile-edited-text {
+.modal-profile-edited__text {
     margin-top: 4.06vw;
     margin-bottom: 11.51vw;
 }
@@ -302,7 +328,7 @@
 .modal-reg__wr-battons {
     display: flex;
     width: 70%;
-    margin-top: 4.22vw;
+    margin-top: 3.07vw;
     margin-bottom: 4.58vw;
 
     justify-content: center;
@@ -311,7 +337,100 @@
 .modal-reg__button {
     width: 71.4%;
 }
+
+.modal__wr-checkbox {
+    margin-top: 1.35vw;
+    align-self: flex-start;
+}
+
+.modal__label-checkbox {
+    cursor: pointer;
+}
+
+.modal__checkbox {
+    display: none;
+}
+
+.modal__checkbox-text {
+    display: flex;
+    gap: 0.47vw;
+    align-items: end;
+
+    font-family: "SofiaSans";
+    font-size: 0.63vw;
+    font-weight: 400;
+    text-align: center;
+    user-select: none;
+    
+    color: #FFF;
+}
+
+.modal__checkbox-text::before {
+    content: "";
+
+    display: inline-block;
+    width: 1.30vw;
+    height: 1.30vw;
+
+    background-color: #fff;
+    border-radius: 0.21vw;
+}
+
+.modal__label-checkbox_invalid + .modal__checkbox-text {
+    color: #FF7C7C;
+}
+
+.modal__label-checkbox_invalid + .modal__checkbox-text::before {
+    background-color: #FF7C7C;
+}
+
+.modal__checkbox:checked + .modal__checkbox-text::before {
+    background-image: url(../svg/check-mark-address-place-order.svg);
+    background-repeat: no-repeat;
+    background-size: 62% auto;
+    background-position: center;
+}
 /* END ОКНО РЕГИСТРАЦИЯ */
+
+
+/* ------------------==============================------------------- */
+
+
+
+/* START ОКНО КОД ПОДТВЕРЖДЕНИЯ */
+.modal-code {
+    width: 26.3%;
+    padding-bottom: 4.58vw;
+}
+
+.modal-code__text {
+    margin-top: 1.93vw;
+}
+
+.modal-code__wr-code-repeate {
+    margin-top: 0.47vw;
+}
+
+.modal-code__code-repeate {
+    font-family: "SofiaSans";
+    font-size: 0.83vw;
+    font-weight: 400;
+    
+    color: #FFF;
+}
+
+.modal-code__wr-battons {
+    display: flex;
+    width: 100%;
+    margin-top: 2.76vw;
+
+    justify-content: center;
+}
+
+.modal-code__button {
+    width: 50%;
+}
+/* END ОКНО КОД ПОДТВЕРЖДЕНИЯ */
 
 
 /* ------------------==============================------------------- */
@@ -427,13 +546,13 @@
 @media(max-width: 1200px) {
     .modal__form {
         width: 88.7%;
-        gap: 6.67vw;
+        gap: 2.67vw;
     }
 }
 
 @media(max-width: 1200px) {
     .modal__input {
-        padding: 3.20vw 4vw;
+        padding: 0.80vw 4vw;
     
         font-size: 3.47vw;
     }
@@ -505,7 +624,7 @@
 }
 
 @media(max-width: 1200px) {
-    .modal-acc-deleted-text {
+    .modal-acc-deleted__text {
         width: 86%;
     }
 }
@@ -518,7 +637,7 @@
 /* START АККАУНТ ПОЛЬЗОВАТЕЛЯ УСПЕШНО ОТРЕДАКТИРОВАН */
 
 @media(max-width: 1200px) {
-    .modal-profile-edited-text {
+    .modal-profile-edited__text {
         margin-top: 9.33vw;
         margin-bottom: 43.20vw;
     }
@@ -604,10 +723,33 @@
 /* ------------------==============================------------------- */
 
 
-/* START ОКНО ВОССТАНОВЛЕНИЕ ПАРОЛЯ */
+/* START ОКНО РЕГИСТРАЦИЯ */
 @media(max-width: 1200px) {
     .modal-reg__text {
         margin-top: 8vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal__wr-checkbox {
+        margin-top: 9vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal__checkbox-text {
+        gap: 2.67vw;
+
+        font-size: 2.67vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal__checkbox-text::before {
+        height: 5.33vw;
+        width: 5.33vw;
+
+        border-radius: 1.07vw;
     }
 }
 
@@ -617,12 +759,56 @@
         margin-bottom: 8.27vw;
     }
 }
+
 @media(max-width: 1200px) {
     .modal-reg__button {
         width: 57.2%;
     }
 }
-/* END ОКНО ВОССТАНОВЛЕНИЕ ПАРОЛЯ */
+/* END ОКНО РЕГИСТРАЦИЯ */
+
+
+/* ------------------==============================------------------- */
+
+
+/* START ОКНО КОД ПОДТВЕРЖДЕНИЯ */
+@media(max-width: 1200px) {
+    .modal-code {
+        width: 26.3%;
+        padding-bottom: 9.33vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-code__text {
+        margin-top: 12.53vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-code__wr-code-repeate {
+        margin-top: 1vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-code__code-repeate {
+        font-size: 2.93vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-code__wr-battons {
+        margin-top: 10.93vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-code__button {
+        width: 40%;
+    }
+}
+/* END ОКНО КОД ПОДТВЕРЖДЕНИЯ */
 
 
 /* ------------------==============================------------------- */
