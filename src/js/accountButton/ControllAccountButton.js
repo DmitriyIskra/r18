@@ -186,7 +186,7 @@ export default class ControllAccountButton extends ApiModals {
             // ОТКРЫВАЕМ ФОРМУ ДЛЯ ВВОДА КОДА ПОДТВЕРЖДЕНИЯ
             (async () => {
                 const confirmCodePopUp = await super.read('code');
-                console.log(confirmCodePopUp)
+
                 this.redraw.openNewModal(confirmCodePopUp);
 
                 this.redraw.lastActiveModal.addEventListener('click', this.clickConfirmCode);
@@ -205,7 +205,28 @@ export default class ControllAccountButton extends ApiModals {
     }
 
     clickConfirmCode(e) {
+        // форма из модалки
+        const form = this.redraw.lastActiveModal.querySelector('form');
+                
+        // закрытие модалки регистрация
+        if(e.target.closest('.modal__close')) this.redraw.closeModal(form);
 
+        // отправка данных на сервер
+        if(e.target.closest('.modal-code__button')) {
+            const inputs = form.querySelectorAll('.modal__wr-input > input');
+
+            // валидация заполненности текстовых полей
+            const result = this.validation([...inputs]);
+            
+            // если длинна массива result больше 0
+            // значит есть не валидные значения
+            if(result.length) return;
+
+            // if(form.code.value && !+form.name.dataset?.invalid) {
+            //     const formData = new FormData(form);
+            //     console.log(Array.from(formData));
+            // }
+        };
     }
 
     // при фокусе поле очищается если нет value

@@ -185,8 +185,8 @@ export default class RedrawPlaceOrder {
 
         this.currentPayment = this.paymentNav[type];
 
-        if(this.paymentTitle.classList.contains('place-order__form-input_disabled')) {
-            this.paymentTitle.classList.remove('place-order__form-input_disabled');
+        if(this.paymentTitle.classList.contains('place-order__form-input_invalid')) {
+            this.paymentTitle.classList.remove('place-order__form-input_invalid');
         }
     }
 
@@ -224,8 +224,8 @@ export default class RedrawPlaceOrder {
         input.value = '';
         input.classList.remove('place-order__form-input_required');
 
-        if(input.classList.contains('place-order__form-input_disabled')) {
-            input.classList.remove('place-order__form-input_disabled');
+        if(input.classList.contains('place-order__form-input_invalid')) {
+            input.classList.remove('place-order__form-input_invalid');
         }
     }
 
@@ -248,16 +248,16 @@ export default class RedrawPlaceOrder {
 
 
 
-
+ 
 
     // ПОДСВЕТКА НЕ ВАЛИДНЫХ ДАННЫХ ПРИ ОТПРАВКЕ
     // подсвечивает не валидные текстовые инпуты
     setInvalidInputText(input) {
-        input.classList.add('place-order__form-input_disabled');
+        input.classList.add('place-order__form-input_invalid');
     }
     // подсвечивает если не выбран способ оплаты
     setInvalidPayment() {
-        this.paymentTitle.classList.add('place-order__form-input_disabled');
+        this.paymentTitle.classList.add('place-order__form-input_invalid');
     }
     // подсвечивает если не выбрано пользовательское соглашение
     setInvalidPersonalData() {

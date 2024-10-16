@@ -87,10 +87,10 @@ export default class ControllPlaceOrder {
                 let inputs;
                 if(form) {
                     inputs = form.querySelectorAll('input[type="text"]');
-
+                    
                     [...inputs].forEach(input => {
                         const validation = this.validationInputText(input);
-                        console.log(form, validation)
+
                         if(!validation) this.d.setInvalidInputText(input);
                     });
                 }
@@ -114,7 +114,7 @@ export default class ControllPlaceOrder {
             }
         }
     } 
-
+ 
     focus(e) {
         if(e.target.closest('input[type="text"]')) {
             this.d.clearInput(e.target.closest('input[type="text"]'));
@@ -133,14 +133,14 @@ export default class ControllPlaceOrder {
 
         let result;
 
-        // для всех инпутов
+        // для всех инпутов, кроме CDEK ПВЗ
         if(input.dataset?.standart_value) {
-            console.log(input)
             const standartValue = input.dataset.standart_value;
             result = value !== standartValue;
+            return result;
         }
-        console.log(value);
-        // для инпута ПВЗ
+
+        // для инпута CDEK ПВЗ
         result = value !== '' ? true : false;
 
         return result;

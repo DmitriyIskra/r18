@@ -559,6 +559,31 @@
 }
 
 @media(max-width: 1200px) {
+    .modal__input_required {
+        background-size: auto 20.5%;
+    }
+
+    .modal__input_required[name="surname"] {
+        background-position: left 25.5% top 0.6vw;
+    }
+    .modal__input_required[name="name"] {
+        background-position: left 14.8% top 0.6vw;
+    }
+    .modal__input_required[name="phone"] {
+        background-position: left 24% top 0.6vw;
+    }
+    .modal__input_required[name="email"] {
+        background-position: left 18.7% top 0.6vw;
+    }
+    .modal__input_required[name="password"] {
+        background-position: left 21.7% top 0.6vw;
+    }
+    .modal__input_required[name="code"] {
+        background-position: left 14% top 0.6vw;
+    }
+}
+
+@media(max-width: 1200px) {
     .modal__input::placeholder {
         font-size: 3.47vw;
     }

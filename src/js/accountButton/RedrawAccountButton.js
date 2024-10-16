@@ -24,12 +24,14 @@ export default class RedrawAccountButton {
     
         input.value = text;
         input.style.color = '#FF7C7C';
+        input.style.borderBottomColor = '#FF7C7C';
         input.dataset.invalid = 1;
     
         // при фокусе на поле возвращаем стандартный вид
         // если были изменения при вводе не валидных данных
         input.addEventListener('focus', () => {
             input.style.color = '#fff';
+            input.style.borderBottomColor = '#FFF';
             input.value = '';
             input.dataset.invalid = '';
             if(input.name === 'password') input.type = 'password';

@@ -170,7 +170,7 @@
 .place-order__product-wr-description p:first-child {
     font-weight: 700;
 }
-
+ 
 .place-order__product-wr-amount {
     font-family: "SofiaSans";
     font-size: 0.73vw;
@@ -791,7 +791,7 @@
 
 
 
-.place-order__form-input_disabled {
+.place-order__form-input_invalid {
     color: #FF7C7C;
     border-bottom: 1px solid #FF7C7C;
 }
