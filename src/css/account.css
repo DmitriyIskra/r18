@@ -475,7 +475,7 @@ input:-webkit-autofill:focus,input:-webkit-autofill:active,input:-webkit-autofil
 
 .profile__address-wr-buttons {
     display: flex;
-    margin-top: 1.46vw;
+    margin-top: 2.55vw;
     gap: 1.41vw;
     grid-row: 3;
     grid-column: 1/3;
