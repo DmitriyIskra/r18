@@ -16,7 +16,7 @@ export default class RedrawAccountButton {
     closeModal(form) {
         this.lastActiveModal.remove();
         this.lastActiveModal = null;
-    }
+    } 
 
     // текстовые поля пусты
     incorrectData(input, text) {
@@ -48,13 +48,15 @@ export default class RedrawAccountButton {
         }, {once : true});
     }
 
+    // скрывает звездочку обозначающую обязательное поле
     hideRequiredStar(input) {
         if(input.classList.contains('modal__input_required')) {
             input.classList.remove('modal__input_required');
         }
     }
-    
+    // ставит звездочку обозначающую обязательное поле
     showRequiredStar(input) {
+        console.log(this)
         if(!input.classList.contains('modal__input_required') && 
         !input.value) {
             input.classList.add('modal__input_required');

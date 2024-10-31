@@ -96,6 +96,8 @@ export default class ControllAccountButton extends ApiModals {
                         if(!result) {
                             this.mask.destroy();
                             e.target.value = '';
+
+                            this.redraw.showRequiredStar(form.phone);
                         };
                     })
                 })
@@ -187,7 +189,7 @@ export default class ControllAccountButton extends ApiModals {
             (async () => {
                 const confirmCodePopUp = await super.read('code');
 
-                this.redraw.openNewModal(confirmCodePopUp);
+                this.redraw.openNewModal(confirmCodePopUp); 
 
                 this.redraw.lastActiveModal.addEventListener('click', this.clickConfirmCode);
                 // удаление и установка input placeholder

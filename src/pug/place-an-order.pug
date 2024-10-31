@@ -293,7 +293,7 @@ block content
                                         .place-order__wr-cdek
                                             form.place-order__form-cdek-address(name="form-opp")
                                                 //-  value="Москва, ул. Хорошевская, д.32"
-                                                input.place-order__wr-cdek-address.place-order__form-address-input(type="text" value="Москва, ул. Хорошевская, д.32")
+                                                input.place-order__wr-cdek-address.place-order__form-address-input(type="text" name="address" value="Москва, ул. Хорошевская, д.32")
                                             .place-order__wr-cdek-app 
                                             .place-order__wr-cdek-confirm
                                                 p 
@@ -337,8 +337,8 @@ block content
                     .place-order__wr-comment
                         .place-order__wr-title
                             h2.place-order__title Комментарий к заказу
-                        .place-order__wr-comment-textarea
-                            textarea.place-order__comment
+                        form.place-order__wr-comment-textarea(name="comment-form")
+                            textarea.place-order__comment(name="comment")
 
                     .place-order__personal-data
                         label.place-order__personal-data-label

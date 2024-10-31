@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: center;
 
-    overflow: auto;
+    overflow: auto; 
     z-index: 1000000;
 }
 
@@ -295,6 +295,7 @@
 /* START ОКНО ВОССТАНОВЛЕНИЕ ПАРОЛЯ */
 .modal-recover {
     width: 26.3%;
+    padding-bottom: 7.40vw;
 }
 
 .modal-recover__text {
@@ -325,11 +326,21 @@
     width: 26.3%;
 }
 
+.modal-reg__wr-icon-pdf {
+    margin-top: 1.30vw;
+}
+
+.modal-reg__link-icon-pdf {
+    display: block;
+    height: 3.49vw;
+    width: 3.49vw;
+}
+
 .modal-reg__wr-battons {
     display: flex;
     width: 70%;
-    margin-top: 3.07vw;
-    margin-bottom: 4.58vw;
+    margin-top: 2.76vw;
+    margin-bottom: 3.13vw;
 
     justify-content: center;
 }
@@ -728,6 +739,7 @@
 @media(max-width: 1200px) {
     .modal-recover__text {
         margin-top: 8vw;
+        padding-bottom: 17.07vw;
     }
 }
 
@@ -779,8 +791,21 @@
 }
 
 @media(max-width: 1200px) {
+    .modal-reg__wr-icon-pdf {
+        margin-top: 4.80vw;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-reg__link-icon-pdf {
+        height: 13.07vw;
+        width: 13.07vw;
+    }
+}
+
+@media(max-width: 1200px) {
     .modal-reg__wr-battons {
-        margin-top: 15.20vw;
+        margin-top: 7.20vw;
         margin-bottom: 8.27vw;
     }
 }
