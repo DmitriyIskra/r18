@@ -6,7 +6,7 @@ export default class ApiAccountButton {
                 headers : {
                     'Content-Type' : 'multipart/form-data'
                 },
-                body : JSON.stringify(data)
+                body : data
             })
 
             return false;

@@ -57,6 +57,13 @@ import RedrawTypeContent from "./account/RedrawTypeContent";
 import RedrawAccountProfile from "./account/RedrawAccountProfile";
 import RedrawHistory from "./account/RedrawHistory";
 
+// CHANGE PASSWORD
+import ControllChangePassword from "./changePassword/ControllChangePassword";
+import RedrawChangePassword from "./changePassword/RedrawChangePassword";
+import RestChangePassword from "./changePassword/RestChangePassword";
+import ValidationChangePassword from "./changePassword/ValidationChangePassword";
+
+
 
 // AIR DATAPICKER (для account)
 import AirDatepicker from "air-datepicker";
@@ -83,6 +90,16 @@ window.addEventListener('load', () => {
         const redraw = new RedrawAccountButton(accButton);
         const api = new ApiAccountButton();
         const controll = new ControllAccountButton(redraw, IMask, api);
+        controll.init();
+    }
+
+    // CHANGE PASSWORD
+    const changePassword = document.querySelector('.change-pass');
+    if(changePassword) {
+        const redraw = new RedrawChangePassword(changePassword);
+        const api = new RestChangePassword();
+        const validation = new ValidationChangePassword();
+        const controll = new ControllChangePassword(redraw, api, validation);
         controll.init();
     }
 
