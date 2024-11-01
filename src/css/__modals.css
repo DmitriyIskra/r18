@@ -266,8 +266,8 @@
     margin: 0 auto;
 
     font-family: 'SofiaSans';
-    font-size: '0.83vw';
-    font-weight: 400;
+    font-size: 0.83vw;
+    font-weight: 300;
 
     color: #fff;
 
@@ -320,6 +320,21 @@
 
 /* ------------------==============================------------------- */
 
+
+/* START ОКНО ВОССТАНОВЛЕНИЕ ПАРОЛЯ РЕЗУЛЬТАТ */
+.modal-recover-succ {
+    width: 26.3%;
+    padding-bottom: 7.40vw;
+}
+
+.modal-recover-succ__text {
+    width: 77%;
+    margin-top: 1.67vw;
+}
+/* END ОКНО ВОССТАНОВЛЕНИЕ ПАРОЛЯ РЕЗУЛЬТАТ */
+
+
+/* ------------------==============================------------------- */
 
 /* START ОКНО РЕГИСТРАЦИЯ */
 .modal-reg {
@@ -739,7 +754,7 @@
 @media(max-width: 1200px) {
     .modal-recover__text {
         margin-top: 8vw;
-        padding-bottom: 17.07vw;
+        padding-bottom: 9.07vw;
     }
 }
 
@@ -755,6 +770,19 @@
     }
 }
 /* END ОКНО ВОССТАНОВЛЕНИЕ ПАРОЛЯ */
+
+
+/* ------------------==============================------------------- */
+
+
+/* START ОКНО ВОССТАНОВЛЕНИЕ ПАРОЛЯ РЕЗУЛЬТАТ */
+@media(max-width: 1200px) {
+    .modal-recover-succ__text {
+        margin-top: 8vw;
+        padding-bottom: 17.07vw;
+    }
+}
+/* END ОКНО ВОССТАНОВЛЕНИЕ ПАРОЛЯ РЕЗУЛЬТАТ */
 
 
 /* ------------------==============================------------------- */
@@ -802,7 +830,7 @@
         width: 13.07vw;
     }
 }
-
+ 
 @media(max-width: 1200px) {
     .modal-reg__wr-battons {
         margin-top: 7.20vw;

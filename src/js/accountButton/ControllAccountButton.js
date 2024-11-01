@@ -1,15 +1,17 @@
 import ApiModals from '../api-modals/ApiModals.js';
 
 export default class ControllAccountButton extends ApiModals {
-    constructor(redraw, IMask) {
+    constructor(redraw, IMask, api) {
         super();
         this.redraw = redraw;
         this.IMask = IMask;
+        this.api = api;
     
         this.click = this.click.bind(this);
         this.clickLogReg = this.clickLogReg.bind(this);
         this.clickLogin = this.clickLogin.bind(this);
         this.clickRecover = this.clickRecover.bind(this);
+        this.clickRecoverSuccess = this.clickRecoverSuccess.bind(this);
         this.clickRegistration = this.clickRegistration.bind(this);
         this.clickConfirmCode = this.clickConfirmCode.bind(this);
 
@@ -77,32 +79,32 @@ export default class ControllAccountButton extends ApiModals {
                 this.redraw.openNewModal(registrationPopUp);
 
                 this.redraw.lastActiveModal.addEventListener('click', this.clickRegistration);
-                // удаление и установка input placeholder
+                // удаление и установка input placeholder и маски на телефон
                 this.registerEventsInputsText(this.redraw.lastActiveModal);
 
                 // на телефон формы регистрации вешаем при фокусе маску
-                const form = this.redraw.lastActiveModal.querySelector('form');
+                // const form = this.redraw.lastActiveModal.querySelector('form');
 
-                form.phone.addEventListener('focus', (e) => {
-                    this.mask = new this.IMask(e.target, {
-                        mask: '+{7} (000) 000-00-00',
-                        lazy: false,
-                        placeholderChar: '_',
-                    })
+                // form.phone.addEventListener('focus', (e) => {
+                //     this.mask = new this.IMask(e.target, {
+                //         mask: '+{7} (000) 000-00-00',
+                //         lazy: false,
+                //         placeholderChar: '_',
+                //     })
 
-                    form.phone.addEventListener('blur', (e) => {
-                        const phone = e.target.value;
-                        const result = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/.test(phone);
-                        if(!result) {
-                            this.mask.destroy();
-                            e.target.value = '';
+                //     form.phone.addEventListener('blur', (e) => {
+                //         const phone = e.target.value;
+                //         const result = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/.test(phone);
+                //         if(!result) {
+                //             this.mask.destroy();
+                //             e.target.value = '';
 
-                            this.redraw.showRequiredStar(form.phone);
-                        };
-                    })
-                })
+                //             this.redraw.showRequiredStar(form.phone);
+                //         };
+                //     })
+                // })
             })()
-        }
+        } 
     }
 
     clickLogin(e) {
@@ -114,10 +116,10 @@ export default class ControllAccountButton extends ApiModals {
         // вход в аккаунт
         if(e.target.closest('.modal-login__button')) {
             // валидация
-            this.validation([form.email, form.password]);
+            this.validation([form.phone, form.password]);
 
             // сбор данных и отправка на сервер (вывод в консоль)
-            if((form.email.value && !+form.email.dataset?.invalid) 
+            if((form.phone.value && !+form.phone.dataset?.invalid) 
             && (form.password.value && !+form.password.dataset?.invalid)) {
                 const formData = new FormData(form);
                 console.log(Array.from(formData));
@@ -138,7 +140,7 @@ export default class ControllAccountButton extends ApiModals {
         }
     }
 
-    // отправка данных для восстановления пароля и закрытие модалкм
+    // отправка запроса для восстановления пароля и закрытие модалки
     clickRecover(e) {
         // форма из модалки
         const form = this.redraw.lastActiveModal.querySelector('form');
@@ -149,14 +151,64 @@ export default class ControllAccountButton extends ApiModals {
         // отправка данных
         if(e.target.closest('.modal-recover__button')) {
             // валидация
-            this.validation([form.email]);
+            this.validation([form.phone]);
 
-            if(form.email.value && !+form.email.dataset?.invalid) {
+            if(form.phone.value && !+form.phone.dataset?.invalid) {
                 const formData = new FormData(form);
-                console.log(Array.from(formData));
+                
+                // -----------  !!!!!!! Отправка данных для получения ссылки на восстановление пароля
+                // -----------  !!!!!!!  const result = this.api.create(formData);
+
+                // отправка данных прошла успешно
+                if(result) {
+                    (async () => {
+                        const modalRecover = await super.read('recover-success');
+        
+                        this.redraw.openNewModal(modalRecover);
+        
+                        this.redraw.lastActiveModal.addEventListener('click', this.clickRecoverSuccess);
+                        // удаление и установка input placeholder
+                        this.registerEventsInputsText(this.redraw.lastActiveModal);
+                    })()
+                } 
+                // сообщение пользователю о том что отправка не была успешной
+                if(!result) {
+                    const p = document.createElement('p');
+                    p.style = `
+                        position: absolute;
+                        bottom: 0; 
+                        font-family: 'SofiaSans';
+                        font-size: 0.83vw;
+                        font-weight: 300;
+                        color: rgb(255, 124, 124);
+                        translate: 0 115%;
+                    `;
+                    p.textContent = 'Что-то пошло не так. Попробуйте еще раз.'
+
+                    const parent = form.parentElement;
+                    parent.style.position = 'relative';
+
+                    parent.append(p);
+
+                    setTimeout(() => {
+                        p.remove();
+                        parent.style.position = '';
+                    }, 7000)
+                }
             }
         };
     }
+
+    //  информация об успешной отправке запроса для восстановления пароля и закрытие модалки
+    clickRecoverSuccess(e) {
+        // форма из модалки
+        const form = this.redraw.lastActiveModal.querySelector('form');
+
+        // закрытие модалки восстановление
+        if(e.target.closest('.modal__close')) this.redraw.closeModal(form);
+    }
+
+
     // для событий по форме регистрации
     clickRegistration(e) {
         // форма из модалки
@@ -231,6 +283,9 @@ export default class ControllAccountButton extends ApiModals {
         };
     }
 
+
+
+
     // при фокусе поле очищается если нет value
     // при blur заполняется, если нет value
     registerEventsInputsText(modal) {
@@ -238,17 +293,43 @@ export default class ControllAccountButton extends ApiModals {
 
         [...inputs].forEach(input => {
             input.addEventListener('focus', e => {
+                if(input.name === 'phone') this.addPhoneMask(input);
+
                 this.currentPlaceholder = e.target.placeholder;
                 e.target.removeAttribute('placeholder');
                 this.redraw.hideRequiredStar(input);
             })
             input.addEventListener('blur', e => { 
+                if(input.name === 'phone') this.destroyPhoneMask(input);
+
                 e.target.setAttribute('placeholder', this.currentPlaceholder);
                 this.currentPlaceholder = null;
                 this.redraw.showRequiredStar(input);
             })
         });
     }
+    // добавляем к полю маску
+    addPhoneMask(input) {      
+        this.mask = new this.IMask(input, {
+            mask: '+{7} (000) 000-00-00',
+            lazy: false,
+            placeholderChar: '_',
+        })
+
+    }
+    // удаляем с поля маску при нессответствии введенного шаблону
+    destroyPhoneMask(input) {
+        const phone = input.value;
+        const result = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/.test(phone);
+        if(!result) {
+            this.mask.destroy();
+            input.value = '';
+
+            this.redraw.showRequiredStar(input);
+        };
+    }
+
+
 
     // валидация заполненности полей
     validation(inputs) {

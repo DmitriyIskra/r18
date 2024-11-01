@@ -56,10 +56,9 @@ export default class RedrawAccountButton {
     }
     // ставит звездочку обозначающую обязательное поле
     showRequiredStar(input) {
-        console.log(this)
         if(!input.classList.contains('modal__input_required') && 
         !input.value) {
             input.classList.add('modal__input_required');
         }
-    } 
+    }  
 }

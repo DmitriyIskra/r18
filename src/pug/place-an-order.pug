@@ -338,15 +338,15 @@ block content
                         .place-order__wr-title
                             h2.place-order__title Комментарий к заказу
                         form.place-order__wr-comment-textarea(name="comment-form")
-                            textarea.place-order__comment(name="comment")
+                            textarea.place-order__comment(name="comment" maxlength="700")
 
-                    .place-order__personal-data
-                        label.place-order__personal-data-label
-                            input.place-order__personal-data-input(type="checkbox" value="personal-data" required)
-                            span.place-order__personal-data-text Согласие на обработку персональных данных
-                        label.place-order__personal-data-label
-                            input.place-order__personal-data-input(type="checkbox" value="subscription-email")
-                            span.place-order__personal-data-text Согласие на E-mail рассылку
+                    //- .place-order__personal-data
+                    //-     label.place-order__personal-data-label
+                    //-         input.place-order__personal-data-input(type="checkbox" value="personal-data" required)
+                    //-         span.place-order__personal-data-text Согласие на обработку персональных данных
+                    //-     label.place-order__personal-data-label
+                    //-         input.place-order__personal-data-input(type="checkbox" value="subscription-email")
+                    //-         span.place-order__personal-data-text Согласие на E-mail рассылку
 
                     .place-order__button-submit 
                         button(type="button") Оформить

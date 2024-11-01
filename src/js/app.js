@@ -41,6 +41,7 @@ import RedrawDelivery from "./delivery/RedrawDelivery";
 // ACCOUNT BUTTON
 import ControllAccountButton from "./accountButton/ControllAccountButton";
 import RedrawAccountButton from "./accountButton/RedrawAccountButton";
+import ApiAccountButton from "./accountButton/ApiAccountButton";
 
 // BASKET BUTTON
 import ControllBasketButton from "./basketButton/ControlBasketButton";
@@ -80,7 +81,8 @@ window.addEventListener('load', () => {
     const accButton = document.querySelector('.header__account');
     if(accButton) {
         const redraw = new RedrawAccountButton(accButton);
-        const controll = new ControllAccountButton(redraw, IMask);
+        const api = new ApiAccountButton();
+        const controll = new ControllAccountButton(redraw, IMask, api);
         controll.init();
     }
 

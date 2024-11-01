@@ -148,6 +148,15 @@ module.exports = {
           // },
           scriptLoading: 'blocking', // defer | module. можно также указать inject: 'body' скрипт будет в конце body но с defer
         }),
+        new HtmlWebPackPlugin({
+          // title: '....' // здесь можно указать title конкретной страницы
+          template: './src/pug/change-password.pug',
+          filename: './change-password.html',   // куда компилировать
+          // minify: {
+          //   html: false // отключаем минификацию html, еще есть версия minify: false
+          // },
+          scriptLoading: 'blocking', // defer | module. можно также указать inject: 'body' скрипт будет в конце body но с defer
+        }),
         new miniCss({
             filename: 'css/style.css',
         }),
@@ -220,6 +229,7 @@ module.exports = {
             { from: 'src/modals-html/__modal-log-reg.html', to: './__modal-log-reg.html' },
             { from: 'src/modals-html/__modal-login.html', to: './__modal-login.html' },
             { from: 'src/modals-html/__modal-recover.html', to: './__modal-recover.html' },
+            { from: 'src/modals-html/__modal-recover-success.html', to: './__modal-recover-success.html' },
             { from: 'src/modals-html/__modal-registration.html', to: './__modal-registration.html' },
             { from: 'src/modals-html/__modal-basket.html', to: './__modal-basket.html' },
             { from: 'src/modals-html/__modal-order-successfully.html', to: './__modal-order-successfully.html' },

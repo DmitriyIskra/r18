@@ -888,7 +888,7 @@
 .place-order__button-submit {
     display: flex;
     justify-content: flex-end;
-    margin-top: 1.6vw;
+    margin-top: 6.77vw;
     grid-column: 1; 
     grid-row: 6;
 }
@@ -934,7 +934,7 @@
     .place-order__content {
         width: 89.58%;
         margin: 0 auto;
-        padding-bottom: 14.93vw;
+        padding-bottom: 6.67vw;
     }
 }
 
@@ -1376,7 +1376,7 @@
 
 @media(max-width: 1200px) {
     .place-order__button-submit {
-        margin-top: 12.27vw;
+        margin-top: 28vw;
         justify-content: center;
     }
 }

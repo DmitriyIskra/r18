@@ -16,6 +16,7 @@ import './css/about-us.css';
 import './css/service.css';
 import './css/delivery.css';
 import './css/price.css';
+import './css/change-password.css';
 import './css/account.css';
 import './css/basket.css';
 import './css/place-an-order.css';
