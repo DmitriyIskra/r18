@@ -2,6 +2,7 @@ export default class RedrawChangePassword {
     constructor(el) {
         this.el = el;
 
+        this.form = this.el.querySelector('.change-pass__form');
         this.inputs = this.el.querySelectorAll('input');
 
         this.lastPlaceholder = null;
@@ -36,7 +37,6 @@ export default class RedrawChangePassword {
             input.value = this.lastValue;
         };
 
-        console.log(this.lastValue)
         // если в this.lastValue - "Поле обязательно для заполнения" и нет нового значения
         // вызвать noInputData(input)
         if(!hasValue && this.lastValue === "Поле обязательно для заполнения") this.noInputData(input);
@@ -46,7 +46,6 @@ export default class RedrawChangePassword {
 
     // поле не заполнено
     noInputData(input) {
-        console.log('no-input')
         input.type = 'text';
         input.value = "Поле обязательно для заполнения";
         input.setAttribute('no-input-data', '');
