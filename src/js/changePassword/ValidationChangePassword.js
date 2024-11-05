@@ -50,7 +50,7 @@ export default class ValidationChangePassword {
         const set = new Set();
 
         inputs.forEach(input => set.add(input.value));
-        console.log(set.size === 1)
+
         return set.size === 1 || false;
     }
 }

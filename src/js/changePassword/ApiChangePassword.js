@@ -1,4 +1,4 @@
-export default class RestChangePassword {
+export default class ApiChangePassword {
     constructor() {
 
     }

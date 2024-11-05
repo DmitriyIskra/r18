@@ -60,7 +60,7 @@ import RedrawHistory from "./account/RedrawHistory";
 // CHANGE PASSWORD
 import ControllChangePassword from "./changePassword/ControllChangePassword";
 import RedrawChangePassword from "./changePassword/RedrawChangePassword";
-import RestChangePassword from "./changePassword/RestChangePassword";
+import ApiChangePassword from "./changePassword/ApiChangePassword";
 import ValidationChangePassword from "./changePassword/ValidationChangePassword";
 
 
@@ -97,7 +97,7 @@ window.addEventListener('load', () => {
     const changePassword = document.querySelector('.change-pass');
     if(changePassword) {
         const redraw = new RedrawChangePassword(changePassword);
-        const api = new RestChangePassword();
+        const api = new ApiChangePassword();
         const validation = new ValidationChangePassword();
         const controll = new ControllChangePassword(redraw, api, validation);
         controll.init();

@@ -47,7 +47,27 @@ export default class ControllChangePassword {
             if(!isSame) return
 
 
-            
+            // Подготовка объекта к отправке на сервер
+            const url = decodeURIComponent(location.href);
+            const index = url.indexOf('?') + 1;
+            const queryData = url.slice(url.indexOf('?') + 1).split('&');
+
+            const data = {
+                USER_CHECKWORD: null,
+                USER_LOGIN: null,
+                pass: this.d.form.pass.value,
+                confirmed_pass: this.d.form['repeat-pass'].value,
+            };
+
+            queryData.forEach(item => {
+                const arr = item.split('=');
+
+                if(arr[0] === 'USER_CHECKWORD' || arr[0] === 'USER_LOGIN') {
+                    data[arr[0]] = arr[1]
+                }
+            });
+
+            this.api.create(data);
         }
     }
 

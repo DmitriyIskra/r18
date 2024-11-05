@@ -230,7 +230,11 @@ export default class ControllAccountButton extends ApiModals {
             resultsValidation.push(this.validationPatternPhone(form.phone));
             // валидация чекбокса
             resultsValidation.push(this.validationCheckbox([form.confirm]));
+            // валидация пароля
+            resultsValidation.push(this.validationPassword(form.password));
 
+            // resultsValidation - массив массивов, если один из массивов не пуст и
+            //  содержит значение, значит один из параметров не валиден
             const totalResult = resultsValidation.some(item => item.length > 0);
             
             // если хоть одно поле будет не валидно в 
@@ -344,7 +348,7 @@ export default class ControllAccountButton extends ApiModals {
 
         return result;
     }
-
+    // валидация чекбокса
     validationCheckbox(checkbox) {
         const result = [];
         checkbox.forEach(ch => {
@@ -356,7 +360,7 @@ export default class ControllAccountButton extends ApiModals {
 
         return result;
     }
-
+    // валидация на соответствие шаблону телефона
     validationPatternPhone(phone) {
         const totalResult = [];
         const result = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/ig.test(phone.value);
@@ -367,13 +371,51 @@ export default class ControllAccountButton extends ApiModals {
 
         return totalResult;
     }
-
+    // валидация на соответствие шаблону email
     validationPatternEmail(email) {
         const totalResult = [];
         const result = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+\.[A-Z]{2,4}$/i.test(email.value);
         if(!result) {
             this.redraw.incorrectData(email, 'Некорректно введена почта');
             totalResult.push(false);
+        }
+
+        return totalResult;
+    }
+    // валидация на соответствие шаблону password
+    validationPassword(password) {
+        // Пароль должен содержать не менее 8 символов не более 64 символов
+        // Как минимум одна заглавная и одна строчная буква.
+        // Должна быть как минимум 1 цифра.
+        // Наличие следующих символов: ~ !?@#$%^&*_-  ----   \    regexp /[~!?@|+#()><\]{}$\[/%"^'&*.,_:-]+/g
+
+        // массив результатов валидаций
+        const result = [];
+        // общий, итоговый (или пустой или в нем будет false)
+        const totalResult = [];
+
+        // значения инпутов
+        const value = password.value;
+        const length = password.length;
+
+        // проверка на длинну
+        result.push(length >= 8 && length <= 64);
+
+        // проверка на наличие как миинимум одной стройной и одной заглавной буквы
+        result.push(/[a-z]+/g.test('dsFdc') && /[A-Z]+/g.test('dsFdc'));
+
+        // проверка на наличие цифры
+        const isNum = /\d+/ig.test(value);
+        result.push(isNum);
+
+        // проверка на наличие символа
+        result.push(/[~!?@|+#()><\]{}$\[/%"^'&*.,_:-]+/g.test(value));
+
+        const total = result.every(item => item);
+
+        if(!total) {
+            this.redraw.incorrectData(password, 'Пароль не соответствует требованиям');
+            totalResult.push(total)
         }
 
         return totalResult;

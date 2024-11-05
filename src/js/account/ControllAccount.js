@@ -22,7 +22,7 @@ export default class ControllAccount extends ApiModals {
 
         this.initCalendar();
         this.initAddresses(); 
-    }
+    } 
 
     registerEvents() {
         this.redraw.content.el.addEventListener('click', this.clickNav);
