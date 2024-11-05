@@ -127,7 +127,7 @@ export default class ControllPlaceOrder {
         }
     }
 
-    // валидация текстовых инпутов в формах
+    // валидация текстовых инпутов в формах 
     validationInputText(input) {
         const value = input.value;
 

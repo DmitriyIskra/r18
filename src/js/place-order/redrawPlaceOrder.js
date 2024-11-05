@@ -247,7 +247,7 @@ export default class RedrawPlaceOrder {
     // END РАБОТА С INPUT ФОРМ
 
 
-
+ 
  
 
     // ПОДСВЕТКА НЕ ВАЛИДНЫХ ДАННЫХ ПРИ ОТПРАВКЕ

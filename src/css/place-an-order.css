@@ -933,7 +933,7 @@
 @media(max-width: 1200px) {
     .place-order__content {
         width: 89.58%;
-        margin: 0 auto;
+        margin: 0 auto; 
         padding-bottom: 6.67vw;
     }
 }
@@ -1189,10 +1189,6 @@
     
     .place-order__form-input_required[name="stage"] {
         background-position: left 14% top 35%;
-    }
-    
-    .place-order__form-input_required[name="intercom"] {
-        background-position: left 28% top 35%;
     }
 }
 
