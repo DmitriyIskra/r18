@@ -43,6 +43,7 @@ import ControllAccountButton from "./accountButton/ControllAccountButton";
 import RedrawAccountButton from "./accountButton/RedrawAccountButton";
 import ApiAccountButton from "./accountButton/ApiAccountButton";
 
+
 // BASKET BUTTON
 import ControllBasketButton from "./basketButton/ControlBasketButton";
 import RedrawBasketButton from "./basketButton/RedrawBasketButton";
@@ -84,7 +85,7 @@ window.addEventListener('load', () => {
         controllSlHead.init();
     }
 
-    // АССOUNT ВХОД - РЕГИСТРАЦИЯ
+    // АССOUNT BUTTON ВХОД - РЕГИСТРАЦИЯ
     const accButton = document.querySelector('.header__account');
     if(accButton) {
         const redraw = new RedrawAccountButton(accButton);

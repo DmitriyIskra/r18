@@ -6,7 +6,7 @@ export default class ControllAccountButton extends ApiModals {
         this.redraw = redraw;
         this.IMask = IMask;
         this.api = api;
-    
+
         this.click = this.click.bind(this);
         this.clickLogReg = this.clickLogReg.bind(this);
         this.clickLogin = this.clickLogin.bind(this);
@@ -396,7 +396,7 @@ export default class ControllAccountButton extends ApiModals {
 
         // значения инпутов
         const value = password.value;
-        const length = password.length;
+        const length = value.length;
 
         // проверка на длинну
         result.push(length >= 8 && length <= 64);
