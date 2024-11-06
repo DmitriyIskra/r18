@@ -55,9 +55,9 @@ export default class ControllChangePassword {
             const data = {
                 USER_CHECKWORD: null,
                 USER_LOGIN: null,
-                pass: this.d.form.pass.value,
-                confirmed_pass: this.d.form['repeat-pass'].value,
-            };
+                pass: null,
+                confirmed_pass: null,
+            }; 
 
             queryData.forEach(item => {
                 const arr = item.split('=');
@@ -66,6 +66,15 @@ export default class ControllChangePassword {
                     data[arr[0]] = arr[1]
                 }
             });
+
+            const pass = this.d.form.pass.value;
+            const confirmed_pass = this.d.form['repeat-pass'].value;
+            console.log(pass);
+            console.log(confirmed_pass);
+            (async () => {
+                data.pass = await this._encrypt(pass, data.USER_CHECKWORD);
+                data.confirmed_pass = await this._encrypt(confirmed_pass, data.USER_CHECKWORD);
+            })();
 
             this.api.create(data);
         }
@@ -79,5 +88,33 @@ export default class ControllChangePassword {
     blur(e) {
         const result = this.validation.fillInput(e.target);
         this.d.fillInput(e.target, result);
+    }
+
+    _encrypt(data, key) {
+        // Generate a random initialization vector (IV)
+        const ivLength = 16; // AES block size for CBC mode
+        const iv = window.crypto.getRandomValues(new Uint8Array(ivLength));
+    
+        // Encrypt data using AES-256-CBC
+        const encoder = new TextEncoder();
+        const encodedData = encoder.encode(data);
+        
+        return window.crypto.subtle.importKey('raw', encoder.encode(key), { name: 'AES-CBC' }, false, ['encrypt'])
+            .then(importedKey => {
+                return window.crypto.subtle.encrypt(
+                    {
+                        name: 'AES-CBC',
+                        iv: iv
+                    },
+                    importedKey,
+                    encodedData
+                );
+            })
+            .then(encryptedData => {
+                const combinedData = new Uint8Array(ivLength + encryptedData.byteLength);
+                combinedData.set(iv);
+                combinedData.set(new Uint8Array(encryptedData), ivLength);
+                return btoa(String.fromCharCode.apply(null, combinedData));
+            });
     }
 }

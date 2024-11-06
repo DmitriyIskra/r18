@@ -9,6 +9,8 @@ export default class ControllPlaceOrder {
 
     init() {
         this.registerEvents();
+
+        this.d.initMap();
     }
 
     registerEvents() {
@@ -89,9 +91,13 @@ export default class ControllPlaceOrder {
                     inputs = form.querySelectorAll('input[type="text"]');
                     
                     [...inputs].forEach(input => {
-                        const validation = this.validationInputText(input);
+                        let validation;
+                        if(input.name !== 'intercom') {
+                            validation = this.validationInputText(input);
 
-                        if(!validation) this.d.setInvalidInputText(input);
+                            if(!validation) this.d.setInvalidInputText(input);
+                        }
+
                     });
                 }
             }
@@ -109,9 +115,9 @@ export default class ControllPlaceOrder {
             }
 
             // СОГЛАСИЕ НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ 
-            if(!this.d.agreePersonalDataCheckbox.checked) {
-                this.d.setInvalidPersonalData();
-            }
+            // if(!this.d.agreePersonalDataCheckbox.checked) {
+            //     this.d.setInvalidPersonalData();
+            // }
         }
     } 
  
