@@ -1,5 +1,8 @@
-export default class ControllChangePassword {
+import Encrypt from "../Encrypt/Encrypt.js";
+
+export default class ControllChangePassword extends Encrypt {
     constructor(d, api, validation) {
+        super();
         this.d = d;
         this.api = api;
         this.validation = validation;
@@ -72,8 +75,8 @@ export default class ControllChangePassword {
             console.log(pass);
             console.log(confirmed_pass);
             (async () => {
-                data.pass = await this._encrypt(pass, data.USER_CHECKWORD);
-                data.confirmed_pass = await this._encrypt(confirmed_pass, data.USER_CHECKWORD);
+                data.pass = await super._encrypt(pass, data.USER_CHECKWORD);
+                data.confirmed_pass = await super._encrypt(confirmed_pass, data.USER_CHECKWORD);
             })();
 
             this.api.create(data);
@@ -90,31 +93,5 @@ export default class ControllChangePassword {
         this.d.fillInput(e.target, result);
     }
 
-    _encrypt(data, key) {
-        // Generate a random initialization vector (IV)
-        const ivLength = 16; // AES block size for CBC mode
-        const iv = window.crypto.getRandomValues(new Uint8Array(ivLength));
     
-        // Encrypt data using AES-256-CBC
-        const encoder = new TextEncoder();
-        const encodedData = encoder.encode(data);
-        
-        return window.crypto.subtle.importKey('raw', encoder.encode(key), { name: 'AES-CBC' }, false, ['encrypt'])
-            .then(importedKey => {
-                return window.crypto.subtle.encrypt(
-                    {
-                        name: 'AES-CBC',
-                        iv: iv
-                    },
-                    importedKey,
-                    encodedData
-                );
-            })
-            .then(encryptedData => {
-                const combinedData = new Uint8Array(ivLength + encryptedData.byteLength);
-                combinedData.set(iv);
-                combinedData.set(new Uint8Array(encryptedData), ivLength);
-                return btoa(String.fromCharCode.apply(null, combinedData));
-            });
-    }
 }

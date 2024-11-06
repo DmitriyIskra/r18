@@ -241,24 +241,28 @@ export default class ControllAccountButton extends ApiModals {
             // totalResult будет true
             if(totalResult) return;
 
-            // ОТКРЫВАЕМ ФОРМУ ДЛЯ ВВОДА КОДА ПОДТВЕРЖДЕНИЯ
-            (async () => {
-                const confirmCodePopUp = await super.read('code');
+            
 
-                this.redraw.openNewModal(confirmCodePopUp); 
+            if(form.name.value && !+form.name.dataset?.invalid &&
+                form.phone.value && !+form.phone.dataset?.invalid &&
+                form.email.value && !+form.email.dataset?.invalid &&
+                form.password.value && !+form.password.dataset?.invalid) {
+                const formData = new FormData(form);
+                
+                this.api.create(formData);
+                
 
-                this.redraw.lastActiveModal.addEventListener('click', this.clickConfirmCode);
-                // удаление и установка input placeholder
-                this.registerEventsInputsText(this.redraw.lastActiveModal);
-            })();
+                // ОТКРЫВАЕМ ФОРМУ ДЛЯ ВВОДА КОДА ПОДТВЕРЖДЕНИЯ
+                (async () => {
+                    const confirmCodePopUp = await super.read('code');
 
-            // if(form.name.value && !+form.name.dataset?.invalid &&
-            //     form.phone.value && !+form.phone.dataset?.invalid &&
-            //     form.email.value && !+form.email.dataset?.invalid &&
-            //     form.password.value && !+form.password.dataset?.invalid) {
-            //     const formData = new FormData(form);
-            //     console.log(Array.from(formData));
-            // }
+                    this.redraw.openNewModal(confirmCodePopUp); 
+
+                    this.redraw.lastActiveModal.addEventListener('click', this.clickConfirmCode);
+                    // удаление и установка input placeholder
+                    this.registerEventsInputsText(this.redraw.lastActiveModal);
+                })();
+            }
         };
     }
 
@@ -413,7 +417,7 @@ export default class ControllAccountButton extends ApiModals {
 
         const total = result.every(item => item);
 
-        if(!total) {
+        if(!total) { 
             this.redraw.incorrectData(password, 'Пароль не соответствует требованиям');
             totalResult.push(total)
         }

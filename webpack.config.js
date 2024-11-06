@@ -236,6 +236,8 @@ module.exports = {
             { from: 'src/modals-html/__modal-failed.html', to: './__modal-failed.html' },
             { from: 'src/modals-html/__modal-code.html', to: './__modal-code.html' },
             
+            // { from: 'src/letters/change-password.html', to: './change-password.html' },
+
             { from: 'src/robots/robots.txt', to: './robots.txt' },
             { from: 'src/robots/sitemap.xml', to: './sitemap.xml' },
           ],

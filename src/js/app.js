@@ -75,6 +75,7 @@ import IMask from "imask";
 
 
 
+
 window.addEventListener('load', () => {
     
     // SLIDER HEAD
@@ -225,12 +226,6 @@ window.addEventListener('load', () => {
         const controll = new ControllDelivery(redraw);
         controll.init();
     }
-
-    // (async () => {
-    //     const response = await fetch('https://dev.r18.coffee/api/sdek_points')
-    //     const res = await response.json()
-    //     console.log(res) 
-    // })()
 })
 
 
