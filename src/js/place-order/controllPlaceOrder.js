@@ -1,6 +1,7 @@
 export default class ControllPlaceOrder {
-    constructor(d) {
+    constructor(d, api) {
         this.d = d;
+        this.api = api;
 
         this.click = this.click.bind(this);
         this.focus = this.focus.bind(this);
@@ -10,9 +11,29 @@ export default class ControllPlaceOrder {
     init() {
         this.registerEvents();
 
-        this.d.initMap();
-    }
+        (async () => {
+            const data = await this.api.read();
 
+            if(data) {
+                const points = data.map(point => {
+                    switch (point.type) {
+                        case 'PVZ' :
+                            point.color = 'green';
+                            point.title = 'ПВЗ';
+                        break;
+                        case 'POSTAMAT' :
+                            point.color = 'violet';
+                            point.title = 'ПОСТАМАТ';
+                    };
+                    
+                    return point;
+                });
+
+                this.d.initMap(points)
+            };
+        })()
+    }
+ 
     registerEvents() {
         this.d.el.addEventListener('click', this.click);
 
@@ -40,12 +61,11 @@ export default class ControllPlaceOrder {
             // // если при выборе сдек, активен ПВЗ скрыть select с адресами
             // if(this.d.typeCdekNavInputs.checked) this.d.choiceReceivingCdek('opp');
         }
-
+        
         // переключение способа получения СДЕК
         if(e.target.closest('.place-order__cdek-type-label')) {
             const element = e.target.closest('.place-order__cdek-type-label');
             const type = element.dataset.type;
-     
             this.d.choiceReceivingCdek(type);
         }
 

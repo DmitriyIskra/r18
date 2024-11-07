@@ -279,11 +279,11 @@
     white-space: nowrap;
 }
 
-.place-order__receiving-logo-cdek {
+.place-order__receiving-logo-cdek { 
     width: 4vw;
     align-self: normal;
 
-    background: no-repeat url(../img/icons/CDEK_logo.png);
+    background: no-repeat url(../img/icons/CDEK_logo-icon.png);
     background-position: left center;
     background-size: auto 70%;
 }
@@ -612,10 +612,12 @@
     height: 17.03vw;
     width: 100%;
     margin-top: 1.41vw;
+}
 
-    background: no-repeat url(../img/content/cdek-map.png);
+.place-order__wr-cdek-app_load {
+    background: no-repeat url(../img/icons/loader-icon.gif);
     background-position: center;
-    background-size: cover;
+    background-size: 8% auto;
 }
 
 .place-order__wr-cdek-confirm {

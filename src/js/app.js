@@ -51,6 +51,7 @@ import RedrawBasketButton from "./basketButton/RedrawBasketButton";
 // PLACE ORDER
 import ControllPlaceOrder from "./place-order/controllPlaceOrder";
 import RedrawPlaceOrder from "./place-order/redrawPlaceOrder";
+import ApiPlaceOrder from "./place-order/ApiPlaceOrder";
 
 // АССOUNT PAGE
 import ControllAccount from "./account/ControllAccount";
@@ -116,11 +117,12 @@ window.addEventListener('load', () => {
         controllBasket.init();
     }
 
-    // ОФРМЛЕНИЕ ЗАКАЗА
+    // ОФРМЛЕНИЕ ЗАКАЗА PLACE ORDER
     const placeOrder = document.querySelector('.place-order__wr-data');
     if(placeOrder) {
+        const api = new ApiPlaceOrder();
         const redraw = new RedrawPlaceOrder(placeOrder);
-        const controll = new ControllPlaceOrder(redraw);
+        const controll = new ControllPlaceOrder(redraw, api);
         controll.init();
     }
 
