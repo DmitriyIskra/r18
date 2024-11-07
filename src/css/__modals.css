@@ -339,29 +339,19 @@
 /* START ОКНО РЕГИСТРАЦИЯ */
 .modal-reg {
     width: 26.3%;
+    margin-top: 4vw;
 }
 
-.modal-reg__wr-icon-pdf {
-    margin-top: 1.30vw;
-}
-
-.modal-reg__link-icon-pdf {
-    display: block;
-    height: 3.49vw;
-    width: 3.49vw;
-}
-
-.modal-reg__wr-battons {
+.modal-reg__pass-rules {
     display: flex;
-    width: 70%;
-    margin-top: 2.76vw;
-    margin-bottom: 3.13vw;
+    margin-top: 0.63vw;
+    flex-direction: column;
 
-    justify-content: center;
-}
+    font-family: "SofiaSans";
+    font-size: 0.63vw;
+    font-weight: 400;
 
-.modal-reg__button {
-    width: 71.4%;
+    color: #FFF;
 }
 
 .modal__wr-checkbox {
@@ -415,6 +405,29 @@
     background-repeat: no-repeat;
     background-size: 62% auto;
     background-position: center;
+}
+
+.modal-reg__wr-icon-pdf {
+    margin-top: 1.30vw;
+}
+
+.modal-reg__link-icon-pdf {
+    display: block;
+    height: 3.49vw;
+    width: 3.49vw;
+}
+
+.modal-reg__wr-battons {
+    display: flex;
+    width: 70%;
+    margin-top: 2.34vw;
+    margin-bottom: 3.13vw;
+
+    justify-content: center;
+}
+
+.modal-reg__button {
+    width: 71.4%;
 }
 /* END ОКНО РЕГИСТРАЦИЯ */
 
@@ -790,8 +803,16 @@
 
 /* START ОКНО РЕГИСТРАЦИЯ */
 @media(max-width: 1200px) {
-    .modal-reg__text {
-        margin-top: 8vw;
+    .modal-reg {
+        margin-top: 0;
+    }
+}
+
+@media(max-width: 1200px) {
+    .modal-reg__pass-rules {
+        margin-top: 2.93vw;
+
+        font-size: 2.67vw;
     }
 }
 
