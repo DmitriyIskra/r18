@@ -215,6 +215,9 @@ module.exports = {
             { from: 'src/img/content/accessories-temper-content.webp', to: 'img/content' },
             { from: 'src/img/content/accessories-thermometer-motta-content.webp', to: 'img/content' },
 
+            { from: 'src/img/icons/cdek-pvz-icon.png', to: 'img/icon/cdek-pvz-icon.png' },
+            { from: 'src/img/icons/cdek-postamat-icon.png', to: 'img/icon/cdek-postamat-icon.png' },
+
             { from: 'src/files/Политика_в_отношении_обработки_персональных_данных_R18.pdf', to: 'files/Политика_в_отношении_обработки_персональных_данных_R18.pdf' },
             { from: 'src/files/conditions-ctm.pdf', to: 'files/conditions-ctm.pdf' },
             { from: 'src/files/price.pdf', to: 'files/price.pdf' },

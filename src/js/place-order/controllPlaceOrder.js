@@ -10,7 +10,7 @@ export default class ControllPlaceOrder {
 
     init() {
         this.registerEvents();
-
+        console.log(2);
         (async () => {
             const data = await this.api.read();
 
@@ -20,10 +20,22 @@ export default class ControllPlaceOrder {
                         case 'PVZ' :
                             point.color = 'green';
                             point.title = 'ПВЗ';
+                            point.icon = {
+                                iconLayout : 'default#image',
+                                iconImageHref : './img/icon/cdek-pvz-icon.png',
+                                iconImageSize: [26, 34],
+                                iconImageOffset: [-5, -38]
+                            }
                         break;
                         case 'POSTAMAT' :
                             point.color = 'violet';
                             point.title = 'ПОСТАМАТ';
+                            point.icon = {
+                                iconLayout : 'default#image',
+                                iconImageHref : './img/icon/cdek-postamat-icon.png',
+                                iconImageSize: [26, 34],
+                                iconImageOffset: [-5, -38]
+                            }
                     };
                     
                     return point;

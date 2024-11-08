@@ -82,17 +82,17 @@ export default class RedrawPlaceOrder {
   initMap(points) {
     ymaps.ready(function () {
       // Создаем карту с указанными центром и уровнем масштабирования
-      let myMap = new ymaps.Map("map", {
+      const myMap = new ymaps.Map("map", {
         center: [55.751574, 37.573856],
         controls: [],
         zoom: 9
-      }),
+      });
 
         // Создаем кластеризатор с заданными опциями
-        clusterer = new ymaps.Clusterer({
-          clusterHideIconOnBalloonOpen: false,
-          geoObjectHideIconOnBalloonOpen: false
-        });
+      let clusterer = new ymaps.Clusterer({
+        clusterHideIconOnBalloonOpen: false,
+        geoObjectHideIconOnBalloonOpen: false
+      });
 
       // Переопределяем метод createCluster для кластеризатора
       clusterer.createCluster = function (center, geoObjects) {
@@ -101,14 +101,15 @@ export default class RedrawPlaceOrder {
           this,
           center,
           geoObjects
-        ),
+        );
 
-          hasViolet = false,
-          hasGreen = false;
+        let hasViolet = false;
+        let hasGreen = false;
 
         // Проверяем, какие цвета меток присутствуют в кластере
         for (let i = 0, l = geoObjects.length; i < l; i++) {
           let placemarkPreset = geoObjects[i].options.get("preset");
+
           if (placemarkPreset === "islands#greenIcon") {
             hasGreen = true;
           } else if (placemarkPreset === "islands#violetIcon") {
@@ -131,24 +132,28 @@ export default class RedrawPlaceOrder {
       };
 
       // Функция для создания данных балуна метки
-      let getPointData = function (title, address, workTime, phone, index) {
+      const getPointData = function (title, address, workTime, phone, index) {
         return {
           balloonContentBody: `<strong>${title}</strong><br>` + address + "<br>" + phone + "<br>" + workTime,
-          clusterCaption: "метка <strong>" + index + "</strong>"
+          hintContent: address,
         };
-      },
+      };
 
-        allowColors = ["green", "violet"], // Разрешенные цвета меток green, violet
-        // Функция для создания опций метки на основе ее цвета
-        getPointOptions = function (point) {
-          return {
-            preset: "islands#" + point.color + "Icon"
-          };
-        },
-        // Массив точек с координатами и цветами
+      const allowColors = ["green", "violet"]; // Разрешенные цвета меток green, violet
+      // Функция для создания опций метки на основе ее цвета
+      const getPointOptions = function (point) {
+        return {
+          preset: "islands#" + point.color + "Icon"
+        };
+      };
+        
+      // Функция для задания кастомной иконки для метки
+      const getPointIcon = function (point) {
+        return point.icon;
+      }
 
-
-        geoObjects = [];
+      // Массив точек с координатами и цветами
+      const geoObjects = [];
 
       for (let i = 0, len = points.length; i < len; i++) {
         const address = points[i].location.address_full;
@@ -159,8 +164,9 @@ export default class RedrawPlaceOrder {
 
         geoObjects[i] = new ymaps.Placemark(
           coords, // points[i]["coords"]
-          getPointData(title, address, workTime, phone, i),
-          getPointOptions(points[i]) // передаем объект с пунктом, из него функция возьмет цвет
+          getPointData(title, address, workTime, phone, i), // текст балуна
+          // getPointOptions(points[i]), // цвет
+          getPointIcon(points[i]) // кастомная иконка
         );
       }
 
