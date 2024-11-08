@@ -151,6 +151,8 @@ export default class ControllPlaceOrder {
             //     this.d.setInvalidPersonalData();
             // }
         }
+
+        
     } 
  
     focus(e) {
