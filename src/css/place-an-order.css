@@ -608,6 +608,18 @@
     width: 100%;
 }
 
+.place-order__wr-cdek-address::placeholder {
+    font-family: 'SofiaSans';
+    font-size: 1vw;
+    font-weight: 400;
+
+    color: #fff;
+}
+
+.place-order__wr-cdek-address:focus::placeholder {
+    visibility: hidden;
+}
+
 .place-order__wr-cdek-app {
     height: 17.03vw;
     width: 100%;

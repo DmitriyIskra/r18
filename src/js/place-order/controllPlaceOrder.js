@@ -10,7 +10,7 @@ export default class ControllPlaceOrder {
 
     init() {
         this.registerEvents();
-        console.log(2);
+        
         (async () => {
             const data = await this.api.read();
 

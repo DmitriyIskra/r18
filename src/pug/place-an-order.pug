@@ -292,14 +292,13 @@ block content
                                     .place-order__forms-address-cdek-item(data-type="opp")
                                         .place-order__wr-cdek
                                             form.place-order__form-cdek-address(name="form-opp")
-                                                //-  value="Москва, ул. Хорошевская, д.32"
-                                                input.place-order__wr-cdek-address.place-order__form-address-input(type="text" name="address" value="Москва, ул. Хорошевская, д.32")
+                                                input.place-order__wr-cdek-address.place-order__form-address-input(type="text" name="address" placeholder="Адрес")
                                             #map.place-order__wr-cdek-app.place-order__wr-cdek-app_load
                                                 //- здесь карта с ПВЗ
                                             .place-order__wr-cdek-confirm
                                                 p 
                                                     span Вы выбрали адрес:
-                                                    span г. Москва, ул. Хорошевская, д.32
+                                                    span.place-order__choice-map-address 
                                                 buttom.place-order__cdek-confirm-button Подтвердить
 
                     .place-order__payment

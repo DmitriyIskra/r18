@@ -177,9 +177,10 @@ export default class RedrawPlaceOrder {
           getPointIcon(points[i]) // кастомная иконка
         );
 
-        myPlacemark.events.add('click', function(e) {
-          console.log('click on placemark');
-          // console.log(e.get('target')['properties'].get('balloonContent'));
+        myPlacemark.events.add('click', function (e) {
+          const value = e.get('target').properties.get('hintContent');
+          const input = document.querySelector('.place-order__wr-cdek-address');
+          input.value = value;
         })
 
         geoObjects[i] = myPlacemark;
@@ -190,10 +191,17 @@ export default class RedrawPlaceOrder {
       // Добавляем кластеризатор на карту
       myMap.geoObjects.add(clusterer);
 
-      const readDataPoint = (e) => {
-        console.log(e)
-      }
+      // Для поиска по карте (временно) https://yandex.ru/dev/jsapi-v2-1/doc/ru/v2-1/dg/concepts/geocoding
+      // var myGeocoder = ymaps.geocode("Петрозаводск");
 
+      // myGeocoder.then(
+      //   function (res) {
+      //     console.log('Координаты объекта :' + res.geoObjects.get(0).geometry.getCoordinates());
+      //   },
+      //   function (err) {
+      //     console.log('Ошибка');
+      //   }
+      // );
     });
 
     // скрываем лоадер
