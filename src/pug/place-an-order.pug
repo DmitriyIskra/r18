@@ -291,15 +291,15 @@ block content
                                                 input(type="text" name="intercom" data-standart_value="Код домофона" value="Код домофона").place-order__form-address-input
                                     .place-order__forms-address-cdek-item(data-type="opp")
                                         .place-order__wr-cdek
-                                            form.place-order__form-cdek-address(name="form-opp")
-                                                input.place-order__wr-cdek-address.place-order__form-address-input(type="text" name="address" placeholder="Адрес")
+                                            .place-order__form-cdek-address(name="form-opp")
+                                                input.place-order__wr-cdek-address.place-order__form-address-input(type="text" id="suggest" placeholder="Адрес")
                                             #map.place-order__wr-cdek-app.place-order__wr-cdek-app_load
                                                 //- здесь карта с ПВЗ
                                             .place-order__wr-cdek-confirm
                                                 p 
                                                     span Вы выбрали адрес:
                                                     span.place-order__choice-map-address 
-                                                buttom.place-order__cdek-confirm-button Подтвердить
+                                                buttom.place-order__cdek-confirm-button(type='button') Подтвердить
 
                     .place-order__payment
                         .place-order__wr-title 

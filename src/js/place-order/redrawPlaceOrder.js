@@ -10,6 +10,9 @@ export default class RedrawPlaceOrder {
     // контейнер c навигацией по способам доставки
     this.wrReceivingNav = this.el.querySelector('.place-order__receiving-wr-list');
 
+    // Поле для ввода выбранного на карте пвз
+    this.inputCdekAddressFromMap = this.el.querySelector('.place-order__wr-cdek-address');
+
     this.allTextInputs = this.el.querySelectorAll('input[type="text"]');
     this.buttonSend = this.el.querySelector('.place-order__button-submit');
 
@@ -78,13 +81,13 @@ export default class RedrawPlaceOrder {
     this.map.classList.remove('place-order__wr-cdek-app_load');
   }
 
-  // КАРТА С ПВЗ
+  // START КАРТА С ПВЗ
   initMap(points) {
     ymaps.ready(function () {
       // Создаем карту с указанными центром и уровнем масштабирования
       const myMap = new ymaps.Map("map", {
         center: [55.751574, 37.573856],
-        controls: [],
+        controls: [],//"searchControl"
         zoom: 9
       });
 
@@ -133,9 +136,11 @@ export default class RedrawPlaceOrder {
         clusterPlacemark.options.set("preset", clusterPreset);
         // ----------------------------------------------------------------
 
+        
 
         return clusterPlacemark;
 
+        
       };
 
       // Функция для создания данных балуна метки
@@ -191,22 +196,36 @@ export default class RedrawPlaceOrder {
       // Добавляем кластеризатор на карту
       myMap.geoObjects.add(clusterer);
 
-      // Для поиска по карте (временно) https://yandex.ru/dev/jsapi-v2-1/doc/ru/v2-1/dg/concepts/geocoding
-      // var myGeocoder = ymaps.geocode("Петрозаводск");
 
-      // myGeocoder.then(
-      //   function (res) {
-      //     console.log('Координаты объекта :' + res.geoObjects.get(0).geometry.getCoordinates());
-      //   },
-      //   function (err) {
-      //     console.log('Ошибка');
-      //   }
-      // );
+      // НОВЫЙ ЦЕНТР КАРТЫ ПО ВВЕДЕННОМУ АДРЕСА
+      const newAddressInput = document.querySelector('.place-order__wr-cdek-address');
+      let timeOutId;
+      newAddressInput.addEventListener('input', (e) => {
+        clearTimeout(timeOutId);
+
+        timeOutId = setTimeout(() => {
+          const myGeocoder = ymaps.geocode(e.target.value);
+          myGeocoder.then(
+            function (res) {
+                const coords = res.geoObjects.get(0).geometry.getCoordinates()
+                myMap.setCenter(coords, 10);
+            },
+            function (err) {
+                console.log('Ошибка поиска координат');
+            }
+          );
+        }, 2000)
+      });
     });
 
     // скрываем лоадер
     this.hideLoader();
   }
+
+  confirmAddressPVZ() {
+    
+  }
+  // END КАРТА С ПВЗ
 
 
   // START УПРАВЛЕНИЕ ФОРМАМИ ПОЛУЧЕНИЯ

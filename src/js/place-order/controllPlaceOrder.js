@@ -43,7 +43,9 @@ export default class ControllPlaceOrder {
 
                 this.d.initMap(points)
             };
-        })()
+        })();
+
+        // this.d.initSuggest();
     }
  
     registerEvents() {
@@ -152,7 +154,9 @@ export default class ControllPlaceOrder {
             // }
         }
 
-        
+        if(e.target.closest('place-order__cdek-confirm-button')) {
+            
+        }
     } 
  
     focus(e) {
