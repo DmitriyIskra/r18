@@ -654,6 +654,10 @@
     min-height: 0.99vw;
 }
 
+.place-order__choice-map-address[invalid] {
+    color: #FF7C7C;
+}
+
 .place-order__cdek-confirm-button {
     padding: 0.57vw 1.56vw;
     font-family: "SofiaSans";

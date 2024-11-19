@@ -12,6 +12,8 @@ export default class RedrawPlaceOrder {
 
     // Поле для ввода выбранного на карте пвз
     this.inputCdekAddressFromMap = this.el.querySelector('.place-order__wr-cdek-address');
+    // Поле выбранного (подтвержденного) адреса
+    this.confirmedAddressPVZ = this.el.querySelector('.place-order__choice-map-address');
 
     this.allTextInputs = this.el.querySelectorAll('input[type="text"]');
     this.buttonSend = this.el.querySelector('.place-order__button-submit');
@@ -80,6 +82,8 @@ export default class RedrawPlaceOrder {
   hideLoader() {
     this.map.classList.remove('place-order__wr-cdek-app_load');
   }
+
+// ------------------------------------------------------------------------
 
   // START КАРТА С ПВЗ
   initMap(points) {
@@ -197,10 +201,10 @@ export default class RedrawPlaceOrder {
       myMap.geoObjects.add(clusterer);
 
 
-      // НОВЫЙ ЦЕНТР КАРТЫ ПО ВВЕДЕННОМУ АДРЕСА
+      // НОВЫЙ ЦЕНТР КАРТЫ ПО ВВЕДЕННОМУ АДРЕСУ
       const newAddressInput = document.querySelector('.place-order__wr-cdek-address');
       let timeOutId;
-      newAddressInput.addEventListener('input', (e) => {
+      const newCenter = (e) => {
         clearTimeout(timeOutId);
 
         timeOutId = setTimeout(() => {
@@ -215,7 +219,9 @@ export default class RedrawPlaceOrder {
             }
           );
         }, 2000)
-      });
+      }
+
+      newAddressInput.addEventListener('input', newCenter);
     });
 
     // скрываем лоадер
@@ -223,9 +229,19 @@ export default class RedrawPlaceOrder {
   }
 
   confirmAddressPVZ() {
-    
+    const value = this.inputCdekAddressFromMap.value;
+
+    if(value) {
+      if(this.confirmedAddressPVZ.hasAttribute('invalid')) {
+        this.confirmedAddressPVZ.removeAttribute('invalid')
+      }
+      this.confirmedAddressPVZ.textContent = value;
+      
+    }
   }
   // END КАРТА С ПВЗ
+
+// ------------------------------------------------------------------------
 
 
   // START УПРАВЛЕНИЕ ФОРМАМИ ПОЛУЧЕНИЯ
@@ -310,6 +326,9 @@ export default class RedrawPlaceOrder {
   }
 
 
+// ------------------------------------------------------------------------
+
+
   // START SELECT с адресами
 
   // выбор адреса (SELECT)
@@ -329,7 +348,7 @@ export default class RedrawPlaceOrder {
 
   // END SELECT с адресами
 
-
+// ------------------------------------------------------------------------
 
   // ---- START ОПЛАТА
 
@@ -369,7 +388,7 @@ export default class RedrawPlaceOrder {
   // ---- END ОПЛАТА
 
 
-
+// ------------------------------------------------------------------------
 
   // START РАБОТА С INPUT ФОРМ
 
@@ -403,13 +422,18 @@ export default class RedrawPlaceOrder {
   // END РАБОТА С INPUT ФОРМ
 
 
-
+// ------------------------------------------------------------------------
 
 
   // ПОДСВЕТКА НЕ ВАЛИДНЫХ ДАННЫХ ПРИ ОТПРАВКЕ
   // подсвечивает не валидные текстовые инпуты
   setInvalidInputText(input) {
     input.classList.add('place-order__form-input_invalid');
+  }
+  // пвз адрес не подтвержден
+  setInvalidAddressPVZ() {
+    this.confirmedAddressPVZ.textContent = 'Подтвердите, пожалуйста, адрес.';
+    this.confirmedAddressPVZ.setAttribute('invalid', '');
   }
   // подсвечивает если не выбран способ оплаты
   setInvalidPayment() {

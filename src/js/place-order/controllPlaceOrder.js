@@ -83,6 +83,11 @@ export default class ControllPlaceOrder {
             this.d.choiceReceivingCdek(type);
         }
 
+        // подтверждение выбранного адреса с пвз
+        if(e.target.closest('.place-order__cdek-confirm-button')) {
+            this.d.confirmAddressPVZ();
+        }
+
         // выбор способа оплаты
         if(e.target.closest('.place-order__payment-type')) {
             const element = e.target.closest('.place-order__payment-type');
@@ -114,26 +119,33 @@ export default class ControllPlaceOrder {
                 let form;
                 if(activeType !== 'cdek') {
                     form = this.d.currentReceivingContent.querySelector('form');
+
+                    let inputs;
+                    if(form) {
+                        inputs = form.querySelectorAll('input[type="text"]');
+                        
+                        [...inputs].forEach(input => {
+                            let validation;
+                            if(input.name !== 'intercom') {
+                                validation = this.validationInputText(input);
+
+                                if(!validation) this.d.setInvalidInputText(input);
+                            }
+                        });
+                    }
                 }
 
+                // валидация выбран ли адрес пвз, если активен способ получения ПВЗ
                 if(activeType === 'cdek') {
-                    form = this.d.currentReceivingContentCdek.querySelector('form');
+                    // form = this.d.currentReceivingContentCdek.querySelector('form');
+                    const result = this.validationAddressPVZ(this.d.confirmedAddressPVZ);
+                    console.log(this.d.confirmedAddressPVZ)
+                    console.log('this.d.confirmedAddressPVZ.textContent', this.d.confirmedAddressPVZ.textContent)
+                    console.log('result', result)
+                    if(!result) this.d.setInvalidAddressPVZ();
                 }
 
-                let inputs;
-                if(form) {
-                    inputs = form.querySelectorAll('input[type="text"]');
-                    
-                    [...inputs].forEach(input => {
-                        let validation;
-                        if(input.name !== 'intercom') {
-                            validation = this.validationInputText(input);
-
-                            if(!validation) this.d.setInvalidInputText(input);
-                        }
-
-                    });
-                }
+                
             }
 
             // СПОСОБ ОПЛАТЫ
@@ -152,10 +164,6 @@ export default class ControllPlaceOrder {
             // if(!this.d.agreePersonalDataCheckbox.checked) {
             //     this.d.setInvalidPersonalData();
             // }
-        }
-
-        if(e.target.closest('place-order__cdek-confirm-button')) {
-            
         }
     } 
  
@@ -188,5 +196,9 @@ export default class ControllPlaceOrder {
         result = value !== '' ? true : false;
 
         return result;
+    }
+
+    validationAddressPVZ(element) {
+        return element.textContent.trim() !== '' ? true : false;
     }
 }
