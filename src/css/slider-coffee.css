@@ -643,6 +643,12 @@
     gap: 1.72vw;
 }
 
+.sl-prod__button-slide_drip {
+    position: absolute;
+    top: 2.24vw;
+    right: 2.24vw;
+}
+
 .sl-prod__big-desc-wr-text-set {
     flex-grow: 1;
 }
@@ -1156,7 +1162,7 @@
 
 @media( max-width: 1200px ) {
     .sl-prod__big-desc-set {
-        gap: 13.60vw;
+        gap: 0;
 
         flex-direction: column;
     }
@@ -1164,6 +1170,17 @@
 
 @media( max-width: 1200px ) {
     .sl-prod__big-desc-set .sl-prod__big-desc-wr-img {
+        margin-top: 12vw;
+        order: 3;
+    }
+
+    .sl-prod__button-slide_drip {
+        position: static;
+        top: 0;
+        right: 0;
+
+        margin-top: 14.40vw;
+        align-self: center;
         order: 2;
     }
 

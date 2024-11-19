@@ -652,19 +652,22 @@ export default class RedrawSlСoffee {
         h3.textContent = title;
         divTitle.append(h3);
 
-        // кнопка 
-        const divButton = this.createEl('div', ['sl-prod__wr-button-slide']);
-        const link = this.createEl('a', ['sl-prod__button-slide']);
-        link.href = href;
-        link.title = linkTitle;
-        link.dataset.part
-        link.textContent = 'Купить';
-        const linkDeco = this.createEl('div', ['sl-prod__wr-button-slide-deco']);
-        divButton.append(link);
-        divButton.append(linkDeco);
-
         li.append(divTitle);
-        li.append(divButton);
+
+        if(packing !== 'drip') {
+            // кнопка 
+            const divButton = this.createEl('div', ['sl-prod__wr-button-slide']);
+            const link = this.createEl('a', ['sl-prod__button-slide']);
+            link.href = href;
+            link.title = linkTitle;
+            link.dataset.part
+            link.textContent = 'Купить';
+            const linkDeco = this.createEl('div', ['sl-prod__wr-button-slide-deco']);
+            divButton.append(link);
+            divButton.append(linkDeco);
+    
+            li.append(divButton);
+        }
 
         return li;
     }
