@@ -72,6 +72,8 @@ input:-webkit-autofill:focus,input:-webkit-autofill:active,input:-webkit-autofil
 }
 
 .account__content-list {
+    position: relative;
+
     margin-top: 2.19vw;
     padding-top: 3.65vw;
 
@@ -83,6 +85,31 @@ input:-webkit-autofill:focus,input:-webkit-autofill:active,input:-webkit-autofil
         0.68vw 1.51vw 1.67vw 0px rgba(0, 0, 0, 0.13), 
         0.16vw 0.36vw 0.89vw 0px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(3px);
+}
+
+.button__logout {
+    position: absolute;
+    top: 1.15vw;
+    right: 1.15vw;
+}
+
+.button__logout_desc {
+    display: grid;
+    padding: 0.57vw 1.67vw;
+    place-items: center;
+
+    font-family: "SofiaSans";
+    font-size: 0.83vw;
+    font-weight: 400;
+
+    color: #FFF;
+    border-radius: 1.56vw;
+    border: 0.15vw solid #FFF;
+    background: #F1551C;
+}
+
+.button__logout_mob {
+    display: none;
 }
 
 .account__content-item {
@@ -892,7 +919,24 @@ p.delivery-account__documents {
     .account__content-list {
         width: 89.34%;
         margin: 14.13vw auto 0;
-        padding-top: 11.73vw;
+        padding-top: 12.73vw;
+    }
+}
+
+@media(max-width: 1200px) { 
+    .button__logout {
+        top: 1.60vw;
+        right: 2.93vw;
+    }
+
+    .button__logout_desc {
+        display: none;
+    }
+
+    .button__logout_mob {
+        display: inline-block;
+        height: 10.67vw;
+        width: 10.67vw;
     }
 }
 

@@ -14,7 +14,14 @@ block content
                     li.account__tabs-item.account__tabs-delivery(data-type_acc="delivery") Доставка
                         //- a(href="./delivery.html" title="Доставка") 
             
-            ul.account__content-list 
+            ul.account__content-list  
+                li.button__logout
+                    a.button__logout_desc(href="#0") Выход
+                    a.button__logout_mob(href="#0")
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M26.6526 26.9625C27.1507 27.4405 27.9419 27.4242 28.4199 26.9261L34.2362 20.8655C34.7004 20.3818 34.7004 19.6182 34.2362 19.1345L28.4199 13.0738C27.9419 12.5758 27.1507 12.5595 26.6526 13.0375C26.1546 13.5155 26.1382 14.3068 26.6162 14.8048L30.4019 18.7497H18.7891C18.0987 18.7497 17.5391 19.3093 17.5391 19.9997C17.5391 20.69 18.0987 21.2497 18.7891 21.2497H30.4026L26.6162 25.1951C26.1382 25.6932 26.1546 26.4845 26.6526 26.9625Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.41797 33.3333C5.41797 34.0237 5.97762 34.5833 6.66797 34.5833H22.4255C23.116 34.5833 23.6755 34.0237 23.6755 33.3333V28.3333C23.6755 27.643 23.116 27.0833 22.4255 27.0833C21.7351 27.0833 21.1755 27.643 21.1755 28.3333V32.0833H7.91797V7.91667H21.1755V11.6667C21.1755 12.357 21.7351 12.9167 22.4255 12.9167C23.116 12.9167 23.6755 12.357 23.6755 11.6667V6.66667C23.6755 5.97634 23.116 5.41667 22.4255 5.41667H6.66797C5.97762 5.41667 5.41797 5.97634 5.41797 6.66667V33.3333Z" fill="white"/>
+                        </svg>
                 li.account__profile.account__content-item.account__content-item_active(data-account="profile")
                     .profile__wr-img 
                         img.profile__img(src=require('../img/icons/profile-default-photo-icon.webp') alt="фото пользователя")

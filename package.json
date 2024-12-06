@@ -17,7 +17,6 @@
     "imagemin-webp-webpack-plugin": "^3.3.6",
     "mini-css-extract-plugin": "^2.7.7",
     "node-sass": "^9.0.0",
-    "pud": "^0.1.0",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
     "sass": "^1.70.0",

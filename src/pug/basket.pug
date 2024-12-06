@@ -25,8 +25,6 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info 
-                                p Скидка составляет 10%, так как Вы заказали более 10 кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
@@ -44,8 +42,6 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info 
-                                p Скидка составляет #[span 10]%, так как Вы заказали более #[span 10] кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
@@ -63,8 +59,6 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info 
-                                p Скидка составляет #[span 10]%, так как Вы заказали более #[span 10] кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
@@ -82,8 +76,6 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info 
-                                p Скидка составляет #[span 10]%, так как Вы заказали более #[span 10] кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
@@ -101,8 +93,6 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info 
-                                p Скидка составляет #[span 10]%, так как Вы заказали более #[span 10] кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
@@ -120,8 +110,6 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info 
-                                p Скидка составляет #[span 10]%, так как Вы заказали более #[span 10] кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
@@ -139,8 +127,6 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info 
-                                p Скидка составляет #[span 10]%, так как Вы заказали более #[span 10] кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
@@ -158,8 +144,6 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info 
-                                p Скидка составляет #[span 10]%, так как Вы заказали более #[span 10] кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
@@ -177,8 +161,6 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info 
-                                p Скидка составляет #[span 10]%, так как Вы заказали более #[span 10] кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
@@ -196,21 +178,22 @@ block content
                                     input.basket__goods-amount-num(type='text' placeholder='0')
                                     .basket__goods-amount-button(data-type='increment')
                         .basket__goods-info-price
-                            .basket__goods-info  
-                                p Скидка составляет #[span 10]%, так как Вы заказали более #[span 10] кг кофе
                             .basket__goods-wr-price
                                 .basket__goods-discount #[span 6750] р.
                                 .basket__goods-price #[span 5000] р.
 
                 hr.basket__underline
 
-                .basket__wr-total-price 
-                    .basket__wr-total-discount  
-                        .basket__total-discount-text Скидка:
-                        .basket__total-discount-num #[span 750] р.
-                    .basket__total-price-old 11 750 р.
-                    .basket__total-price
-                        .basket__total-price-text Итог:
-                        .basket__total-price-num #[span 11000] р.
+                .basket__wr-total
+                    .basket__total-discount-info
+                        p Скидка составляет #[span 10%], так как Вы заказали более #[span 10 кг] кофе
+                    .basket__wr-total-price 
+                        .basket__wr-total-discount  
+                            .basket__total-discount-text Скидка:
+                            .basket__total-discount-num #[span 750] р.
+                        .basket__total-price-old 11 750 р.
+                        .basket__total-price
+                            .basket__total-price-text Итог:
+                            .basket__total-price-num #[span 11000] р.
 
                 a(href="./place-an-order.html" title="Оформить заказ").basket__button Оформить
