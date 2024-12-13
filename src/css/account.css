@@ -850,6 +850,54 @@ p.delivery-account__documents {
 
 /* ------- END DELIVERY ------ */
 
+/* ------- START EXCHANGE ------ */
+.exchange__title {
+    width: fit-content;
+    margin: 0 auto;
+    padding-right: 4.69vw;
+    padding-bottom: 0.57vw;
+    padding-left: 4.69vw;
+
+    border-bottom: 0.16vw solid #fff;
+}
+
+.exchange__title h1 {
+    font-family: "SofiaSans";
+    font-size: 1.25vw;
+    text-transform: uppercase;
+    
+    color: #F1551C;
+}
+
+.exchange__content {
+    width: 77.73%;
+    margin: 2.97vw auto 0;
+    padding-bottom: 9.79vw;
+
+    
+    font-family: "SofiaSans";
+    font-size: 0.94vw;
+    font-weight: 400;
+    
+    color: #FFF;
+}
+
+.exchange__rules-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1.46vw;
+}
+
+.exchange__contacts {
+    margin-top: 2.40vw;
+}
+
+.exchange__content a {  
+    color: inherit;
+}
+/* ------- END EXCHANGE ------ */
+
+
 
 
 @media(max-width: 1200px) {
@@ -1389,6 +1437,38 @@ p.delivery-account__documents {
     .wrapper-delivery .contacts__wr-address {
         background: none;
     }
+}
+
+@media(max-width: 1200px) {
+    
+}
+
+@media(max-width: 1200px) {
+
+}
+
+@media(max-width: 1200px) {
+
+}
+
+@media(max-width: 1200px) {
+
+}
+
+@media(max-width: 1200px) {
+
+}
+
+@media(max-width: 1200px) {
+
+}
+
+@media(max-width: 1200px) {
+
+}
+
+@media(max-width: 1200px) {
+
 }
 
 
