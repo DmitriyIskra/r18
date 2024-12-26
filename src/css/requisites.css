@@ -1,0 +1,63 @@
+.wrapper-requisites {
+    background:
+    no-repeat url(../img/roasteria-side.webp),
+     no-repeat url(../img/roasteria-side.webp),
+       #483D41
+    ;
+    background-position:
+     right 0.35vw top 8vw,
+      left 0.35vw top 8vw 
+    ;
+    background-size: 10.9vw auto, 10.9vw auto;
+}
+
+.main-requisites {
+    padding-top: 6.6vw;
+    padding-bottom: 21.28vw;
+
+    background: none;
+}
+
+.requisites {
+    width: 46.6%;
+    margin: 0 auto;
+    padding-top: 3.65vw;
+    padding-bottom: 4.01vw;
+
+    background: #726B68;
+    box-shadow: 
+        4.22vw 9.48vw 2.92vw 0px rgba(0, 0, 0, 0.00), 
+        2.71vw 6.04vw 2.66vw 0px rgba(0, 0, 0, 0.02), 
+        1.51vw 65px 2.24vw 0px rgba(0, 0, 0, 0.08), 
+        0.68vw 1.51vw 1.67vw 0px rgba(0, 0, 0, 0.13), 
+        0.16vw 0.36vw 0.89vw 0px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(3px);
+}
+
+
+
+
+@media(max-width: 1200px) {
+    .wrapper-requisites {
+        background-position:
+         right 0.35vw top 24vw,
+          left 0.35vw top 24vw
+        ;
+    }
+}
+
+@media(max-width: 1200px) {
+    .main-requisites {
+        padding-top: 11.8vw;
+        padding-bottom: 0;
+    }
+}
+
+@media(max-width: 1200px) {
+    .requisites {
+        width: 89.35%;
+        padding-top: 8.27vw;
+        padding-bottom: 7.20vw;
+    }
+}
+

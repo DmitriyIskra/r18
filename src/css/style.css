@@ -400,6 +400,21 @@
     width: 100%;
 }
 
+.contacts__requisites {
+    margin-top: 5vw;
+
+    > a {
+        font-family: "SofiaSans";
+        font-size: 1.25vw;
+        font-weight: 700;
+        
+        color: #FFF;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.15vw;
+    }
+}
+
 /* КОНТАКТЫ END */
 
 
