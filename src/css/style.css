@@ -693,9 +693,20 @@
     }
 }
 
+
 @media( max-width: 1200px ) {
     .contacts__wr-address a {
         font-size: 3.73vw;
+    }
+}
+
+@media( max-width: 1200px ) {
+    .contacts__requisites {
+        margin-top: 11.73vw;
+    }
+
+    .contacts__requisites a {
+        font-size: 5.33vw;
     }
 }
 
