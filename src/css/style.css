@@ -400,8 +400,10 @@
     width: 100%;
 }
 
-.contacts__requisites {
-    margin-top: 5vw;
+.contacts__docs {
+    display: flex;
+    margin-top: 3vw;
+    flex-direction: column;
 
     > a {
         font-family: "SofiaSans";
@@ -701,11 +703,12 @@
 }
 
 @media( max-width: 1200px ) {
-    .contacts__requisites {
+    .contacts__docs {
         margin-top: 11.73vw;
+        gap: 1.6vw;
     }
 
-    .contacts__requisites a {
+    .contacts__docs a {
         font-size: 5.33vw;
     }
 }

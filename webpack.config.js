@@ -175,6 +175,15 @@ module.exports = {
           // },
           scriptLoading: 'blocking', // defer | module. можно также указать inject: 'body' скрипт будет в конце body но с defer
         }),
+        new HtmlWebPackPlugin({
+          // title: '....' // здесь можно указать title конкретной страницы
+          template: './src/pug/public-offer.pug',
+          filename: './public-offer.html',   // куда компилировать
+          // minify: {
+          //   html: false // отключаем минификацию html, еще есть версия minify: false
+          // },
+          scriptLoading: 'blocking', // defer | module. можно также указать inject: 'body' скрипт будет в конце body но с defer
+        }),
         new miniCss({
             filename: 'css/style.css',
         }),
@@ -239,6 +248,7 @@ module.exports = {
             { from: 'src/files/Политика_в_отношении_обработки_персональных_данных_R18.pdf', to: 'files/Политика_в_отношении_обработки_персональных_данных_R18.pdf' },
             { from: 'src/files/conditions-ctm.pdf', to: 'files/conditions-ctm.pdf' },
             { from: 'src/files/price.pdf', to: 'files/price.pdf' },
+            { from: 'src/files/public-offer-R18.pdf', to: 'files/public-offer-R18.pdf' },
 
             { from: 'src/img/favicon/apple-touch-icon.png', to: 'img/favicon' },
             { from: 'src/img/favicon/32.png', to: 'img/favicon' },
