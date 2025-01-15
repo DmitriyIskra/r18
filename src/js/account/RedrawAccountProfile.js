@@ -33,6 +33,9 @@ export default class RedrawAccountProfile {
         // инпуты адреса пользователя
         this.buttonAddAdress = this.el.querySelector('.profile__button-add-adress');
         this.buttonSaveAdress = this.el.querySelector('.profile__button-save-adress');
+
+        // индекс в форме ввода адреса
+        this.indexAddress = this.el.querySelector('.profile__address-input[name="zip-code"]');
     }
 
     // открываем редактирование формы
@@ -167,5 +170,12 @@ export default class RedrawAccountProfile {
 
     countAddresses() {
         if(this.addresses.length === 3) this.buttonAddAdress.style.display = 'none';
+    }
+
+    indexAddressOnlyNum(value) {
+        const arr = value.split('');
+        arr.length = arr.length - 1;
+
+        this.indexAddress.value = arr.join('');
     }
 }

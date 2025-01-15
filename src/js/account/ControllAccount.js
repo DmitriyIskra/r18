@@ -13,6 +13,7 @@ export default class ControllAccount extends ApiModals {
         this.click = this.click.bind(this);
         this.focus = this.focus.bind(this);
         this.blur = this.blur.bind(this);
+        this.input = this.input.bind(this);
     }
 
     init() {
@@ -38,6 +39,8 @@ export default class ControllAccount extends ApiModals {
             .forEach(item => item.addEventListener('focus', this.focus));
         [...this.redraw.profile.inputsForms['address']]
             .forEach(item => item.addEventListener('blur', this.blur));
+
+        this.redraw.profile.indexAddress.addEventListener('input', this.input);
     }
 
     initCalendar() {
@@ -89,7 +92,7 @@ export default class ControllAccount extends ApiModals {
 
 
         // ---- address
-        // снимаем юлокировку с поле при нажатии на редактирование
+        // снимаем блокировку с поле при нажатии на редактирование
         if(e.target.closest('.profile__address-edit')) {
             this.redraw.profile.openEditForm('address');
         }
@@ -183,6 +186,15 @@ export default class ControllAccount extends ApiModals {
         if(!e.target.closest('[name="phone"]')) {
             this.redraw.profile.fillInput(e.target);
         }
+    }
+
+    input(e) {
+        const value = e.target.value;
+        const isNum = +value;
+
+        if(!isNum && value.length > 0) {
+            this.redraw.profile.indexAddressOnlyNum(value);
+        } 
     }
 
     // валидация пользовательских данных
