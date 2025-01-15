@@ -128,6 +128,9 @@
 .modal__input_required[name="name"] {
     background-position: left 13.1% top 0.6vw;
 }
+.modal__input_required[name="patronymic"] {
+    background-position: left 23.9% top 0.6vw;
+}
 .modal__input_required[name="phone"] {
     background-position: left 22.5% top 0.6vw;
 }
@@ -607,6 +610,9 @@
     }
     .modal__input_required[name="name"] {
         background-position: left 14.8% top 0.6vw;
+    }
+    .modal__input_required[name="patronymic"] {
+        background-position: left 25.5% top 0.6vw;
     }
     .modal__input_required[name="phone"] {
         background-position: left 24% top 0.6vw;
